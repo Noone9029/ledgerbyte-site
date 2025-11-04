@@ -66,6 +66,12 @@ const Header = () => {
           >
             Let&apos;s Connect
           </a>
+          <a
+            href="https://blog.ledgerbyte.io"
+            className="text-foreground hover:text-primary transition-colors"
+          >
+            Blog
+          </a>
         </nav>
 
         {/* Social Icons + Mobile Menu */}
