@@ -12,6 +12,8 @@ import LetsConnect from "./pages/LetsConnect";
 import NotFound from "./pages/NotFound";
 import WhatsAppButton from "@/components/WhatsappButton";
 import { fbq, pageview } from "@/lib/fbq";
+import BlogIndex from "./pages/BlogIndex";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/lets-connect" element={<LetsConnect />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
