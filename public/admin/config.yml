@@ -1,0 +1,25 @@
+backend:
+  # EASIEST if you deploy on Netlify (uses Git Gateway + Identity)
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/blog"        # where uploaded images go
+public_folder: "/images/blog"             # how they’re referenced in posts
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "src/posts"                   # stays in your repo
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "excerpt", label: "Excerpt", widget: "text", required: false }
+      - { name: "date", label: "Publish Date", widget: "datetime" }
+      - { name: "tags", label: "Tags", widget: "list", required: false }
+      - { name: "cover", label: "Cover Image", widget: "image", required: false }
+      - { name: "published", label: "Published", widget: "boolean", default: true }
+      - { name: "body", label: "Content", widget: "markdown" }
