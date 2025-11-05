@@ -44,7 +44,7 @@ export function getPostBySlug(slug: string): Post | null {
 
   const raw = entry[1];
   const { data, content } = matter(raw);
-  const html = marked.parse(content, { mangle: false, headerIds: true }) as string;
+  const html = marked.parse(content) as string;
 
   return {
     slug,
