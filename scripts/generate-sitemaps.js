@@ -7,7 +7,6 @@ const ROUTES = [
   "/services",
   "/about-us",
   "/lets-connect",
-  "/blog"
 ];
 
 const today = new Date().toISOString().split("T")[0];

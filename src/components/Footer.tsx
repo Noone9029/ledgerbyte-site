@@ -22,22 +22,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-hero-text/70">
               <li>
-                  Accounting Automation
+                  Accounting and Bookkeeping
               </li>
               <li>
-                  Licensing &amp; Setup
+                  Tax &amp; Compliance
               </li>
               <li>
-                  Virtual CFO
+                  Fractional CFO Services
+              </li>
+              <li>
+                  Licensing and Setup
               </li>
               <li>
                   Consultancy Services
               </li>
               <li>
                   Financial Management
-              </li>
-              <li>
-                  Tax &amp; Compliance
               </li>
             </ul>
           </div>
