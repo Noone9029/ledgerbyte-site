@@ -143,9 +143,7 @@ export function SiteHeader() {
       >
         <nav aria-label="Mobile navigation">
           <Link href="/finance">Finance</Link>
-          <Link href="/finance/services">Finance Services</Link>
           <Link href="/technology">Technology</Link>
-          <Link href="/technology/services">Technology Services</Link>
           <Link href="/technology/process">Process</Link>
           <Link href="/technology/why-ledgerbyte">Why LedgerByte Tech</Link>
           <Link href="/about">About</Link>

@@ -8,9 +8,17 @@ test("division switching and service discovery resolve to complete routes", asyn
 
   if (isMobile) {
     await page.getByRole("button", { name: "Open navigation" }).click();
-    await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
-    await page
-      .getByRole("navigation", { name: "Mobile navigation" })
+    const mobileNavigation = page.getByRole("navigation", {
+      name: "Mobile navigation",
+    });
+    await expect(mobileNavigation).toBeVisible();
+    await expect(
+      mobileNavigation.getByRole("link", { name: "Finance Services" }),
+    ).toHaveCount(0);
+    await expect(
+      mobileNavigation.getByRole("link", { name: "Technology Services" }),
+    ).toHaveCount(0);
+    await mobileNavigation
       .getByRole("link", { name: "Technology", exact: true })
       .click();
   } else {
