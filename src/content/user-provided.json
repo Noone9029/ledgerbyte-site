@@ -6,5 +6,21 @@
     "addressRegion": "Sharjah",
     "addressCountry": "AE",
     "source": "Direct user instruction, 2026-07-27"
+  },
+  "muhammadAhmadName": {
+    "value": "Muhammad Ahmad",
+    "source": "Direct user instruction, 2026-07-27"
+  },
+  "muhammadAhmadRole": {
+    "value": "CTO",
+    "source": "Direct user instruction, 2026-07-27"
+  },
+  "muhammadAhmadCredentials": {
+    "value": "BSCS",
+    "source": "Direct user instruction, 2026-07-27"
+  },
+  "muhammadAhmadDescription": {
+    "value": "Full-stack developer & data analyst skilled in React, Python, SQL & AI. Leads development, analytics, and digital strategy at LedgerByte.",
+    "source": "Direct user instruction, 2026-07-27"
   }
 }

@@ -144,6 +144,15 @@ export const team: TeamMember[] = [
     source: "rendered-text/ledgerbyte.io/about-us.txt",
   },
   {
+    name: "Muhammad Ahmad",
+    role: "CTO",
+    credentials: "BSCS",
+    image: "/team/muhammad-ahmad.png",
+    description:
+      "Full-stack developer & data analyst skilled in React, Python, SQL & AI. Leads development, analytics, and digital strategy at LedgerByte.",
+    source: "src/content/user-provided.json#muhammadAhmadDescription",
+  },
+  {
     name: "Faisal Nawaz",
     role: "Head of Accounting",
     credentials: "FCA",

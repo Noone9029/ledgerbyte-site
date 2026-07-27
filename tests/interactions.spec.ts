@@ -121,6 +121,37 @@ test("about values grid is completed by three working action cards", async ({
   ).toHaveAttribute("href", "/contact");
 });
 
+test("about team places Muhammad Ahmad immediately after Haider", async ({
+  page,
+}) => {
+  await page.goto("/about");
+
+  const teamCards = page.locator(".team-card");
+  await expect(teamCards).toHaveCount(6);
+  await expect(teamCards.locator("h2")).toHaveText([
+    "Haider Ali",
+    "Muhammad Ahmad",
+    "Faisal Nawaz",
+    "Sayyam Nasir",
+    "Alina Khalid",
+    "Amir Ilyas",
+  ]);
+
+  const muhammadCard = teamCards.nth(1);
+  await expect(muhammadCard.locator(".eyebrow")).toHaveText("BSCS");
+  await expect(muhammadCard.locator(".team-copy > span")).toHaveText("CTO");
+  await expect(
+    muhammadCard.getByText(
+      "Full-stack developer & data analyst skilled in React, Python, SQL & AI. Leads development, analytics, and digital strategy at LedgerByte.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(muhammadCard.locator("img")).toHaveAttribute(
+    "src",
+    /muhammad-ahmad\.png/,
+  );
+});
+
 test("contact form opens a structured WhatsApp handoff and preserves data", async ({
   page,
 }) => {
