@@ -25,6 +25,7 @@ const userProvidedCopyPath = path.join(
   "content",
   "user-provided.json",
 );
+const seoCopyPath = path.join(sourceRoot, "content", "seo.json");
 const textExtensions = new Set([
   ".txt",
   ".html",
@@ -112,6 +113,7 @@ const skippedDataKeys = new Set([
   "source",
   "sourceHtml",
   "href",
+  "image",
 ]);
 
 const validateData = (value, origin, key = "") => {
@@ -140,6 +142,11 @@ for (const file of walk(generatedRoot, (candidate) =>
     path.relative(projectRoot, file),
   );
 }
+
+validateData(
+  JSON.parse(fs.readFileSync(seoCopyPath, "utf8")),
+  path.relative(projectRoot, seoCopyPath),
+);
 
 const ignoredPropertyNames = new Set([
   "className",

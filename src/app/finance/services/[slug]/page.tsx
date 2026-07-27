@@ -18,7 +18,16 @@ import {
   getFinanceService,
   getFinanceServiceByTitle,
 } from "@/content";
+import { getFinanceServiceSeoTitle } from "@/content/seo";
 import { getFinanceServiceVisual } from "@/content/visuals";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createMetadata } from "@/lib/seo";
 
 interface FinanceServicePageProps {
   params: Promise<{ slug: string }>;
@@ -36,17 +45,12 @@ export async function generateMetadata({
 
   if (!service) return {};
 
-  return {
-    title: service.seo.title,
+  return createMetadata({
+    path: `/finance/services/${service.slug}`,
+    title: getFinanceServiceSeoTitle(service.slug, service.seo.title),
     description: service.seo.description,
-    keywords: service.seo.keywords,
-    alternates: { canonical: `/finance/services/${service.slug}` },
-    openGraph: {
-      title: service.seo.title,
-      description: service.seo.description,
-      images: [getFinanceServiceVisual(service.slug)],
-    },
-  };
+    image: getFinanceServiceVisual(service.slug),
+  });
 }
 
 export default async function FinanceServicePage({
@@ -65,56 +69,28 @@ export default async function FinanceServicePage({
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@graph": [
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: `/finance/services/${service.slug}`,
+            name: service.title,
+            description: service.description,
+          }),
+          buildBreadcrumbSchema([
+            { name: "Finance", path: "/finance" },
+            { name: "Finance Services", path: "/finance/services" },
             {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Finance",
-                  item: "https://ledgerbyte.io/finance",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Finance Services",
-                  item: "https://ledgerbyte.io/finance/services",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: service.title,
-                  item: `https://ledgerbyte.io/finance/services/${service.slug}`,
-                },
-              ],
-            },
-            {
-              "@type": "Service",
               name: service.title,
-              description: service.description,
-              provider: {
-                "@type": "Organization",
-                name: "LedgerByte",
-              },
-              areaServed: "Worldwide",
-              serviceType: service.primaryFocus,
+              path: `/finance/services/${service.slug}`,
             },
-            {
-              "@type": "FAQPage",
-              mainEntity: service.faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
-              })),
-            },
-          ],
-        }}
+          ]),
+          buildServiceSchema({
+            path: `/finance/services/${service.slug}`,
+            name: service.title,
+            description: service.description,
+            serviceType: service.primaryFocus,
+          }),
+          buildFaqSchema(service.faqs),
+        )}
       />
       <main id="main-content">
         <PageMotion>
@@ -271,6 +247,28 @@ export default async function FinanceServicePage({
               ))}
             </div>
           </section>
+
+          {service.relatedResources.length ? (
+            <section className="related-section page-section">
+              <SectionHeading
+                eyebrow="Related resources from LedgerByte Insights"
+                title="Supporting reading that connects directly to this service area and the decisions growing finance teams usually face next."
+              />
+              <div className="related-grid">
+                {service.relatedResources.map((resource) => (
+                  <a href={resource.href} key={resource.title}>
+                    <p className="eyebrow">{resource.pillar}</p>
+                    <h3>{resource.title}</h3>
+                    <p>{resource.description}</p>
+                    <span>
+                      Read insight
+                      <ArrowUpRight weight="bold" aria-hidden="true" />
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <section className="faq-section page-section">
             <SectionHeading

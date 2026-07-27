@@ -47,7 +47,8 @@ export function CinematicMedia({
           src={src}
           alt={alt}
           fill
-          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           sizes={sizes}
         />
         {frameOverlay}

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
@@ -7,6 +6,7 @@ import { ScrubText } from "@/components/motion/scrub-text";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import {
   companyPrinciples,
   companyStory,
@@ -14,19 +14,21 @@ import {
   team,
   technologyValues,
 } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { corporateVisual } from "@/content/visuals";
+import { buildAboutSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About LedgerByte",
-  description:
-    "We are a forward-thinking financial technology company dedicated to revolutionizing how businesses manage their accounting, compliance, and growth strategies in global markets.",
-  alternates: { canonical: "/about" },
-};
+const pageSeo = getPageSeo("/about");
+
+export const metadata = createPageMetadata(pageSeo, { path: "/about" });
 
 export default function AboutPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData data={buildAboutSchema(pageSeo.description)} />
+      <main id="main-content">
+        <PageMotion>
         <section className="inner-hero page-section">
           <CinematicMedia
             className="inner-hero-art hero-reveal"
@@ -173,7 +175,8 @@ export default function AboutPage() {
           description="We don't just build software—we build lasting partnerships. Every project is an opportunity to deliver excellence, foster trust, and create solutions that stand the test of time."
           buttonLabel="Let's Connect"
         />
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

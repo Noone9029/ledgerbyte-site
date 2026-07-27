@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import { PageMotion } from "@/components/motion/page-motion";
+import { StructuredData } from "@/components/structured-data";
+import { getPageSeo } from "@/content/seo";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "This page explains, in plain language, how LedgerByte handles contact information, basic website usage data, and communication requests submitted through the site.",
-  alternates: { canonical: "/privacy-policy" },
-};
+const pageSeo = getPageSeo("/privacy-policy");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/privacy-policy",
+});
 
 const sections = [
   {
@@ -29,8 +31,18 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/privacy-policy",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <article className="legal-page page-section">
           <header>
             <p className="eyebrow hero-reveal">Last Updated April 2026</p>
@@ -50,7 +62,8 @@ export default function PrivacyPolicyPage() {
             ))}
           </div>
         </article>
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

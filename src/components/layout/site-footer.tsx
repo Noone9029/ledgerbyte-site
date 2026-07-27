@@ -49,6 +49,13 @@ export function SiteFooter() {
           <Link href="/about">About Us</Link>
           <Link href="/about#team">Our Team</Link>
           <Link href="/technology/process">Process</Link>
+          <a href="https://blog.ledgerbyte.io">LedgerByte Insights</a>
+          <a href="https://www.linkedin.com/company/ledger-byte/">
+            LinkedIn
+          </a>
+          <a href="https://www.trustpilot.com/review/ledgerbyte.io">
+            Trustpilot
+          </a>
           <Link href="/privacy-policy">Privacy Policy</Link>
           <Link href="/terms-of-use">Terms of Use</Link>
         </div>

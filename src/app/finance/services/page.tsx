@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
@@ -6,25 +5,49 @@ import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { InfiniteMarquee } from "@/components/sections/infinite-marquee";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import {
   financeServiceGroups,
   financeServices,
   financeTools,
   getFinanceServiceByTitle,
 } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { financeVisual } from "@/content/visuals";
+import {
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Finance Services",
-  description:
-    "End-to-end accounting, reporting, compliance, and finance support for businesses that want cleaner operations, sharper visibility, and better financial decision-making.",
-  alternates: { canonical: "/finance/services" },
-};
+const pageSeo = getPageSeo("/finance/services");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/finance/services",
+});
 
 export default function FinanceServicesPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/finance/services",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            type: "CollectionPage",
+          }),
+          buildServiceSchema({
+            path: "/finance/services",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            serviceType: financeServices.map((service) => service.title),
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <section className="inner-hero page-section">
           <CinematicMedia
             className="inner-hero-art hero-reveal"
@@ -131,7 +154,8 @@ export default function FinanceServicesPage() {
           description="Whether you need better books, tighter compliance, stronger reporting, or more strategic finance support, we can help shape a service mix that fits your stage and operating model."
           buttonLabel="Talk to Our Team"
         />
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

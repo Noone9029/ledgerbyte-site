@@ -1,9 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { corporateVisual } from "@/content/visuals";
+import { StructuredData } from "@/components/structured-data";
+import { getPageSeo } from "@/content/seo";
+import { buildGlobalSchema } from "@/lib/schema";
+import {
+  createPageMetadata,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 import "./globals.css";
 
 const cabinetGrotesk = localFont({
@@ -28,33 +36,18 @@ const cabinetGrotesk = localFont({
   ],
 });
 
+const homeSeo = getPageSeo("/");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ledgerbyte.io"),
-  title: {
-    default: "LedgerByte | Smart Accounting",
-    template: "%s | LedgerByte",
-  },
-  description:
-    "Elevating business performance through clarity, compliance, and smart finance.",
-  applicationName: "LedgerByte",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    siteName: "LedgerByte",
-    title: "LedgerByte | Smart Accounting",
-    description:
-      "Elevating business performance through clarity, compliance, and smart finance.",
-    images: [corporateVisual],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "LedgerByte | Smart Accounting",
-    description:
-      "Elevating business performance through clarity, compliance, and smart finance.",
-    images: [corporateVisual],
-  },
+  metadataBase: new URL(SITE_URL),
+  ...createPageMetadata(homeSeo, { path: "/" }),
+  applicationName: SITE_NAME,
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: homeSeo.title,
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export const viewport: Viewport = {
@@ -104,9 +97,11 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
+        <StructuredData data={buildGlobalSchema()} />
         <SiteHeader />
         {children}
         <SiteFooter />
+        <SiteAnalytics />
       </body>
     </html>
   );

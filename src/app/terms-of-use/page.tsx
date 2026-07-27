@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import { PageMotion } from "@/components/motion/page-motion";
+import { StructuredData } from "@/components/structured-data";
+import { getPageSeo } from "@/content/seo";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Use",
-  description:
-    "These terms explain how website content should be understood and how LedgerByte's online information relates to formal service engagements.",
-  alternates: { canonical: "/terms-of-use" },
-};
+const pageSeo = getPageSeo("/terms-of-use");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/terms-of-use",
+});
 
 const sections = [
   {
@@ -29,8 +31,18 @@ const sections = [
 
 export default function TermsOfUsePage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/terms-of-use",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <article className="legal-page page-section">
           <header>
             <p className="eyebrow hero-reveal">Last Updated April 2026</p>
@@ -50,7 +62,8 @@ export default function TermsOfUsePage() {
             ))}
           </div>
         </article>
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

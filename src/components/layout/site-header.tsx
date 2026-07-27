@@ -52,6 +52,9 @@ export function SiteHeader() {
           <Link className="nav-link" href="/about" onClick={closeNavigation}>
             About
           </Link>
+          <a className="nav-link" href="https://blog.ledgerbyte.io">
+            Insights
+          </a>
         </nav>
 
         <div className="nav-actions">
@@ -146,6 +149,7 @@ export function SiteHeader() {
           <Link href="/technology/process">Process</Link>
           <Link href="/technology/why-ledgerbyte">Why LedgerByte Tech</Link>
           <Link href="/about">About</Link>
+          <a href="https://blog.ledgerbyte.io">Insights</a>
           <Link href="/contact">Let&apos;s Connect</Link>
         </nav>
         <div className="mobile-nav-contact">

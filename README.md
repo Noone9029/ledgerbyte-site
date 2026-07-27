@@ -15,6 +15,8 @@ Open `http://localhost:3000`.
 
 ```powershell
 npm run test:content
+npm run test:seo
+npm run test:seo:preview
 npm run test:e2e
 npm run lint
 npm run build
@@ -42,3 +44,22 @@ CONTACT_TO_EMAIL=info@ledgerbyte.io
 ```
 
 WhatsApp works without Resend credentials. Never commit production values.
+
+## Search and Analytics
+
+SEO metadata, canonical paths, target intent, and modification dates are
+centralized in `src/content/seo.json`. Production uses
+`https://ledgerbyte.io`; Vercel previews are `noindex`, while permanent
+redirects preserve the legacy finance and technology URLs.
+
+Google Analytics is optional:
+
+```dotenv
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+GOOGLE_SITE_VERIFICATION=google-verification-token
+```
+
+The implementation records contact channel clicks, consultation CTA clicks,
+form starts, and successful leads. It does not send visitor-entered personal
+information to analytics. See `docs/SEO-OPERATIONS.md` for the domain cutover,
+Search Console, profile consistency, and ongoing content checklist.

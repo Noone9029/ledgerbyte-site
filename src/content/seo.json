@@ -1,0 +1,99 @@
+{
+  "pages": {
+    "/": {
+      "title": "Finance + Technology Services",
+      "description": "We bring tech, automation, and expert accounting together — so you can stay compliant, save time, and focus on growing your business.",
+      "image": "/art/corporate-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/ledgerbyte.io/index.txt"
+    },
+    "/finance": {
+      "title": "Outsourced Finance Function for SMEs",
+      "description": "Expert Remote Accountants delivering precise, reliable financial management. Automated Bookkeeping & Real-Time Reporting for total visibility.",
+      "image": "/art/finance-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/ledgerbyte.io/services.txt"
+    },
+    "/finance/services": {
+      "title": "Outsourced Accounting Services UAE",
+      "description": "End-to-end accounting, reporting, compliance, and finance support for businesses that want cleaner operations, sharper visibility, and better financial decision-making.",
+      "image": "/art/finance-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/ledgerbyte.io/services.txt"
+    },
+    "/technology": {
+      "title": "Technology Solutions for Growing Businesses",
+      "description": "LedgerByte Tech delivers cutting-edge web, mobile, cloud, and AI solutions designed for reliability, security, and long-term growth.",
+      "image": "/art/technology-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/index.txt"
+    },
+    "/technology/services": {
+      "title": "Software Development Services for SMEs",
+      "description": "Explore web, mobile app, backend API, AI automation, cloud, DevOps, and UI/UX services designed for growing businesses.",
+      "image": "/art/technology-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/services.txt"
+    },
+    "/technology/process": {
+      "title": "Software Development Process",
+      "description": "A proven methodology that delivers exceptional results, from initial concept to ongoing support. Every step is designed to ensure transparency, quality, and success.",
+      "image": "/art/technology-infrastructure-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/process.txt"
+    },
+    "/technology/why-ledgerbyte": {
+      "title": "Why Choose Our Technology Team",
+      "description": "Built on trust, driven by excellence, focused on your success. At LedgerByte Tech, we don't just deliver projects, we build lasting partnerships.",
+      "image": "/art/partnership-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/why-ledgerbyte-tech.txt"
+    },
+    "/about": {
+      "title": "About LedgerByte Finance & Technology",
+      "description": "We are a forward-thinking financial technology company dedicated to revolutionizing how businesses manage their accounting, compliance, and growth strategies in global markets.",
+      "image": "/art/corporate-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/about.txt"
+    },
+    "/contact": {
+      "title": "Contact LedgerByte Finance & Technology",
+      "description": "Ready to strengthen your finance function? Get in touch with our team to discuss bookkeeping, reporting, compliance, payroll, cash flow planning, or CFO-level support.",
+      "image": "/art/partnership-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "Direct user SEO plan and rendered-text/ledgerbyte.io/lets-connect.txt"
+    },
+    "/privacy-policy": {
+      "title": "Privacy Policy",
+      "description": "This page explains, in plain language, how LedgerByte handles contact information, basic website usage data, and communication requests submitted through the site.",
+      "image": "/art/corporate-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "rendered-text/ledgerbyte.io/privacy-policy.txt"
+    },
+    "/terms-of-use": {
+      "title": "Terms of Use",
+      "description": "These terms explain how website content should be understood and how LedgerByte's online information relates to formal service engagements.",
+      "image": "/art/corporate-editorial-v3.webp",
+      "lastModified": "2026-07-27",
+      "source": "rendered-text/ledgerbyte.io/terms-of-use.txt"
+    }
+  },
+  "financeServices": {
+    "accounting-automation-systems": "Accounting Automation Services UAE",
+    "accounting-bookkeeping": "Bookkeeping Services UAE",
+    "budgeting-forecasting": "Financial Forecasting Services UAE",
+    "cash-flow-working-capital": "Cash Flow Management Services UAE",
+    "financial-reporting-mis": "Management Reporting Services UAE",
+    "fractional-cfo-advisory": "Fractional CFO Services UAE",
+    "payroll-wps-management": "WPS Payroll Services UAE",
+    "tax-vat-compliance": "UAE VAT & Corporate Tax Services"
+  },
+  "technologyServices": {
+    "web-development": "Web Development Services for SMEs",
+    "mobile-app-development": "Mobile App Development for SMEs",
+    "backend-apis": "Backend & API Development Services",
+    "ai-automation": "AI & Automation Services for SMEs",
+    "cloud-devops": "Cloud & DevOps Services for SMEs",
+    "ui-ux-design": "UI/UX Design Services for SMEs"
+  }
+}

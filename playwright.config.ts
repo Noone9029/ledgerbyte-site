@@ -38,7 +38,11 @@ export default defineConfig({
   },
   webServer: {
     command: "npm run dev -- --hostname 127.0.0.1 --port 3100",
-    env: { CONTACT_EMAIL_DISABLED: "true" },
+    env: {
+      CONTACT_EMAIL_DISABLED: "true",
+      SEO_INDEXABLE: process.env.SEO_INDEXABLE ?? "true",
+      VERCEL_ENV: process.env.VERCEL_ENV ?? "",
+    },
     url: "http://127.0.0.1:3100",
     reuseExistingServer: true,
     timeout: 120_000,

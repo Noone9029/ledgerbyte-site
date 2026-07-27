@@ -14,10 +14,18 @@ import {
   technologyProcess,
   technologyServices,
 } from "@/content";
+import { getTechnologyServiceSeoTitle } from "@/content/seo";
 import {
   getTechnologyPartnershipVisual,
   getTechnologyServiceVisual,
 } from "@/content/visuals";
+import {
+  buildBreadcrumbSchema,
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createMetadata } from "@/lib/seo";
 
 interface TechnologyServicePageProps {
   params: Promise<{ slug: string }>;
@@ -34,16 +42,12 @@ export async function generateMetadata({
   const service = getTechnologyService(slug);
   if (!service) return {};
 
-  return {
-    title: service.title,
+  return createMetadata({
+    path: `/technology/services/${service.slug}`,
+    title: getTechnologyServiceSeoTitle(service.slug, service.title),
     description: service.description,
-    alternates: { canonical: `/technology/services/${service.slug}` },
-    openGraph: {
-      title: service.title,
-      description: service.description,
-      images: [getTechnologyServiceVisual(service.slug)],
-    },
-  };
+    image: getTechnologyServiceVisual(service.slug),
+  });
 }
 
 export default async function TechnologyServicePage({
@@ -59,44 +63,26 @@ export default async function TechnologyServicePage({
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@graph": [
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: `/technology/services/${service.slug}`,
+            name: service.title,
+            description: service.description,
+          }),
+          buildBreadcrumbSchema([
+            { name: "Technology", path: "/technology" },
+            { name: "Technology Services", path: "/technology/services" },
             {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Technology",
-                  item: "https://ledgerbyte.io/technology",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Technology Services",
-                  item: "https://ledgerbyte.io/technology/services",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: service.title,
-                  item: `https://ledgerbyte.io/technology/services/${service.slug}`,
-                },
-              ],
-            },
-            {
-              "@type": "Service",
               name: service.title,
-              description: service.description,
-              provider: {
-                "@type": "Organization",
-                name: "LedgerByte",
-              },
-              areaServed: "Worldwide",
+              path: `/technology/services/${service.slug}`,
             },
-          ],
-        }}
+          ]),
+          buildServiceSchema({
+            path: `/technology/services/${service.slug}`,
+            name: service.title,
+            description: service.description,
+          }),
+        )}
       />
       <main id="main-content">
         <PageMotion>

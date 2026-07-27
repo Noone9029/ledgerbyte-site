@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Envelope,
   MapPin,
@@ -9,15 +8,16 @@ import { ContactForm } from "@/components/contact-form";
 import { PageMotion } from "@/components/motion/page-motion";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import { contactDetails } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { partnershipVisual } from "@/content/visuals";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Let's Connect",
-  description:
-    "Ready to strengthen your finance function? Get in touch with our team to discuss bookkeeping, reporting, compliance, payroll, cash flow planning, or CFO-level support for your business.",
-  alternates: { canonical: "/contact" },
-};
+const pageSeo = getPageSeo("/contact");
+
+export const metadata = createPageMetadata(pageSeo, { path: "/contact" });
 
 const reasons = [
   "Qualified finance leadership across bookkeeping, reporting, tax, payroll, and advisory support",
@@ -28,8 +28,19 @@ const reasons = [
 
 export default function ContactPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/contact",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            type: "ContactPage",
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <section className="contact-hero page-section">
           <CinematicMedia
             className="contact-hero-art hero-reveal"
@@ -109,7 +120,8 @@ export default function ContactPage() {
             </div>
           </aside>
         </section>
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

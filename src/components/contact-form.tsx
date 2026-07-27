@@ -9,6 +9,7 @@ import {
   technologyServices,
 } from "@/content";
 import type { ContactRequest } from "@/content/types";
+import { trackEvent } from "@/lib/analytics";
 
 const initialForm: ContactRequest = {
   fullName: "",
@@ -27,12 +28,20 @@ export function ContactForm() {
   const [message, setMessage] = useState("");
   const [whatsappHref, setWhatsappHref] = useState("");
   const startedAt = useRef(0);
+  const formStarted = useRef(false);
 
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
 
   const updateField = (field: keyof ContactRequest, value: string) => {
+    if (!formStarted.current && value.trim()) {
+      formStarted.current = true;
+      trackEvent("contact_form_start", {
+        page_path: window.location.pathname,
+      });
+    }
+
     setForm((current) => ({ ...current, [field]: value }));
     if (status !== "idle") {
       setStatus("idle");
@@ -110,6 +119,10 @@ export function ContactForm() {
       setStatus("success");
       setMessage(result.message ?? "WhatsApp is ready.");
       setWhatsappHref(targetHref);
+      trackEvent("generate_lead", {
+        method: "whatsapp",
+        service: form.service,
+      });
     } catch {
       whatsappWindow?.close();
       setStatus("error");

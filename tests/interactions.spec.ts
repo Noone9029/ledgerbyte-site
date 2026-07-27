@@ -297,18 +297,28 @@ test("contact page and footer show the Sharjah business address", async ({
   ).toHaveCount(2);
 
   await page.goto("/");
-  const organization = JSON.parse(
+  const globalSchema = JSON.parse(
     (await page.locator('script[type="application/ld+json"]').first().textContent()) ??
       "{}",
   ) as {
-    address?: {
-      streetAddress?: string;
-      addressLocality?: string;
-      addressRegion?: string;
-      addressCountry?: string;
-    };
+    "@graph"?: Array<{
+      "@type"?: string | string[];
+      address?: {
+        streetAddress?: string;
+        addressLocality?: string;
+        addressRegion?: string;
+        addressCountry?: string;
+      };
+    }>;
   };
-  expect(organization.address).toEqual({
+  const organization = globalSchema["@graph"]?.find((node) => {
+    const types = Array.isArray(node["@type"])
+      ? node["@type"]
+      : [node["@type"]];
+    return types.includes("Organization");
+  });
+  expect(organization).toBeDefined();
+  expect(organization?.address).toEqual({
     "@type": "PostalAddress",
     streetAddress:
       "Shams Business Center, Sharjah Media City Free Zone, Al Messaned",
@@ -316,6 +326,98 @@ test("contact page and footer show the Sharjah business address", async ({
     addressRegion: "Sharjah",
     addressCountry: "AE",
   });
+});
+
+test("analytics records conversion categories without visitor PII", async ({
+  page,
+}) => {
+  const events: unknown[][] = [];
+  await page.exposeFunction(
+    "recordLedgerByteAnalytics",
+    (...args: unknown[]) => {
+      events.push(args);
+    },
+  );
+  await page.addInitScript(() => {
+    const analyticsWindow = window as typeof window & {
+      recordLedgerByteAnalytics: (...args: unknown[]) => void;
+    };
+    window.gtag = (...args) => {
+      analyticsWindow.recordLedgerByteAnalytics(...args);
+    };
+  });
+
+  const whatsappText = [
+    "LedgerByte website enquiry",
+    "",
+    "Name: Test Visitor",
+    "Email: visitor@example.com",
+    "Phone: +971 50 555 0199",
+    "Company: Private Company",
+    "Service: Accounting & Bookkeeping",
+    "",
+    "Message:",
+    "This private message must never be sent to analytics.",
+  ].join("\n");
+  const whatsappHref = `https://wa.me/971561371569?text=${encodeURIComponent(whatsappText)}`;
+
+  await page.context().route("https://wa.me/**", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "text/html",
+      body: "<title>WhatsApp handoff</title>",
+    });
+  });
+  await page.route("**/api/contact", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        message: "WhatsApp is ready.",
+        whatsappHref,
+        emailDelivered: false,
+      }),
+    });
+  });
+
+  await page.goto("/contact");
+  await page.getByLabel("Full Name *").fill("Test Visitor");
+  await page.getByLabel("Email Address *").fill("visitor@example.com");
+  await page.getByLabel("Phone Number").fill("+971 50 555 0199");
+  await page.getByLabel("Company Name").fill("Private Company");
+  await page
+    .getByLabel("Service of Interest *")
+    .selectOption("Accounting & Bookkeeping");
+  await page
+    .getByLabel("Message *")
+    .fill("This private message must never be sent to analytics.");
+
+  const popupPromise = page.waitForEvent("popup");
+  await page.getByRole("button", { name: "Continue to WhatsApp" }).click();
+  await popupPromise;
+
+  await expect
+    .poll(() =>
+      events.some(
+        (event) => event[0] === "event" && event[1] === "contact_form_start",
+      ),
+    )
+    .toBe(true);
+  await expect
+    .poll(() =>
+      events.some(
+        (event) => event[0] === "event" && event[1] === "generate_lead",
+      ),
+    )
+    .toBe(true);
+
+  const serialized = JSON.stringify(events);
+  expect(serialized).not.toContain("Test Visitor");
+  expect(serialized).not.toContain("visitor@example.com");
+  expect(serialized).not.toContain("+971 50 555 0199");
+  expect(serialized).not.toContain("Private Company");
+  expect(serialized).not.toContain("This private message");
+  expect(serialized).toContain("Accounting & Bookkeeping");
 });
 
 test("legacy routes redirect and invalid service slugs return 404", async ({

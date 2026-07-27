@@ -35,6 +35,35 @@ const financeHtmlRoot = path.join(
 );
 const outputRoot = path.join(projectRoot, "src", "content", "generated");
 
+const blogArticleUrls = {
+  "Cloud Accounting Tools Worth Standardizing":
+    "https://blog.ledgerbyte.io/cloud-accounting-2025-the-tools-every-business-should-adopt-and-why",
+  "The Hidden Cost of Manual Accounting":
+    "https://blog.ledgerbyte.io/the-hidden-cost-of-manual-accounting-how-automation-saves-time-money-and-mistakes",
+  "Finance Operations Setup for Startups":
+    "https://blog.ledgerbyte.io/setting-up-finance-operations-for-startups-the-complete-playbook",
+  "Why Monthly Reporting Drives Better Decisions":
+    "https://blog.ledgerbyte.io/why-monthly-financial-reporting-is-the-backbone-of-smart-business-decisions",
+  "When to Build an Outsourced Finance Department":
+    "https://blog.ledgerbyte.io/the-rise-of-outsourced-finance-departments-when-businesses-should-make-the-switch",
+  "Cash Flow Forecasting That Leaders Can Use":
+    "https://blog.ledgerbyte.io/cash-flow-forecasting-why-it-matters-and-how-remote-teams-excel",
+  "Why Monthly Financial Reviews Matter":
+    "https://blog.ledgerbyte.io/why-monthly-financial-reviews-matter-more-than-annual-audits-for-growing-businesses",
+  "The Modern CFO: Strategy Beyond Bookkeeping":
+    "https://blog.ledgerbyte.io/the-modern-cfo-how-strategic-advisory-is-replacing-traditional-bookkeeping",
+  "Why Cash Flow Breaks Even When Sales Grow":
+    "https://blog.ledgerbyte.io/why-many-smes-struggle-with-cash-flow-even-when-sales-are-growing",
+  "From Numbers to Decisions":
+    "https://blog.ledgerbyte.io/from-numbers-to-decisions-how-management-reporting-drives-smarter-leadership",
+  "Why Businesses Need a Finance Partner":
+    "https://blog.ledgerbyte.io/advisory-over-compliance-why-businesses-need-a-finance-partner-not-just-an-accountant",
+  "Financial Controls for Remote Teams":
+    "https://blog.ledgerbyte.io/financial-controls-for-remote-teams-best-practices-for-a-zero-error-finance-function",
+  "How to Prepare Before the Audit Notice Arrives":
+    "https://blog.ledgerbyte.io/how-audit-ready-are-you-preparing-your-finance-function-before-the-audit-notice-arrives",
+};
+
 const readLines = (filePath) =>
   fs
     .readFileSync(filePath, "utf8")
@@ -155,11 +184,12 @@ const parseFinanceService = (textFileName) => {
   const resourceLines = lines.slice(resourcesIndex + 2, faqIndex);
   resourceLines.forEach((line, index) => {
     if (line === "Read insight") {
+      const title = resourceLines[index - 2];
       relatedResources.push({
         pillar: resourceLines[index - 3],
-        title: resourceLines[index - 2],
+        title,
         description: resourceLines[index - 1],
-        href: "https://blog.ledgerbyte.io",
+        href: blogArticleUrls[title] ?? "https://blog.ledgerbyte.io",
       });
     }
   });

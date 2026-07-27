@@ -10,6 +10,8 @@
     "content:extract": "node scripts/extract-content.mjs",
     "test:content": "node scripts/verify-content.mjs",
     "test:visuals": "node scripts/verify-visuals.mjs",
+    "test:seo": "playwright test tests/seo.spec.ts --project=desktop-1440 --workers=1",
+    "test:seo:preview": "node scripts/test-preview-seo.mjs",
     "test:e2e": "playwright test",
     "test": "npm run test:content && npm run test:visuals && npm run test:e2e"
   },

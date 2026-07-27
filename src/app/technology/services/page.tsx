@@ -1,24 +1,47 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import { technologyServices } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { technologyVisual } from "@/content/visuals";
+import {
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Technology Services",
-  description:
-    "Comprehensive technology solutions designed to transform your business and drive growth",
-  alternates: { canonical: "/technology/services" },
-};
+const pageSeo = getPageSeo("/technology/services");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/technology/services",
+});
 
 export default function TechnologyServicesPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/technology/services",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            type: "CollectionPage",
+          }),
+          buildServiceSchema({
+            path: "/technology/services",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            serviceType: technologyServices.map((service) => service.title),
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <section className="inner-hero page-section">
           <CinematicMedia
             className="inner-hero-art hero-reveal"
@@ -81,7 +104,8 @@ export default function TechnologyServicesPage() {
           description="Let's discuss your project and explore how LedgerByte Tech can deliver the solutions you need."
           buttonLabel="Start Your Project Today"
         />
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -17,33 +16,38 @@ import {
   technologyServices,
   technologyStats,
 } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { technologyVisual } from "@/content/visuals";
+import {
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Technology Solutions",
-  description:
-    "LedgerByte Tech delivers cutting-edge web, mobile, cloud, and AI solutions designed for reliability, security, and long-term growth.",
-  alternates: { canonical: "/technology" },
-  openGraph: {
-    images: [technologyVisual],
-  },
-};
+const pageSeo = getPageSeo("/technology");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/technology",
+});
 
 export default function TechnologyPage() {
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "LedgerByte Technology",
-          provider: {
-            "@type": "Organization",
-            name: "LedgerByte",
-          },
-          serviceType: technologyServices.map((service) => service.title),
-          areaServed: "Worldwide",
-        }}
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/technology",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+          buildServiceSchema({
+            path: "/technology",
+            name: "LedgerByte Technology",
+            description: pageSeo.description,
+            serviceType: technologyServices.map((service) => service.title),
+          }),
+        )}
       />
       <main id="main-content">
         <PageMotion>

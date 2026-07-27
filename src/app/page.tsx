@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
@@ -7,34 +6,27 @@ import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
-import { contactDetails, team, trustPoints } from "@/content";
+import { team, trustPoints } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { corporateVisual } from "@/content/visuals";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Finance + Technology",
-  description:
-    "Elevating business performance through clarity, compliance, and smart finance.",
-  alternates: { canonical: "/" },
-};
+const pageSeo = getPageSeo("/");
+
+export const metadata = createPageMetadata(pageSeo, { path: "/" });
 
 export default function Home() {
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "LedgerByte",
-          url: "https://ledgerbyte.io",
-          email: contactDetails.email,
-          telephone: contactDetails.phoneHref,
-          address: {
-            "@type": "PostalAddress",
-            ...contactDetails.address,
-          },
-          description:
-            "Elevating business performance through clarity, compliance, and smart finance.",
-        }}
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+        )}
       />
       <main id="main-content">
         <PageMotion>

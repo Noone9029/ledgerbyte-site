@@ -1,19 +1,21 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import { technologyProcess } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { technologyProcessVisual } from "@/content/visuals";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Our Development Process",
-  description:
-    "A proven methodology that delivers exceptional results, from initial concept to ongoing support",
-  alternates: { canonical: "/technology/process" },
-};
+const pageSeo = getPageSeo("/technology/process");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/technology/process",
+});
 
 const processReasons = [
   {
@@ -35,8 +37,18 @@ const processReasons = [
 
 export default function TechnologyProcessPage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/technology/process",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <section className="inner-hero page-section">
           <CinematicMedia
             className="inner-hero-art hero-reveal"
@@ -97,7 +109,8 @@ export default function TechnologyProcessPage() {
           description="Let's discuss how our proven process can bring your vision to life"
           buttonLabel="Get Started Today"
         />
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

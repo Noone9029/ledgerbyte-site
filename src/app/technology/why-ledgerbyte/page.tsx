@@ -1,18 +1,21 @@
-import type { Metadata } from "next";
 import { Check, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
 import { ScrubText } from "@/components/motion/scrub-text";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
+import { StructuredData } from "@/components/structured-data";
 import { technologyAdvantages } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { partnershipVisual } from "@/content/visuals";
+import { buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Why LedgerByte Tech",
-  description: "Built on trust, driven by excellence, focused on your success",
-  alternates: { canonical: "/technology/why-ledgerbyte" },
-};
+const pageSeo = getPageSeo("/technology/why-ledgerbyte");
+
+export const metadata = createPageMetadata(pageSeo, {
+  path: "/technology/why-ledgerbyte",
+});
 
 const trackRecord = [
   {
@@ -34,8 +37,19 @@ const trackRecord = [
 
 export default function WhyLedgerBytePage() {
   return (
-    <main id="main-content">
-      <PageMotion>
+    <>
+      <StructuredData
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/technology/why-ledgerbyte",
+            name: pageSeo.title,
+            description: pageSeo.description,
+            type: "AboutPage",
+          }),
+        )}
+      />
+      <main id="main-content">
+        <PageMotion>
         <section className="inner-hero page-section">
           <CinematicMedia
             className="inner-hero-art hero-reveal"
@@ -124,7 +138,8 @@ export default function WhyLedgerBytePage() {
           description="When you work with LedgerByte Tech, you're not just hiring a vendor, you're gaining a strategic partner committed to your success. We're in this for the long haul, and we'll be with you every step of the way as your business grows and evolves."
           buttonLabel="Start Your Partnership Today"
         />
-      </PageMotion>
-    </main>
+        </PageMotion>
+      </main>
+    </>
   );
 }

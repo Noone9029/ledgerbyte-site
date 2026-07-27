@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
@@ -15,33 +14,36 @@ import {
   team,
   trustPoints,
 } from "@/content";
+import { getPageSeo } from "@/content/seo";
 import { financeOversightVisual, financeVisual } from "@/content/visuals";
+import {
+  buildSchemaGraph,
+  buildServiceSchema,
+  buildWebPageSchema,
+} from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Smart Accounting",
-  description:
-    "Expert Remote Accountants delivering precise, reliable financial management.",
-  alternates: { canonical: "/finance" },
-  openGraph: {
-    images: [financeVisual],
-  },
-};
+const pageSeo = getPageSeo("/finance");
+
+export const metadata = createPageMetadata(pageSeo, { path: "/finance" });
 
 export default function FinancePage() {
   return (
     <>
       <StructuredData
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "LedgerByte Finance",
-          provider: {
-            "@type": "Organization",
-            name: "LedgerByte",
-          },
-          serviceType: financeServices.map((service) => service.title),
-          areaServed: "Worldwide",
-        }}
+        data={buildSchemaGraph(
+          buildWebPageSchema({
+            path: "/finance",
+            name: pageSeo.title,
+            description: pageSeo.description,
+          }),
+          buildServiceSchema({
+            path: "/finance",
+            name: "LedgerByte Finance",
+            description: pageSeo.description,
+            serviceType: financeServices.map((service) => service.title),
+          }),
+        )}
       />
       <main id="main-content">
         <PageMotion>
