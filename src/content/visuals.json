@@ -1,0 +1,30 @@
+{
+  "financeServices": {
+    "accounting-automation-systems": "/art/finance-accounting-automation-editorial-v4.webp",
+    "accounting-bookkeeping": "/art/finance-operations-editorial-v3.webp",
+    "payroll-wps-management": "/art/finance-payroll-wps-editorial-v4.webp",
+    "tax-vat-compliance": "/art/finance-compliance-editorial-v3.webp",
+    "financial-reporting-mis": "/art/finance-reporting-mis-editorial-v4.webp",
+    "budgeting-forecasting": "/art/finance-budgeting-forecasting-editorial-v4.webp",
+    "cash-flow-working-capital": "/art/finance-cash-flow-editorial-v4.webp",
+    "fractional-cfo-advisory": "/art/finance-advisory-editorial-v3.webp"
+  },
+  "technologyServices": {
+    "web-development": "/art/technology-product-editorial-v3.webp",
+    "mobile-app-development": "/art/technology-mobile-app-editorial-v4.webp",
+    "ui-ux-design": "/art/technology-ui-ux-editorial-v4.webp",
+    "backend-apis": "/art/technology-backend-apis-editorial-v4.webp",
+    "cloud-devops": "/art/technology-cloud-devops-editorial-v4.webp",
+    "ai-automation": "/art/technology-ai-editorial-v3.webp"
+  },
+  "technologyPartnerships": {
+    "web-development": "/art/partnership-web-development-editorial-v4.webp",
+    "mobile-app-development": "/art/partnership-mobile-app-editorial-v4.webp",
+    "ui-ux-design": "/art/partnership-ui-ux-editorial-v4.webp",
+    "backend-apis": "/art/partnership-backend-apis-editorial-v4.webp",
+    "cloud-devops": "/art/partnership-cloud-devops-editorial-v4.webp",
+    "ai-automation": "/art/partnership-ai-automation-editorial-v4.webp"
+  },
+  "technologyProcess": "/art/technology-infrastructure-editorial-v3.webp",
+  "financeOversight": "/art/finance-oversight-editorial-v4.webp"
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "division": "technology",
+    "slug": "web-development",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "Web Development",
+    "description": "We build modern, responsive web applications using the latest technologies and best practices. Our expertise includes React, Next.js, Vue, and other cutting-edge frameworks that deliver exceptional performance.",
+    "features": [
+      "Single Page Applications",
+      "Progressive Web Apps",
+      "E-commerce Platforms",
+      "Custom Web Portals",
+      "Responsive Design",
+      "SEO Optimization"
+    ],
+    "technologies": [
+      "React",
+      "Next.js",
+      "Vue",
+      "TailwindCSS",
+      "TypeScript"
+    ]
+  },
+  {
+    "division": "technology",
+    "slug": "mobile-app-development",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "Mobile App Development",
+    "description": "Create powerful native and cross-platform mobile applications for iOS and Android. We leverage Flutter, React Native, and native development to deliver apps that users love and businesses depend on.",
+    "features": [
+      "iOS & Android Apps",
+      "Cross-Platform Development",
+      "Native Performance",
+      "Offline Functionality",
+      "Push Notifications",
+      "App Store Deployment"
+    ],
+    "technologies": [
+      "Flutter",
+      "React Native",
+      "Swift",
+      "Kotlin",
+      "Firebase"
+    ]
+  },
+  {
+    "division": "technology",
+    "slug": "backend-apis",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "Backend & APIs",
+    "description": "Build robust, scalable backend systems and RESTful APIs that power your applications. Our backend solutions ensure data security, high performance, and seamless integration.",
+    "features": [
+      "RESTful API Development",
+      "Database Design",
+      "Auth & Security",
+      "Third-Party Integrations",
+      "Microservices",
+      "Real-time Data"
+    ],
+    "technologies": [
+      "Node.js",
+      "Express",
+      "Firebase",
+      "PostgreSQL",
+      "MongoDB"
+    ]
+  },
+  {
+    "division": "technology",
+    "slug": "ai-automation",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "AI & Automation",
+    "description": "Harness the power of artificial intelligence and automation to streamline operations and enhance user experiences. From intelligent chatbots to workflow automation.",
+    "features": [
+      "AI Chatbots",
+      "OpenAI Integration",
+      "Process Automation",
+      "NLP Solutions",
+      "Machine Learning",
+      "Predictive Analytics"
+    ],
+    "technologies": [
+      "OpenAI",
+      "TensorFlow",
+      "Python",
+      "LangChain",
+      "AutoML"
+    ]
+  },
+  {
+    "division": "technology",
+    "slug": "cloud-devops",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "Cloud & DevOps",
+    "description": "Optimize your infrastructure with cloud solutions and DevOps practices. We handle deployment, scaling, monitoring, and maintenance to ensure your applications run smoothly.",
+    "features": [
+      "Cloud Migration",
+      "CI/CD Pipelines",
+      "Container Orchestration",
+      "Infrastructure as Code",
+      "Performance Monitoring",
+      "Auto-scaling"
+    ],
+    "technologies": [
+      "AWS",
+      "Google Cloud",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions"
+    ]
+  },
+  {
+    "division": "technology",
+    "slug": "ui-ux-design",
+    "source": "rendered-text/tech.ledgerbyte.io/services.txt",
+    "title": "UI/UX Design",
+    "description": "Create beautiful, intuitive interfaces that users love. Our design process combines user research, prototyping, and iterative testing to deliver experiences that work.",
+    "features": [
+      "User Research",
+      "Wireframing",
+      "Visual Design",
+      "Design Systems",
+      "Accessibility",
+      "Responsive Layouts"
+    ],
+    "technologies": [
+      "Figma",
+      "Adobe XD",
+      "Sketch",
+      "Framer",
+      "Principle"
+    ]
+  }
+]

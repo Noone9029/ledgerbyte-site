@@ -1,0 +1,37 @@
+{
+  "source": "rendered-text/tech.ledgerbyte.io/process.txt",
+  "title": "Our Development Process",
+  "description": "A proven methodology that delivers exceptional results, from initial concept to ongoing support",
+  "steps": [
+    {
+      "title": "Discover",
+      "description": "We start by deeply understanding your business goals, challenges, and requirements. Through detailed consultations, we identify the optimal solution for your needs.",
+      "step": "1"
+    },
+    {
+      "title": "Design",
+      "description": "Our design team creates intuitive, user-centered interfaces backed by research and best practices. We focus on creating experiences that delight users while meeting business objectives.",
+      "step": "2"
+    },
+    {
+      "title": "Develop",
+      "description": "Using modern frameworks and best practices, our developers build robust, scalable solutions. We maintain clean code, comprehensive documentation, and regular progress updates.",
+      "step": "3"
+    },
+    {
+      "title": "Test",
+      "description": "Rigorous quality assurance ensures your solution works flawlessly. We conduct functional testing, performance optimization, security audits, and user acceptance testing.",
+      "step": "4"
+    },
+    {
+      "title": "Deploy",
+      "description": "We handle seamless deployment to production environments with minimal downtime. Our team ensures smooth migrations, proper configurations, and successful launches.",
+      "step": "5"
+    },
+    {
+      "title": "Support",
+      "description": "Post-launch support and maintenance keep your solution running smoothly. We provide ongoing updates, security patches, feature enhancements, and dedicated technical support.",
+      "step": "6"
+    }
+  ]
+}
