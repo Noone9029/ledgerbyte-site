@@ -25,6 +25,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  skipTrailingSlashRedirect: true,
   async headers() {
     return [
       {
@@ -58,13 +59,31 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/services/",
+        has: [{ type: "host", value: "tech.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/technology/services",
+        permanent: true,
+      },
+      {
         source: "/process",
         has: [{ type: "host", value: "tech.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/technology/process",
         permanent: true,
       },
       {
+        source: "/process/",
+        has: [{ type: "host", value: "tech.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/technology/process",
+        permanent: true,
+      },
+      {
         source: "/why-ledgerbyte-tech",
+        has: [{ type: "host", value: "tech.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/technology/why-ledgerbyte",
+        permanent: true,
+      },
+      {
+        source: "/why-ledgerbyte-tech/",
         has: [{ type: "host", value: "tech.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/technology/why-ledgerbyte",
         permanent: true,
@@ -76,7 +95,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/about/",
+        has: [{ type: "host", value: "tech.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/about",
+        permanent: true,
+      },
+      {
         source: "/contact",
+        has: [{ type: "host", value: "tech.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/contact",
+        permanent: true,
+      },
+      {
+        source: "/contact/",
         has: [{ type: "host", value: "tech.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/contact",
         permanent: true,
@@ -88,7 +119,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/services/",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/finance/services",
+        permanent: true,
+      },
+      {
         source: "/services/:slug",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/finance/services/:slug",
+        permanent: true,
+      },
+      {
+        source: "/services/:slug/",
         has: [{ type: "host", value: "www.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/finance/services/:slug",
         permanent: true,
@@ -100,7 +143,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/about-us/",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/about",
+        permanent: true,
+      },
+      {
         source: "/lets-connect",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/contact",
+        permanent: true,
+      },
+      {
+        source: "/lets-connect/",
         has: [{ type: "host", value: "www.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/contact",
         permanent: true,
@@ -112,7 +167,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/process/",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/technology/process",
+        permanent: true,
+      },
+      {
         source: "/why-ledgerbyte-tech",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/technology/why-ledgerbyte",
+        permanent: true,
+      },
+      {
+        source: "/why-ledgerbyte-tech/",
         has: [{ type: "host", value: "www.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/technology/why-ledgerbyte",
         permanent: true,
@@ -124,9 +191,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/terms-of-service/",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/terms-of-use",
+        permanent: true,
+      },
+      {
+        source: "/:path+/",
+        has: [{ type: "host", value: "www.ledgerbyte.io" }],
+        destination: "https://ledgerbyte.io/:path+",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "www.ledgerbyte.io" }],
         destination: "https://ledgerbyte.io/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path+/",
+        has: [{ type: "host", value: "ledgerbyte-site.vercel.app" }],
+        destination: "https://ledgerbyte.io/:path+",
         permanent: true,
       },
       {
@@ -141,7 +226,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/services/",
+        destination: "/finance/services",
+        permanent: true,
+      },
+      {
         source: "/services/:slug",
+        destination: "/finance/services/:slug",
+        permanent: true,
+      },
+      {
+        source: "/services/:slug/",
         destination: "/finance/services/:slug",
         permanent: true,
       },
@@ -151,7 +246,17 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/about-us/",
+        destination: "/about",
+        permanent: true,
+      },
+      {
         source: "/lets-connect",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/lets-connect/",
         destination: "/contact",
         permanent: true,
       },
@@ -161,13 +266,33 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/process/",
+        destination: "/technology/process",
+        permanent: true,
+      },
+      {
         source: "/why-ledgerbyte-tech",
+        destination: "/technology/why-ledgerbyte",
+        permanent: true,
+      },
+      {
+        source: "/why-ledgerbyte-tech/",
         destination: "/technology/why-ledgerbyte",
         permanent: true,
       },
       {
         source: "/terms-of-service",
         destination: "/terms-of-use",
+        permanent: true,
+      },
+      {
+        source: "/terms-of-service/",
+        destination: "/terms-of-use",
+        permanent: true,
+      },
+      {
+        source: "/:path+/",
+        destination: "/:path+",
         permanent: true,
       },
     ];

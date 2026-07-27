@@ -211,22 +211,32 @@ test("legacy and alternate-host requests redirect in one permanent hop", async (
 }) => {
   const redirects = new Map([
     ["/services", "/finance/services"],
+    ["/services/", "/finance/services"],
     [
       "/services/accounting-bookkeeping",
       "/finance/services/accounting-bookkeeping",
     ],
+    [
+      "/services/accounting-bookkeeping/",
+      "/finance/services/accounting-bookkeeping",
+    ],
     ["/about-us", "/about"],
+    ["/about-us/", "/about"],
     ["/lets-connect", "/contact"],
+    ["/lets-connect/", "/contact"],
     ["/process", "/technology/process"],
+    ["/process/", "/technology/process"],
     ["/why-ledgerbyte-tech", "/technology/why-ledgerbyte"],
+    ["/why-ledgerbyte-tech/", "/technology/why-ledgerbyte"],
     ["/terms-of-service", "/terms-of-use"],
+    ["/terms-of-service/", "/terms-of-use"],
   ]);
 
   for (const [source, destination] of redirects) {
     const response = await request.get(`${source}?utm_source=legacy`, {
       maxRedirects: 0,
     });
-    expect([301, 308], source).toContain(response.status());
+    expect(response.status(), source).toBe(308);
     const location = new URL(
       response.headers().location,
       "http://127.0.0.1:3100",
@@ -238,37 +248,42 @@ test("legacy and alternate-host requests redirect in one permanent hop", async (
   const hostRedirects = [
     {
       host: "tech.ledgerbyte.io",
-      source: "/services",
+      source: "/services/",
       destination: "/technology/services",
     },
     {
       host: "tech.ledgerbyte.io",
-      source: "/process",
+      source: "/process/",
       destination: "/technology/process",
     },
     {
       host: "www.ledgerbyte.io",
-      source: "/services/accounting-bookkeeping",
+      source: "/services/accounting-bookkeeping/",
       destination: "/finance/services/accounting-bookkeeping",
     },
     {
       host: "ledgerbyte-site.vercel.app",
-      source: "/about",
+      source: "/about/",
       destination: "/about",
     },
   ];
 
   for (const redirect of hostRedirects) {
-    const response = await request.get(redirect.source, {
-      headers: { host: redirect.host },
-      maxRedirects: 0,
-    });
-    expect([301, 308], `${redirect.host}${redirect.source}`).toContain(
-      response.status(),
+    const response = await request.get(
+      `${redirect.source}?utm_source=alternate-host`,
+      {
+        headers: { host: redirect.host },
+        maxRedirects: 0,
+      },
     );
+    expect(
+      response.status(),
+      `${redirect.host}${redirect.source}`,
+    ).toBe(308);
     const location = new URL(response.headers().location);
     expect(location.origin).toBe(siteUrl);
     expect(location.pathname).toBe(redirect.destination);
+    expect(location.searchParams.get("utm_source")).toBe("alternate-host");
   }
 });
 

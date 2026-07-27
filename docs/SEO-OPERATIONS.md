@@ -1,34 +1,51 @@
 # LedgerByte SEO Operations
 
-## Release Order
+## Google Submission Checklist
 
-1. Export the current `ledgerbyte.io` Search Console performance, index,
-   backlink, and sitemap reports. If no property exists, create a DNS-verified
-   domain property before launch. `GOOGLE_SITE_VERIFICATION` supports HTML-tag
-   verification when DNS verification is not immediately available.
-2. Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Vercel Production and verify
-   `generate_lead`, contact channel, form-start, and CTA events without personal
-   data.
-3. Deploy and validate a preview. Preview HTML and headers must remain
-   `noindex, nofollow`.
-4. Add `ledgerbyte.io` and `www.ledgerbyte.io` to the Vercel project. Keep the
-   blog on `blog.ledgerbyte.io`.
-5. Update DNS only after Vercel reports the domains as configured. Verify HTTPS,
-   the non-www canonical, every redirect below, and all sitemap URLs.
-6. Submit `https://ledgerbyte.io/sitemap.xml` after the canonical domain serves
-   the new application. Inspect the homepage, both division hubs, four service
-   pages, Contact, and one blog article.
+The canonical site is `https://ledgerbyte.io`; `www`, legacy paths, and the
+public Vercel alias must resolve to it in one permanent redirect. Complete these
+steps in the existing Search Console domain property after each production
+release that materially changes routes or page content:
+
+1. Open **Sitemaps** and submit or resubmit
+   `https://ledgerbyte.io/sitemap.xml`. Do not remove the prior submission.
+2. Wait for the sitemap status to become **Success** and record the discovered
+   URL count. The expected count for this release is 25.
+3. Use **URL Inspection → Test Live URL → Request Indexing** for:
+   - `https://ledgerbyte.io/`
+   - `https://ledgerbyte.io/finance`
+   - `https://ledgerbyte.io/finance/services`
+   - `https://ledgerbyte.io/finance/services/accounting-bookkeeping`
+   - `https://ledgerbyte.io/finance/services/tax-vat-compliance`
+   - `https://ledgerbyte.io/finance/services/payroll-wps-management`
+   - `https://ledgerbyte.io/finance/services/fractional-cfo-advisory`
+   - `https://ledgerbyte.io/technology`
+   - `https://ledgerbyte.io/technology/services`
+   - `https://ledgerbyte.io/contact`
+4. Do not request indexing for old URLs, repeatedly resubmit the same URL, use
+   Removals, or use Change of Address. Let permanent redirects consolidate the
+   old paths.
+
+Record the submission date, sitemap status, inspected URL, live-test result,
+Google-selected canonical, and request result. A request is not a guarantee of
+indexing.
 
 ## Migration Matrix
 
 | Legacy source | Permanent destination |
 |---|---|
 | `/services` | `/finance/services` |
+| `/services/` | `/finance/services` |
 | `/services/:slug` | `/finance/services/:slug` |
+| `/services/:slug/` | `/finance/services/:slug` |
 | `/about-us` | `/about` |
+| `/about-us/` | `/about` |
 | `/lets-connect` | `/contact` |
+| `/lets-connect/` | `/contact` |
 | `/process` | `/technology/process` |
+| `/process/` | `/technology/process` |
 | `/why-ledgerbyte-tech` | `/technology/why-ledgerbyte` |
+| `/why-ledgerbyte-tech/` | `/technology/why-ledgerbyte` |
 | `tech.ledgerbyte.io/` | `/technology` |
 | `tech.ledgerbyte.io/services` | `/technology/services` |
 | `tech.ledgerbyte.io/about` | `/about` |
@@ -38,19 +55,41 @@ Keep redirects for at least 12 months. Preserve query strings and never send a
 retired content URL to the homepage unless the homepage is genuinely the
 closest replacement.
 
+## Baseline and Measurement
+
+The first fixed baseline window is **2026-07-28 through 2026-08-24**. Export it
+on or after 2026-08-25 into `docs/SEO-BASELINE.csv`. Record page, query, country,
+device, clicks, impressions, CTR, average position, and qualified organic leads.
+Classify brand queries separately from non-brand queries.
+
+Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Vercel Production before treating
+lead measurement as active. Verify `generate_lead`, form completion, WhatsApp,
+phone, email, form-start, and service CTA events without transmitting names,
+email addresses, phone numbers, messages, or other personal data.
+
+Set numerical growth targets only after the complete 28-day baseline. The
+primary KPI is qualified organic enquiries; non-brand clicks and priority-query
+visibility are supporting indicators.
+
 ## First 90 Days
 
-- Review Search Console weekly for non-brand queries, indexing, soft 404s, and
-  unexpected canonical selections.
-- Refresh two existing Insights articles each month with a named author,
-  qualified reviewer, current official sources, updated date, and contextual
-  service links.
-- Publish only verified client outcomes. Target one approved case study and one
-  practical finance asset per quarter.
-- Keep UAE finance as the first search market. Do not create KSA, UK, US,
-  Arabic, or city pages until there is distinct local expertise and evidence.
-- Do not migrate the blog during the main-domain move. Consider `/insights`
-  only after 6–8 stable weeks and with one-to-one article redirects.
+- Review Search Console weekly for non-brand queries, indexing, soft 404s,
+  unexpected canonical selections, and pages ranking in positions 5–20.
+- Select two existing Insights articles each month from verified Search Console
+  opportunity data. Each refresh requires a named author, qualified reviewer,
+  current official sources, an accurate updated date, and contextual links to
+  the relevant service page.
+- Publish only verified client outcomes. Prepare one approved case study and one
+  practical finance asset per quarter; do not fabricate client names, metrics,
+  credentials, or regulatory claims.
+- Pursue legitimate links through professional associations, software
+  partnerships, chambers, founder communities, client features, and reputable
+  UAE business listings. Reject paid-link packages and bulk directories.
+- Keep UAE finance as the first search market for six months. Do not create KSA,
+  UK, US, Arabic, or city pages until there is distinct local expertise,
+  evidence, and native review.
+- Keep the blog on `blog.ledgerbyte.io` during stabilization. Consider
+  `/insights` only after 6–8 stable weeks and with exact article-level redirects.
 
 ## Entity and Local Checks
 
@@ -62,8 +101,9 @@ Profile. Do not list an unstaffed virtual office.
 
 ## Monitoring and Rollback
 
-Monitor daily for seven days, twice weekly through week four, then monthly.
-Track qualified organic leads, non-brand clicks, and priority-query visibility.
-If the cutover produces widespread 5xx responses, redirect loops, or missing
-canonical pages, restore the previous DNS target while retaining the verified
-deployment for diagnosis.
+Monitor daily through 2026-08-03, twice weekly through 2026-08-24, then monthly.
+Every sitemap URL must return 200, be indexable, declare itself canonical, and
+have an internal link. Legacy URLs must appear in Search Console as **Page with
+redirect**, not indexed duplicates. If a release produces widespread 5xx
+responses, redirect loops, or missing canonical pages, roll back the deployment
+while retaining logs and the failed build for diagnosis.

@@ -433,12 +433,19 @@ test("legacy routes redirect and invalid service slugs return 404", async ({
 }) => {
   const redirects = new Map([
     ["/services", "/finance/services"],
+    ["/services/", "/finance/services"],
     ["/services/accounting-bookkeeping", "/finance/services/accounting-bookkeeping"],
+    ["/services/accounting-bookkeeping/", "/finance/services/accounting-bookkeeping"],
     ["/about-us", "/about"],
+    ["/about-us/", "/about"],
     ["/lets-connect", "/contact"],
+    ["/lets-connect/", "/contact"],
     ["/process", "/technology/process"],
+    ["/process/", "/technology/process"],
     ["/why-ledgerbyte-tech", "/technology/why-ledgerbyte"],
+    ["/why-ledgerbyte-tech/", "/technology/why-ledgerbyte"],
     ["/terms-of-service", "/terms-of-use"],
+    ["/terms-of-service/", "/terms-of-use"],
   ]);
 
   for (const [legacy, destination] of redirects) {
