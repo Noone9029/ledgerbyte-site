@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import financeServices from "../src/content/generated/finance-services.json";
 import technologyServices from "../src/content/generated/technology-services.json";
+import seoManifest from "../src/content/seo.json";
 
 const siteUrl = "https://ledgerbyte.io";
 const routes = [
@@ -117,6 +118,33 @@ test("all canonical routes expose unique production metadata", async ({
   }
 });
 
+test("finance page headings match their assigned search intent", async ({
+  page,
+}) => {
+  await page.goto("/finance", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("h1")).toHaveText(
+    seoManifest.pages["/finance"].title,
+  );
+
+  await page.goto("/finance/services", {
+    waitUntil: "domcontentloaded",
+  });
+  await expect(page.locator("h1")).toHaveText(
+    seoManifest.pages["/finance/services"].title,
+  );
+
+  for (const service of financeServices) {
+    await page.goto(`/finance/services/${service.slug}`, {
+      waitUntil: "domcontentloaded",
+    });
+    await expect(page.locator("h1")).toHaveText(
+      seoManifest.financeServices[
+        service.slug as keyof typeof seoManifest.financeServices
+      ],
+    );
+  }
+});
+
 test("structured data forms a stable organization and page graph", async ({
   page,
 }) => {
@@ -147,6 +175,13 @@ test("structured data forms a stable organization and page graph", async ({
     }
     if (route.startsWith("/finance/services/")) {
       expect(types.has("FAQPage"), `${route} FAQPage`).toBe(true);
+      expect(types.has("Person"), `${route} Person reviewer`).toBe(true);
+      expect(JSON.stringify(documents), `${route} reviewedBy`).toContain(
+        '"reviewedBy"',
+      );
+    }
+    if (route === "/finance/services") {
+      expect(types.has("ItemList"), `${route} ItemList`).toBe(true);
     }
     if (route === "/about") {
       expect(types.has("Person"), `${route} Person`).toBe(true);
@@ -167,6 +202,47 @@ test("structured data forms a stable organization and page graph", async ({
       `${siteUrl}/#professional-service`,
     ]),
   );
+});
+
+test("all finance services receive crawlable footer links", async ({
+  page,
+}) => {
+  await page.goto("/finance", { waitUntil: "domcontentloaded" });
+
+  for (const service of financeServices) {
+    await expect(
+      page.locator(
+        `.site-footer a[href="/finance/services/${service.slug}"]`,
+      ),
+    ).toHaveCount(1);
+  }
+});
+
+test("payroll receives relevant contextual service links", async ({
+  page,
+}) => {
+  for (const source of [
+    "accounting-bookkeeping",
+    "tax-vat-compliance",
+  ]) {
+    await page.goto(`/finance/services/${source}`, {
+      waitUntil: "domcontentloaded",
+    });
+    await expect(
+      page.locator(
+        '.related-section a[href="/finance/services/payroll-wps-management"]',
+      ),
+    ).toHaveCount(1);
+  }
+
+  await page.goto("/finance/services/payroll-wps-management", {
+    waitUntil: "domcontentloaded",
+  });
+  await expect(
+    page.locator(
+      '.related-section a[href="/finance/services/tax-vat-compliance"]',
+    ),
+  ).toHaveCount(1);
 });
 
 test("sitemap and robots expose only canonical production URLs", async ({

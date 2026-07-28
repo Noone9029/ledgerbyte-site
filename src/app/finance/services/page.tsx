@@ -12,9 +12,13 @@ import {
   financeTools,
   getFinanceServiceByTitle,
 } from "@/content";
-import { getPageSeo } from "@/content/seo";
+import {
+  getFinanceServiceSeoTitle,
+  getPageSeo,
+} from "@/content/seo";
 import { financeVisual } from "@/content/visuals";
 import {
+  buildItemListSchema,
   buildSchemaGraph,
   buildServiceSchema,
   buildWebPageSchema,
@@ -42,7 +46,19 @@ export default function FinanceServicesPage() {
             path: "/finance/services",
             name: pageSeo.title,
             description: pageSeo.description,
-            serviceType: financeServices.map((service) => service.title),
+            serviceType: financeServices.map((service) =>
+              getFinanceServiceSeoTitle(service.slug, service.title),
+            ),
+          }),
+          buildItemListSchema({
+            name: pageSeo.title,
+            items: financeServices.map((service) => ({
+              name: getFinanceServiceSeoTitle(
+                service.slug,
+                service.title,
+              ),
+              path: `/finance/services/${service.slug}`,
+            })),
           }),
         )}
       />
@@ -58,9 +74,7 @@ export default function FinanceServicesPage() {
           >
             <div className="inner-hero-copy">
               <p className="eyebrow hero-reveal">Our Services</p>
-              <h1 className="hero-reveal">
-                Finance Services Built for Growing Businesses
-              </h1>
+              <h1 className="hero-reveal">{pageSeo.title}</h1>
               <p className="hero-summary hero-reveal">
                 End-to-end accounting, reporting, compliance, and finance
                 support for businesses that want cleaner operations, sharper
@@ -94,7 +108,10 @@ export default function FinanceServicesPage() {
                       href={`/finance/services/${service.slug}`}
                       key={service.slug}
                     >
-                      {service.title}
+                      {getFinanceServiceSeoTitle(
+                        service.slug,
+                        service.title,
+                      )}
                       <ArrowUpRight weight="bold" aria-hidden="true" />
                     </Link>
                   ) : null;
@@ -117,7 +134,12 @@ export default function FinanceServicesPage() {
                 key={service.slug}
               >
                 <p className="eyebrow">{service.category}</p>
-                <h2>{service.title}</h2>
+                <h2>
+                  {getFinanceServiceSeoTitle(
+                    service.slug,
+                    service.title,
+                  )}
+                </h2>
                 <p>{service.description}</p>
                 <div className="service-included">
                   <strong>What&apos;s Included:</strong>

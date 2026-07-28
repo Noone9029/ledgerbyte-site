@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = Object.entries(seoPages);
-  const serviceLastModified = new Date("2026-07-27");
+  const serviceLastModified = new Date("2026-07-28");
 
   return [
     ...staticRoutes.map(([route, config]) => ({

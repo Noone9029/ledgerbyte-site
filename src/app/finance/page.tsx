@@ -60,9 +60,7 @@ export default function FinancePage() {
             >
               <div className="division-hero-copy">
                 <p className="eyebrow hero-reveal">Smart Accounting</p>
-                <h1 className="hero-reveal">
-                  Smart Accounting, Confident Decisions, Seamless Growth
-                </h1>
+                <h1 className="hero-reveal">{pageSeo.title}</h1>
                 <div className="hero-lines hero-reveal">
                   <p>
                     Expert Remote Accountants delivering precise, reliable

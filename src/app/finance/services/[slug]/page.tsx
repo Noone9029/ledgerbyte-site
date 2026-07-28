@@ -16,18 +16,24 @@ import { StructuredData } from "@/components/structured-data";
 import {
   financeServices,
   getFinanceService,
-  getFinanceServiceByTitle,
 } from "@/content";
 import { getFinanceServiceSeoTitle } from "@/content/seo";
 import { getFinanceServiceVisual } from "@/content/visuals";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
+  buildPersonId,
+  buildPersonSchema,
   buildSchemaGraph,
   buildServiceSchema,
   buildWebPageSchema,
 } from "@/lib/schema";
 import { createMetadata } from "@/lib/seo";
+
+const supplementalRelatedServiceSlugs: Partial<Record<string, string[]>> = {
+  "accounting-bookkeeping": ["payroll-wps-management"],
+  "tax-vat-compliance": ["payroll-wps-management"],
+};
 
 interface FinanceServicePageProps {
   params: Promise<{ slug: string }>;
@@ -62,9 +68,23 @@ export default async function FinanceServicePage({
   if (!service) notFound();
 
   const serviceVisual = getFinanceServiceVisual(service.slug);
-  const relatedServices = service.relatedServices
-    .map((related) => getFinanceServiceByTitle(related.title))
-    .filter((related) => related !== undefined);
+  const serviceSeoTitle = getFinanceServiceSeoTitle(
+    service.slug,
+    service.title,
+  );
+  const reviewerId = buildPersonId(service.reviewer.name);
+  const relatedServiceTitles = new Set(
+    service.relatedServices.map((related) => related.title),
+  );
+  const supplementalSlugs = new Set(
+    supplementalRelatedServiceSlugs[service.slug] ?? [],
+  );
+  const relatedServices = financeServices.filter(
+    (candidate) =>
+      candidate.slug !== service.slug &&
+      (relatedServiceTitles.has(candidate.title) ||
+        supplementalSlugs.has(candidate.slug)),
+  );
 
   return (
     <>
@@ -72,8 +92,9 @@ export default async function FinanceServicePage({
         data={buildSchemaGraph(
           buildWebPageSchema({
             path: `/finance/services/${service.slug}`,
-            name: service.title,
+            name: serviceSeoTitle,
             description: service.description,
+            reviewedBy: reviewerId,
           }),
           buildBreadcrumbSchema([
             { name: "Finance", path: "/finance" },
@@ -85,9 +106,15 @@ export default async function FinanceServicePage({
           ]),
           buildServiceSchema({
             path: `/finance/services/${service.slug}`,
-            name: service.title,
+            name: serviceSeoTitle,
             description: service.description,
             serviceType: service.primaryFocus,
+          }),
+          buildPersonSchema({
+            name: service.reviewer.name,
+            jobTitle: service.reviewer.role,
+            description: service.reviewer.summary,
+            credentials: service.reviewer.credentials,
           }),
           buildFaqSchema(service.faqs),
         )}
@@ -112,7 +139,7 @@ export default async function FinanceServicePage({
             >
               <div className="service-detail-copy">
                 <p className="eyebrow hero-reveal">{service.category}</p>
-                <h1 className="hero-reveal">{service.title}</h1>
+                <h1 className="hero-reveal">{serviceSeoTitle}</h1>
                 <p className="hero-summary hero-reveal">
                   {service.description}
                 </p>
@@ -298,7 +325,12 @@ export default async function FinanceServicePage({
                     key={related.slug}
                   >
                     <p className="eyebrow">{related.category}</p>
-                    <h3>{related.title}</h3>
+                    <h3>
+                      {getFinanceServiceSeoTitle(
+                        related.slug,
+                        related.title,
+                      )}
+                    </h3>
                     <p>{related.description}</p>
                     <span>
                       View service

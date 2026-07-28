@@ -107,11 +107,13 @@ export function buildWebPageSchema({
   name,
   description,
   type = "WebPage",
+  reviewedBy,
 }: {
   path: string;
   name: string;
   description: string;
   type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  reviewedBy?: string;
 }): JsonLdNode {
   const url = absoluteUrl(path);
 
@@ -124,6 +126,68 @@ export function buildWebPageSchema({
     inLanguage: SITE_LANGUAGE,
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORGANIZATION_ID },
+    ...(reviewedBy
+      ? {
+          reviewedBy: { "@id": reviewedBy },
+        }
+      : {}),
+  };
+}
+
+export function buildPersonId(name: string) {
+  const slug = name
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return `${SITE_URL}/about#person-${slug}`;
+}
+
+export function buildPersonSchema({
+  name,
+  jobTitle,
+  description,
+  credentials,
+  image,
+}: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  credentials: string;
+  image?: string;
+}): JsonLdNode {
+  return {
+    "@type": "Person",
+    "@id": buildPersonId(name),
+    name,
+    jobTitle,
+    description,
+    ...(image ? { image: absoluteUrl(image) } : {}),
+    worksFor: { "@id": ORGANIZATION_ID },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: credentials,
+    },
+  };
+}
+
+export function buildItemListSchema({
+  name,
+  items,
+}: {
+  name: string;
+  items: Array<{ name: string; path: string }>;
+}): JsonLdNode {
+  return {
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
   };
 }
 
@@ -196,18 +260,13 @@ export function buildAboutSchema(description: string): JsonLdNode {
         itemListElement: team.map((member, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          item: {
-            "@type": "Person",
+          item: buildPersonSchema({
             name: member.name,
             jobTitle: member.role,
             description: member.description,
-            image: absoluteUrl(member.image),
-            worksFor: { "@id": ORGANIZATION_ID },
-            hasCredential: {
-              "@type": "EducationalOccupationalCredential",
-              credentialCategory: member.credentials,
-            },
-          },
+            credentials: member.credentials,
+            image: member.image,
+          }),
         })),
       },
   );

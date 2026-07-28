@@ -25,7 +25,7 @@ export function SiteFooter() {
       <div className="footer-links">
         <div>
           <h2>Finance</h2>
-          {financeServices.slice(0, 5).map((service) => (
+          {financeServices.map((service) => (
             <Link href={`/finance/services/${service.slug}`} key={service.slug}>
               {service.title}
             </Link>
@@ -34,7 +34,7 @@ export function SiteFooter() {
         </div>
         <div>
           <h2>Technology</h2>
-          {technologyServices.slice(0, 5).map((service) => (
+          {technologyServices.map((service) => (
             <Link
               href={`/technology/services/${service.slug}`}
               key={service.slug}
