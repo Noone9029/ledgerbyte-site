@@ -9,6 +9,7 @@ const representativeRoutes = [
   "/technology/services/web-development",
   "/technology/process",
   "/about",
+  "/about/team/haider-ali",
   "/contact",
   "/privacy-policy",
 ];

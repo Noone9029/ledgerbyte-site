@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 import financeServices from "../src/content/generated/finance-services.json";
 import technologyServices from "../src/content/generated/technology-services.json";
+import { team } from "../src/content";
+import { buildPersonPath } from "../src/lib/schema";
 
 const routes = [
   "/",
@@ -15,6 +17,7 @@ const routes = [
   "/technology/process",
   "/technology/why-ledgerbyte",
   "/about",
+  ...team.map((member) => buildPersonPath(member.name)),
   "/contact",
   "/privacy-policy",
   "/terms-of-use",
@@ -154,7 +157,7 @@ test("rendered non-shared artwork is unique across public routes", async (
         .filter(
           (image) =>
             !image.closest(
-              ".corporate-hero, .division-hero, .inner-hero, .contact-hero, .consultation-cta",
+              ".corporate-hero, .division-hero, .inner-hero, .contact-hero, .consultation-cta, .expert-profile",
             ),
         )
         .map((image) => {

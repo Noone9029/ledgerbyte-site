@@ -10,7 +10,7 @@ release that materially changes routes or page content:
 1. Open **Sitemaps** and submit or resubmit
    `https://ledgerbyte.io/sitemap.xml`. Do not remove the prior submission.
 2. Wait for the sitemap status to become **Success** and record the discovered
-   URL count. The expected count for this release is 25.
+   URL count. The expected count for this release is 31.
 3. Use **URL Inspection → Test Live URL → Request Indexing** for:
    - `https://ledgerbyte.io/`
    - `https://ledgerbyte.io/finance`
@@ -66,6 +66,21 @@ Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Vercel Production before treating
 lead measurement as active. Verify `generate_lead`, form completion, WhatsApp,
 phone, email, form-start, and service CTA events without transmitting names,
 email addresses, phone numbers, messages, or other personal data.
+Track AI-originated sessions through `ai_referral_session`; it records only the
+AI source, referring hostname, and landing path.
+
+## AI Search and IndexNow
+
+Run `npm run test:aeo` before release. After the production deployment exposes
+the current IndexNow key file, run `npm run seo:indexnow` to notify
+participating engines of every canonical sitemap URL. IndexNow does not submit
+URLs to Google, so continue using the sitemap and selected URL Inspection
+requests in Search Console.
+
+Keep `/llms.txt` aligned with canonical service routes. Treat it as an optional
+discovery aid rather than a ranking guarantee. The wildcard `robots.txt` rule
+must continue allowing OAI-SearchBot and other search crawlers to access public
+pages.
 
 Set numerical growth targets only after the complete 28-day baseline. The
 primary KPI is qualified organic enquiries; non-brand clicks and priority-query

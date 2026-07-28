@@ -22,8 +22,10 @@ npm run dev             # Start the local development server
 npm run content:extract # Rebuild typed service data from content-source/
 npm run test:content    # Verify visible marketing-copy provenance
 npm run test:visuals    # Check non-shared artwork uniqueness
+npm run test:aeo        # Verify AI discovery, direct answers, and person entities
 npm run test:seo        # Crawl metadata, schema, sitemap, and redirects
 npm run test:seo:preview # Verify preview deployments stay noindex
+npm run seo:indexnow    # Notify IndexNow engines after production deploys
 npm run test:e2e        # Run Playwright route, interaction, and a11y checks
 npm run lint            # Run ESLint
 npm run build           # Type-check and create the production build
@@ -51,6 +53,8 @@ Keep production canonical URLs on `https://ledgerbyte.io`. Preview deployments
 must remain `noindex`, and legacy redirects must stay permanent, preserve query
 strings, and resolve in one hop. Update `src/content/seo.json`, sitemap tests,
 and provenance records together whenever public routes or metadata change.
+Keep `public/llms.txt`, team profile entities, and the IndexNow key file
+available. IndexNow is a public ownership token, not an application secret.
 
 ## Commits and Pull Requests
 

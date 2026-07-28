@@ -23,6 +23,7 @@ import {
   buildBreadcrumbSchema,
   buildFaqSchema,
   buildPersonId,
+  buildPersonPath,
   buildPersonSchema,
   buildSchemaGraph,
   buildServiceSchema,
@@ -73,6 +74,8 @@ export default async function FinanceServicePage({
     service.title,
   );
   const reviewerId = buildPersonId(service.reviewer.name);
+  const reviewerPath = buildPersonPath(service.reviewer.name);
+  const [directAnswer, ...remainingFaqs] = service.faqs;
   const relatedServiceTitles = new Set(
     service.relatedServices.map((related) => related.title),
   );
@@ -95,6 +98,7 @@ export default async function FinanceServicePage({
             name: serviceSeoTitle,
             description: service.description,
             reviewedBy: reviewerId,
+            dateModified: "2026-07-28",
           }),
           buildBreadcrumbSchema([
             { name: "Finance", path: "/finance" },
@@ -162,13 +166,20 @@ export default async function FinanceServicePage({
           <section className="reviewer-band page-section">
             <div>
               <p className="eyebrow">Expert Reviewed</p>
-              <h2>{service.reviewer.name}</h2>
+              <h2>
+                <Link href={reviewerPath}>{service.reviewer.name}</Link>
+              </h2>
               <span>
                 {service.reviewer.role} · {service.reviewer.credentials}
               </span>
             </div>
             <p>{service.reviewer.summary}</p>
             <SealCheck weight="light" aria-hidden="true" />
+          </section>
+
+          <section className="answer-block page-section" data-aeo-answer>
+            <h2>{directAnswer.question}</h2>
+            <p>{directAnswer.answer}</p>
           </section>
 
           <section className="service-overview page-section">
@@ -303,7 +314,7 @@ export default async function FinanceServicePage({
               title={service.title}
             />
             <div className="faq-list">
-              {service.faqs.map((faq) => (
+              {remainingFaqs.map((faq) => (
                 <details key={faq.question}>
                   <summary>{faq.question}</summary>
                   <p>{faq.answer}</p>

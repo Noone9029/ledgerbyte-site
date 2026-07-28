@@ -16,7 +16,7 @@ import {
 } from "@/content";
 import { getPageSeo } from "@/content/seo";
 import { corporateVisual } from "@/content/visuals";
-import { buildAboutSchema } from "@/lib/schema";
+import { buildAboutSchema, buildPersonPath } from "@/lib/schema";
 import { createPageMetadata } from "@/lib/seo";
 
 const pageSeo = getPageSeo("/about");
@@ -100,7 +100,11 @@ export default function AboutPage() {
                 </div>
                 <div className="team-copy">
                   <p className="eyebrow">{member.credentials}</p>
-                  <h2>{member.name}</h2>
+                  <h2>
+                    <Link href={buildPersonPath(member.name)}>
+                      {member.name}
+                    </Link>
+                  </h2>
                   <span>{member.role}</span>
                   <p>{member.description}</p>
                 </div>

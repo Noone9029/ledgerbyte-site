@@ -68,6 +68,7 @@ export default async function TechnologyServicePage({
             path: `/technology/services/${service.slug}`,
             name: service.title,
             description: service.description,
+            dateModified: "2026-07-28",
           }),
           buildBreadcrumbSchema([
             { name: "Technology", path: "/technology" },
@@ -102,7 +103,7 @@ export default async function TechnologyServicePage({
               copySide="left"
               priority
             >
-              <div className="service-detail-copy">
+              <div className="service-detail-copy" data-aeo-answer>
                 <p className="eyebrow hero-reveal">LedgerByte Tech</p>
                 <h1 className="hero-reveal">{service.title}</h1>
                 <p className="hero-summary hero-reveal">

@@ -2,6 +2,8 @@ import { expect, test } from "@playwright/test";
 import financeServices from "../src/content/generated/finance-services.json";
 import technologyServices from "../src/content/generated/technology-services.json";
 import seoManifest from "../src/content/seo.json";
+import { team } from "../src/content";
+import { buildPersonPath } from "../src/lib/schema";
 
 const siteUrl = "https://ledgerbyte.io";
 const routes = [
@@ -17,6 +19,7 @@ const routes = [
   "/technology/process",
   "/technology/why-ledgerbyte",
   "/about",
+  ...team.map((member) => buildPersonPath(member.name)),
   "/contact",
   "/privacy-policy",
   "/terms-of-use",
@@ -166,7 +169,8 @@ test("structured data forms a stable organization and page graph", async ({
     expect(types.has("Organization"), `${route} Organization`).toBe(true);
     expect(types.has("WebSite"), `${route} WebSite`).toBe(true);
     expect(types.has("WebPage") || types.has("CollectionPage") ||
-      types.has("AboutPage") || types.has("ContactPage"),
+      types.has("AboutPage") || types.has("ContactPage") ||
+      types.has("ProfilePage"),
     `${route} page schema`).toBe(true);
 
     if (route.includes("/services/")) {
@@ -185,6 +189,13 @@ test("structured data forms a stable organization and page graph", async ({
     }
     if (route === "/about") {
       expect(types.has("Person"), `${route} Person`).toBe(true);
+    }
+    if (route.startsWith("/about/team/")) {
+      expect(types.has("ProfilePage"), `${route} ProfilePage`).toBe(true);
+      expect(types.has("Person"), `${route} Person`).toBe(true);
+      expect(types.has("BreadcrumbList"), `${route} BreadcrumbList`).toBe(
+        true,
+      );
     }
   }
 

@@ -1,0 +1,33 @@
+# LedgerByte
+
+> We bring tech, automation, and expert accounting together — so you can stay compliant, save time, and focus on growing your business.
+
+## Finance
+
+- [Outsourced Finance Function for SMEs](https://ledgerbyte.io/finance)
+- [Outsourced Accounting Services UAE](https://ledgerbyte.io/finance/services)
+- [Bookkeeping Services UAE](https://ledgerbyte.io/finance/services/accounting-bookkeeping)
+- [Management Reporting Services UAE](https://ledgerbyte.io/finance/services/financial-reporting-mis)
+- [Financial Forecasting Services UAE](https://ledgerbyte.io/finance/services/budgeting-forecasting)
+- [Cash Flow Management Services UAE](https://ledgerbyte.io/finance/services/cash-flow-working-capital)
+- [Fractional CFO Services UAE](https://ledgerbyte.io/finance/services/fractional-cfo-advisory)
+- [WPS Payroll Services UAE](https://ledgerbyte.io/finance/services/payroll-wps-management)
+- [UAE VAT & Corporate Tax Services](https://ledgerbyte.io/finance/services/tax-vat-compliance)
+- [Accounting Automation Services UAE](https://ledgerbyte.io/finance/services/accounting-automation-systems)
+
+## Technology
+
+- [Technology Solutions for Growing Businesses](https://ledgerbyte.io/technology)
+- [Software Development Services for SMEs](https://ledgerbyte.io/technology/services)
+- [Web Development Services for SMEs](https://ledgerbyte.io/technology/services/web-development)
+- [Mobile App Development for SMEs](https://ledgerbyte.io/technology/services/mobile-app-development)
+- [Backend & API Development Services](https://ledgerbyte.io/technology/services/backend-apis)
+- [AI & Automation Services for SMEs](https://ledgerbyte.io/technology/services/ai-automation)
+- [Cloud & DevOps Services for SMEs](https://ledgerbyte.io/technology/services/cloud-devops)
+- [UI/UX Design Services for SMEs](https://ledgerbyte.io/technology/services/ui-ux-design)
+
+## Company
+
+- [About LedgerByte Finance & Technology](https://ledgerbyte.io/about)
+- [Contact LedgerByte Finance & Technology](https://ledgerbyte.io/contact)
+- [LedgerByte Insights](https://blog.ledgerbyte.io)

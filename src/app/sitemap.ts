@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
-import { financeServices, technologyServices } from "@/content";
+import { financeServices, team, technologyServices } from "@/content";
 import { seoPages } from "@/content/seo";
+import { buildPersonPath } from "@/lib/schema";
 import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -21,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : route.endsWith("/services")
               ? 0.85
               : 0.7,
+    })),
+    ...team.map((member) => ({
+      url: `${SITE_URL}${buildPersonPath(member.name)}`,
+      lastModified: new Date(seoPages["/about"].lastModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     ...financeServices.map((service) => ({
       url: `${SITE_URL}/finance/services/${service.slug}`,

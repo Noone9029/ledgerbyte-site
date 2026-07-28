@@ -39,7 +39,8 @@ test("division switching and service discovery resolve to complete routes", asyn
   await serviceLinks.first().click();
   await expect(page).toHaveURL(/\/finance\/services\/.+/);
   await expect(page.locator(".deliverables-grid")).toBeVisible();
-  await expect(page.locator(".faq-list details")).toHaveCount(4);
+  await expect(page.locator("[data-aeo-answer]")).toHaveCount(1);
+  await expect(page.locator(".faq-list details")).toHaveCount(3);
 });
 
 test("desktop mega navigation exposes both service divisions", async ({

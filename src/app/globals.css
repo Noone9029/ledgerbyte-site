@@ -1680,6 +1680,29 @@ main {
   color: var(--amber-400);
 }
 
+.answer-block {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 7vw, 110px);
+  align-items: start;
+  padding-block: clamp(64px, 8vw, 110px);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.answer-block h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4.6vw, 5.2rem);
+  line-height: 0.98;
+}
+
+.answer-block > p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--stone-250);
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.45;
+}
+
 .service-overview {
   display: grid;
   grid-template-columns: minmax(260px, 0.7fr) minmax(260px, 0.6fr) minmax(360px, 1fr);
@@ -2042,6 +2065,51 @@ main {
   padding-top: 20px;
   border-top: 1px solid var(--line-dark);
   color: var(--stone-250);
+}
+
+.expert-profile {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(40px, 8vw, 120px);
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: clamp(80px, 10vw, 140px);
+}
+
+.expert-profile-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-md);
+  background: var(--graphite-800);
+}
+
+.expert-profile-image img {
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(0.72) contrast(1.03);
+}
+
+.expert-profile-copy h1 {
+  margin: 0 0 18px;
+  font-size: clamp(3.8rem, 8vw, 8.8rem);
+  line-height: 0.9;
+}
+
+.expert-profile-copy > span {
+  display: block;
+  color: var(--amber-400);
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+}
+
+.expert-profile-copy > p:last-child {
+  max-width: 760px;
+  margin: 34px 0 0;
+  padding-top: 30px;
+  border-top: 1px solid var(--line-dark);
+  color: var(--stone-250);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
 }
 
 .values-grid {
@@ -2957,6 +3025,10 @@ main {
     grid-column: 1 / -1;
   }
 
+  .answer-block {
+    grid-template-columns: 1fr;
+  }
+
   .proof-list {
     grid-template-columns: 1fr;
   }
@@ -2982,6 +3054,10 @@ main {
 
   .team-image {
     min-height: 390px;
+  }
+
+  .expert-profile {
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
   }
 
   .contact-main,
@@ -3196,6 +3272,10 @@ main {
     display: none;
   }
 
+  .answer-block {
+    gap: 24px;
+  }
+
   .service-overview {
     grid-template-columns: 1fr;
   }
@@ -3225,6 +3305,15 @@ main {
 
   .team-image {
     min-height: 470px;
+  }
+
+  .expert-profile {
+    grid-template-columns: 1fr;
+    padding-top: 18px;
+  }
+
+  .expert-profile-copy h1 {
+    font-size: clamp(3.2rem, 17vw, 5.3rem);
   }
 
   .contact-form-shell {

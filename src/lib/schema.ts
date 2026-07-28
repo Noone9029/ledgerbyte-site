@@ -74,6 +74,9 @@ export function buildGlobalSchema(): JsonLdNode {
           availableLanguage: ["English"],
         },
         sameAs,
+        employee: team.map((member) => ({
+          "@id": buildPersonId(member.name),
+        })),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "LedgerByte Services",
@@ -108,12 +111,19 @@ export function buildWebPageSchema({
   description,
   type = "WebPage",
   reviewedBy,
+  dateModified,
 }: {
   path: string;
   name: string;
   description: string;
-  type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  type?:
+    | "WebPage"
+    | "AboutPage"
+    | "ContactPage"
+    | "CollectionPage"
+    | "ProfilePage";
   reviewedBy?: string;
+  dateModified?: string;
 }): JsonLdNode {
   const url = absoluteUrl(path);
 
@@ -126,6 +136,7 @@ export function buildWebPageSchema({
     inLanguage: SITE_LANGUAGE,
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORGANIZATION_ID },
+    ...(dateModified ? { dateModified } : {}),
     ...(reviewedBy
       ? {
           reviewedBy: { "@id": reviewedBy },
@@ -134,14 +145,18 @@ export function buildWebPageSchema({
   };
 }
 
-export function buildPersonId(name: string) {
+export function buildPersonPath(name: string) {
   const slug = name
     .normalize("NFKD")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-  return `${SITE_URL}/about#person-${slug}`;
+  return `/about/team/${slug}`;
+}
+
+export function buildPersonId(name: string) {
+  return `${absoluteUrl(buildPersonPath(name))}#person`;
 }
 
 export function buildPersonSchema({
@@ -150,19 +165,27 @@ export function buildPersonSchema({
   description,
   credentials,
   image,
+  path,
 }: {
   name: string;
   jobTitle: string;
   description: string;
   credentials: string;
   image?: string;
+  path?: string;
 }): JsonLdNode {
+  const profilePath = path ?? buildPersonPath(name);
+
   return {
     "@type": "Person",
     "@id": buildPersonId(name),
     name,
     jobTitle,
     description,
+    url: absoluteUrl(profilePath),
+    mainEntityOfPage: {
+      "@id": `${absoluteUrl(profilePath)}#webpage`,
+    },
     ...(image ? { image: absoluteUrl(image) } : {}),
     worksFor: { "@id": ORGANIZATION_ID },
     hasCredential: {
@@ -266,6 +289,7 @@ export function buildAboutSchema(description: string): JsonLdNode {
             description: member.description,
             credentials: member.credentials,
             image: member.image,
+            path: buildPersonPath(member.name),
           }),
         })),
       },
