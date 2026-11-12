@@ -87,6 +87,7 @@ export function TeamGrid() {
               <Image
                 src={person.image}
                 alt={person.name}
+                unoptimized
                 fill
                 sizes="(max-width: 600px) 44vw, (max-width: 1000px) 28vw, 18vw"
               />

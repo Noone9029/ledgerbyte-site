@@ -103,6 +103,7 @@ export default async function TeamProfilePage({
               <Image
                 src={member.image}
                 alt={member.name}
+                unoptimized
                 fill
                 priority
                 sizes="(max-width: 700px) 88vw, 42vw"

@@ -7,6 +7,7 @@ Prepared for private review on 12 November 2026. The user requested a better her
 - Website assets: `public/team/studio/{haider-ali,muhammad-ahmad,faisal-nawaz,sayyam-nasir,alina-khalid,amir-ilyas}.webp`. Each is 896 by 1120 pixels, a 4:5 card crop. Used across Home, About and individual profiles, including person metadata.
 - Background/framing edits used the built-in image generator with the original individual photograph as the edit target. The first generated Haider portrait was the composition/background reference for the other five, with explicit instructions to preserve each person's identity, expression and clothing. These are AI-assisted edits for owner review.
 - WebP conversion/resizing only optimizes the delivered files. Full generated PNGs and the untouched originals remain available locally. No production deployment or Sanity publication is authorized.
+- The pre-compressed portraits are served directly. This avoids redundant runtime image conversion, which stalled one portrait request in the JavaScript-disabled local check.
 
 Exact prompt set:
 
