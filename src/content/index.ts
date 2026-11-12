@@ -137,7 +137,7 @@ export const team: TeamMember[] = [
   {
     name: "Haider Ali",
     role: "Managing Partner",
-    credentials: "ACMA, CGMA",
+    credentials: "CGMA, ACMA",
     image: "/team/haider-ali.jpg",
     description:
       "The driving force behind Ledger Byte, Haider conceptualized and built the company from the ground up. With over 13 years of diversified experience in Pakistan and the GCC, he has successfully led financial management functions across multiple industries, delivering operational efficiency and strategic growth.",
@@ -154,7 +154,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Faisal Nawaz",
-    role: "Head of Accounting",
+    role: "Financial Controller",
     credentials: "FCA",
     image: "/team/faisal-nawaz.png",
     description:
@@ -163,7 +163,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Sayyam Nasir",
-    role: "Reporting Manager",
+    role: "Fractional Controller",
     credentials: "ACCA",
     image: "/team/sayyam-nasir.jpeg",
     description:
@@ -172,9 +172,9 @@ export const team: TeamMember[] = [
   },
   {
     name: "Alina Khalid",
-    role: "Communications Manager",
+    role: "Customer Success Manager",
     credentials:
-      "BS (Hons.) in Management Sciences (Marketing), MPhil in Development Studies",
+      "BS (Hons.) in Management Sciences (Marketing); MPhil in Development Studies",
     image: "/team/alina-khalid.jpeg",
     description:
       "Leveraging over 5 years of multidisciplinary experience spanning education research, university lecturing, operations, HR, and administration across diverse sectors, Alina delivers strategic communication acumen and operational excellence to drive organizational success.",

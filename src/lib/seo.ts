@@ -10,7 +10,8 @@ const MAX_DESCRIPTION_LENGTH = 160;
 
 export const isIndexableEnvironment =
   process.env.VERCEL_ENV === "production" ||
-  process.env.SEO_INDEXABLE === "true";
+  (process.env.VERCEL_ENV !== "preview" &&
+    process.env.SEO_INDEXABLE === "true");
 
 export function absoluteUrl(path = "/") {
   return new URL(path, SITE_URL).toString();

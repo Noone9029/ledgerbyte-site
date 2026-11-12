@@ -24,26 +24,28 @@ const interactiveProjects = [
 
 export default defineConfig({
   testDir: "./tests",
+  // The November suite replaces assertions tied to the previous split-site design.
+  testMatch: "accounting.spec.ts",
   timeout: 45_000,
   expect: { timeout: 8_000 },
   fullyParallel: true,
   workers: 4,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
-    baseURL: "http://127.0.0.1:3100",
-    channel: "msedge",
+    baseURL: "http://127.0.0.1:4300",
+    channel: process.platform === "win32" ? "chrome" : undefined,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
   webServer: {
-    command: "npm run dev -- --hostname 127.0.0.1 --port 3100",
+    command: "npm run start -- --hostname 127.0.0.1 --port 4300",
     env: {
       CONTACT_EMAIL_DISABLED: "true",
-      SEO_INDEXABLE: process.env.SEO_INDEXABLE ?? "true",
-      VERCEL_ENV: process.env.VERCEL_ENV ?? "",
+      SEO_INDEXABLE: "false",
+      VERCEL_ENV: "preview",
     },
-    url: "http://127.0.0.1:3100",
+    url: "http://127.0.0.1:4300",
     reuseExistingServer: true,
     timeout: 120_000,
   },

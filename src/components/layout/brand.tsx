@@ -24,7 +24,7 @@ export function Brand({ inverse = false }: BrandProps) {
       </span>
       <span className="brand-copy">
         <strong>LEDGERBYTE</strong>
-        <span>SMART ACCOUNTING</span>
+        <span>ACCOUNTING. TAX. ADVISORY.</span>
       </span>
     </Link>
   );

@@ -118,10 +118,7 @@ export default async function TeamProfilePage({
 
           {reviewedServices.length ? (
             <section className="related-section page-section">
-              <SectionHeading
-                eyebrow="Expert Reviewed"
-                title={member.name}
-              />
+              <SectionHeading eyebrow="Services" title={member.name} />
               <div className="related-grid">
                 {reviewedServices.map((service) => (
                   <Link

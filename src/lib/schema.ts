@@ -1,9 +1,5 @@
-import {
-  contactDetails,
-  financeServices,
-  team,
-  technologyServices,
-} from "@/content";
+import { accountingServices } from "@/content/accounting";
+import { contactDetails, team } from "@/content";
 import { absoluteUrl, SITE_LANGUAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export type JsonLdNode = Record<string, unknown>;
@@ -16,7 +12,7 @@ const serviceAreas = [
   "United Arab Emirates",
   "Saudi Arabia",
   "United States",
-  "United Kingdom",
+  "Pakistan",
 ].map((name) => ({ "@type": "Country", name }));
 
 const sameAs = [
@@ -39,69 +35,65 @@ export function buildSchemaGraph(...nodes: JsonLdNode[]): JsonLdNode {
 }
 
 export function buildGlobalSchema(): JsonLdNode {
-  const serviceOffers = [...financeServices, ...technologyServices].map(
-    (service) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: service.title,
-        url: absoluteUrl(
-          `/${service.division}/services/${service.slug}`,
-        ),
-      },
-    }),
-  );
+  const serviceOffers = accountingServices.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.title,
+      url: absoluteUrl(`/finance/services/${service.slug}`),
+    },
+  }));
 
   return buildSchemaGraph(
-      {
-        "@type": "Organization",
-        "@id": ORGANIZATION_ID,
-        name: SITE_NAME,
-        url: SITE_URL,
-        logo: {
-          "@type": "ImageObject",
-          url: absoluteUrl("/brand/ledgerbyte-logo.png"),
-        },
-        image: absoluteUrl("/art/corporate-editorial-v3.webp"),
+    {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/brand/ledgerbyte-logo.png"),
+      },
+      image: absoluteUrl("/art/corporate-editorial-v3.webp"),
+      email: contactDetails.email,
+      telephone: contactDetails.phoneHref,
+      address: postalAddress,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
         email: contactDetails.email,
         telephone: contactDetails.phoneHref,
-        address: postalAddress,
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "customer service",
-          email: contactDetails.email,
-          telephone: contactDetails.phoneHref,
-          availableLanguage: ["English"],
-        },
-        sameAs,
-        employee: team.map((member) => ({
-          "@id": buildPersonId(member.name),
-        })),
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "LedgerByte Services",
-          itemListElement: serviceOffers,
-        },
+        availableLanguage: ["English"],
       },
-      {
-        "@type": "WebSite",
-        "@id": WEBSITE_ID,
-        url: SITE_URL,
-        name: SITE_NAME,
-        inLanguage: SITE_LANGUAGE,
-        publisher: { "@id": ORGANIZATION_ID },
+      sameAs,
+      employee: team.map((member) => ({
+        "@id": buildPersonId(member.name),
+      })),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "LedgerByte Services",
+        itemListElement: serviceOffers,
       },
-      {
-        "@type": ["ProfessionalService", "FinancialService"],
-        "@id": PROFESSIONAL_SERVICE_ID,
-        name: SITE_NAME,
-        url: SITE_URL,
-        email: contactDetails.email,
-        telephone: contactDetails.phoneHref,
-        address: postalAddress,
-        areaServed: serviceAreas,
-        parentOrganization: { "@id": ORGANIZATION_ID },
-      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: SITE_LANGUAGE,
+      publisher: { "@id": ORGANIZATION_ID },
+    },
+    {
+      "@type": ["ProfessionalService", "FinancialService"],
+      "@id": PROFESSIONAL_SERVICE_ID,
+      name: SITE_NAME,
+      url: SITE_URL,
+      email: contactDetails.email,
+      telephone: contactDetails.phoneHref,
+      address: postalAddress,
+      areaServed: serviceAreas,
+      parentOrganization: { "@id": ORGANIZATION_ID },
+    },
   );
 }
 
@@ -271,27 +263,27 @@ export function buildFaqSchema(
 
 export function buildAboutSchema(description: string): JsonLdNode {
   return buildSchemaGraph(
-      buildWebPageSchema({
-        path: "/about",
-        name: "About LedgerByte",
-        description,
-        type: "AboutPage",
-      }),
-      {
-        "@type": "ItemList",
-        name: "LedgerByte Team",
-        itemListElement: team.map((member, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: buildPersonSchema({
-            name: member.name,
-            jobTitle: member.role,
-            description: member.description,
-            credentials: member.credentials,
-            image: member.image,
-            path: buildPersonPath(member.name),
-          }),
-        })),
-      },
+    buildWebPageSchema({
+      path: "/about",
+      name: "About LedgerByte",
+      description,
+      type: "AboutPage",
+    }),
+    {
+      "@type": "ItemList",
+      name: "LedgerByte Team",
+      itemListElement: team.map((member, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: buildPersonSchema({
+          name: member.name,
+          jobTitle: member.role,
+          description: member.description,
+          credentials: member.credentials,
+          image: member.image,
+          path: buildPersonPath(member.name),
+        }),
+      })),
+    },
   );
 }

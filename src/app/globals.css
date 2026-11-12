@@ -341,7 +341,11 @@ main {
   border: 1px solid var(--brand-border);
   border-radius: 12px;
   background:
-    radial-gradient(circle at 58% 62%, rgba(224, 181, 98, 0.08), transparent 55%),
+    radial-gradient(
+      circle at 58% 62%,
+      rgba(224, 181, 98, 0.08),
+      transparent 55%
+    ),
     var(--brand-surface);
   box-shadow:
     inset 0 0 18px var(--brand-inset),
@@ -977,7 +981,11 @@ main {
   grid-column: span 6;
   grid-row: span 2;
   background:
-    radial-gradient(circle at 90% 12%, rgba(224, 181, 98, 0.16), transparent 18rem),
+    radial-gradient(
+      circle at 90% 12%,
+      rgba(224, 181, 98, 0.16),
+      transparent 18rem
+    ),
     var(--graphite-950);
 }
 
@@ -1036,7 +1044,11 @@ main {
 .service-panel:is([data-active="true"], :focus-within) {
   flex: 1 1 620px;
   background:
-    radial-gradient(circle at 84% 14%, rgba(224, 181, 98, 0.12), transparent 18rem),
+    radial-gradient(
+      circle at 84% 14%,
+      rgba(224, 181, 98, 0.12),
+      transparent 18rem
+    ),
     var(--graphite-800);
 }
 
@@ -1131,14 +1143,12 @@ main {
   pointer-events: none;
 }
 
-.service-panel:is([data-active="true"], :focus-within)
-  .service-panel-detail {
+.service-panel:is([data-active="true"], :focus-within) .service-panel-detail {
   opacity: 1;
   transition-delay: 190ms;
 }
 
-.service-panel:not([data-active="true"]):hover
-  .service-panel-index {
+.service-panel:not([data-active="true"]):hover .service-panel-index {
   color: var(--amber-400);
 }
 
@@ -1523,7 +1533,11 @@ main {
 
 .service-card:hover {
   background:
-    radial-gradient(circle at 92% 8%, rgba(224, 181, 98, 0.12), transparent 17rem),
+    radial-gradient(
+      circle at 92% 8%,
+      rgba(224, 181, 98, 0.12),
+      transparent 17rem
+    ),
     var(--graphite-800);
 }
 
@@ -1705,7 +1719,10 @@ main {
 
 .service-overview {
   display: grid;
-  grid-template-columns: minmax(260px, 0.7fr) minmax(260px, 0.6fr) minmax(360px, 1fr);
+  grid-template-columns: minmax(260px, 0.7fr) minmax(260px, 0.6fr) minmax(
+      360px,
+      1fr
+    );
   gap: clamp(36px, 6vw, 92px);
   padding-block: clamp(80px, 11vw, 150px);
 }
@@ -2202,14 +2219,22 @@ main {
 
 .value-action-finance {
   background:
-    radial-gradient(circle at 100% 0%, rgba(224, 181, 98, 0.16), transparent 15rem),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(224, 181, 98, 0.16),
+      transparent 15rem
+    ),
     var(--graphite-800);
 }
 
 .value-action-finance:hover,
 .value-action-finance:focus-visible {
   background:
-    radial-gradient(circle at 100% 0%, rgba(224, 181, 98, 0.22), transparent 17rem),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(224, 181, 98, 0.22),
+      transparent 17rem
+    ),
     var(--graphite-700);
 }
 
@@ -2768,7 +2793,11 @@ main {
     gap: 40px;
     padding: 120px clamp(30px, 7vw, 80px) 50px;
     background:
-      radial-gradient(circle at 90% 10%, rgba(224, 181, 98, 0.1), transparent 24rem),
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(224, 181, 98, 0.1),
+        transparent 24rem
+      ),
       var(--mobile-nav-background);
     opacity: 0;
     pointer-events: none;
@@ -3433,5 +3462,1144 @@ main {
     top: auto;
     filter: none !important;
     transform: none !important;
+  }
+}
+/* November accounting review. Colours remain in the shared theme tokens. */
+.accounting-wrap {
+  width: min(1320px, calc(100% - 64px));
+  margin-inline: auto;
+}
+.accounting-page {
+  padding-bottom: 20px;
+}
+.accounting-header {
+  position: sticky;
+  z-index: 60;
+  top: 0;
+  padding: 15px 20px 0;
+}
+.accounting-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 80px;
+  max-width: 1520px;
+  margin: auto;
+  padding: 14px 22px;
+  border: 1px solid var(--nav-border);
+  border-radius: 20px;
+  background: var(--nav-background);
+  backdrop-filter: blur(24px);
+  box-shadow: var(--nav-shadow);
+}
+.accounting-header .brand {
+  flex-shrink: 0;
+}
+.accounting-header .brand-copy span {
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+}
+.accounting-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.accounting-desktop-nav > a:hover,
+.accounting-services-menu > summary:hover {
+  color: var(--amber-400);
+}
+.accounting-services-menu > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.accounting-services-menu summary::-webkit-details-marker,
+.accounting-mobile-nav > summary::-webkit-details-marker {
+  display: none;
+}
+.accounting-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.accounting-header .button {
+  min-height: 45px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+}
+.accounting-mobile-nav {
+  display: none;
+}
+.accounting-mega {
+  position: absolute;
+  top: 94px;
+  left: max(20px, calc((100vw - 1480px) / 2));
+  right: max(20px, calc((100vw - 1480px) / 2));
+  max-height: calc(100svh - 125px);
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid var(--mega-border);
+  border-radius: 20px;
+  background: var(--mega-background);
+  box-shadow: var(--shadow);
+}
+.accounting-mega > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  padding-block: 20px;
+}
+.accounting-mega h2 {
+  color: var(--amber-400);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+.accounting-mega section a {
+  display: block;
+  padding: 7px 0;
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+.accounting-mega a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.accounting-menu-all,
+.accounting-mega > a {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.accounting-mega svg {
+  width: 18px;
+}
+.accounting-preview-notice {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 13px 20px 0;
+  color: var(--stone-250);
+  font-size: 0.76rem;
+}
+.accounting-preview-notice a {
+  color: var(--amber-400);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.accounting-home-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  padding-block: clamp(55px, 7vw, 110px);
+}
+.accounting-home-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(3.2rem, 6.5vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  margin-bottom: 30px;
+}
+.accounting-lead {
+  color: var(--stone-250);
+  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
+  line-height: 1.65;
+  max-width: 68ch;
+}
+.accounting-home-hero .hero-actions {
+  gap: 22px;
+  margin-top: 30px;
+}
+.accounting-location {
+  margin-top: 30px;
+  max-width: 42ch;
+  color: var(--stone-400);
+  font-size: 0.83rem;
+}
+.accounting-hero-image {
+  position: relative;
+  min-height: 540px;
+  aspect-ratio: 0.98;
+  border-radius: 80px 24px 24px 24px;
+  overflow: hidden;
+  background: var(--graphite-850);
+}
+.accounting-hero-image img {
+  object-fit: cover;
+}
+.accounting-hero-caption {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px;
+  border: 1px solid var(--line-dark);
+  border-radius: 12px;
+  background: var(--nav-background);
+  color: var(--ivory-100);
+  backdrop-filter: blur(16px);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+}
+.accounting-reviews {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-block: 35px;
+  border-block: 1px solid var(--line-dark);
+}
+.accounting-reviews h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+.accounting-reviews .eyebrow {
+  margin-bottom: 10px;
+}
+.accounting-reviews p:last-child {
+  color: var(--stone-250);
+  margin: 0;
+}
+.accounting-reviews > a {
+  max-width: 260px;
+}
+.accounting-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 38px;
+}
+.accounting-section-heading h2,
+.accounting-statement h2,
+.accounting-faq > h2,
+.accounting-closing h2 {
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  line-height: 1.06;
+  max-width: 18ch;
+  margin-bottom: 0;
+}
+.accounting-section-heading > p {
+  max-width: 55ch;
+  color: var(--stone-250);
+}
+.accounting-pathways,
+.accounting-featured,
+.accounting-team,
+.accounting-guides,
+.accounting-faq {
+  padding-block: clamp(65px, 8vw, 110px);
+}
+.accounting-pathways > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line-dark);
+  border: 1px solid var(--line-dark);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.accounting-pathways article {
+  display: flex;
+  flex-direction: column;
+  background: var(--graphite-900);
+  padding: 28px;
+}
+.accounting-section-number {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--amber-400);
+  margin-bottom: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.accounting-pathways h3 {
+  font-size: 1.65rem;
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+.accounting-pathways article > p {
+  color: var(--stone-250);
+  font-size: 0.95rem;
+}
+.accounting-pathways article > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 25px;
+  color: var(--amber-400);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.accounting-pathways svg {
+  width: 20px;
+  flex-shrink: 0;
+}
+.accounting-statement {
+  padding: 75px clamp(26px, 6vw, 90px);
+  border: 1px solid var(--line-dark);
+  border-radius: 26px;
+  background: var(--graphite-850);
+}
+.accounting-statement h2 {
+  max-width: 21ch;
+}
+.accounting-statement > p:last-child {
+  max-width: 70ch;
+  margin: 30px 0 0;
+  color: var(--stone-250);
+  font-size: 1.25rem;
+}
+.accounting-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.accounting-service-grid > article {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border: 1px solid var(--line-dark);
+  border-radius: 18px;
+  background: var(--graphite-850);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+.accounting-service-grid > article:hover {
+  border-color: var(--amber-500);
+  transform: translateY(-3px);
+}
+.accounting-service-grid h2,
+.accounting-service-grid h3 {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.accounting-service-grid h2 a {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+.accounting-service-grid h2 svg {
+  width: 24px;
+  flex-shrink: 0;
+}
+.accounting-service-grid p {
+  color: var(--stone-250);
+}
+.accounting-service-grid .eyebrow {
+  color: var(--amber-400);
+  font-size: 0.65rem;
+}
+.accounting-service-grid .text-link {
+  padding-top: 25px;
+  margin-top: auto;
+  font-size: 0.88rem;
+}
+.accounting-card-output {
+  border-top: 1px solid var(--line-dark);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.accounting-card-output > span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber-400);
+}
+.accounting-card-output p {
+  font-size: 0.9rem;
+  margin-block: 8px 0;
+}
+.accounting-all-services {
+  margin-top: 30px;
+}
+.accounting-team {
+  border-block: 1px solid var(--line-dark);
+}
+.accounting-team-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+}
+.accounting-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--graphite-800);
+  margin-bottom: 17px;
+}
+.accounting-portrait img {
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(1);
+  transition: filter 200ms ease;
+}
+.accounting-team-grid a:hover img {
+  filter: grayscale(0);
+}
+.accounting-team-grid h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+.accounting-team-grid article > p {
+  color: var(--stone-250);
+  font-size: 0.87rem;
+  margin-bottom: 6px;
+}
+.accounting-team-grid small {
+  color: var(--stone-400);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  display: block;
+}
+.accounting-guides > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+.accounting-guides > div > a {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-block: 1px solid var(--line-dark);
+}
+.accounting-guides h3 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+.accounting-guides svg {
+  width: 26px;
+  color: var(--amber-400);
+  margin-top: auto;
+}
+.accounting-faq > div {
+  margin-top: 35px;
+}
+.accounting-faq details {
+  border-bottom: 1px solid var(--line-dark);
+}
+.accounting-faq summary {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.25rem;
+}
+.accounting-faq summary::-webkit-details-marker {
+  display: none;
+}
+.accounting-faq summary span {
+  color: var(--amber-400);
+  font-size: 1.7rem;
+}
+.accounting-faq details[open] summary span {
+  transform: rotate(45deg);
+}
+.accounting-faq details > p {
+  max-width: 80ch;
+  color: var(--stone-250);
+  padding-bottom: 20px;
+  font-size: 1.05rem;
+}
+.accounting-closing {
+  border: 1px solid var(--line-dark);
+  border-radius: 24px;
+  padding: clamp(35px, 6vw, 80px);
+  background: var(--graphite-850);
+  margin-block: 40px 60px;
+}
+.accounting-closing h2 {
+  max-width: 21ch;
+  margin-bottom: 35px;
+}
+.accounting-index-hero {
+  padding-block: 80px 55px;
+}
+.accounting-index-hero h1 {
+  max-width: 18ch;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  line-height: 1.03;
+  margin-bottom: 28px;
+}
+.accounting-search {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  padding-block: 20px;
+}
+.accounting-search label > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--stone-250);
+  font-size: 0.9rem;
+}
+.accounting-search label > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  border: 1px solid var(--field-border);
+  border-radius: 10px;
+  background: var(--graphite-850);
+}
+.accounting-search svg {
+  width: 24px;
+  color: var(--amber-400);
+}
+.accounting-search input,
+.accounting-search select {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  color: var(--ivory-100);
+  background: var(--graphite-850);
+  border: 1px solid var(--field-border);
+  border-radius: 10px;
+  padding: 12px 18px;
+}
+.accounting-search input {
+  border: 0;
+  padding-inline: 0;
+}
+.accounting-search input::placeholder {
+  color: var(--stone-400);
+}
+.accounting-results {
+  font-size: 0.85rem;
+  color: var(--stone-400);
+  margin-block: 12px 25px;
+}
+.accounting-catalogue {
+  padding-bottom: 60px;
+}
+.accounting-empty {
+  padding-block: 50px;
+}
+.accounting-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 35px;
+  color: var(--stone-400);
+  font-size: 0.82rem;
+}
+.accounting-breadcrumb a {
+  color: var(--stone-250);
+}
+.accounting-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(270px, 1fr);
+  gap: clamp(35px, 7vw, 110px);
+  padding-block: 50px 75px;
+  align-items: center;
+}
+.accounting-detail-hero h1 {
+  font-size: clamp(2.7rem, 4.7vw, 4.8rem);
+  line-height: 1.04;
+  margin-bottom: 28px;
+  max-width: 20ch;
+}
+.accounting-detail-hero .button {
+  margin-top: 15px;
+}
+.accounting-output {
+  border: 1px solid var(--line-dark);
+  border-radius: 22px;
+  padding: 32px;
+  background: var(--graphite-850);
+}
+.accounting-output .accounting-mark {
+  display: block;
+  font-size: 4rem;
+  color: var(--amber-400);
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.accounting-output > p:not(.eyebrow) {
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+.accounting-output hr {
+  border: 0;
+  border-top: 1px solid var(--line-dark);
+  margin-block: 25px;
+}
+.accounting-output small {
+  display: block;
+  color: var(--stone-250);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.accounting-detail-motif {
+  background: var(--graphite-850);
+  border: 1px solid var(--line-dark);
+  border-radius: 22px;
+  padding: 20px;
+}
+.accounting-detail-motif svg {
+  width: 100%;
+  fill: none;
+  stroke: var(--line-dark);
+  stroke-width: 1;
+}
+.accounting-detail-motif .accounting-chart-line {
+  stroke: var(--amber-400);
+  stroke-width: 3;
+}
+.accounting-detail-motif circle {
+  fill: var(--graphite-850);
+  stroke: var(--amber-400);
+  stroke-width: 2;
+}
+.accounting-article-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 70px;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 65px;
+}
+.accounting-toc {
+  position: sticky;
+  top: 135px;
+  align-self: start;
+}
+.accounting-toc > a {
+  display: block;
+  color: var(--stone-250);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-dark);
+  font-size: 0.9rem;
+}
+.accounting-toc > a:hover {
+  color: var(--amber-400);
+}
+.accounting-prose {
+  min-width: 0;
+}
+.accounting-prose > section {
+  padding-bottom: 60px;
+  max-width: 85ch;
+  scroll-margin-top: 135px;
+}
+.accounting-prose h2 {
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  line-height: 1.15;
+  margin-bottom: 25px;
+}
+.accounting-prose p,
+.accounting-prose li {
+  color: var(--stone-250);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.accounting-prose ul {
+  padding-left: 22px;
+}
+.accounting-prose li {
+  padding-left: 8px;
+  margin-bottom: 14px;
+}
+.accounting-prose a:not(.accounting-team-grid a),
+.accounting-faq p a {
+  color: var(--amber-400);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.accounting-prose .accounting-team-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+.accounting-prose .accounting-team-grid h3 {
+  font-size: 1.2rem;
+}
+.accounting-related {
+  padding-block: 30px 50px;
+  border-top: 1px solid var(--line-dark);
+}
+.accounting-related > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+.accounting-related a {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--line-dark);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.accounting-related svg {
+  width: 20px;
+  flex-shrink: 0;
+  color: var(--amber-400);
+}
+.accounting-market-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  padding-bottom: 70px;
+}
+.accounting-market-grid article {
+  border: 1px solid var(--line-dark);
+  border-radius: 20px;
+  padding: 35px;
+  background: var(--graphite-850);
+}
+.accounting-market-grid h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+.accounting-market-grid p {
+  color: var(--stone-250);
+  font-size: 1.08rem;
+}
+.accounting-hub-link {
+  display: block;
+  padding-block: 13px;
+  border-bottom: 1px solid var(--line-dark);
+  color: var(--stone-250);
+}
+.accounting-footer {
+  border-top: 1px solid var(--line-dark);
+  padding-block: 60px 30px;
+  margin-top: 45px;
+  background: var(--graphite-950);
+}
+.accounting-footer-lead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.accounting-footer-lead p {
+  max-width: 42ch;
+  color: var(--stone-250);
+  margin: 25px 0 0;
+}
+.accounting-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 60px;
+  padding-block: 45px;
+}
+.accounting-footer-grid > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 25px;
+}
+.accounting-footer-grid h2 {
+  color: var(--amber-400);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+}
+.accounting-footer-grid > div:first-child h2 {
+  grid-column: 1 / -1;
+}
+.accounting-footer-grid a {
+  display: block;
+  color: var(--stone-250);
+  font-size: 0.9rem;
+  margin-bottom: 9px;
+}
+.accounting-footer-grid a:hover {
+  color: var(--ivory-100);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.accounting-footer-grid address {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--stone-400);
+  line-height: 1.6;
+  margin-block: 23px;
+}
+.accounting-footer-grid .accounting-tech-link {
+  font-size: 0.78rem;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 22px;
+}
+.accounting-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 25px;
+  color: var(--stone-400);
+  font-size: 0.8rem;
+}
+.accounting-footer-bottom > div {
+  display: flex;
+  gap: 25px;
+}
+.accounting-review-list {
+  padding-left: 22px;
+  max-width: 80ch;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.accounting-review-list li {
+  margin-block: 20px;
+}
+@media (max-width: 1180px) {
+  .accounting-desktop-nav {
+    display: none;
+  }
+  .accounting-mobile-nav {
+    display: block;
+  }
+  .accounting-mobile-nav > summary {
+    list-style: none;
+    padding: 7px 13px;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .accounting-mobile-nav > nav {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    max-height: calc(100svh - 125px);
+    overflow-y: auto;
+    border: 1px solid var(--mega-border);
+    border-radius: 18px;
+    background: var(--mega-background);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .accounting-mobile-nav nav > a,
+  .accounting-mobile-nav summary {
+    display: block;
+    padding-block: 14px;
+  }
+  .accounting-mobile-nav .accounting-mega {
+    position: static;
+    max-height: none;
+    box-shadow: none;
+    padding: 20px;
+    margin-block: 10px;
+  }
+  .accounting-mobile-nav .accounting-mega > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .accounting-team-grid {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 35px;
+  }
+  .accounting-pathways > div:last-child {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .accounting-footer-grid {
+    gap: 30px;
+  }
+}
+@media (max-width: 900px) {
+  .accounting-wrap {
+    width: calc(100% - 40px);
+  }
+  .accounting-home-hero {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+  }
+  .accounting-home-hero h1 {
+    max-width: 14ch;
+    font-size: clamp(3rem, 9vw, 5.5rem);
+  }
+  .accounting-hero-image {
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    border-radius: 45px 20px 20px;
+  }
+  .accounting-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .accounting-section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .accounting-detail-hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .accounting-detail-motif {
+    display: none;
+  }
+  .accounting-article-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 35px;
+  }
+  .accounting-toc {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 20px;
+    padding-bottom: 25px;
+  }
+  .accounting-toc p {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .accounting-prose > section {
+    max-width: none;
+  }
+  .accounting-related > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .accounting-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .accounting-footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .accounting-guides > div:last-child {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+@media (max-width: 600px) {
+  .accounting-wrap {
+    width: calc(100% - 36px);
+  }
+  .accounting-header {
+    padding: 10px 10px 0;
+  }
+  .accounting-header-inner {
+    padding: 12px;
+    min-height: 72px;
+    gap: 10px;
+    border-radius: 15px;
+  }
+  .accounting-header .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+  .accounting-header .brand-copy strong {
+    font-size: 0.7rem;
+  }
+  .accounting-header .brand-copy span {
+    font-size: 0.38rem;
+  }
+  .accounting-header-actions {
+    gap: 8px;
+  }
+  .accounting-header-cta {
+    display: none !important;
+  }
+  .accounting-header .theme-toggle {
+    width: 38px;
+    height: 38px;
+  }
+  .accounting-mobile-nav > summary {
+    padding: 2px 9px;
+  }
+  .accounting-mobile-nav > nav {
+    top: 89px;
+    left: 10px;
+    right: 10px;
+    padding: 20px;
+  }
+  .accounting-mobile-nav .accounting-mega {
+    padding: 15px;
+  }
+  .accounting-mobile-nav .accounting-mega > div {
+    grid-template-columns: 1fr;
+  }
+  .accounting-home-hero h1 {
+    font-size: clamp(2.8rem, 12vw, 4.2rem);
+    max-width: 13ch;
+  }
+  .accounting-home-hero .hero-actions {
+    align-items: start;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .accounting-reviews {
+    align-items: start;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .accounting-pathways > div:last-child,
+  .accounting-service-grid,
+  .accounting-market-grid {
+    grid-template-columns: 1fr;
+  }
+  .accounting-pathways article {
+    padding: 25px;
+  }
+  .accounting-team-grid,
+  .accounting-prose .accounting-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 16px;
+  }
+  .accounting-search {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .accounting-index-hero {
+    padding-top: 50px;
+  }
+  .accounting-index-hero h1,
+  .accounting-detail-hero h1 {
+    font-size: 2.8rem;
+  }
+  .accounting-detail-hero {
+    padding-block: 35px 45px;
+  }
+  .accounting-output {
+    padding: 25px;
+  }
+  .accounting-related > div {
+    grid-template-columns: 1fr;
+  }
+  .accounting-prose p,
+  .accounting-prose li {
+    font-size: 1.02rem;
+  }
+  .accounting-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .accounting-footer-grid > div:first-child {
+    grid-template-columns: 1fr;
+  }
+  .accounting-footer-lead {
+    align-items: start;
+    flex-direction: column;
+  }
+  .accounting-footer-bottom {
+    flex-direction: column;
+  }
+}
+
+.accounting-contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(35px, 6vw, 90px);
+  padding-block: 65px;
+  align-items: start;
+}
+.accounting-contact-intro h1 {
+  font-size: clamp(2.8rem, 4.4vw, 4.6rem);
+  line-height: 1.04;
+  max-width: 15ch;
+  margin-bottom: 28px;
+}
+.accounting-whatsapp-note {
+  max-width: 43ch;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--stone-400);
+  margin-top: 18px;
+}
+.accounting-contact-details {
+  display: grid;
+  gap: 12px;
+  margin-top: 35px;
+  color: var(--stone-250);
+}
+.accounting-contact-details address {
+  max-width: 35ch;
+  font-style: normal;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+.accounting-form-panel {
+  border: 1px solid var(--line-dark);
+  border-radius: 22px;
+  padding: clamp(23px, 3vw, 42px);
+  background: var(--graphite-850);
+}
+.accounting-form-panel h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+.accounting-contact-form label {
+  display: block;
+  margin-bottom: 22px;
+  font-size: 0.9rem;
+}
+.accounting-contact-form label > span,
+.accounting-contact-form label small {
+  color: var(--stone-400);
+}
+.accounting-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+.accounting-contact-form input,
+.accounting-contact-form select,
+.accounting-contact-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  background: var(--graphite-900);
+  border: 1px solid var(--field-border);
+  color: var(--ivory-100);
+  border-radius: 9px;
+  padding: 13px;
+  margin-top: 9px;
+}
+.accounting-contact-form input,
+.accounting-contact-form select {
+  min-height: 48px;
+}
+.accounting-contact-form textarea {
+  resize: vertical;
+}
+.accounting-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.accounting-privacy-hint {
+  color: var(--stone-400);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.accounting-form-feedback {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--line-dark);
+  border-radius: 10px;
+  color: var(--ivory-100);
+}
+.accounting-form-feedback.error {
+  border-color: var(--amber-500);
+}
+@media (max-width: 900px) {
+  .accounting-contact-layout {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+}
+@media (max-width: 600px) {
+  .accounting-form-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -26,6 +26,7 @@ const userProvidedCopyPath = path.join(
   "user-provided.json",
 );
 const seoCopyPath = path.join(sourceRoot, "content", "seo.json");
+const accountingCopyPath = path.join(sourceRoot, "content", "accounting.json");
 const textExtensions = new Set([
   ".txt",
   ".html",
@@ -147,8 +148,16 @@ validateData(
   JSON.parse(fs.readFileSync(seoCopyPath, "utf8")),
   path.relative(projectRoot, seoCopyPath),
 );
+if (fs.existsSync(accountingCopyPath)) {
+  validateData(
+    JSON.parse(fs.readFileSync(accountingCopyPath, "utf8")),
+    "src/content/accounting.json",
+  );
+}
 
 const ignoredPropertyNames = new Set([
+  "d",
+  "viewBox",
   "className",
   "href",
   "src",
@@ -167,6 +176,8 @@ const ignoredPropertyNames = new Set([
   "sourceHtml",
   "slug",
   "image",
+  "d",
+  "viewBox",
 ]);
 
 const isIgnoredString = (node) => {
@@ -179,12 +190,16 @@ const isIgnoredString = (node) => {
   }
   if (ts.isPropertyAssignment(parent)) {
     const propertyName = parent.name.getText().replaceAll(/['"]/g, "");
-    return ignoredPropertyNames.has(propertyName) || propertyName.startsWith("@");
+    return (
+      ignoredPropertyNames.has(propertyName) || propertyName.startsWith("@")
+    );
   }
   return false;
 };
 
-for (const file of walk(sourceRoot, (candidate) => candidate.endsWith(".tsx"))) {
+for (const file of walk(sourceRoot, (candidate) =>
+  candidate.endsWith(".tsx"),
+)) {
   const sourceText = fs.readFileSync(file, "utf8");
   const sourceFile = ts.createSourceFile(
     file,
@@ -196,8 +211,14 @@ for (const file of walk(sourceRoot, (candidate) => candidate.endsWith(".tsx"))) 
 
   const visit = (node) => {
     if (ts.isJsxText(node)) {
-      const text = decodeEntities(node.getText(sourceFile)).replace(/\s+/g, " ");
-      checkCopy(text, `${path.relative(projectRoot, file)}:${sourceFile.getLineAndCharacterOfPosition(node.pos).line + 1}`);
+      const text = decodeEntities(node.getText(sourceFile)).replace(
+        /\s+/g,
+        " ",
+      );
+      checkCopy(
+        text,
+        `${path.relative(projectRoot, file)}:${sourceFile.getLineAndCharacterOfPosition(node.pos).line + 1}`,
+      );
     } else if (
       (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) &&
       !isIgnoredString(node)

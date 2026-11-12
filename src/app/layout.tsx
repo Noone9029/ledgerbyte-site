@@ -1,17 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import Link from "next/link";
 import { SiteAnalytics } from "@/components/analytics/site-analytics";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
+import { AccountingFooter } from "@/components/accounting/site-footer";
+import { AccountingHeader } from "@/components/accounting/site-header";
 import { StructuredData } from "@/components/structured-data";
 import { getPageSeo } from "@/content/seo";
 import { buildGlobalSchema } from "@/lib/schema";
-import {
-  createPageMetadata,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/seo";
+import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const cabinetGrotesk = localFont({
@@ -98,9 +95,15 @@ export default function RootLayout({
           Skip to content
         </a>
         <StructuredData data={buildGlobalSchema()} />
-        <SiteHeader />
+        <AccountingHeader />
+        {process.env.VERCEL_ENV !== "production" && (
+          <div className="accounting-preview-notice">
+            Private review · Not approved for publication{" "}
+            <Link href="/review-notes">Open review notes ↗</Link>
+          </div>
+        )}
         {children}
-        <SiteFooter />
+        <AccountingFooter />
         <SiteAnalytics />
       </body>
     </html>

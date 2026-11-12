@@ -1,0 +1,13 @@
+.git/
+.next/
+.qa/
+.env*
+node_modules/
+playwright-report/
+test-results/
+tests/
+docs/
+AGENTS.md
+README.md
+playwright.config.ts
+*.tsbuildinfo
