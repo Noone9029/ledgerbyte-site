@@ -3622,25 +3622,27 @@ main {
   color: var(--stone-400);
   font-size: 0.83rem;
 }
+.accounting-hero-figure {
+  min-width: 0;
+  margin: 0;
+}
 .accounting-hero-image {
   position: relative;
-  min-height: 540px;
-  aspect-ratio: 0.98;
-  border-radius: 80px 24px 24px 24px;
+  aspect-ratio: 3 / 2;
+  border-radius: 32px 20px 20px;
   overflow: hidden;
   background: var(--graphite-850);
 }
 .accounting-hero-image img {
-  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .accounting-hero-caption {
-  position: absolute;
-  bottom: 18px;
-  left: 18px;
-  right: 18px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  margin-top: 12px;
   padding: 17px;
   border: 1px solid var(--line-dark);
   border-radius: 12px;
@@ -3843,7 +3845,7 @@ main {
 }
 .accounting-portrait img {
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   filter: grayscale(1);
   transition: filter 200ms ease;
 }

@@ -50,19 +50,22 @@ export function AccountingHome() {
             </div>
             <p className="accounting-location">{home.hero_note}</p>
           </div>
-          <div className="accounting-hero-image">
-            <Image
-              src="/art/finance-editorial-v3.webp"
-              alt="Editorial illustration of finance records, reporting and planning"
-              fill
-              priority
-              sizes="(max-width: 900px) 90vw, 44vw"
-            />
-            <div className="accounting-hero-caption">
+          <figure className="accounting-hero-figure">
+            <div className="accounting-hero-image">
+              <Image
+                src="/art/finance-editorial-v3.webp"
+                alt="Editorial illustration of finance records, reporting and planning"
+                width={1536}
+                height={1024}
+                priority
+                sizes="(max-width: 900px) 90vw, 44vw"
+              />
+            </div>
+            <figcaption className="accounting-hero-caption">
               <span>LEDGERBYTE</span>
               <span>ACCOUNTING. TAX. ADVISORY.</span>
-            </div>
-          </div>
+            </figcaption>
+          </figure>
         </section>
         <section className="accounting-reviews accounting-wrap">
           <div>

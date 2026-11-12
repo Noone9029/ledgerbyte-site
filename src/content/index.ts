@@ -138,7 +138,7 @@ export const team: TeamMember[] = [
     name: "Haider Ali",
     role: "Managing Partner",
     credentials: "CGMA, ACMA",
-    image: "/team/haider-ali.jpg",
+    image: "/team/studio/haider-ali.webp",
     description:
       "The driving force behind Ledger Byte, Haider conceptualized and built the company from the ground up. With over 13 years of diversified experience in Pakistan and the GCC, he has successfully led financial management functions across multiple industries, delivering operational efficiency and strategic growth.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
@@ -147,7 +147,7 @@ export const team: TeamMember[] = [
     name: "Muhammad Ahmad",
     role: "CTO",
     credentials: "BSCS",
-    image: "/team/muhammad-ahmad.png",
+    image: "/team/studio/muhammad-ahmad.webp",
     description:
       "Full-stack developer & data analyst skilled in React, Python, SQL & AI. Leads development, analytics, and digital strategy at LedgerByte.",
     source: "src/content/user-provided.json#muhammadAhmadDescription",
@@ -156,7 +156,7 @@ export const team: TeamMember[] = [
     name: "Faisal Nawaz",
     role: "Financial Controller",
     credentials: "FCA",
-    image: "/team/faisal-nawaz.png",
+    image: "/team/studio/faisal-nawaz.webp",
     description:
       "Bringing 25 years of distinguished experience, Faisal has an extensive track record with both national and multinational organizations in Pakistan, delivering exceptional financial leadership and governance.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
@@ -165,7 +165,7 @@ export const team: TeamMember[] = [
     name: "Sayyam Nasir",
     role: "Fractional Controller",
     credentials: "ACCA",
-    image: "/team/sayyam-nasir.jpeg",
+    image: "/team/studio/sayyam-nasir.webp",
     description:
       "A results-oriented finance professional with over 7 years of experience spanning leading firms such as KPMG and diverse industries across the GCC and Pakistan, Sayyam excels in accounting, financial reporting, and process optimization, consistently delivering precision and efficiency.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
@@ -175,7 +175,7 @@ export const team: TeamMember[] = [
     role: "Customer Success Manager",
     credentials:
       "BS (Hons.) in Management Sciences (Marketing); MPhil in Development Studies",
-    image: "/team/alina-khalid.jpeg",
+    image: "/team/studio/alina-khalid.webp",
     description:
       "Leveraging over 5 years of multidisciplinary experience spanning education research, university lecturing, operations, HR, and administration across diverse sectors, Alina delivers strategic communication acumen and operational excellence to drive organizational success.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
@@ -184,7 +184,7 @@ export const team: TeamMember[] = [
     name: "Amir Ilyas",
     role: "Senior Tax Consultant",
     credentials: "FCCA | 12+ years of experience in KSA Accounting & Taxation",
-    image: "/team/amir-ilyas.jpg",
+    image: "/team/studio/amir-ilyas.webp",
     description:
       "Expert in regulatory requirements with a proven record of guiding businesses through complex tax landscapes, ensuring compliance and sustainable financial growth.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
