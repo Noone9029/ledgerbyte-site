@@ -73,7 +73,7 @@ test("every supplied page renders its complete copy with correct metadata and wo
         .locator("img")
         .evaluateAll((images) =>
           images
-            .filter((image): image is HTMLImageElement => image instanceof HTMLImageElement && image.complete && image.naturalWidth === 0)
+            .filter((image) => image.complete && image.naturalWidth === 0)
             .map((image) => image.src),
         ),
       path,

@@ -10,7 +10,6 @@ import {
   type AccountingPage,
 } from "@/content/accounting";
 import { team } from "@/content";
-import { ContentHeroMotion } from "@/components/motion/content-hero-motion";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -177,31 +176,29 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <p className="accounting-lead">{page.intro}</p>
             <EnquiryLink label={page.cta} service={context} />
           </div>
-          <ContentHeroMotion>
-            {service ? (
-              <aside className="accounting-output">
-                <span className="accounting-mark" aria-hidden="true">
-                  ↗
-                </span>
-                <p className="eyebrow">Typical output</p>
-                <p>{service.output}</p>
-                <hr />
-                <small>{service.boundary}</small>
-              </aside>
-            ) : (
-              <div className="accounting-detail-motif" aria-hidden="true">
-                <svg viewBox="0 0 400 300">
-                  <path d="M30 240H370M30 160H370M30 80H370M90 35V265M200 35V265M310 35V265" />
-                  <path
-                    className="accounting-chart-line"
-                    d="M45 225L120 180L175 200L250 100L355 50"
-                  />
-                  <circle cx="250" cy="100" r="17" />
-                  <circle cx="120" cy="180" r="8" />
-                </svg>
-              </div>
-            )}
-          </ContentHeroMotion>
+          {service ? (
+            <aside className="accounting-output">
+              <span className="accounting-mark" aria-hidden="true">
+                ↗
+              </span>
+              <p className="eyebrow">Typical output</p>
+              <p>{service.output}</p>
+              <hr />
+              <small>{service.boundary}</small>
+            </aside>
+          ) : (
+            <div className="accounting-detail-motif" aria-hidden="true">
+              <svg viewBox="0 0 400 300">
+                <path d="M30 240H370M30 160H370M30 80H370M90 35V265M200 35V265M310 35V265" />
+                <path
+                  className="accounting-chart-line"
+                  d="M45 225L120 180L175 200L250 100L355 50"
+                />
+                <circle cx="250" cy="100" r="17" />
+                <circle cx="120" cy="180" r="8" />
+              </svg>
+            </div>
+          )}
         </section>
         <div className="accounting-article-layout accounting-wrap">
           <aside className="accounting-toc">
