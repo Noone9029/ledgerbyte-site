@@ -10,6 +10,7 @@ import {
 } from "@/content/accounting";
 import { EnquiryLink, Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
+import { ScrollReveals } from "@/components/motion/scroll-reveals";
 import {
   buildFaqSchema,
   buildSchemaGraph,
@@ -34,6 +35,7 @@ export function AccountingHome() {
         )}
       />
       <main id="main-content" className="accounting-page">
+        <ScrollReveals />
         <section className="accounting-home-hero accounting-wrap">
           <div>
             <p className="eyebrow">{home.eyebrow}</p>
@@ -67,7 +69,7 @@ export function AccountingHome() {
             </figcaption>
           </figure>
         </section>
-        <section className="accounting-reviews accounting-wrap">
+        <section className="accounting-reviews accounting-wrap" data-scroll-reveal>
           <div>
             <p className="eyebrow">Trustpilot</p>
             <h2>Hear from LedgerByte clients.</h2>
@@ -83,7 +85,7 @@ export function AccountingHome() {
             <ArrowUpRight aria-hidden="true" />
           </a>
         </section>
-        <section className="accounting-pathways accounting-wrap">
+        <section className="accounting-pathways accounting-wrap" data-scroll-reveal>
           <div className="accounting-section-heading">
             <p className="eyebrow">Find your service</p>
             <h2>Choose the support you need.</h2>
@@ -104,12 +106,12 @@ export function AccountingHome() {
             ))}
           </div>
         </section>
-        <section className="accounting-statement accounting-wrap">
+        <section className="accounting-statement accounting-wrap" data-scroll-reveal>
           <p className="eyebrow">Accounting. Tax. Advisory.</p>
           <h2>{home.sections[0].heading}</h2>
           <p>{home.sections[0].paragraphs[0]}</p>
         </section>
-        <section className="accounting-featured accounting-wrap">
+        <section className="accounting-featured accounting-wrap" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div>
               <p className="eyebrow">Know what you will receive</p>
@@ -138,7 +140,7 @@ export function AccountingHome() {
             <ArrowUpRight aria-hidden="true" />
           </Link>
         </section>
-        <section className="accounting-team accounting-wrap">
+        <section className="accounting-team accounting-wrap" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div>
               <p className="eyebrow">The people behind the work</p>
@@ -151,7 +153,7 @@ export function AccountingHome() {
           </div>
           <TeamGrid />
         </section>
-        <section className="accounting-guides accounting-wrap">
+        <section className="accounting-guides accounting-wrap" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div>
               <p className="eyebrow">Insights</p>
@@ -175,7 +177,7 @@ export function AccountingHome() {
           </div>
         </section>
         <Faqs items={home.faqs} />
-        <section className="accounting-closing accounting-wrap">
+        <section className="accounting-closing accounting-wrap" data-scroll-reveal>
           <p className="eyebrow">Get in touch</p>
           <h2>{home.closing_heading}</h2>
           <EnquiryLink label={home.cta} />

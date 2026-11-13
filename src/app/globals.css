@@ -50,6 +50,8 @@
   --motion-color: 200ms;
   --motion-icon: 240ms;
   --motion-theme: 280ms;
+  --motion-reveal: 360ms;
+  --motion-reveal-distance: 8px;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-color: ease;
 }
