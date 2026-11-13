@@ -56,8 +56,8 @@ test("all public routes render complete, overflow-free pages", async ({
       images
         .filter(
           (image) =>
-            image.complete &&
             image instanceof HTMLImageElement &&
+            image.complete &&
             image.naturalWidth === 0,
         )
         .map((image) => image.getAttribute("src")),
@@ -131,9 +131,9 @@ test("finance service suitability labels belong to their checklists", async ({
   expect(fitBox).not.toBeNull();
 
   if ((page.viewportSize()?.width ?? 0) <= 820) {
-    expect(fitBox?.top ?? 0).toBeGreaterThanOrEqual((titleBox?.bottom ?? 0) - 1);
+    expect(fitBox?.y ?? 0).toBeGreaterThanOrEqual((titleBox?.y ?? 0) + (titleBox?.height ?? 0) - 1);
   } else {
-    expect(fitBox?.left ?? 0).toBeGreaterThanOrEqual((titleBox?.right ?? 0) - 1);
+    expect(fitBox?.x ?? 0).toBeGreaterThanOrEqual((titleBox?.x ?? 0) + (titleBox?.width ?? 0) - 1);
   }
 });
 

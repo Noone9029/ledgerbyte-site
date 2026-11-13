@@ -50,6 +50,7 @@
   --motion-color: 200ms;
   --motion-icon: 240ms;
   --motion-theme: 280ms;
+  --motion-story-settle: 450ms;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-color: ease;
 }
@@ -3626,9 +3627,9 @@ button:active,
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.accounting-home-hero {
+.accounting-hero-stage {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 80px);
   align-items: center;
   padding-block: clamp(55px, 7vw, 110px);
@@ -3660,6 +3661,26 @@ button:active,
   min-width: 0;
   margin: 0;
 }
+.accounting-hero-tableau {
+  position: relative;
+}
+.accounting-hero-frame {
+  position: absolute;
+  inset: -12px;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  overflow: visible;
+  pointer-events: none;
+  stroke: var(--amber-400);
+  stroke-width: 1;
+}
+.accounting-hero-frame .hero-frame-track {
+  stroke: var(--line-dark);
+}
+.accounting-hero-frame circle {
+  fill: var(--amber-400);
+  stroke: none;
+}
 .accounting-hero-image {
   position: relative;
   aspect-ratio: 3 / 2;
@@ -3674,6 +3695,7 @@ button:active,
 }
 .accounting-hero-caption {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
   margin-top: 12px;
@@ -3782,7 +3804,14 @@ button:active,
   flex-shrink: 0;
 }
 .accounting-statement {
-  padding: 75px clamp(26px, 6vw, 90px);
+  padding: 0;
+}
+.accounting-clarity-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(28px, 4vw, 52px);
   border: 1px solid var(--line-dark);
   border-radius: 26px;
   background: var(--graphite-850);
@@ -3790,11 +3819,116 @@ button:active,
 .accounting-statement h2 {
   max-width: 21ch;
 }
-.accounting-statement > p:last-child {
+.accounting-clarity-copy > p:last-child {
   max-width: 70ch;
   margin: 30px 0 0;
   color: var(--stone-250);
-  font-size: 1.25rem;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+.accounting-clarity-graphic {
+  min-width: 0;
+  margin: 0;
+}
+.accounting-clarity-heading,
+.accounting-clarity-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: var(--stone-250);
+  font-size: 0.65rem;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.accounting-clarity-heading {
+  padding: 0 16px 14px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.accounting-clarity-caption {
+  flex-wrap: wrap;
+  padding: 14px 16px 0;
+  border-top: 1px solid var(--line-dark);
+}
+.accounting-clarity-marker {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--amber-400);
+}
+.accounting-clarity-graphic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.clarity-grid {
+  stroke: var(--line-dark);
+  opacity: 0.45;
+}
+.clarity-sheet {
+  fill: var(--graphite-850);
+  stroke: var(--line-dark);
+}
+.clarity-report {
+  fill: var(--graphite-800);
+}
+.clarity-ink {
+  stroke: var(--stone-250);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+.clarity-rule {
+  stroke: var(--line-dark);
+}
+.clarity-gold,
+.clarity-bars {
+  fill: var(--amber-400);
+}
+.clarity-bars {
+  opacity: 0.5;
+}
+.clarity-gold-stroke {
+  stroke: var(--amber-400);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.clarity-report-line {
+  stroke: var(--line-dark);
+  stroke-width: 2.5;
+}
+.clarity-point-halo {
+  fill: var(--graphite-850);
+  stroke: var(--amber-400);
+  stroke-opacity: 0.4;
+}
+.accounting-content-visual {
+  min-width: 0;
+  display: grid;
+  align-items: center;
+}
+.accounting-content-visual > .accounting-output {
+  border-top-color: var(--amber-400);
+}
+@media (min-width: 1200px) and (min-height: 720px) and (pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .accounting-hero-stage {
+    padding-block: clamp(24px, 4vh, 48px);
+  }
+  .accounting-home-hero h1 {
+    font-size: clamp(3.2rem, min(6.5vw, 9vh), 6rem);
+    margin-bottom: 24px;
+  }
+  .accounting-home-hero .accounting-lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  }
+  .accounting-home-hero .hero-actions {
+    margin-top: 24px;
+  }
+  .accounting-home-hero .accounting-location {
+    margin-top: 22px;
+  }
 }
 .accounting-service-grid {
   display: grid;
@@ -3873,8 +4007,12 @@ button:active,
 }
 .accounting-team-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 22px;
+}
+.accounting-team-grid article {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .accounting-portrait {
   position: relative;
@@ -4350,7 +4488,7 @@ button:active,
     grid-template-columns: repeat(2, 1fr);
   }
   .accounting-team-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 35px;
   }
   .accounting-pathways > div:last-child {
@@ -4364,9 +4502,17 @@ button:active,
   .accounting-wrap {
     width: calc(100% - 40px);
   }
-  .accounting-home-hero {
-    grid-template-columns: 1fr;
+  .accounting-hero-stage {
+    grid-template-columns: minmax(0, 1fr);
     padding-top: 55px;
+  }
+  .accounting-clarity-stage {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .accounting-clarity-graphic {
+    width: min(100%, 600px);
+    margin-inline: auto;
   }
   .accounting-home-hero h1 {
     max-width: 14ch;
@@ -4435,6 +4581,7 @@ button:active,
   .accounting-header-inner {
     padding: 12px;
     min-height: 72px;
+    flex-wrap: wrap;
     gap: 10px;
     border-radius: 15px;
   }
@@ -4450,6 +4597,7 @@ button:active,
   }
   .accounting-header-actions {
     gap: 8px;
+    margin-left: auto;
   }
   .accounting-header-cta {
     display: none !important;
@@ -4462,7 +4610,7 @@ button:active,
     padding: 2px 9px;
   }
   .accounting-mobile-nav > nav {
-    top: 89px;
+    top: calc(100% + 8px);
     left: 10px;
     right: 10px;
     padding: 20px;
@@ -4497,7 +4645,7 @@ button:active,
   }
   .accounting-team-grid,
   .accounting-prose .accounting-team-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 25px 16px;
   }
   .accounting-search {
