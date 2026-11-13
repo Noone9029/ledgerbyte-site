@@ -1,7 +1,11 @@
 "use client";
 
 import { Moon, Sun } from "@phosphor-icons/react";
-import { useSyncExternalStore } from "react";
+import {
+  useSyncExternalStore,
+  type MouseEvent,
+  type PointerEvent,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -70,7 +74,7 @@ function getThemeSnapshot(): Theme {
   const documentTheme = document.documentElement.dataset.theme;
   return documentTheme === "light" || documentTheme === "dark"
     ? documentTheme
-    : getStoredTheme() ?? getSystemTheme();
+    : (getStoredTheme() ?? getSystemTheme());
 }
 
 export function ThemeToggle() {
@@ -80,7 +84,12 @@ export function ThemeToggle() {
     () => null,
   );
 
-  const toggleTheme = () => {
+  const markPointer = (event: PointerEvent<HTMLButtonElement>) => {
+    event.currentTarget.dataset.activation = "pointer";
+  };
+  const toggleTheme = (event: MouseEvent<HTMLButtonElement>) => {
+    const keyboard = event.detail === 0;
+    event.currentTarget.dataset.activation = keyboard ? "keyboard" : "pointer";
     const currentTheme =
       theme ??
       (document.documentElement.dataset.theme as Theme | undefined) ??
@@ -103,6 +112,7 @@ export function ThemeToggle() {
 
     if (
       viewTransitionDocument.startViewTransition &&
+      !keyboard &&
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       viewTransitionDocument.startViewTransition(commitTheme);
@@ -123,8 +133,14 @@ export function ThemeToggle() {
             : "Change color theme"
       }
       onClick={toggleTheme}
+      onPointerEnter={markPointer}
+      onPointerDown={markPointer}
     >
-      <Sun className="theme-icon theme-icon-sun" weight="bold" aria-hidden="true" />
+      <Sun
+        className="theme-icon theme-icon-sun"
+        weight="bold"
+        aria-hidden="true"
+      />
       <Moon
         className="theme-icon theme-icon-moon"
         weight="bold"

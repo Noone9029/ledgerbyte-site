@@ -1,162 +1,93 @@
 import { expect, test } from "@playwright/test";
-import { financeServices, team, technologyServices } from "../src/content";
+import content from "../src/content/accounting.json";
+import { team } from "../src/content";
 import { buildPersonId, buildPersonPath } from "../src/lib/schema";
 
-const indexNowKey =
-  "97ca97ace89ec9975938643a29c54e5a118979431ab8718422d6a7bdf715d0b3";
-
-function collectSchemaNodes(value: unknown, result: unknown[] = []) {
+function nodes(value: unknown, result: Record<string, unknown>[] = []) {
   if (Array.isArray(value)) {
-    value.forEach((item) => collectSchemaNodes(item, result));
+    value.forEach((v) => nodes(v, result));
     return result;
   }
-
-  if (!value || typeof value !== "object") return result;
-  result.push(value);
-  Object.values(value).forEach((child) => collectSchemaNodes(child, result));
+  if (value && typeof value === "object") {
+    result.push(value as Record<string, unknown>);
+    Object.values(value).forEach((v) => nodes(v, result));
+  }
   return result;
 }
 
-test.beforeEach(({}, testInfo) => {
-  test.skip(
-    testInfo.project.name !== "desktop-1440",
-    "The complete AEO crawl runs once at the desktop viewport.",
+test("AI discovery lists all accounting services and keeps technology external", async ({
+  request,
+}) => {
+  const response = await request.get("/llms.txt");
+  expect(response.status()).toBe(200);
+  const text = await response.text();
+  for (const service of content.services) {
+    expect(text).toContain(service.title);
+    expect(text).toContain(
+      "https://ledgerbyte.io/finance/services/" + service.slug,
+    );
+  }
+  expect(text).toContain("https://ledgerbyte.co");
+  expect(text).not.toContain("https://ledgerbyte.io/technology");
+  expect(await (await request.get("/robots.txt")).text()).toContain(
+    "Disallow: /",
   );
 });
 
-test("AI discovery files expose canonical services without blocking crawlers", async ({
-  request,
-}) => {
-  const robotsResponse = await request.get("/robots.txt");
-  expect(robotsResponse.status()).toBe(200);
-  const robots = await robotsResponse.text();
-  expect(robots).toContain("User-Agent: *");
-  expect(robots).toContain("Allow: /");
-  expect(robots.split(/\r?\n/)).not.toContain("Disallow: /");
-
-  const llmsResponse = await request.get("/llms.txt");
-  expect(llmsResponse.status()).toBe(200);
-  expect(llmsResponse.headers()["content-type"]).toContain("text/plain");
-  const llms = await llmsResponse.text();
-
-  for (const service of [...financeServices, ...technologyServices]) {
-    expect(llms).toContain(
-      `https://ledgerbyte.io/${service.division}/services/${service.slug}`,
-    );
-  }
-
-  const keyResponse = await request.get(`/${indexNowKey}.txt`);
-  expect(keyResponse.status()).toBe(200);
-  expect((await keyResponse.text()).trim()).toBe(indexNowKey);
-});
-
-test("finance services expose an answer-first passage and a linked reviewer", async ({
+test("service answers and FAQ schema match the supplied visible copy", async ({
   page,
 }) => {
-  test.setTimeout(120_000);
-
-  for (const service of financeServices) {
-    await page.goto(`/finance/services/${service.slug}`, {
-      waitUntil: "domcontentloaded",
-    });
-
-    const answer = page.locator("[data-aeo-answer]");
-    await expect(answer).toHaveCount(1);
-    await expect(answer.locator("h2")).toHaveText(service.faqs[0].question);
-    await expect(answer.locator(":scope > p")).toHaveText(
-      service.faqs[0].answer,
+  test.setTimeout(120000);
+  for (const service of content.services) {
+    const source = content.pages[service.key as keyof typeof content.pages];
+    await page.goto(source.path, { waitUntil: "domcontentloaded" });
+    await expect(page.locator("[data-aeo-answer] .accounting-lead")).toHaveText(
+      source.intro,
     );
-
-    const reviewerPath = buildPersonPath(service.reviewer.name);
-    await expect(
-      page.locator(`.reviewer-band a[href="${reviewerPath}"]`),
-    ).toHaveText(service.reviewer.name);
-
-    const schemaDocuments = (
-      await page.locator('script[type="application/ld+json"]').allTextContents()
-    ).map((value) => JSON.parse(value) as unknown);
-    const schema = JSON.stringify(schemaDocuments);
-    expect(schema).toContain(buildPersonId(service.reviewer.name));
-    expect(schema).toContain('"dateModified":"2026-07-28"');
-  }
-});
-
-test("team profiles provide stable Person entities for authors and reviewers", async ({
-  page,
-}) => {
-  test.setTimeout(120_000);
-
-  for (const member of team) {
-    const path = buildPersonPath(member.name);
-    const response = await page.goto(path, { waitUntil: "domcontentloaded" });
-    expect(response?.status(), path).toBe(200);
-    await expect(page.locator("h1")).toHaveText(member.name);
-
     const documents = (
       await page.locator('script[type="application/ld+json"]').allTextContents()
-    ).map((value) => JSON.parse(value) as unknown);
-    const nodes = collectSchemaNodes(documents) as Array<
-      Record<string, unknown>
-    >;
-    const person = nodes.find(
-      (node) =>
-        node["@type"] === "Person" &&
-        node["@id"] === buildPersonId(member.name),
+    ).map((t) => JSON.parse(t));
+    const graph = nodes(documents);
+    expect(
+      graph.some((n) => n["@type"] === "Service" && n.name === service.title),
+      service.title,
+    ).toBe(true);
+    const faq = graph.find((n) => n["@type"] === "FAQPage");
+    expect(faq?.mainEntity).toEqual(
+      source.faqs.map((q) => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
     );
-    const profile = nodes.find(
-      (node) =>
-        node["@type"] === "ProfilePage" &&
-        node["@id"] === `https://ledgerbyte.io${path}#webpage`,
-    );
-
-    expect(person?.["@type"], `${path} Person`).toBe("Person");
-    expect(person?.url, `${path} Person URL`).toBe(
-      `https://ledgerbyte.io${path}`,
-    );
-    expect(profile?.mainEntity, `${path} Profile mainEntity`).toEqual({
-      "@id": buildPersonId(member.name),
-    });
+    for (const q of source.faqs)
+      await expect(
+        page.locator(".accounting-faq summary", { hasText: q.question }),
+      ).toBeAttached();
+    expect(JSON.stringify(documents)).not.toContain('"aggregateRating"');
   }
 });
 
-test("AI referrals are classified once without storing the referring path", async ({
+test("team profiles keep stable Person identities and corrected roles", async ({
   page,
 }) => {
-  const events: unknown[][] = [];
-  await page.exposeFunction("recordAeoAnalytics", (...args: unknown[]) => {
-    events.push(args);
-  });
-  await page.addInitScript(() => {
-    const analyticsWindow = window as typeof window & {
-      recordAeoAnalytics: (...args: unknown[]) => void;
-    };
-    window.gtag = (...args) => analyticsWindow.recordAeoAnalytics(...args);
-  });
-
-  await page.goto("/", {
-    referer: "https://chatgpt.com/c/private-conversation-id",
-  });
-
-  await expect
-    .poll(() =>
-      events.filter(
-        (event) =>
-          event[0] === "event" && event[1] === "ai_referral_session",
-      ),
-    )
-    .toHaveLength(1);
-
-  await page.goto("/finance");
-  expect(
-    events.filter(
-      (event) =>
-        event[0] === "event" && event[1] === "ai_referral_session",
-    ),
-  ).toHaveLength(1);
-
-  const serialized = JSON.stringify(events);
-  expect(serialized).toContain('"ai_source":"chatgpt"');
-  expect(serialized).toContain('"referral_host":"chatgpt.com"');
-  expect(serialized).toContain('"landing_page":"/"');
-  expect(serialized).not.toContain("private-conversation-id");
+  for (const member of team) {
+    const path = buildPersonPath(member.name);
+    expect(
+      (await page.goto(path, { waitUntil: "domcontentloaded" }))?.status(),
+    ).toBe(200);
+    await expect(page.locator("main h1")).toHaveText(member.name);
+    const graph = nodes(
+      (
+        await page
+          .locator('script[type="application/ld+json"]')
+          .allTextContents()
+      ).map((t) => JSON.parse(t)),
+    );
+    const person = graph.find(
+      (n) => n["@type"] === "Person" && n["@id"] === buildPersonId(member.name),
+    );
+    expect(person?.jobTitle).toBe(member.role);
+    expect(person?.url).toBe("https://ledgerbyte.io" + path);
+  }
 });

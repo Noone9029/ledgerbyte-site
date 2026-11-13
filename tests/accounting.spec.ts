@@ -207,13 +207,18 @@ test("contact retains service context and separates email acceptance from WhatsA
     route.fulfill({
       status: 502,
       contentType: "application/json",
-      body: JSON.stringify({ message: "Delivery unavailable" }),
+      body: JSON.stringify({
+        message:
+          "Email delivery is unavailable. Please email info@ledgerbyte.io or choose WhatsApp.",
+      }),
     }),
   );
   await page.getByRole("button", { name: "Send enquiry" }).click();
   await expect(
     page.locator(".accounting-contact-form [role='alert']"),
-  ).toHaveText("Delivery unavailable");
+  ).toHaveText(
+    "Email delivery is unavailable. Please email info@ledgerbyte.io or choose WhatsApp.",
+  );
   await expect(page.getByLabel("Business location")).toHaveValue(
     "United Arab Emirates",
   );

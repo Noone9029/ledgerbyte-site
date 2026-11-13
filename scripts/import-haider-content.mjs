@@ -33,6 +33,8 @@ const paths = Object.fromEntries(
   ]),
 );
 paths.services = "/finance/services";
+paths.regions = "/regions";
+paths.insights = "/insights";
 const pages = Object.fromEntries(
   Object.entries(handoff.page_copy).map(([key, page]) => [
     key,
@@ -49,6 +51,12 @@ const replacements = Object.fromEntries(
     .filter((change) => ["C01", "C03", "C06", "C08", "C10"].includes(change.id))
     .map((change) => [change.id, change.replacement]),
 );
+for (const page of Object.values(pages)) {
+  for (const link of page.related) {
+    const key = link.target?.page_key ?? link.route;
+    if (!paths[key]) throw new Error(`Unmapped related content target: ${key}`);
+  }
+}
 const content = {
   sourceDate: "2026-11-10",
   services,
@@ -61,6 +69,46 @@ fs.writeFileSync(
   "src/content/accounting.json",
   JSON.stringify(content, null, 2) + "\n",
 );
+const discovery = [
+  "# LedgerByte",
+  "",
+  "> " + pages.home.intro,
+  "",
+  "## Services",
+  "",
+  ...services.map(
+    (service) =>
+      `- [${service.title}](https://ledgerbyte.io${paths[service.key]})`,
+  ),
+  "",
+  "## Markets",
+  "",
+  ...Object.entries(pages)
+    .filter(([key]) => key.startsWith("regions/"))
+    .map(
+      ([, page]) => `- [${page.heading}](https://ledgerbyte.io${page.path})`,
+    ),
+  "",
+  "## Practical guides",
+  "",
+  ...Object.entries(pages)
+    .filter(([key]) => key.startsWith("insights/"))
+    .map(
+      ([, page]) => `- [${page.heading}](https://ledgerbyte.io${page.path})`,
+    ),
+  "",
+  "## LedgerByte",
+  "",
+  "- [About us](https://ledgerbyte.io/about)",
+  "- [How we work](https://ledgerbyte.io/how-we-work)",
+  "- [UAE VAT support](https://ledgerbyte.io/uae-vat)",
+  "- [Markets](https://ledgerbyte.io/regions)",
+  "- [Contact](https://ledgerbyte.io/contact)",
+  "- [LedgerByte Insights](https://blog.ledgerbyte.io)",
+  "- [LedgerByte Tech](https://ledgerbyte.co)",
+  "",
+];
+fs.writeFileSync("public/llms.txt", discovery.join("\n"));
 const approved = JSON.parse(
   fs.readFileSync("src/content/user-provided.json", "utf8"),
 );

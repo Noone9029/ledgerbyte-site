@@ -256,7 +256,9 @@
     "services/month-end-year-end-close": "/finance/services/month-end-year-end-close",
     "services/accounts-receivable": "/finance/services/accounts-receivable",
     "services/accounts-payable": "/finance/services/accounts-payable",
-    "services": "/finance/services"
+    "services": "/finance/services",
+    "regions": "/regions",
+    "insights": "/insights"
   },
   "pages": {
     "services/accounting-bookkeeping": {

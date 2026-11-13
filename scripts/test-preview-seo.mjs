@@ -8,6 +8,7 @@ const result = spawnSync(
   [
     playwrightCli,
     "test",
+    "--config=playwright.discovery.config.ts",
     "tests/preview-seo.spec.ts",
     "--project=desktop-1440",
   ],

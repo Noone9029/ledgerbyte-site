@@ -46,7 +46,12 @@ export const accountingServices = data.services as AccountingService[];
 export const accountingGroups = data.replacements.C06.groups;
 export const accountingCopy = data.replacements;
 export const accountingContact = data.contact;
-export const contentPaths = data.paths as Record<string, string>;
+export const contentPaths: Record<string, string> = {
+  ...data.paths,
+  services: "/finance/services",
+  regions: "/regions",
+  insights: "/insights",
+};
 export const guideKeys = Object.keys(accountingPages).filter((key) =>
   key.startsWith("insights/"),
 );
@@ -60,7 +65,9 @@ export const marketNames: Record<string, string> = {
   "regions/pakistan": "Pakistan",
 };
 export function contentPath(key: string) {
-  return contentPaths[key] ?? "/finance/services";
+  const path = contentPaths[key];
+  if (!path) throw new Error(`Unmapped accounting content target: ${key}`);
+  return path;
 }
 export function serviceContactHref(service: string) {
   return `/contact?service=${encodeURIComponent(service)}`;

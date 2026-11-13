@@ -1,6 +1,7 @@
 .git/
 .next/
 .qa/
+plans/
 .env*
 node_modules/
 playwright-report/
@@ -9,5 +10,5 @@ tests/
 docs/
 AGENTS.md
 README.md
-playwright.config.ts
+playwright*.config.ts
 *.tsbuildinfo

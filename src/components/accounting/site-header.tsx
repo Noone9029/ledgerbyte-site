@@ -3,6 +3,7 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Brand } from "@/components/layout/brand";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { accountingGroups, accountingServices } from "@/content/accounting";
+import { NavigationBehaviour } from "./navigation-behaviour";
 
 function Navigation() {
   return (
@@ -77,6 +78,7 @@ export function AccountingHeader() {
           </details>
         </div>
       </div>
+      <NavigationBehaviour />
     </header>
   );
 }

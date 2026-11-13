@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, MagnifyingGlass } from "@phosphor-icons/react";
+import { useHydrated } from "@/lib/use-hydrated";
 import {
   accountingCopy,
   accountingGroups,
@@ -10,6 +11,7 @@ import {
 } from "@/content/accounting";
 
 export function ServiceCatalogue() {
+  const enhanced = useHydrated();
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState("All services");
   const services = useMemo(
@@ -28,7 +30,7 @@ export function ServiceCatalogue() {
       className="accounting-catalogue accounting-wrap"
       aria-label="All accounting services"
     >
-      <div className="accounting-search">
+      <div className="accounting-search" hidden={!enhanced}>
         <label>
           <span>Find your service</span>
           <div>
@@ -55,7 +57,7 @@ export function ServiceCatalogue() {
         </label>
       </div>
       <p className="accounting-results" role="status">
-        {services.length} services
+        {services.length} {services.length === 1 ? "service" : "services"}
       </p>
       <div className="accounting-service-grid">
         {services.map((service) => (

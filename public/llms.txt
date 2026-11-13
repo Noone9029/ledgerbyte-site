@@ -1,33 +1,51 @@
 # LedgerByte
 
-> We bring tech, automation, and expert accounting together — so you can stay compliant, save time, and focus on growing your business.
+> Accounting operations, finance leadership, UAE and Saudi tax support, company formation and audit coordination for startups and SMEs. Connect the work your business needs through a clearly defined scope.
 
-## Finance
+## Services
 
-- [Outsourced Finance Function for SMEs](https://ledgerbyte.io/finance)
-- [Outsourced Accounting Services UAE](https://ledgerbyte.io/finance/services)
-- [Bookkeeping Services UAE](https://ledgerbyte.io/finance/services/accounting-bookkeeping)
-- [Management Reporting Services UAE](https://ledgerbyte.io/finance/services/financial-reporting-mis)
-- [Financial Forecasting Services UAE](https://ledgerbyte.io/finance/services/budgeting-forecasting)
-- [Cash Flow Management Services UAE](https://ledgerbyte.io/finance/services/cash-flow-working-capital)
-- [Fractional CFO Services UAE](https://ledgerbyte.io/finance/services/fractional-cfo-advisory)
-- [WPS Payroll Services UAE](https://ledgerbyte.io/finance/services/payroll-wps-management)
-- [UAE VAT & Corporate Tax Services](https://ledgerbyte.io/finance/services/tax-vat-compliance)
-- [Accounting Automation Services UAE](https://ledgerbyte.io/finance/services/accounting-automation-systems)
+- [Accounting & Bookkeeping](https://ledgerbyte.io/finance/services/accounting-bookkeeping)
+- [Accounting Automation & Systems](https://ledgerbyte.io/finance/services/accounting-automation-systems)
+- [Payroll & WPS Management](https://ledgerbyte.io/finance/services/payroll-wps-management)
+- [Full Finance Department Outsourcing](https://ledgerbyte.io/finance/services/finance-department-outsourcing)
+- [Fractional Financial Controller](https://ledgerbyte.io/finance/services/fractional-controller)
+- [Month-End & Year-End Close Support](https://ledgerbyte.io/finance/services/month-end-year-end-close)
+- [Accounts Receivable Services](https://ledgerbyte.io/finance/services/accounts-receivable)
+- [Accounts Payable Services](https://ledgerbyte.io/finance/services/accounts-payable)
+- [Financial Reporting & MIS](https://ledgerbyte.io/finance/services/financial-reporting-mis)
+- [Budgeting & Forecasting](https://ledgerbyte.io/finance/services/budgeting-forecasting)
+- [Cash Flow & Working Capital](https://ledgerbyte.io/finance/services/cash-flow-working-capital)
+- [Fractional CFO & Finance Advisory](https://ledgerbyte.io/finance/services/fractional-cfo-advisory)
+- [Tax, VAT & Compliance](https://ledgerbyte.io/finance/services/tax-vat-compliance)
+- [UAE Corporate Tax Filing](https://ledgerbyte.io/finance/services/corporate-tax-filing)
+- [UAE VAT Registration](https://ledgerbyte.io/finance/services/vat-registration)
+- [UAE Corporate Tax Registration](https://ledgerbyte.io/finance/services/corporate-tax-registration)
+- [UAE Company Formation](https://ledgerbyte.io/finance/services/uae-company-formation)
+- [Internal Audit](https://ledgerbyte.io/finance/services/internal-audit)
+- [External Audit Coordination](https://ledgerbyte.io/finance/services/external-audit)
+- [KSA Company Formation](https://ledgerbyte.io/finance/services/ksa-company-formation)
+- [KSA VAT Services](https://ledgerbyte.io/finance/services/ksa-vat)
+- [ZATCA Filing Support](https://ledgerbyte.io/finance/services/zatca-filing)
 
-## Technology
+## Markets
 
-- [Technology Solutions for Growing Businesses](https://ledgerbyte.io/technology)
-- [Software Development Services for SMEs](https://ledgerbyte.io/technology/services)
-- [Web Development Services for SMEs](https://ledgerbyte.io/technology/services/web-development)
-- [Mobile App Development for SMEs](https://ledgerbyte.io/technology/services/mobile-app-development)
-- [Backend & API Development Services](https://ledgerbyte.io/technology/services/backend-apis)
-- [AI & Automation Services for SMEs](https://ledgerbyte.io/technology/services/ai-automation)
-- [Cloud & DevOps Services for SMEs](https://ledgerbyte.io/technology/services/cloud-devops)
-- [UI/UX Design Services for SMEs](https://ledgerbyte.io/technology/services/ui-ux-design)
+- [Accounting and finance support for UAE businesses.](https://ledgerbyte.io/regions/uae)
+- [Bookkeeping and management reporting for US business needs.](https://ledgerbyte.io/regions/united-states)
+- [Bookkeeping and finance support for Pakistan business needs.](https://ledgerbyte.io/regions/pakistan)
+- [Build a connected finance process for your Saudi business.](https://ledgerbyte.io/regions/saudi-arabia)
 
-## Company
+## Practical guides
 
-- [About LedgerByte Finance & Technology](https://ledgerbyte.io/about)
-- [Contact LedgerByte Finance & Technology](https://ledgerbyte.io/contact)
+- [A practical month-end close checklist for a small business.](https://ledgerbyte.io/insights/month-end-close)
+- [Why a profitable month can still leave less cash in the bank.](https://ledgerbyte.io/insights/profit-and-cash)
+- [Build a review-ready UAE VAT records pack.](https://ledgerbyte.io/insights/vat-records)
+
+## LedgerByte
+
+- [About us](https://ledgerbyte.io/about)
+- [How we work](https://ledgerbyte.io/how-we-work)
+- [UAE VAT support](https://ledgerbyte.io/uae-vat)
+- [Markets](https://ledgerbyte.io/regions)
+- [Contact](https://ledgerbyte.io/contact)
 - [LedgerByte Insights](https://blog.ledgerbyte.io)
+- [LedgerByte Tech](https://ledgerbyte.co)

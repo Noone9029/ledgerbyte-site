@@ -45,6 +45,13 @@
   --radius-lg: 30px;
   --radius-md: 20px;
   --radius-sm: 12px;
+  --motion-press: 160ms;
+  --motion-hover: 180ms;
+  --motion-color: 200ms;
+  --motion-icon: 240ms;
+  --motion-theme: 280ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-color: ease;
 }
 
 :root[data-theme="light"] {
@@ -214,10 +221,10 @@ main {
   font-weight: 700;
   letter-spacing: -0.01em;
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    color var(--motion-hover) var(--ease-color),
+    background var(--motion-hover) var(--ease-color),
+    border-color var(--motion-hover) var(--ease-color),
+    transform var(--motion-press) var(--ease-out);
 }
 
 .button {
@@ -227,9 +234,22 @@ main {
   color: var(--graphite-950);
 }
 
-.button:hover,
-.text-link:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .button:hover,
+  .text-link:hover {
+    transform: translateY(-2px);
+  }
+}
+
+button:active,
+.button:active,
+.text-link:active {
+  opacity: 0.82;
+}
+.button:active:not(:focus-visible),
+.text-link:active:not(:focus-visible),
+.theme-toggle:active:not(:focus-visible) {
+  transform: scale(0.97);
 }
 
 .button svg,
@@ -439,16 +459,23 @@ main {
   color: var(--amber-400);
   cursor: pointer;
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    color var(--motion-hover) var(--ease-color),
+    background var(--motion-hover) var(--ease-color),
+    border-color var(--motion-hover) var(--ease-color),
+    transform var(--motion-press) var(--ease-out);
 }
 
-.theme-toggle:hover {
-  border-color: var(--amber-400);
-  background: var(--nav-hover);
-  transform: rotate(5deg);
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover {
+    border-color: var(--amber-400);
+    background: var(--nav-hover);
+    transform: rotate(5deg);
+  }
+}
+.theme-toggle[data-activation="keyboard"],
+.theme-toggle[data-activation="keyboard"] .theme-icon {
+  transition: none;
+  transform: none;
 }
 
 .theme-icon {
@@ -456,8 +483,8 @@ main {
   width: 19px;
   height: 19px;
   transition:
-    opacity 220ms ease,
-    transform 300ms cubic-bezier(0.2, 0.75, 0, 1);
+    opacity var(--motion-color) var(--ease-color),
+    transform var(--motion-icon) var(--ease-out);
 }
 
 .theme-icon-sun {
@@ -2757,8 +2784,8 @@ main {
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 280ms;
-  animation-timing-function: cubic-bezier(0.2, 0.75, 0, 1);
+  animation-duration: var(--motion-theme);
+  animation-timing-function: var(--ease-out);
   mix-blend-mode: normal;
 }
 
@@ -3439,6 +3466,13 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .button,
+  .text-link,
+  .theme-toggle,
+  .theme-icon,
+  .accounting-service-grid > article {
+    transform: none !important;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -3764,10 +3798,11 @@ main {
 }
 .accounting-service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 .accounting-service-grid > article {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   padding: 32px;
@@ -3775,20 +3810,25 @@ main {
   border-radius: 18px;
   background: var(--graphite-850);
   transition:
-    border-color 180ms ease,
-    transform 180ms ease;
+    border-color var(--motion-hover) var(--ease-color),
+    transform var(--motion-hover) var(--ease-out);
 }
-.accounting-service-grid > article:hover {
-  border-color: var(--amber-500);
-  transform: translateY(-3px);
+@media (hover: hover) and (pointer: fine) {
+  .accounting-service-grid > article:hover {
+    border-color: var(--amber-500);
+    transform: translateY(-3px);
+  }
 }
 .accounting-service-grid h2,
 .accounting-service-grid h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: 1.9rem;
   line-height: 1.1;
   margin-bottom: 20px;
 }
 .accounting-service-grid h2 a {
+  min-width: 0;
   display: flex;
   gap: 15px;
   justify-content: space-between;
@@ -3798,6 +3838,7 @@ main {
   flex-shrink: 0;
 }
 .accounting-service-grid p {
+  overflow-wrap: anywhere;
   color: var(--stone-250);
 }
 .accounting-service-grid .eyebrow {
@@ -3847,10 +3888,12 @@ main {
   object-fit: cover;
   object-position: center;
   filter: grayscale(1);
-  transition: filter 200ms ease;
+  transition: filter var(--motion-color) var(--ease-color);
 }
-.accounting-team-grid a:hover img {
-  filter: grayscale(0);
+@media (hover: hover) and (pointer: fine) {
+  .accounting-team-grid a:hover img {
+    filter: grayscale(0);
+  }
 }
 .accounting-team-grid h3 {
   font-size: 1.2rem;
@@ -4335,7 +4378,7 @@ main {
     border-radius: 45px 20px 20px;
   }
   .accounting-service-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .accounting-section-heading {
     align-items: start;
@@ -4412,8 +4455,8 @@ main {
     display: none !important;
   }
   .accounting-header .theme-toggle {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
   .accounting-mobile-nav > summary {
     padding: 2px 9px;
@@ -4447,7 +4490,7 @@ main {
   .accounting-pathways > div:last-child,
   .accounting-service-grid,
   .accounting-market-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .accounting-pathways article {
     padding: 25px;
@@ -4555,6 +4598,7 @@ main {
 .accounting-contact-form input,
 .accounting-contact-form select,
 .accounting-contact-form textarea {
+  font-size: max(1rem, 16px);
   display: block;
   width: 100%;
   min-width: 0;
@@ -4564,6 +4608,10 @@ main {
   border-radius: 9px;
   padding: 13px;
   margin-top: 9px;
+}
+.accounting-contact-form[hidden],
+.accounting-search[hidden] {
+  display: none !important;
 }
 .accounting-contact-form input,
 .accounting-contact-form select {
