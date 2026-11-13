@@ -4,13 +4,14 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import {
   accountingCopy,
   accountingPages,
-  accountingServices,
+  accountingShowcaseServices,
   contentPath,
   guideKeys,
 } from "@/content/accounting";
 import { EnquiryLink, Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
 import { ScrollReveals } from "@/components/motion/scroll-reveals";
+import { ServiceFlashcards } from "./service-flashcards";
 import {
   buildFaqSchema,
   buildSchemaGraph,
@@ -19,9 +20,6 @@ import {
 
 export function AccountingHome() {
   const home = accountingPages.home;
-  const featured = accountingServices.filter((service) =>
-    home.featured_services?.includes(service.key.split("/").at(-1) ?? ""),
-  );
   return (
     <>
       <StructuredData
@@ -111,7 +109,7 @@ export function AccountingHome() {
           <h2>{home.sections[0].heading}</h2>
           <p>{home.sections[0].paragraphs[0]}</p>
         </section>
-        <section className="accounting-featured accounting-wrap" data-scroll-reveal>
+        <section id="services-showcase" className="accounting-featured accounting-wrap" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div>
               <p className="eyebrow">Know what you will receive</p>
@@ -119,19 +117,7 @@ export function AccountingHome() {
             </div>
             <p>{home.sections[1].paragraphs[0]}</p>
           </div>
-          <div className="accounting-service-grid">
-            {featured.map((service) => (
-              <article key={service.slug}>
-                <p className="eyebrow">{service.group}</p>
-                <h3>{service.title}</h3>
-                <p>{service.summary}</p>
-                <Link className="text-link" href={contentPath(service.key)}>
-                  Explore service
-                  <ArrowUpRight aria-hidden="true" />
-                </Link>
-              </article>
-            ))}
-          </div>
+          <ServiceFlashcards services={accountingShowcaseServices} label={home.sections[1].heading} />
           <Link
             className="text-link accounting-all-services"
             href="/finance/services"

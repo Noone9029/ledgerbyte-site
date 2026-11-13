@@ -43,6 +43,21 @@ export interface AccountingService {
 }
 export const accountingPages = data.pages as Record<string, AccountingPage>;
 export const accountingServices = data.services as AccountingService[];
+// The eight services in the original expanding-card showcase, with approved copy.
+export const accountingShowcaseServices = [
+  "accounting-automation-systems",
+  "accounting-bookkeeping",
+  "budgeting-forecasting",
+  "cash-flow-working-capital",
+  "financial-reporting-mis",
+  "fractional-cfo-advisory",
+  "payroll-wps-management",
+  "tax-vat-compliance",
+].map((slug) => {
+  const service = accountingServices.find((item) => item.slug === slug);
+  if (!service) throw new Error(`Unmapped showcase service: ${slug}`);
+  return service;
+});
 export const accountingGroups = data.replacements.C06.groups;
 export const accountingCopy = data.replacements;
 export const accountingContact = data.contact;

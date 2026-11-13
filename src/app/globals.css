@@ -52,6 +52,7 @@
   --motion-theme: 280ms;
   --motion-reveal: 360ms;
   --motion-reveal-distance: 8px;
+  --motion-card-expand: 260ms;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-color: ease;
 }
@@ -3802,6 +3803,202 @@ button:active,
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+}
+.accounting-flashcards {
+  --flashcard-inset: clamp(28px, 3vw, 42px);
+  container-type: inline-size;
+  display: flex;
+  width: 100%;
+  min-height: 480px;
+  gap: 1px;
+  padding: 1px;
+  overflow: clip;
+  background: var(--line-dark);
+}
+.accounting-flashcard {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--graphite-850);
+  transition: flex-grow var(--motion-card-expand) var(--ease-out);
+}
+.accounting-flashcards[data-catalogue="true"] {
+  min-height: 540px;
+}
+.accounting-flashcards[data-catalogue="true"][data-service-count="8"] {
+  min-height: 620px;
+}
+.accounting-flashcard[open] {
+  flex-grow: 9;
+  background:
+    radial-gradient(circle at 84% 14%, var(--ambient-accent), transparent 22rem),
+    var(--graphite-800);
+}
+.accounting-flashcards[data-enhanced="false"] > .accounting-flashcard {
+  transition: none;
+}
+.accounting-flashcard > summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 26px 10px;
+  cursor: pointer;
+  list-style: none;
+}
+.accounting-flashcard > summary::-webkit-details-marker {
+  display: none;
+}
+.accounting-flashcard > summary:focus-visible {
+  outline: 2px solid var(--amber-400);
+  outline-offset: -5px;
+}
+.accounting-flashcard-number {
+  display: block;
+  color: var(--stone-250);
+  font-size: clamp(1.65rem, 2.5vw, 2.5rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+.accounting-flashcard > summary h3 {
+  margin: 34px 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+.accounting-flashcard[open] > summary {
+  display: block;
+  min-height: 0;
+  padding: 34px var(--flashcard-inset) 0;
+}
+.accounting-flashcard[open] .accounting-flashcard-number {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-dark);
+  color: var(--amber-400);
+  font-size: clamp(4.5rem, 7vw, 6.5rem);
+  line-height: 0.85;
+}
+.accounting-flashcard[open] > summary h3 {
+  min-width: 0;
+  width: calc((100cqw - var(--flashcard-gaps) - 2px) * var(--flashcard-share) - var(--flashcard-inset) * 2);
+  margin: 18px 0;
+  font-size: clamp(2.3rem, 3.4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  writing-mode: horizontal-tb;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.accounting-flashcard-body {
+  min-width: 0;
+  width: calc((100cqw - var(--flashcard-gaps) - 2px) * var(--flashcard-share) - var(--flashcard-inset) * 2);
+  margin-inline: var(--flashcard-inset);
+  padding-block: 22px 34px;
+  border-top: 1px solid var(--line-dark);
+}
+.accounting-flashcard-body > p {
+  color: var(--stone-250);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.accounting-flashcard-body .accounting-card-output {
+  margin-bottom: 24px;
+}
+.accounting-flashcard-body .text-link {
+  color: var(--amber-400);
+  font-size: 0.95rem;
+}
+.accounting-flashcard-toggle {
+  display: none;
+}
+.accounting-flashcard-groups {
+  display: grid;
+  gap: 54px;
+}
+.accounting-flashcard-groups > section > h2 {
+  margin-bottom: 24px;
+  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
+  letter-spacing: -0.04em;
+}
+.accounting-flashcards:has(:focus-visible) > .accounting-flashcard {
+  transition: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .accounting-flashcard > summary:hover .accounting-flashcard-number {
+    color: var(--amber-400);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accounting-flashcard {
+    transition: none;
+  }
+}
+@media (max-width: 1100px) {
+  .accounting-flashcards {
+    display: grid;
+    min-height: 0;
+  }
+  .accounting-flashcards[data-catalogue="true"] {
+    min-height: 0;
+  }
+  .accounting-flashcard,
+  .accounting-flashcard[open] {
+    flex: none;
+  }
+  .accounting-flashcard > summary,
+  .accounting-flashcard[open] > summary {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+    align-items: start;
+    gap: 16px;
+    min-height: 76px;
+    padding: 24px;
+  }
+  .accounting-flashcard-number,
+  .accounting-flashcard[open] .accounting-flashcard-number {
+    padding: 0;
+    border: 0;
+    font-size: 1.7rem;
+    line-height: 1.15;
+    color: var(--amber-400);
+  }
+  .accounting-flashcard > summary h3,
+  .accounting-flashcard[open] > summary h3 {
+    min-width: 0;
+    width: auto;
+    margin: 0;
+    font-size: clamp(1.15rem, 3vw, 1.65rem);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    writing-mode: horizontal-tb;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .accounting-flashcard-body {
+    min-width: 0;
+    width: auto;
+    margin-inline: 24px;
+    padding-block: 20px 28px;
+  }
+  .accounting-flashcard-toggle {
+    display: block;
+    color: var(--amber-400);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .accounting-flashcard-toggle::after {
+    content: "+";
+  }
+  .accounting-flashcard[open] .accounting-flashcard-toggle::after {
+    content: "−";
+  }
 }
 .accounting-service-grid > article {
   min-width: 0;

@@ -222,7 +222,7 @@ test("@reduced decorative hover effects do not move controls or cards", async ({
   await page.goto("/");
   for (const selector of [
     ".hero-actions .button",
-    ".accounting-service-grid > article",
+    ".accounting-flashcard",
     ".theme-toggle",
   ]) {
     const target = page.locator(selector).first();

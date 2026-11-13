@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, MagnifyingGlass } from "@phosphor-icons/react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
+import { ServiceFlashcards } from "./service-flashcards";
 import { useHydrated } from "@/lib/use-hydrated";
 import {
   accountingCopy,
@@ -59,30 +59,17 @@ export function ServiceCatalogue() {
       <p className="accounting-results" role="status">
         {services.length} {services.length === 1 ? "service" : "services"}
       </p>
-      <div className="accounting-service-grid">
-        {services.map((service) => (
-          <article key={service.slug} data-service-card>
-            <p className="eyebrow">{service.group}</p>
-            <h2>
-              <Link href={`/finance/services/${service.slug}`}>
-                {service.title}
-                <ArrowUpRight aria-hidden="true" />
-              </Link>
-            </h2>
-            <p>{service.summary}</p>
-            <div className="accounting-card-output">
-              <span>Typical output</span>
-              <p>{service.output}</p>
-            </div>
-            <Link
-              className="text-link"
-              href={`/finance/services/${service.slug}`}
-            >
-              Explore service
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
-          </article>
-        ))}
+      <div className="accounting-flashcard-groups">
+        {accountingGroups.map((category) => {
+          const categoryServices = services.filter((service) => service.group === category);
+          if (!categoryServices.length) return null;
+          return (
+            <section key={`${category}:${categoryServices.map((service) => service.slug).join(":")}`}>
+              <h2>{category}</h2>
+              <ServiceFlashcards services={categoryServices} label={category} catalogue />
+            </section>
+          );
+        })}
       </div>
       {services.length === 0 && (
         <div className="accounting-empty">
