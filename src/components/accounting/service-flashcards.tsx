@@ -8,12 +8,13 @@ import { hasHoverPointer } from "@/lib/pointer";
 import { useHydrated } from "@/lib/use-hydrated";
 
 interface ServiceFlashcardsProps {
-  services: AccountingService[];
+  services: (AccountingService & { href?: string })[];
+  locale?: "en" | "ar";
   label: string;
   catalogue?: boolean;
 }
 
-export function ServiceFlashcards({ services, label, catalogue = false }: ServiceFlashcardsProps) {
+export function ServiceFlashcards({ services, label, catalogue = false, locale = "en" }: ServiceFlashcardsProps) {
   const name = useId();
   const enhanced = useHydrated();
   const scope = useRef<HTMLDivElement>(null);
@@ -27,9 +28,9 @@ export function ServiceFlashcards({ services, label, catalogue = false }: Servic
     const current = summaries.indexOf(event.target);
     let next: number;
     switch (event.key) {
-      case "ArrowRight":
+      case "ArrowRight": next = (current + (locale === "ar" ? -1 : 1) + summaries.length) % summaries.length; break;
+      case "ArrowLeft": next = (current + (locale === "ar" ? 1 : -1) + summaries.length) % summaries.length; break;
       case "ArrowDown": next = (current + 1) % summaries.length; break;
-      case "ArrowLeft":
       case "ArrowUp": next = (current - 1 + summaries.length) % summaries.length; break;
       case "Home": next = 0; break;
       case "End": next = summaries.length - 1; break;
@@ -69,7 +70,7 @@ export function ServiceFlashcards({ services, label, catalogue = false }: Servic
           data-service-slug={service.slug}
           onPointerEnter={(event) => {
             if (
-              event.pointerType === "mouse" && !keyboard.current &&
+              locale !== "ar" && event.pointerType === "mouse" && !keyboard.current &&
               hasHoverPointer(1101)
             ) event.currentTarget.open = true;
           }}
@@ -84,7 +85,7 @@ export function ServiceFlashcards({ services, label, catalogue = false }: Servic
         >
           <summary onClick={(event) => {
             // Hover may already have opened this card before a mouse click.
-            if (event.detail > 0 && pointer.current === "mouse" && hasHoverPointer(1101)) {
+            if (locale !== "ar" && event.detail > 0 && pointer.current === "mouse" && hasHoverPointer(1101)) {
               event.preventDefault();
               (event.currentTarget.parentElement as HTMLDetailsElement).open = true;
             }
@@ -97,12 +98,12 @@ export function ServiceFlashcards({ services, label, catalogue = false }: Servic
             <p>{service.summary}</p>
             {catalogue && (
               <div className="accounting-card-output">
-                <span>Typical output</span>
+                <span>{locale === "ar" ? "المخرجات المعتادة" : "Typical output"}</span>
                 <p>{service.output}</p>
               </div>
             )}
-            <Link className="text-link" href={contentPath(service.key)} aria-label={`Explore ${service.title}`}>
-              Explore service
+            <Link className="text-link" href={service.href || contentPath(service.key)} lang={locale === "ar" && !service.href?.startsWith("/ar/") ? "en" : undefined} aria-label={`${locale === "ar" ? "استعرض" : "Explore"} ${service.title}`}>
+              {locale === "ar" ? (service.href?.startsWith("/ar/") ? "استعرض الخدمة" : "استعرض الخدمة (بالإنجليزية)") : "Explore service"}
               <ArrowUpRight aria-hidden="true" />
             </Link>
           </div>

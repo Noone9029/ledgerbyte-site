@@ -1,107 +1,99 @@
 "use client";
+import { consentLabels } from "@/content/consent-ui";
 
-import { useEffect } from "react";
-import Script from "next/script";
-import { classifyAiReferrer, trackEvent } from "@/lib/analytics";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
+import { analyticsReferrer, classifyAiReferrer, configureAnalytics, CONSENT_COOKIE, type Consent, readConsent, revokeAnalytics, safeAnalyticsPath, safePageDimensions, trackEvent, writePreference } from "@/lib/analytics";
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const production = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+const labels = consentLabels;
 
-function InteractionAnalytics() {
-  useEffect(() => {
-    const aiReferral = classifyAiReferrer(document.referrer);
-    const aiSessionKey = "ledgerbyte-ai-" + "referral-recorded";
-
-    const recordAiReferral = () => {
-      if (!aiReferral) return;
-
-      try {
-        if (window.sessionStorage.getItem(aiSessionKey)) return;
-      } catch {
-        // Analytics remains non-blocking when storage is unavailable.
-      }
-
-      const recorded = trackEvent("ai_referral_session", {
-        ai_source: aiReferral.source,
-        referral_host: aiReferral.hostname,
-        landing_page: window.location.pathname,
-      });
-
-      if (recorded) {
-        try {
-          window.sessionStorage.setItem(aiSessionKey, "true");
-        } catch {
-          // The event is still valid when storage is unavailable.
-        }
-      }
-    };
-
-    const handleClick = (event: MouseEvent) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-
-      const anchor = target.closest("a");
-      if (!(anchor instanceof HTMLAnchorElement)) return;
-
-      const href = anchor.href;
-      if (href.startsWith("mailto:")) {
-        trackEvent("contact_email", { page_path: window.location.pathname });
-      } else if (href.startsWith("tel:")) {
-        trackEvent("contact_phone", { page_path: window.location.pathname });
-      } else if (new URL(href, window.location.href).hostname === "wa.me") {
-        trackEvent("contact_whatsapp", {
-          page_path: window.location.pathname,
-        });
-      } else if (
-        new URL(href, window.location.href).pathname === "/contact" &&
-        anchor.matches(".button, .footer-contact, .text-link")
-      ) {
-        trackEvent("service_cta_click", {
-          page_path: window.location.pathname,
-          link_text: anchor.textContent?.replace(/\s+/g, " ").trim().slice(0, 80),
-        });
-      }
-    };
-
-    recordAiReferral();
-    window.addEventListener("ledgerbyte:analytics-ready", recordAiReferral);
-    document.addEventListener("click", handleClick, { capture: true });
-    return () => {
-      window.removeEventListener(
-        "ledgerbyte:analytics-ready",
-        recordAiReferral,
-      );
-      document.removeEventListener("click", handleClick, { capture: true });
-    };
-  }, []);
-
-  return null;
+function subscribeConsent(notify: () => void) {
+  const sync = () => { if (readConsent() !== "granted") revokeAnalytics(measurementId); notify(); };
+  window.addEventListener("ledgerbyte:consent", sync); window.addEventListener("focus", sync); document.addEventListener("visibilitychange", sync);
+  return () => { window.removeEventListener("ledgerbyte:consent", sync); window.removeEventListener("focus", sync); document.removeEventListener("visibilitychange", sync); };
 }
+const subscribeHydration = () => () => {};
+export function SiteAnalytics({ allowedPaths = [] }: { allowedPaths?: string[] }) {
+  const pathname = usePathname();
+  const consent = useSyncExternalStore(subscribeConsent, readConsent, () => null);
+  const hydrated = useSyncExternalStore(subscribeHydration, () => true, () => false);
+  const [choiceOpen, setVisible] = useState<boolean | null>(null);
+  const visible = hydrated && (choiceOpen ?? consent === null);
+  const [ready, setReady] = useState(false);
+  const lastPage = useRef("");
+  const copy = pathname?.startsWith("/ar") ? labels.ar : labels.en;
+  const studio = pathname?.startsWith("/studio");
+  const publicHost = hydrated && /^(blog\.)?ledgerbyte\.io$/.test(location.hostname);
+  const enabled = Boolean(production && publicHost && !studio && consent === "granted" && measurementId && /^G-[A-Z0-9]+$/.test(measurementId) && allowedPaths.length);
 
-export function SiteAnalytics() {
-  return (
-    <>
-      {measurementId ? (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ledgerbyte-google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', '${measurementId}', {
-                anonymize_ip: true,
-                send_page_view: true
-              });
-              window.dispatchEvent(new Event('ledgerbyte:analytics-ready'));
-            `}
-          </Script>
-        </>
-      ) : null}
-      <InteractionAnalytics />
-    </>
-  );
+  useEffect(() => {
+    if (!enabled || !measurementId) return;
+    (window as unknown as Record<string, unknown>)[`ga-disable-${measurementId}`] = false;
+    const markReady = () => { if (readConsent() === "granted") setReady(true); };
+    window.addEventListener("ledgerbyte:ga-loaded", markReady);
+    let script = document.getElementById("ledgerbyte-google-analytics") as HTMLScriptElement | null;
+    if (!script) {
+      window.dataLayer = window.dataLayer || [];
+      // Initialize the Google command queue once, before loading the SDK.
+      // eslint-disable-next-line prefer-rest-params
+      window.gtag = function () { window.dataLayer?.push(arguments); };
+      const fields = { page_location: `https://${location.hostname}${safeAnalyticsPath(location.pathname, allowedPaths)}`, page_title: `LedgerByte ${safeAnalyticsPath(location.pathname, allowedPaths)}`, page_referrer: analyticsReferrer(document.referrer) };
+      window.gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+      window.gtag("set", fields);
+      window.gtag("set", "send_page_view", false);
+      window.gtag("js", new Date());
+      window.gtag("config", measurementId, { ...fields, send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false, cookie_domain: "ledgerbyte.io", cookie_flags: "SameSite=Lax;Secure" });
+      script = document.createElement("script"); script.id = "ledgerbyte-google-analytics"; script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      const created = script;
+      script.addEventListener("load", () => { created.dataset.loaded = "true"; window.dispatchEvent(new Event("ledgerbyte:ga-loaded")); }, { once: true });
+      document.head.appendChild(script);
+    } else if (script.dataset.loaded === "true") queueMicrotask(markReady);
+    return () => window.removeEventListener("ledgerbyte:ga-loaded", markReady);
+  }, [enabled, allowedPaths]);
+  useEffect(() => {
+    configureAnalytics(enabled && ready, allowedPaths);
+    return () => configureAnalytics(false, []);
+  }, [enabled, ready, allowedPaths]);
+  useEffect(() => {
+    if (!enabled || !ready || !measurementId || !pathname) return;
+    (window as unknown as Record<string, unknown>)[`ga-disable-${measurementId}`] = false;
+    const path = safeAnalyticsPath(pathname, allowedPaths), key = `${location.hostname}${path}`;
+    if (lastPage.current === key) return;
+    lastPage.current = key;
+    const fields = { page_location: `https://${location.hostname}${path}`, page_path: path, page_title: path === "/404" ? "Page not found" : `LedgerByte ${path}`, page_referrer: analyticsReferrer(document.referrer), ...safePageDimensions(path) };
+    window.gtag?.("set", fields); window.gtag?.("event", "page_view", fields);
+    const alreadyRecorded = document.cookie.split("; ").some((part) => part.startsWith("ledgerbyte-ai-referral="));
+    const newReferral = !alreadyRecorded && classifyAiReferrer(document.referrer, location.search) && trackEvent("ai_referral_session");
+    if (alreadyRecorded || newReferral) writePreference("ledgerbyte-ai-referral", "recorded", 1800);
+  }, [enabled, ready, pathname, allowedPaths]);
+  useEffect(() => {
+    if (!enabled || !ready) return;
+    const handleClick = (event: MouseEvent) => {
+      const anchor = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a") : null;
+      if (!anchor) return;
+      const url = new URL(anchor.href, location.href);
+      if (url.protocol === "mailto:") trackEvent("contact_email");
+      else if (url.protocol === "tel:") trackEvent("contact_phone");
+      else if (url.hostname === "wa.me") trackEvent("contact_whatsapp");
+      else if (/^(blog\.)?ledgerbyte\.io$/.test(url.hostname) && /^\/(ar\/)?contact$/.test(url.pathname)) trackEvent("service_cta_click");
+    };
+    document.addEventListener("click", handleClick, { capture: true });
+    return () => document.removeEventListener("click", handleClick, { capture: true });
+  }, [enabled, ready]);
+  function choose(value: Exclude<Consent, null>) {
+    writePreference(CONSENT_COOKIE, value); window.dispatchEvent(new Event("ledgerbyte:consent")); setVisible(false);
+    if (value === "denied") { revokeAnalytics(measurementId); lastPage.current = ""; }
+  }
+  if (studio) return null;
+  return <>
+    <div className="analytics-preferences"><button type="button" onClick={() => setVisible(true)} aria-expanded={visible} aria-controls="analytics-choice">{copy.settings}</button></div>
+    {visible && <section id="analytics-choice" className="analytics-choice" aria-labelledby="analytics-choice-title">
+      <h2 id="analytics-choice-title">{copy.title}</h2><p>{copy.text} <a href="https://ledgerbyte.io/privacy-policy">{copy.policy}</a></p>
+      <div><button type="button" onClick={() => choose("granted")}>{copy.accept}</button><button type="button" onClick={() => choose("denied")}>{copy.decline}</button>{consent && <button type="button" onClick={() => setVisible(false)}>{copy.close}</button>}</div>
+    </section>}
+
+  </>;
 }

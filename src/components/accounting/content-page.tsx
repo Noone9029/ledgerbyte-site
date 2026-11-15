@@ -77,7 +77,8 @@ export function Faqs({ items }: { items: AccountingPage["faqs"] }) {
     </section>
   );
 }
-export function TeamGrid() {
+export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
+  const roles: Record<string, string> = { "Managing Partner": "الشريك الإداري", "CTO": "المدير التقني", "Financial Controller": "المراقب المالي", "Fractional Controller": "المراقب المالي الجزئي", "Customer Success Manager": "مديرة نجاح العملاء", "Senior Tax Consultant": "مستشار ضرائب أول" };
   return (
     <div className="accounting-team-grid">
       {team.map((person) => (
@@ -94,7 +95,7 @@ export function TeamGrid() {
             </div>
             <h3>{person.name}</h3>
           </Link>
-          <p>{person.role}</p>
+          <p>{locale === "ar" ? roles[person.role] || person.role : person.role}</p>
           <small>{person.credentials}</small>
         </article>
       ))}

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import content from "../src/content/accounting.json";
 import { team } from "../src/content";
-import { buildPersonId, buildPersonPath } from "../src/lib/schema";
+import { buildPersonId, buildPersonPath } from "../src/lib/person-identity";
 
 function nodes(value: unknown, result: Record<string, unknown>[] = []) {
   if (Array.isArray(value)) {

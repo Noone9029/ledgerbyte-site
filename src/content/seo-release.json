@@ -1,0 +1,5 @@
+{
+  "englishServices": { "status": "draft", "approvedBy": null, "approvedAt": null, "approvedDigest": null },
+  "privacy": { "status": "draft", "approvedBy": null, "approvedAt": null, "approvedDigest": null },
+  "note": "Record real Haider approvals against the reviewed file digests before enabling these replacement texts in production."
+}

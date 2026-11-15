@@ -1,0 +1,923 @@
+{
+  "status": "draft",
+  "requiredReviews": [
+    "Haider",
+    "Fluent Arabic finance reviewer"
+  ],
+  "pages": [
+    {
+      "path": "/ar",
+      "englishPath": "/",
+      "title": "اعرف أرقامك. وخطّط لخطوتك التالية.",
+      "description": "دعم العمليات المحاسبية والقيادة المالية والضرائب في الإمارات والسعودية، وتنسيق تأسيس الشركات والتدقيق للشركات الناشئة والمنشآت الصغيرة والمتوسطة، ضمن نطاق واضح.",
+      "intro": "دعم العمليات المحاسبية والقيادة المالية والضرائب في الإمارات والسعودية، وتنسيق تأسيس الشركات والتدقيق للشركات الناشئة والمنشآت الصغيرة والمتوسطة، ضمن نطاق واضح.",
+      "sections": [
+        {
+          "heading": "من السجلات إلى القرارات",
+          "paragraphs": [
+            "السجلات المحاسبية هي الأساس. تشرح التقارير حركة الأداء، وتساعد الموازنات والتوقعات النقدية على دراسة ما قد يحدث لاحقاً. اختر خدمة محددة أو اربط المهام بتقويم مالي واحد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "اعرف ما ستتسلمه",
+          "paragraphs": [
+            "قد تشمل المخرجات سجلات تمت تسويتها أو حزمة تحضير قابلة للمراجعة أو تقريراً إدارياً أو توقعاً بافتراضات واضحة. نحدد المدخلات والمسؤوليات والمخرجات قبل بدء العمل."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "home",
+      "sourceDigest": "e9edb8b67c865e4f3862e25afe412729a7222bd3f73d396546fdb9c0820e728f",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services",
+      "englishPath": "/finance/services",
+      "title": "المحاسبة والضرائب والاستشارات. اختر الدعم الذي تحتاجه.",
+      "description": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "intro": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "sections": [
+        {
+          "heading": "ابدأ بالمشكلة",
+          "paragraphs": [
+            "إذا كانت السجلات غير مكتملة فقد تحتاج إلى مسك الدفاتر أو تنظيف الفترات السابقة أولاً. وإذا كانت محدثة فقد تكون التقارير أو التخطيط النقدي أو الاستشارات أنسب."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "افصل نطاق كل مهمة",
+          "paragraphs": [
+            "التسجيل والإقرارات الضريبية والتدقيق والتقارير الإدارية مهام مختلفة. يُتفق على الفترات والمستندات والمراجعين وصلاحيات التقديم بصورة صريحة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "services",
+      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/about",
+      "englishPath": "/about",
+      "title": "فريق وراء السجلات والتقارير والقرارات التالية.",
+      "description": "تربط LedgerByte الخبرة المحاسبية والمالية بتنظيم العمل، مع مسؤوليات واضحة ومخرجات يمكن لفريقك استخدامها.",
+      "intro": "تربط LedgerByte الخبرة المحاسبية والمالية بتنظيم العمل، مع مسؤوليات واضحة ومخرجات يمكن لفريقك استخدامها.",
+      "sections": [
+        {
+          "heading": "عمل يبدأ بالسجلات",
+          "paragraphs": [
+            "تساعد السجلات المنظمة والتسويات والتقارير الإدارة على فهم الأداء. نحدد المهمة والمدخلات والمتابعة اللازمة بالتنسيق مع فريقك ومستشاريك."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "نطاق واضح وتعاون عملي",
+          "paragraphs": [
+            "يقع مقر LedgerByte في الشارقة، الإمارات. تُناقش احتياجات الإمارات والسعودية والولايات المتحدة وباكستان بحسب الكيان والسجلات ومتطلبات المشاركة المحلية."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "about",
+      "sourceDigest": "31d2d3662277e269d9524768a535a300187174c616de3c0c1ae0201ac97821c6",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/contact",
+      "englishPath": "/contact",
+      "title": "أخبرنا بما تحتاجه إدارتك المالية.",
+      "description": "اذكر موقع عملك والخدمة المطلوبة والفترة أو المهمة التي تريد مناقشتها. نتفق بصورة منفصلة على تبادل المستندات الحساسة.",
+      "intro": "اذكر موقع عملك والخدمة المطلوبة والفترة أو المهمة التي تريد مناقشتها. نتفق بصورة منفصلة على تبادل المستندات الحساسة.",
+      "sections": [
+        {
+          "heading": "قبل إرسال الاستفسار",
+          "paragraphs": [
+            "لا تُرفق بيانات دخول أو مستندات مالية أو تفاصيل رواتب أو معلومات شخصية حساسة. يمكنك استخدام البريد الإلكتروني أو واتساب لمناقشة الخطوة الأولى."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "contact",
+      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/how-we-work",
+      "englishPath": "/how-we-work",
+      "title": "من نطاق واضح إلى مخرجات قابلة للاستخدام.",
+      "description": "نبدأ بفهم الكيان والسجلات والمواعيد، ثم نتفق على المهمة والمدخلات والمراجعات ومسؤوليات الاعتماد.",
+      "intro": "نبدأ بفهم الكيان والسجلات والمواعيد، ثم نتفق على المهمة والمدخلات والمراجعات ومسؤوليات الاعتماد.",
+      "sections": [
+        {
+          "heading": "افهم نقطة البداية",
+          "paragraphs": [
+            "حدد آخر فترة تمت تسويتها والنظام المحاسبي والكيانات والمشكلات العاجلة. تُفصل أعمال التنظيف والفترات السابقة عند الحاجة."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "اتفق على التسليم والمراجعة",
+          "paragraphs": [
+            "نوضح من يقدم السجلات ومن يعد الجداول ومن يراجع الأحكام ومن يعتمد النتائج أو يقدم الإقرارات. تظل مسؤوليات الإدارة وصلاحياتها لديها."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "أبقِ المسائل المفتوحة ظاهرة",
+          "paragraphs": [
+            "تُسلّم المخرجات المتفق عليها مع بيان الافتراضات والفجوات وما يحتاج إلى قرار أو مستند إضافي."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "how-we-work",
+      "sourceDigest": "b650907eac9107cd9dd016d5b379d365fb1a699a7ca5e1cf5443eb69af9748f3",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/regions",
+      "englishPath": "/regions",
+      "title": "دعم مالي يناسب السوق والكيان.",
+      "description": "استعرض نطاق خدمات الإمارات والسعودية والولايات المتحدة وباكستان، مع تحديد المتطلبات المحلية ومسؤوليات مستشاريك.",
+      "intro": "استعرض نطاق خدمات الإمارات والسعودية والولايات المتحدة وباكستان، مع تحديد المتطلبات المحلية ومسؤوليات مستشاريك.",
+      "sections": [
+        {
+          "heading": "الكيان أولاً",
+          "paragraphs": [
+            "الأسواق المختلفة لا تعني أن الالتزامات أو صلاحيات التقديم متطابقة. ابدأ بالكيان والنشاط والسجلات والفترة المعنية قبل تحديد الخدمة."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "تسليم متصل للمستشار المحلي",
+          "paragraphs": [
+            "يمكن تنظيم السجلات والتقارير والجداول الداعمة لتسهيل عمل الفريق أو المستشار المعين. تُؤكد الأعمال المنظمة والتمثيل القانوني بصورة منفصلة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "regions",
+      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/regions/uae",
+      "englishPath": "/regions/uae",
+      "title": "دعم المحاسبة والمالية للشركات في الإمارات.",
+      "description": "اربط السجلات اليومية بالتقارير الإدارية والتخطيط النقدي وتقويم التحضير الضريبي. يقع مقر LedgerByte في الشارقة ويُحدد العمل بحسب كيانك وسجلاتك.",
+      "intro": "اربط السجلات اليومية بالتقارير الإدارية والتخطيط النقدي وتقويم التحضير الضريبي. يقع مقر LedgerByte في الشارقة ويُحدد العمل بحسب كيانك وسجلاتك.",
+      "sections": [
+        {
+          "heading": "حدد ما يحتاجه العمل",
+          "paragraphs": [
+            "حدد الكيان والنشاط والنظام المحاسبي وآخر فترة مكتملة والمواعيد العاجلة."
+          ],
+          "bullets": [
+            "تسويات البنوك والعملاء والموردين.",
+            "تقارير إدارية وموازنات وتوقعات نقدية وفق النطاق.",
+            "جداول داعمة ومسائل مفتوحة للتسليم إلى المراجع المعني."
+          ]
+        },
+        {
+          "heading": "حدود النطاق والمسؤوليات",
+          "paragraphs": [
+            "تختلف مهام ضريبة القيمة المضافة وضريبة الشركات والرواتب. التدقيق الخارجي النظامي يجريه مكتب مستقل مرخص يعينه العميل منفصلاً، ولا تعني قائمة الخدمات وجود ترخيص تدقيق أو صفة وكيل ضريبي."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "regions/uae",
+      "sourceDigest": "11e378a7cce9c0cf354fff13a583686ad8b754b69cd364481affe1dcc9ff9fc7",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/regions/saudi-arabia",
+      "englishPath": "/regions/saudi-arabia",
+      "title": "عملية مالية مترابطة لعملك في السعودية.",
+      "description": "ابدأ بمرحلة النشاط والكيان والسجلات والمواعيد. يمكن ربط التحضير للتأسيس بمسك الدفاتر والتقارير والتحضير للالتزامات الضريبية السعودية.",
+      "intro": "ابدأ بمرحلة النشاط والكيان والسجلات والمواعيد. يمكن ربط التحضير للتأسيس بمسك الدفاتر والتقارير والتحضير للالتزامات الضريبية السعودية.",
+      "sections": [
+        {
+          "heading": "حدد ما يحتاجه العمل",
+          "paragraphs": [
+            "حدد الكيان والنشاط والنظام المحاسبي وآخر فترة مكتملة والمواعيد العاجلة."
+          ],
+          "bullets": [
+            "تسويات البنوك والعملاء والموردين.",
+            "تقارير إدارية وموازنات وتوقعات نقدية وفق النطاق.",
+            "جداول داعمة ومسائل مفتوحة للتسليم إلى المراجع المعني."
+          ]
+        },
+        {
+          "heading": "حدود النطاق والمسؤوليات",
+          "paragraphs": [
+            "ضريبة القيمة المضافة والزكاة وضريبة الدخل والاستقطاع والفوترة الإلكترونية التزامات مختلفة. تُؤكد صلاحية التقديم والتمثيل والمتطلبات المهنية المحلية لكل نطاق؛ لا تُفترض اعتماداً على تسجيل إماراتي."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "regions/saudi-arabia",
+      "sourceDigest": "a5b30367a0e82a6e9f71c880255308f762b429eb670ab050c24f384920a01246",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/regions/united-states",
+      "englishPath": "/regions/united-states",
+      "title": "دعم مسك الدفاتر والمالية لاحتياجات الأعمال الأمريكية.",
+      "description": "نظم المعاملات والتسويات والتقارير والتخطيط النقدي، مع تسليم واضح للمحاسب أو المستشار الضريبي الأمريكي المعين.",
+      "intro": "نظم المعاملات والتسويات والتقارير والتخطيط النقدي، مع تسليم واضح للمحاسب أو المستشار الضريبي الأمريكي المعين.",
+      "sections": [
+        {
+          "heading": "حدد ما يحتاجه العمل",
+          "paragraphs": [
+            "حدد الكيان والنشاط والنظام المحاسبي وآخر فترة مكتملة والمواعيد العاجلة."
+          ],
+          "bullets": [
+            "تسويات البنوك والعملاء والموردين.",
+            "تقارير إدارية وموازنات وتوقعات نقدية وفق النطاق.",
+            "جداول داعمة ومسائل مفتوحة للتسليم إلى المراجع المعني."
+          ]
+        },
+        {
+          "heading": "حدود النطاق والمسؤوليات",
+          "paragraphs": [
+            "لا تمثل هذه الخدمة مكتب CPA أمريكياً أو رأي تدقيق أو خدمة قانونية. تُناقش الإقرارات والتمثيل والمتطلبات الاتحادية ومتطلبات الولايات بصورة منفصلة مع المختص المحلي المناسب."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "regions/united-states",
+      "sourceDigest": "598ec41c16fd89820198cf108db8886a332a4c8ec256d69b9759c7bbab82cc5c",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/regions/pakistan",
+      "englishPath": "/regions/pakistan",
+      "title": "مسك الدفاتر والدعم المالي لاحتياجات الأعمال في باكستان.",
+      "description": "حوّل السجلات المتفرقة إلى رؤية شهرية منتظمة للأداء والنقد، مع جداول منظمة لتسليمها إلى مستشاري الضرائب والشركات المحليين.",
+      "intro": "حوّل السجلات المتفرقة إلى رؤية شهرية منتظمة للأداء والنقد، مع جداول منظمة لتسليمها إلى مستشاري الضرائب والشركات المحليين.",
+      "sections": [
+        {
+          "heading": "حدد ما يحتاجه العمل",
+          "paragraphs": [
+            "حدد الكيان والنشاط والنظام المحاسبي وآخر فترة مكتملة والمواعيد العاجلة."
+          ],
+          "bullets": [
+            "تسويات البنوك والعملاء والموردين.",
+            "تقارير إدارية وموازنات وتوقعات نقدية وفق النطاق.",
+            "جداول داعمة ومسائل مفتوحة للتسليم إلى المراجع المعني."
+          ]
+        },
+        {
+          "heading": "حدود النطاق والمسؤوليات",
+          "paragraphs": [
+            "متطلبات FBR الضريبية وإيداعات SECP للشركات مساران مختلفان. إعداد التقارير الإدارية لا يكمل تلك الإيداعات، ولا تدعي هذه الصفحة وجود مكتب محلي أو ممارسة مهنية منظمة في باكستان."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [],
+      "sourceKey": "regions/pakistan",
+      "sourceDigest": "7d435abb3bcd40451f912dcbe39161b88cd1f9edda9baf86ed846f7ce2d43af0",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/accounting-bookkeeping",
+      "englishPath": "/finance/services/accounting-bookkeeping",
+      "title": "المحاسبة ومسك الدفاتر",
+      "description": "تنظيم المعاملات اليومية وتسويات الأرصدة والإقفال الشهري مع بيان ما اكتمل وما يحتاج إلى مراجعتك.",
+      "intro": "تنظيم المعاملات اليومية وتسويات الأرصدة والإقفال الشهري مع بيان ما اكتمل وما يحتاج إلى مراجعتك.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "دفتر أستاذ تمت تسويته وجداول داعمة وقائمة بنود مفتوحة للفترة المتفق عليها."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "تُحدد أعمال تنظيف السجلات والفترات السابقة بصورة منفصلة. تبقى الإدارة مسؤولة عن اكتمال المستندات الأصلية واعتماد الأحكام المحاسبية."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/accounting-bookkeeping",
+      "sourceDigest": "8d4294a3e5f79a30388149c1b5de0e3d4086a6208458c335cf06601a93e4ea5f",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/finance-department-outsourcing",
+      "englishPath": "/finance/services/finance-department-outsourcing",
+      "title": "الاستعانة بمصادر خارجية للإدارة المالية",
+      "description": "تنسيق المحاسبة والإقفال والتقارير والعمليات المالية ضمن نموذج عمل ومسؤوليات محددة.",
+      "intro": "تنسيق المحاسبة والإقفال والتقارير والعمليات المالية ضمن نموذج عمل ومسؤوليات محددة.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "تقويم تشغيل وخريطة مسؤوليات ومخرجات مالية متكررة للنطاق المتفق عليه."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "لا تنقل الاستعانة بمصادر خارجية واجبات المديرين أو اعتماد المدفوعات وإطلاقها أو صلاحية تقديم الإقرارات أو مهام التأكيد النظامي إلى LedgerByte."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/finance-department-outsourcing",
+      "sourceDigest": "dee9ad1e8416a8578cb6c981f821ef4dff006f917b23ec334c9312b22e6973f9",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/financial-reporting-mis",
+      "englishPath": "/finance/services/financial-reporting-mis",
+      "title": "التقارير المالية ونظم المعلومات الإدارية",
+      "description": "تحويل السجلات المحاسبية المتفق عليها إلى تقارير تربط الأداء المالي بأسئلة الإدارة.",
+      "intro": "تحويل السجلات المحاسبية المتفق عليها إلى تقارير تربط الأداء المالي بأسئلة الإدارة.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "حزمة تقارير إدارية بمقاييس وفترات مقارنة محددة وتعليق على التغيرات الجوهرية."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "التقارير الإدارية لا تقدم رأي تدقيق أو تأكيد. تُظهر الفجوات والتقديرات وتُحدد متطلبات التقارير النظامية بصورة منفصلة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/financial-reporting-mis",
+      "sourceDigest": "c1148c974f62af64156e9a4b568abcd2e07a849d7a73e798aeb19807019a86a5",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/fractional-cfo-advisory",
+      "englishPath": "/finance/services/fractional-cfo-advisory",
+      "title": "المدير المالي الجزئي والاستشارات المالية",
+      "description": "إنشاء دورة منتظمة لمراجعة الأداء والنقد والخطط، بما يناسب أولويات العمل.",
+      "intro": "إنشاء دورة منتظمة لمراجعة الأداء والنقد والخطط، بما يناسب أولويات العمل.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "مراجعة مالية دورية وتحليل يدعم القرار وقائمة إجراءات بأصحاب مسؤولية محددين."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "يقتصر النطاق على مالية الأعمال ولا يشمل الاستشارات الاستثمارية أو القانونية أو تأكيد التدقيق أو صلاحية إلزام الشركة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/fractional-cfo",
+      "sourceDigest": "22af706f7a242eb32f2404e4c413305a394d651f2edd276451c256c1fafba4e7",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/tax-vat-compliance",
+      "englishPath": "/finance/services/tax-vat-compliance",
+      "title": "الضرائب وضريبة القيمة المضافة والامتثال",
+      "description": "اختيار دعم إقرارات ضريبة القيمة المضافة أو ضريبة الشركات أو التسجيل، مع فصل مخرجات كل مهمة واعتمادها.",
+      "intro": "اختيار دعم إقرارات ضريبة القيمة المضافة أو ضريبة الشركات أو التسجيل، مع فصل مخرجات كل مهمة واعتمادها.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "مسار تسجيل أو إقرار محدد بصورة مستقلة، مع سجلات مراجعة ومسؤوليات اعتماد واضحة."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "إقرارات ضريبة القيمة المضافة وضريبة الشركات وكل تسجيل خدمات مستقلة. تحتاج التصحيحات والنزاعات والتمثيل إلى اتفاق منفصل، ولا تُدّعى صفة وكيل ضريبي لدى الهيئة الاتحادية للضرائب."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/tax-vat-compliance",
+      "sourceDigest": "ce423784d06018911e6117ec184a078df45b79f573f59806d03954571ad69ce6",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/corporate-tax-filing",
+      "englishPath": "/finance/services/corporate-tax-filing",
+      "title": "إعداد إقرار ضريبة الشركات في الإمارات",
+      "description": "إعداد احتساب الضريبة وبيانات الإقرار والسجلات الداعمة للفترة الضريبية ذات الصلة.",
+      "intro": "إعداد احتساب الضريبة وبيانات الإقرار والسجلات الداعمة للفترة الضريبية ذات الصلة.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "احتساب لضريبة الشركات وحزمة إقرار قابلة للمراجعة وسجل الاعتماد والتقديم المتفق عليه."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "تُؤكد موافقة المكلف وترتيبات التقديم المفوض كتابةً. لا تُدّعى صفة وكيل ضريبي أو نتيجة ضريبية مضمونة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/corporate-tax-filing",
+      "sourceDigest": "58722284d7c531b91da1ea1169481fbe75434c1ee203880735830e1af2dafb91",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/ksa-vat",
+      "englishPath": "/finance/services/ksa-vat",
+      "title": "خدمات ضريبة القيمة المضافة في السعودية",
+      "description": "دعم مراجعة المعاملات ومتطلبات السجلات ضمن نطاق متفق عليه للتسجيل أو إعداد الإقرار.",
+      "intro": "دعم مراجعة المعاملات ومتطلبات السجلات ضمن نطاق متفق عليه للتسجيل أو إعداد الإقرار.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "تسويات لضريبة القيمة المضافة وجداول عمل مراجعة وتسليم واضح للاعتماد والتقديم."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "ضريبة القيمة المضافة السعودية والإماراتية والفوترة الإلكترونية متطلبات مختلفة. تُؤكد صلاحية التقديم وأي تمثيل محلي بصورة منفصلة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/ksa-vat",
+      "sourceDigest": "aa8675ec97b735dc946b90cffafb67b0e3083ff13f8ef9c10af1a342dfbbc634",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    },
+    {
+      "path": "/ar/finance/services/zatca-filing",
+      "englishPath": "/finance/services/zatca-filing",
+      "title": "دعم إعداد إقرارات هيئة الزكاة والضريبة والجمارك",
+      "description": "تنظيم السجلات وجاهزية الإقرار للالتزام السعودي المحدد مع توضيح أدوار الاعتماد والتقديم المفوض.",
+      "intro": "تنظيم السجلات وجاهزية الإقرار للالتزام السعودي المحدد مع توضيح أدوار الاعتماد والتقديم المفوض.",
+      "sections": [
+        {
+          "heading": "المخرجات المتفق عليها",
+          "paragraphs": [
+            "حزمة إعداد للالتزام المحدد وسجل بالمسائل المفتوحة وتسليم للتقديم."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "ما نحتاج إلى فهمه",
+          "paragraphs": [
+            "حدد الكيان والفترة والنظام المحاسبي والسجلات المتاحة والأشخاص المسؤولين عن المراجعة والاعتماد."
+          ],
+          "bullets": []
+        },
+        {
+          "heading": "حدود الخدمة",
+          "paragraphs": [
+            "الزكاة وضريبة الدخل والاستقطاع وضريبة القيمة المضافة والفوترة الإلكترونية ليست مهام متبادلة. لا تُدّعى حقوق تمثيل أو تسجيل مهني سعودي أو اعتماد من الهيئة."
+          ],
+          "bullets": []
+        }
+      ],
+      "faqs": [
+        {
+          "question": "كيف يبدأ تحديد نطاق العمل؟",
+          "answer": "اشرح المهمة والفترة وحالة السجلات والمواعيد. يُتفق على المدخلات والمخرجات والمسؤوليات وأي عمل سابق منفصل قبل البدء."
+        },
+        {
+          "question": "هل يمكن العمل مع فريقنا أو مستشارنا الحالي؟",
+          "answer": "يمكن مناقشة نطاق يكمل عمل فريقك، مع توضيح تسليم السجلات والمراجعة والاعتماد وصلاحيات التقديم عند الحاجة."
+        }
+      ],
+      "sourceKey": "services/zatca-filing",
+      "sourceDigest": "709e5f0d90fa2c5430c57b5b0c1775ec176b9a743e021558e70676d41a864508",
+      "status": "draft",
+      "lastModified": "2026-11-14"
+    }
+  ],
+  "services": [
+    {
+      "key": "services/accounting-bookkeeping",
+      "slug": "accounting-bookkeeping",
+      "title": "المحاسبة ومسك الدفاتر",
+      "group": "Finance Operations",
+      "summary": "تنظيم المعاملات اليومية وتسويات الأرصدة والإقفال الشهري مع بيان ما اكتمل وما يحتاج إلى مراجعتك.",
+      "output": "دفتر أستاذ تمت تسويته وجداول داعمة وقائمة بنود مفتوحة للفترة المتفق عليها.",
+      "boundary": "تُحدد أعمال تنظيف السجلات والفترات السابقة بصورة منفصلة. تبقى الإدارة مسؤولة عن اكتمال المستندات الأصلية واعتماد الأحكام المحاسبية.",
+      "audience": "For businesses that need a consistent accounting routine, a backlog brought up to date, or a dependable foundation for reporting.",
+      "englishTitle": "Accounting & Bookkeeping",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/accounting-automation-systems",
+      "slug": "accounting-automation-systems",
+      "title": "أتمتة المحاسبة والأنظمة",
+      "group": "Finance Operations",
+      "summary": "ربط السجلات وسير العمل المحاسبي بأنظمة أوضح، وفق نطاق متفق عليه للتهيئة والتنفيذ.",
+      "output": "An agreed accounting setup, documented workflows and a checklist for the team that will run them.",
+      "boundary": "This is accounting systems support, not custom software development. Software subscriptions, integration work and access permissions are agreed separately.",
+      "audience": "For businesses setting up accounting software, changing their finance process or untangling inconsistent records.",
+      "englishTitle": "Accounting Automation & Systems",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/payroll-wps",
+      "slug": "payroll-wps-management",
+      "title": "إدارة الرواتب ونظام حماية الأجور",
+      "group": "Finance Operations",
+      "summary": "تنظيم مدخلات الرواتب المعتمدة والحسابات والقيود وملفات نظام حماية الأجور حيث ينطبق.",
+      "output": "A payroll review pack and, where applicable, a WPS-ready file for the client’s authorized submission process.",
+      "boundary": "The client approves payroll and authorizes all payments. WPS applicability and submission responsibilities are confirmed for the UAE engagement; they are not assumed for other markets.",
+      "audience": "For businesses that want a repeatable payroll preparation process with clear cutoffs, checks and responsibilities.",
+      "englishTitle": "Payroll & WPS Management",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/finance-department-outsourcing",
+      "slug": "finance-department-outsourcing",
+      "title": "الاستعانة بمصادر خارجية للإدارة المالية",
+      "group": "Finance Operations",
+      "summary": "تنسيق المحاسبة والإقفال والتقارير والعمليات المالية ضمن نموذج عمل ومسؤوليات محددة.",
+      "output": "تقويم تشغيل وخريطة مسؤوليات ومخرجات مالية متكررة للنطاق المتفق عليه.",
+      "boundary": "لا تنقل الاستعانة بمصادر خارجية واجبات المديرين أو اعتماد المدفوعات وإطلاقها أو صلاحية تقديم الإقرارات أو مهام التأكيد النظامي إلى LedgerByte.",
+      "audience": "Your finance responsibilities, current staff, entities, systems and recurring deliverables.",
+      "englishTitle": "Full Finance Department Outsourcing",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/fractional-controller",
+      "slug": "fractional-controller",
+      "title": "المراقب المالي الجزئي",
+      "group": "Finance Operations",
+      "summary": "دعم مراجعة الإقفال والرقابة المالية وجودة التقارير بالتنسيق مع فريقك.",
+      "output": "A reviewed close, control exceptions and an operational finance action list.",
+      "boundary": "Controller support is distinct from transaction processing, full finance outsourcing and strategic fractional CFO advisory. Management retains approvals and decisions.",
+      "audience": "Your current close process, reporting timetable, reconciliations and finance-team responsibilities.",
+      "englishTitle": "Fractional Financial Controller",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/month-end-year-end-close",
+      "slug": "month-end-year-end-close",
+      "title": "دعم الإقفال الشهري والسنوي",
+      "group": "Finance Operations",
+      "summary": "تنظيم التسويات والجداول والمهام المفتوحة للوصول إلى حزمة إقفال قابلة للمراجعة.",
+      "output": "A close checklist, reconciled schedules, adjustment log and unresolved-items handover.",
+      "boundary": "Management approves accounting judgments and final accounts. Close support does not include an independent audit opinion or automatic tax filing.",
+      "audience": "Your period, reporting timetable, last closed accounts and outstanding reconciliations.",
+      "englishTitle": "Month-End & Year-End Close Support",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/accounts-receivable",
+      "slug": "accounts-receivable",
+      "title": "خدمات الحسابات المدينة",
+      "group": "Finance Operations",
+      "summary": "تنظيم سجلات العملاء والتسويات ومتابعة التحصيل ضمن المسؤوليات المتفق عليها.",
+      "output": "A receivables ageing, receipt-allocation record and collection or dispute action tracker.",
+      "boundary": "Customer outreach follows the agreed mandate. Legal debt recovery, credit decisions and guaranteed collection are not included.",
+      "audience": "Your customer ledger, invoicing process, payment terms and existing collection responsibilities.",
+      "englishTitle": "Accounts Receivable Services",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/accounts-payable",
+      "slug": "accounts-payable",
+      "title": "خدمات الحسابات الدائنة",
+      "group": "Finance Operations",
+      "summary": "تنظيم سجلات الموردين والمطابقات والجداول الداعمة، مع بقاء اعتماد المدفوعات لدى العميل.",
+      "output": "A payables ageing, reconciled supplier balances and a review-ready payment proposal.",
+      "boundary": "The client retains vendor approval, payment approval and payment release. No payment is authorized by preparing a proposal.",
+      "audience": "Your supplier ledger, invoice approval process, payment terms and responsible approvers.",
+      "englishTitle": "Accounts Payable Services",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/financial-reporting-mis",
+      "slug": "financial-reporting-mis",
+      "title": "التقارير المالية ونظم المعلومات الإدارية",
+      "group": "Reporting & Advisory",
+      "summary": "تحويل السجلات المحاسبية المتفق عليها إلى تقارير تربط الأداء المالي بأسئلة الإدارة.",
+      "output": "حزمة تقارير إدارية بمقاييس وفترات مقارنة محددة وتعليق على التغيرات الجوهرية.",
+      "boundary": "التقارير الإدارية لا تقدم رأي تدقيق أو تأكيد. تُظهر الفجوات والتقديرات وتُحدد متطلبات التقارير النظامية بصورة منفصلة.",
+      "audience": "For owners and management teams who need a regular view of performance, rather than a collection of disconnected spreadsheets.",
+      "englishTitle": "Financial Reporting & MIS",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/budgeting-forecasting",
+      "slug": "budgeting-forecasting",
+      "title": "إعداد الموازنات والتوقعات",
+      "group": "Reporting & Advisory",
+      "summary": "إعداد موازنات وتوقعات توضح الافتراضات والفترات والمقارنات اللازمة للمراجعة.",
+      "output": "An agreed budget or forecast model, documented assumptions and a schedule for updating it.",
+      "boundary": "Forecasts are estimates, not guarantees. Management approves assumptions and decisions; the scope and update frequency are agreed at the outset.",
+      "audience": "For teams preparing an annual plan, revisiting growth assumptions or comparing options before committing resources.",
+      "englishTitle": "Budgeting & Forecasting",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/cash-flow-working-capital",
+      "slug": "cash-flow-working-capital",
+      "title": "التدفقات النقدية ورأس المال العامل",
+      "group": "Reporting & Advisory",
+      "summary": "ربط المقبوضات والمدفوعات والذمم بتوقع نقدي مؤرخ وافتراضات ظاهرة.",
+      "output": "A short-term cash view, key timing assumptions and a prioritized list of items for management action.",
+      "boundary": "Cash forecasts depend on receipt and payment assumptions. We do not control collections, authorize payments or guarantee liquidity.",
+      "audience": "For businesses that need a clearer view of upcoming cash requirements, overdue collections or the timing of supplier payments.",
+      "englishTitle": "Cash Flow & Working Capital",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/fractional-cfo",
+      "slug": "fractional-cfo-advisory",
+      "title": "المدير المالي الجزئي والاستشارات المالية",
+      "group": "Reporting & Advisory",
+      "summary": "إنشاء دورة منتظمة لمراجعة الأداء والنقد والخطط، بما يناسب أولويات العمل.",
+      "output": "مراجعة مالية دورية وتحليل يدعم القرار وقائمة إجراءات بأصحاب مسؤولية محددين.",
+      "boundary": "يقتصر النطاق على مالية الأعمال ولا يشمل الاستشارات الاستثمارية أو القانونية أو تأكيد التدقيق أو صلاحية إلزام الشركة.",
+      "audience": "For owners and leadership teams who need ongoing financial decision support alongside their existing accounting capability.",
+      "englishTitle": "Fractional CFO & Finance Advisory",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/tax-vat-compliance",
+      "slug": "tax-vat-compliance",
+      "title": "الضرائب وضريبة القيمة المضافة والامتثال",
+      "group": "UAE Tax & Formation",
+      "summary": "اختيار دعم إقرارات ضريبة القيمة المضافة أو ضريبة الشركات أو التسجيل، مع فصل مخرجات كل مهمة واعتمادها.",
+      "output": "مسار تسجيل أو إقرار محدد بصورة مستقلة، مع سجلات مراجعة ومسؤوليات اعتماد واضحة.",
+      "boundary": "إقرارات ضريبة القيمة المضافة وضريبة الشركات وكل تسجيل خدمات مستقلة. تحتاج التصحيحات والنزاعات والتمثيل إلى اتفاق منفصل، ولا تُدّعى صفة وكيل ضريبي لدى الهيئة الاتحادية للضرائب.",
+      "audience": "For businesses that need tax-ready records, VAT return support or a clearer corporate tax preparation process.",
+      "englishTitle": "Tax, VAT & Compliance",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/corporate-tax-filing",
+      "slug": "corporate-tax-filing",
+      "title": "إعداد إقرار ضريبة الشركات في الإمارات",
+      "group": "UAE Tax & Formation",
+      "summary": "إعداد احتساب الضريبة وبيانات الإقرار والسجلات الداعمة للفترة الضريبية ذات الصلة.",
+      "output": "احتساب لضريبة الشركات وحزمة إقرار قابلة للمراجعة وسجل الاعتماد والتقديم المتفق عليه.",
+      "boundary": "تُؤكد موافقة المكلف وترتيبات التقديم المفوض كتابةً. لا تُدّعى صفة وكيل ضريبي أو نتيجة ضريبية مضمونة.",
+      "audience": "Your entity, tax period, accounting records and any corporate tax issues requiring review.",
+      "englishTitle": "UAE Corporate Tax Filing",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/vat-registration",
+      "slug": "vat-registration",
+      "title": "التسجيل لضريبة القيمة المضافة في الإمارات",
+      "group": "UAE Tax & Formation",
+      "summary": "تنظيم تقييم التسجيل والمستندات والبيانات اللازمة للطلب ضمن نطاق مستقل.",
+      "output": "A registration assessment, application checklist and authorized submission handover.",
+      "boundary": "Registration depends on the facts and FTA review. No approval date, outcome or tax-agent status is promised.",
+      "audience": "Your activity, taxable turnover history, expected supplies and business documents.",
+      "englishTitle": "UAE VAT Registration",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/corporate-tax-registration",
+      "slug": "corporate-tax-registration",
+      "title": "التسجيل لضريبة الشركات في الإمارات",
+      "group": "UAE Tax & Formation",
+      "summary": "تنظيم بيانات الكيان ومتطلبات طلب التسجيل، مع تحديد صاحب صلاحية الاعتماد والتقديم.",
+      "output": "A registration file, reviewed application inputs and a record of next steps.",
+      "boundary": "Registration is separate from return preparation, tax payment and advice on special regimes. The authorized applicant retains account control.",
+      "audience": "The legal entity, licence, incorporation details and existing tax registrations.",
+      "englishTitle": "UAE Corporate Tax Registration",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/uae-company-formation",
+      "slug": "uae-company-formation",
+      "title": "تأسيس الشركات في الإمارات",
+      "group": "UAE Tax & Formation",
+      "summary": "تنسيق تحضير معلومات التأسيس والمستندات وتسليم المهام المالية ضمن نطاق متفق عليه.",
+      "output": "A setup requirements map, document checklist and coordinated application plan.",
+      "boundary": "Licensing decisions belong to the relevant authority. Legal advice, approvals, bank accounts and visas are separate requirements, not guaranteed outcomes.",
+      "audience": "Your planned activity, ownership, location needs and proposed operating model.",
+      "englishTitle": "UAE Company Formation",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/internal-audit",
+      "slug": "internal-audit",
+      "title": "التدقيق الداخلي",
+      "group": "Audit & Controls",
+      "summary": "مراجعة العمليات والضوابط المتفق عليها مع مراعاة الموضوعية وحدود التكليف.",
+      "output": "An agreed internal audit report with findings, risk context and management action owners.",
+      "boundary": "Objectivity and conflicts are assessed before accepting the work. Internal audit does not provide a statutory audit opinion.",
+      "audience": "The processes, risks and reporting lines you need reviewed, including any work we already perform.",
+      "englishTitle": "Internal Audit",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/external-audit",
+      "slug": "external-audit",
+      "title": "تنسيق التدقيق الخارجي",
+      "group": "Audit & Controls",
+      "summary": "تنظيم السجلات والجداول والتواصل مع المدقق المستقل الذي يعينه العميل بصورة منفصلة.",
+      "output": "An audit-readiness pack, evidence tracker and coordinated handover to the appointed independent auditor.",
+      "boundary": "The appropriately licensed independent local audit firm is separately appointed by the client and alone determines and issues its audit opinion. LedgerByte does not claim a statutory audit licence or a confirmed audit-firm partnership.",
+      "audience": "Your reporting period, statutory requirements, accounting records and appointed audit firm.",
+      "englishTitle": "External Audit Coordination",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/ksa-company-formation",
+      "slug": "ksa-company-formation",
+      "title": "تأسيس الشركات في السعودية",
+      "group": "Saudi Arabia",
+      "summary": "تحضير معلومات الملكية والنشاط والمستندات والتنسيق مع الممثل المفوض أو المستشار المعين.",
+      "output": "A Saudi setup roadmap, document requirements and authority or adviser dependency list.",
+      "boundary": "No Saudi office, licence, authority accreditation or government approval is claimed. Regulated steps and legal advice require the appropriate separately appointed providers.",
+      "audience": "Your planned activity, shareholder structure and expected Saudi operations.",
+      "englishTitle": "KSA Company Formation",
+      "arabicDetail": false
+    },
+    {
+      "key": "services/ksa-vat",
+      "slug": "ksa-vat",
+      "title": "خدمات ضريبة القيمة المضافة في السعودية",
+      "group": "Saudi Arabia",
+      "summary": "دعم مراجعة المعاملات ومتطلبات السجلات ضمن نطاق متفق عليه للتسجيل أو إعداد الإقرار.",
+      "output": "تسويات لضريبة القيمة المضافة وجداول عمل مراجعة وتسليم واضح للاعتماد والتقديم.",
+      "boundary": "ضريبة القيمة المضافة السعودية والإماراتية والفوترة الإلكترونية متطلبات مختلفة. تُؤكد صلاحية التقديم وأي تمثيل محلي بصورة منفصلة.",
+      "audience": "The Saudi entity, registration position, tax period and sales and purchase records.",
+      "englishTitle": "KSA VAT Services",
+      "arabicDetail": true
+    },
+    {
+      "key": "services/zatca-filing",
+      "slug": "zatca-filing",
+      "title": "دعم إعداد إقرارات هيئة الزكاة والضريبة والجمارك",
+      "group": "Saudi Arabia",
+      "summary": "تنظيم السجلات وجاهزية الإقرار للالتزام السعودي المحدد مع توضيح أدوار الاعتماد والتقديم المفوض.",
+      "output": "حزمة إعداد للالتزام المحدد وسجل بالمسائل المفتوحة وتسليم للتقديم.",
+      "boundary": "الزكاة وضريبة الدخل والاستقطاع وضريبة القيمة المضافة والفوترة الإلكترونية ليست مهام متبادلة. لا تُدّعى حقوق تمثيل أو تسجيل مهني سعودي أو اعتماد من الهيئة.",
+      "audience": "The Saudi entity, ownership, registered obligations, period and records available.",
+      "englishTitle": "ZATCA Filing Support",
+      "arabicDetail": true
+    }
+  ]
+}

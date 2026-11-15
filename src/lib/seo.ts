@@ -1,3 +1,6 @@
+import { englishCopyApproved } from "@/lib/seo-approval";
+import serviceDrafts from "@/content/seo-drafts/service-map.json";
+import { isSeoReview, languageAlternates } from "@/lib/localization";
 import type { Metadata } from "next";
 import type { SeoPageConfig } from "@/content/seo";
 
@@ -68,6 +71,9 @@ export function createMetadata({
   type = "website",
   noIndex = false,
 }: CreateMetadataOptions): Metadata {
+  const draft = isSeoReview || englishCopyApproved("englishServices") ? serviceDrafts.services.find((item) => item.path === path) : undefined;
+  title = draft?.reviewTitle ?? title;
+  description = draft?.reviewDescription ?? description;
   const canonical = absoluteUrl(path);
   const formattedTitle = formatSeoTitle(title);
   const formattedDescription = formatMetaDescription(description);
@@ -76,7 +82,7 @@ export function createMetadata({
   return {
     title: { absolute: formattedTitle },
     description: formattedDescription,
-    alternates: { canonical },
+    alternates: { canonical, languages: languageAlternates(path) },
     robots: {
       index: shouldIndex,
       follow: shouldIndex,
@@ -94,7 +100,7 @@ export function createMetadata({
       url: canonical,
       title: formattedTitle,
       description: formattedDescription,
-      locale: "en_AE",
+      locale: path.startsWith("/ar") ? "ar_AE" : "en_AE",
       images: [
         {
           url: absoluteUrl(image),

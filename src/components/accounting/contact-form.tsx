@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
+import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
 import { accountingServices } from "@/content/accounting";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -21,11 +22,13 @@ export const enquiryChoices = [
   "Not sure yet",
 ];
 export function AccountingContactForm({
-  initialService,
+  initialService, locale = "en",
 }: {
-  initialService: string;
+  initialService: string; locale?: "en" | "ar";
 }) {
   const enhanced = useHydrated();
+  const ar = locale === "ar";
+  const say = (en: string) => ar ? (arabicDrafts.labels[en as keyof typeof arabicDrafts.labels] || en) : en;
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
@@ -56,7 +59,7 @@ export function AccountingContactForm({
     const payloadKey = JSON.stringify(payload);
     if (acceptedPayload.current === payloadKey) {
       setStatus("success");
-      setFeedback(acceptedFeedback);
+      setFeedback(say(acceptedFeedback));
       return;
     }
     inFlight.current = true;
@@ -85,18 +88,18 @@ export function AccountingContactForm({
         setStatus("error");
         setFeedback(
           result.message && safeFailures.has(result.message)
-            ? result.message
-            : deliveryFailure,
+            ? say(result.message)
+            : say(deliveryFailure),
         );
         return;
       }
       acceptedPayload.current = payloadKey;
       setStatus("success");
-      setFeedback(acceptedFeedback);
+      setFeedback(say(acceptedFeedback));
       trackEvent("generate_lead", { method: "email", page_path: "/contact" });
     } catch {
       setStatus("error");
-      setFeedback(deliveryFailure);
+      setFeedback(say(deliveryFailure));
     } finally {
       window.clearTimeout(timeout);
       inFlight.current = false;
@@ -116,7 +119,7 @@ export function AccountingContactForm({
       >
         <div className="accounting-form-grid">
           <label>
-            Name <span aria-hidden="true">*</span>
+            {say("Name")} <span aria-hidden="true">*</span>
             <input
               name="fullName"
               autoComplete="name"
@@ -126,7 +129,7 @@ export function AccountingContactForm({
             />
           </label>
           <label>
-            Email <span aria-hidden="true">*</span>
+            {say("Email")} <span aria-hidden="true">*</span>
             <input
               type="email"
               name="email"
@@ -136,7 +139,7 @@ export function AccountingContactForm({
             />
           </label>
           <label>
-            Business location <span aria-hidden="true">*</span>
+            {say("Business location")} <span aria-hidden="true">*</span>
             <input
               name="location"
               autoComplete="country-name"
@@ -146,7 +149,7 @@ export function AccountingContactForm({
             />
           </label>
           <label>
-            Support you need <span aria-hidden="true">*</span>
+            {say("Support you need")} <span aria-hidden="true">*</span>
             <select
               name="service"
               required
@@ -155,16 +158,16 @@ export function AccountingContactForm({
               }
             >
               <option value="" disabled>
-                Choose a service
+                {say("Choose a service")}
               </option>
               {enquiryChoices.map((service) => (
-                <option key={service}>{service}</option>
+                <option key={service} value={service}>{ar ? (arabicDrafts.services[service as keyof typeof arabicDrafts.services] || service) : service}</option>
               ))}
             </select>
           </label>
         </div>
         <label>
-          Company <small>(optional)</small>
+          {say("Company")} <small>{say("(optional)")}</small>
           <input
             name="companyName"
             autoComplete="organization"
@@ -172,12 +175,12 @@ export function AccountingContactForm({
           />
         </label>
         <label>
-          What would you like help with? <small>(optional)</small>
+          {say("What would you like help with?")} <small>{say("(optional)")}</small>
           <textarea
             name="message"
             rows={5}
             maxLength={2000}
-            placeholder="Briefly describe your needs and the period or task involved."
+            placeholder={say("Briefly describe your needs and the period or task involved.")}
           />
         </label>
         <div className="accounting-honeypot" aria-hidden="true">
@@ -187,16 +190,14 @@ export function AccountingContactForm({
           </label>
         </div>
         <p className="accounting-privacy-hint">
-          Please do not include account credentials, financial documents,
-          payroll details or sensitive personal information. Secure document
-          intake will be agreed separately.
+          {say("Please do not include account credentials, financial documents, payroll details or sensitive personal information. Secure document intake will be agreed separately.")}
         </p>
         <button
           className="button button-amber"
           type="submit"
           disabled={status === "sending" || status === "success"}
         >
-          {status === "sending" ? "Sending…" : "Send enquiry"}
+          {say(status === "sending" ? "Sending…" : "Send enquiry")}
           <span aria-hidden="true">↗</span>
         </button>
         {feedback && (
@@ -210,9 +211,7 @@ export function AccountingContactForm({
       </form>
       <noscript>
         <p>
-          To send an enquiry, please email{" "}
-          <a href="mailto:info@ledgerbyte.io">info@ledgerbyte.io</a> or use the
-          WhatsApp link on this page.
+          {say("To send an enquiry, please email")} <a href="mailto:info@ledgerbyte.io">info@ledgerbyte.io</a> {say("or use the WhatsApp link on this page.")}
         </p>
       </noscript>
     </>

@@ -32,13 +32,14 @@ export default defineConfig({
   workers: 4,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
-    baseURL: "http://127.0.0.1:4300",
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:4300",
+    storageState: { cookies: [{ name: "ledgerbyte-analytics-consent", value: "denied", domain: "127.0.0.1", path: "/", expires: -1, httpOnly: false, secure: false, sameSite: "Lax" }], origins: [] },
     channel: process.platform === "win32" ? "chrome" : undefined,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
-  webServer: {
+  webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
     command: "npm run start -- --hostname 127.0.0.1 --port 4300",
     env: {
       CONTACT_EMAIL_DISABLED: "true",

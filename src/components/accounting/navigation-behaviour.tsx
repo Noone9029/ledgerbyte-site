@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 export function NavigationBehaviour() {
   const marker = useRef<HTMLSpanElement>(null);
   const pathname = usePathname();
+  const previousPathname = useRef(pathname);
 
   useEffect(() => {
     const header = marker.current?.closest("header");
@@ -22,7 +23,9 @@ export function NavigationBehaviour() {
       if (restoreFocus)
         outer?.querySelector<HTMLElement>(":scope > summary")?.focus();
     };
-    closeMenus();
+    // Preserve a native menu opened while the first client scripts are loading.
+    if (previousPathname.current !== pathname) closeMenus();
+    previousPathname.current = pathname;
     const outside = (event: Event) => {
       if (!(event.target instanceof Element)) return;
       const openMenus = [...header.querySelectorAll("details[open]")];

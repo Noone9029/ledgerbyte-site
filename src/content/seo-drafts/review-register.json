@@ -1,0 +1,10 @@
+{
+  "status": "pending",
+  "operationalChanges": [
+    "Shared opt-in analytics and cookie-choice wording",
+    "Arabic form labels and error messages",
+    "Arabic navigation and reading interface"
+  ],
+  "requiredApproval": "Haider reviews protected previews; Arabic finance reviewer validates translations",
+  "marketingApprovalGranted": false
+}

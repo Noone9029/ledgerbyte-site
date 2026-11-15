@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import content from "../src/content/accounting.json";
 import { seoPages } from "../src/content/seo";
 import { team } from "../src/content";
-import { buildPersonPath } from "../src/lib/schema";
+import { buildPersonPath } from "../src/lib/person-identity";
 
 const origin = "https://ledgerbyte.io";
 const paths = [

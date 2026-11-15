@@ -1,3 +1,5 @@
+import { buildPersonId, buildPersonPath } from "@/lib/person-identity";
+export { buildPersonId, buildPersonPath } from "@/lib/person-identity";
 import { accountingServices } from "@/content/accounting";
 import { contactDetails, team } from "@/content";
 import { absoluteUrl, SITE_LANGUAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -137,19 +139,7 @@ export function buildWebPageSchema({
   };
 }
 
-export function buildPersonPath(name: string) {
-  const slug = name
-    .normalize("NFKD")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 
-  return `/about/team/${slug}`;
-}
-
-export function buildPersonId(name: string) {
-  return `${absoluteUrl(buildPersonPath(name))}#person`;
-}
 
 export function buildPersonSchema({
   name,

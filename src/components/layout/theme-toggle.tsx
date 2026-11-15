@@ -77,7 +77,7 @@ function getThemeSnapshot(): Theme {
     : (getStoredTheme() ?? getSystemTheme());
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale = "en" }: { locale?: "en" | "ar" }) {
   const theme = useSyncExternalStore<Theme | null>(
     subscribeToTheme,
     getThemeSnapshot,
@@ -126,7 +126,7 @@ export function ThemeToggle() {
       className="theme-toggle"
       type="button"
       aria-label={
-        theme === "light"
+        locale === "ar" ? (theme === "light" ? "التبديل إلى المظهر الداكن" : "التبديل إلى المظهر الفاتح") : theme === "light"
           ? "Switch to dark mode"
           : theme === "dark"
             ? "Switch to light mode"

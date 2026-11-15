@@ -200,6 +200,9 @@ const isIgnoredString = (node) => {
 for (const file of walk(sourceRoot, (candidate) =>
   candidate.endsWith(".tsx"),
 )) {
+  // Review routes are tested separately for production 404s and publication gates.
+  // They are drafts, never additions to the approved marketing corpus.
+  if (file.includes(`${path.sep}seo-review${path.sep}`)) continue;
   const sourceText = fs.readFileSync(file, "utf8");
   const sourceFile = ts.createSourceFile(
     file,

@@ -1,0 +1,29 @@
+{
+  "status": "draft",
+  "requiredReview": "Haider must confirm business practices, provider settings and publication before this replaces the existing policy.",
+  "sections": [
+    {
+      "title": "Information you choose to share",
+      "body": "When you send an enquiry, LedgerByte receives the name, email address, business location, service interest and any optional company information or message you enter. Please do not include passwords, financial documents, payroll records or sensitive personal information. A secure document handover is agreed separately."
+    },
+    {
+      "title": "How enquiries are handled",
+      "body": "We use your enquiry to understand your requirements and respond. The website uses an email delivery provider to pass the enquiry to LedgerByte. Acceptance by that provider does not confirm that the message has arrived or that an engagement has been agreed. Choosing an email, phone or WhatsApp link opens that channel; WhatsApp messages are sent only when you choose to send them there."
+    },
+    {
+      "title": "Optional website analytics",
+      "body": "With your permission, Google Analytics measures page visits and defined contact interactions across ledgerbyte.io and blog.ledgerbyte.io. Analytics remains off before you allow it. We send known page paths, language and applicable service or market identifiers, and restrict referrers to their website origin. We do not send form text, names, email addresses, phone numbers, company names, search terms or URL query strings in these events. Google may process device and network information as part of its service."
+    },
+    {
+      "title": "Cookies and changing your choice",
+      "body": "Your analytics choice is shared between the main LedgerByte website and Insights and is stored for up to 180 days. Use Cookie settings at the bottom of either site to allow or decline analytics. Declining stops future measurement on that site and removes available analytics cookies; the other site checks the shared preference when it becomes active again. Withdrawing consent does not remove information already sent to Google. Theme preferences and necessary service or security functions are separate from optional analytics."
+    },
+    {
+      "title": "Providers, retention and requests",
+      "body": "Contact and analytics information is handled through LedgerByte and the providers used for those services. Retention and access depend on the relevant business and provider settings. For questions about your enquiry, analytics choice, access or deletion, contact info@ledgerbyte.io. Do not send sensitive documents with the initial request."
+    }
+  ],
+  "googlePrivacyLink": "https://policies.google.com/technologies/partner-sites",
+  "reviewLabel": "Policy update \u2014 review required before release",
+  "googlePrivacyLabel": "How Google uses information from sites that use its services"
+}

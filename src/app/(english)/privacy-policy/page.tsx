@@ -1,3 +1,6 @@
+import privacyDraft from "@/content/seo-drafts/privacy.json";
+import { isSeoReview } from "@/lib/localization";
+import { englishApprovalDate, englishCopyApproved } from "@/lib/seo-approval";
 import { PageMotion } from "@/components/motion/page-motion";
 import { StructuredData } from "@/components/structured-data";
 import { getPageSeo } from "@/content/seo";
@@ -30,6 +33,9 @@ const sections = [
 ] as const;
 
 export default function PrivacyPolicyPage() {
+  const useReplacement = isSeoReview || englishCopyApproved("privacy");
+  const visibleSections = useReplacement ? privacyDraft.sections : sections;
+  const approvalDate = englishApprovalDate("privacy");
   return (
     <>
       <StructuredData
@@ -45,7 +51,7 @@ export default function PrivacyPolicyPage() {
         <PageMotion>
         <article className="legal-page page-section">
           <header>
-            <p className="eyebrow hero-reveal">Last Updated April 2026</p>
+            <p className="eyebrow hero-reveal">{approvalDate ? new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" }).format(new Date(approvalDate)) : useReplacement ? privacyDraft.reviewLabel : "Last Updated April 2026"}</p>
             <h1 className="hero-reveal">Privacy Policy</h1>
             <p className="hero-summary hero-reveal">
               This page explains, in plain language, how LedgerByte handles
@@ -53,8 +59,9 @@ export default function PrivacyPolicyPage() {
               requests submitted through the site.
             </p>
           </header>
+          {useReplacement && <p><a href={privacyDraft.googlePrivacyLink} rel="noreferrer">{privacyDraft.googlePrivacyLabel}</a></p>}
           <div className="legal-sections">
-            {sections.map((section) => (
+            {visibleSections.map((section) => (
               <section className="motion-reveal" key={section.title}>
                 <h2>{section.title}</h2>
                 <p>{section.body}</p>

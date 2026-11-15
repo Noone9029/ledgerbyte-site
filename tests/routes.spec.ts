@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import financeServices from "../src/content/generated/finance-services.json";
 import technologyServices from "../src/content/generated/technology-services.json";
 import { team } from "../src/content";
-import { buildPersonPath } from "../src/lib/schema";
+import { buildPersonPath } from "../src/lib/person-identity";
 
 const routes = [
   "/",

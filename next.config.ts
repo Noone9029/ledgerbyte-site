@@ -25,6 +25,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: { globalNotFound: true },
   skipTrailingSlashRedirect: true,
   async headers() {
     return [

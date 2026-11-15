@@ -6,27 +6,29 @@ import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { AccountingFooter } from "@/components/accounting/site-footer";
 import { AccountingHeader } from "@/components/accounting/site-header";
 import { StructuredData } from "@/components/structured-data";
-import { getPageSeo } from "@/content/seo";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { availableArabicPairs } from "@/lib/localization";
+import { seoPages, getPageSeo } from "@/content/seo";
 import { buildGlobalSchema } from "@/lib/schema";
 import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
-import "./globals.css";
+import "../globals.css";
 
 const cabinetGrotesk = localFont({
   variable: "--font-cabinet-grotesk",
   display: "swap",
   src: [
     {
-      path: "../../public/fonts/cabinet-grotesk-400.woff2",
+      path: "../../../public/fonts/cabinet-grotesk-400.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/cabinet-grotesk-500.woff2",
+      path: "../../../public/fonts/cabinet-grotesk-500.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../public/fonts/cabinet-grotesk-700.woff2",
+      path: "../../../public/fonts/cabinet-grotesk-700.woff2",
       weight: "700",
       style: "normal",
     },
@@ -96,6 +98,7 @@ export default function RootLayout({
         </a>
         <StructuredData data={buildGlobalSchema()} />
         <AccountingHeader />
+        <LanguageSwitcher pairs={availableArabicPairs()} locale="en" />
         {process.env.VERCEL_ENV !== "production" && (
           <div className="accounting-preview-notice">
             Private review · Not approved for publication{" "}
@@ -104,7 +107,7 @@ export default function RootLayout({
         )}
         {children}
         <AccountingFooter />
-        <SiteAnalytics />
+        <SiteAnalytics allowedPaths={Object.keys(seoPages)} />
       </body>
     </html>
   );

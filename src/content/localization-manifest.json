@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "reviewRequired": [
+    "Haider factual and launch approval",
+    "Fluent Arabic finance review"
+  ],
+  "pages": [
+    {
+      "path": "/ar",
+      "englishPath": "/",
+      "status": "draft",
+      "sourceKey": "home",
+      "sourceDigest": "847ada558e19915ff7eee28152f5c9bbfe4d95baf0c983be8be28eb2d2cc5217",
+      "lastModified": "2026-11-14",
+      "targetDigest": "c7e728a9b3f65e534caa59df1e4ff26119ebd65d0a4876fd390125f7c721c1dd"
+    },
+    {
+      "path": "/ar/finance/services",
+      "englishPath": "/finance/services",
+      "status": "draft",
+      "sourceKey": "services",
+      "sourceDigest": "44dd412d1283a7a0b5d02059fa3682a9153e74b225e22629189a447b1b67d3e8",
+      "lastModified": "2026-11-14",
+      "targetDigest": "1fcc323c4a84a74d71f2615a2c004d85afd906f40c73002f39e35c19ceb77a8b"
+    },
+    {
+      "path": "/ar/about",
+      "englishPath": "/about",
+      "status": "draft",
+      "sourceKey": "about",
+      "sourceDigest": "31c2042c8099089410958e9d9142b45ecceaf0003950f24f42b1421cb4107a69",
+      "lastModified": "2026-11-14",
+      "targetDigest": "75906bac577eae5e5f17b27526631f820814ff45817177f5725b00869a166042"
+    },
+    {
+      "path": "/ar/contact",
+      "englishPath": "/contact",
+      "status": "draft",
+      "sourceKey": "contact",
+      "sourceDigest": "44dd412d1283a7a0b5d02059fa3682a9153e74b225e22629189a447b1b67d3e8",
+      "lastModified": "2026-11-14",
+      "targetDigest": "f292286cf9e248f42d55bf2abbaa859defa262afb2213057231cf458a2a04d27"
+    },
+    {
+      "path": "/ar/how-we-work",
+      "englishPath": "/how-we-work",
+      "status": "draft",
+      "sourceKey": "how-we-work",
+      "sourceDigest": "8625ffb3d767a04b45beb75005c4051641a1ed74d1d518393f7f62de01b30b6a",
+      "lastModified": "2026-11-14",
+      "targetDigest": "a8845512b5cce915b886df61f615e7c4dded975d9f51a15abc05fdc1110217db"
+    },
+    {
+      "path": "/ar/regions",
+      "englishPath": "/regions",
+      "status": "draft",
+      "sourceKey": "regions",
+      "sourceDigest": "44dd412d1283a7a0b5d02059fa3682a9153e74b225e22629189a447b1b67d3e8",
+      "lastModified": "2026-11-14",
+      "targetDigest": "2ed631fda7643ca3ba6db85fb7183b87f9e398d95361c2e69f1e5c69aff2934c"
+    },
+    {
+      "path": "/ar/regions/uae",
+      "englishPath": "/regions/uae",
+      "status": "draft",
+      "sourceKey": "regions/uae",
+      "sourceDigest": "9b537efe79e18938915d8b2dd204be79529569042b6f4453cdddc8f4dc9d726e",
+      "lastModified": "2026-11-14",
+      "targetDigest": "f25cec51aa64010f20343c0ffba177a11e3de26f47c05acf4c3f67cfbcc6e9be"
+    },
+    {
+      "path": "/ar/regions/saudi-arabia",
+      "englishPath": "/regions/saudi-arabia",
+      "status": "draft",
+      "sourceKey": "regions/saudi-arabia",
+      "sourceDigest": "85777c8d37b1c4bfeff5bb2d103c3aa943bdd262d4a7439af74468634b08f6ba",
+      "lastModified": "2026-11-14",
+      "targetDigest": "30ebf3c8f6f9e528cb2302047be996709d8a6d3898c0315858cd93a4ee34d43b"
+    },
+    {
+      "path": "/ar/regions/united-states",
+      "englishPath": "/regions/united-states",
+      "status": "draft",
+      "sourceKey": "regions/united-states",
+      "sourceDigest": "b9dfa81feaa65211c8b6733bd8a29fa2665076bba5acbac4d046310838362541",
+      "lastModified": "2026-11-14",
+      "targetDigest": "6d198b855cb575f8dc0567e32dc4ec4c199b1d2edaf168fd209e9e68c76539aa"
+    },
+    {
+      "path": "/ar/regions/pakistan",
+      "englishPath": "/regions/pakistan",
+      "status": "draft",
+      "sourceKey": "regions/pakistan",
+      "sourceDigest": "7afac9c8f970d2636f96ac91fd56c3c1d1b30fe356db77714e0406b291ba7b59",
+      "lastModified": "2026-11-14",
+      "targetDigest": "485b74d45bc0a95bc48f35c96a617c7394d840b70e08707b631e438e0ff2007c"
+    },
+    {
+      "path": "/ar/finance/services/accounting-bookkeeping",
+      "englishPath": "/finance/services/accounting-bookkeeping",
+      "status": "draft",
+      "sourceKey": "services/accounting-bookkeeping",
+      "sourceDigest": "bce67e5a53d262e9c189405439f8d5599bb5c3a39473c450cb1d95b9c9e5ef73",
+      "lastModified": "2026-11-14",
+      "targetDigest": "3fe041bf788593de6ebb91fdf823a2345552aa79c165b77b2aabb8d7ffeee508"
+    },
+    {
+      "path": "/ar/finance/services/finance-department-outsourcing",
+      "englishPath": "/finance/services/finance-department-outsourcing",
+      "status": "draft",
+      "sourceKey": "services/finance-department-outsourcing",
+      "sourceDigest": "898c652cb6d74347e84b74b4a0cd7a33033f190fd6f35c27641ecf48ba63c6e8",
+      "lastModified": "2026-11-14",
+      "targetDigest": "28201f2598f12d3b453e028de7149daa21f9d841b1e78502202b7ddfd04ee85f"
+    },
+    {
+      "path": "/ar/finance/services/financial-reporting-mis",
+      "englishPath": "/finance/services/financial-reporting-mis",
+      "status": "draft",
+      "sourceKey": "services/financial-reporting-mis",
+      "sourceDigest": "963452e2e6e3315aa8102ed318fc600da796d772877654f696983cad315c631c",
+      "lastModified": "2026-11-14",
+      "targetDigest": "0c1fdd742996c6270d835644b5bfe659cbe98615a085394a9addb997b4ee0620"
+    },
+    {
+      "path": "/ar/finance/services/fractional-cfo-advisory",
+      "englishPath": "/finance/services/fractional-cfo-advisory",
+      "status": "draft",
+      "sourceKey": "services/fractional-cfo",
+      "sourceDigest": "fca2fb26b7b45d97156010ea845d771741fc6f716c57845f7eea136c2ee1f9de",
+      "lastModified": "2026-11-14",
+      "targetDigest": "ebd2d8f9ee6635e90f1799408de28395f989394999423e54fb99838c1255abdc"
+    },
+    {
+      "path": "/ar/finance/services/tax-vat-compliance",
+      "englishPath": "/finance/services/tax-vat-compliance",
+      "status": "draft",
+      "sourceKey": "services/tax-vat-compliance",
+      "sourceDigest": "99b061c9f6a2a119c7684bf86bdff42f5ddb4d20bc2ba72a0109c03d1c49b86b",
+      "lastModified": "2026-11-14",
+      "targetDigest": "50a58d0513b9ec85d7484227353d8f59480e745a24e3932849777145a52ad78a"
+    },
+    {
+      "path": "/ar/finance/services/corporate-tax-filing",
+      "englishPath": "/finance/services/corporate-tax-filing",
+      "status": "draft",
+      "sourceKey": "services/corporate-tax-filing",
+      "sourceDigest": "3b14d7883c9ed5c20e1f5f1d6991885e37d2365ff90bc6509a11fb686086dc6d",
+      "lastModified": "2026-11-14",
+      "targetDigest": "ec3b6e206615f7495f452a027e05afecbbbe935efae2b28c72eca64a0aecbeeb"
+    },
+    {
+      "path": "/ar/finance/services/ksa-vat",
+      "englishPath": "/finance/services/ksa-vat",
+      "status": "draft",
+      "sourceKey": "services/ksa-vat",
+      "sourceDigest": "3911ff780e614e26618865e7e71417de4413b7d80fe97b7e26e9403992295c56",
+      "lastModified": "2026-11-14",
+      "targetDigest": "0bf4b3f9f75191ec38898579a3ad89fc01fed11fbc0fcdef93a1ce196ed7c900"
+    },
+    {
+      "path": "/ar/finance/services/zatca-filing",
+      "englishPath": "/finance/services/zatca-filing",
+      "status": "draft",
+      "sourceKey": "services/zatca-filing",
+      "sourceDigest": "6f30c55a62d9e9de4b5e4203140122b2a3a3bcd00373f86f7e2023c81c49578c",
+      "lastModified": "2026-11-14",
+      "targetDigest": "98c55b47b6d7cb509ea39c28affc7b4790b76d89a420d633cbaa1a6dfbd80abe"
+    }
+  ]
+}
