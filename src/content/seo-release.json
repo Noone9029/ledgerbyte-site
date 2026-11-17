@@ -1,5 +1,15 @@
 {
-  "englishServices": { "status": "draft", "approvedBy": null, "approvedAt": null, "approvedDigest": null },
-  "privacy": { "status": "draft", "approvedBy": null, "approvedAt": null, "approvedDigest": null },
-  "note": "Record real Haider approvals against the reviewed file digests before enabling these replacement texts in production."
+  "englishServices": {
+    "status": "approved",
+    "approvedBy": "Website owner, approval in Codex chat on 2026-11-17",
+    "approvedAt": "2026-11-17T15:21:36.879Z",
+    "approvedDigest": "e5e38b4a2d7dfe21d8dd33508fc3317ade4b4db6e222b22ea6616fd2e67f4b1e"
+  },
+  "privacy": {
+    "status": "approved",
+    "approvedBy": "Website owner, approval in Codex chat on 2026-11-17",
+    "approvedAt": "2026-11-17T15:21:36.879Z",
+    "approvedDigest": "4bd4521f13f8a324fe436e37bcc778a85d38da8c35c98089851981ce3be6544d"
+  },
+  "note": "Owner approved the reviewed English SEO, privacy, analytics and English articles on 2026-11-17. Arabic expressly excluded and remains unpublished. No Arabic reviewer or Haider signature has been invented."
 }
