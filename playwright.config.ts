@@ -25,7 +25,7 @@ const interactiveProjects = [
 export default defineConfig({
   testDir: "./tests",
   // The November suite replaces assertions tied to the previous split-site design.
-  testMatch: ["accounting.spec.ts", "audit-regressions.spec.ts", "scroll-reveals.spec.ts", "service-flashcards.spec.ts"],
+  testMatch: ["accounting.spec.ts", "audit-regressions.spec.ts", "scroll-reveals.spec.ts", "service-flashcards.spec.ts", "haider-integration.spec.ts"],
   timeout: 45_000,
   expect: { timeout: 8_000 },
   fullyParallel: true,

@@ -1,0 +1,137 @@
+[
+  {
+    "group": "Finance Operations",
+    "items": [
+      {
+        "slug": "accounting-bookkeeping",
+        "scope": "Reconciled books, supporting schedules and open items for the agreed period.",
+        "name": "Accounting & Bookkeeping"
+      },
+      {
+        "slug": "accounting-automation-systems",
+        "scope": "Accounting setup, documented workflows and an operating checklist.",
+        "name": "Accounting Automation & Systems"
+      },
+      {
+        "slug": "payroll-wps-management",
+        "scope": "Payroll records for review and, where applicable, a WPS-ready file for your authorized representative to submit.",
+        "name": "Payroll & WPS Management"
+      },
+      {
+        "slug": "finance-department-outsourcing",
+        "scope": "An operating calendar, responsibility map and agreed recurring finance outputs.",
+        "name": "Full Finance Department Outsourcing"
+      },
+      {
+        "slug": "fractional-controller",
+        "scope": "Close review, control exceptions and an operational finance action list.",
+        "name": "Fractional Financial Controller"
+      },
+      {
+        "slug": "month-end-year-end-close",
+        "scope": "Close checklist, reconciled schedules, adjustment log and open-items handover.",
+        "name": "Month-End & Year-End Close Support"
+      },
+      {
+        "slug": "accounts-receivable",
+        "scope": "Receivables ageing, receipt allocations and collection or dispute follow-up.",
+        "name": "Accounts Receivable Services"
+      },
+      {
+        "slug": "accounts-payable",
+        "scope": "Supplier balances by due date, reconciliations and proposed supplier payments for review.",
+        "name": "Accounts Payable Services"
+      }
+    ]
+  },
+  {
+    "group": "Reporting & Advisory",
+    "items": [
+      {
+        "slug": "financial-reporting-mis",
+        "scope": "Management reports with agreed measures, comparisons and explanations of what changed.",
+        "name": "Financial Reporting & MIS"
+      },
+      {
+        "slug": "budgeting-forecasting",
+        "scope": "A budget or forecast model with documented assumptions and an update schedule.",
+        "name": "Budgeting & Forecasting"
+      },
+      {
+        "slug": "cash-flow-working-capital",
+        "scope": "A short-term cash view, timing assumptions and priorities for management action.",
+        "name": "Cash Flow & Working Capital"
+      },
+      {
+        "slug": "fractional-cfo-advisory",
+        "scope": "Recurring finance reviews, decision-support analysis and agreed actions with owners.",
+        "name": "Fractional CFO & Finance Advisory"
+      }
+    ]
+  },
+  {
+    "group": "UAE Tax & Formation",
+    "items": [
+      {
+        "slug": "tax-vat-compliance",
+        "scope": "Separately scoped registration or filing support, with reviewed records and clear approval roles.",
+        "name": "Tax, VAT & Compliance"
+      },
+      {
+        "slug": "corporate-tax-filing",
+        "scope": "Corporate tax computation, return preparation and supporting records for the agreed period.",
+        "name": "UAE Corporate Tax Filing"
+      },
+      {
+        "slug": "vat-registration",
+        "scope": "Registration assessment, an evidence checklist and an authorized-submission handover.",
+        "name": "UAE VAT Registration"
+      },
+      {
+        "slug": "corporate-tax-registration",
+        "scope": "Entity information and reviewed application inputs for corporate tax registration.",
+        "name": "UAE Corporate Tax Registration"
+      },
+      {
+        "slug": "uae-company-formation",
+        "scope": "Setup requirements, document checklist and coordination of the agreed application steps.",
+        "name": "UAE Company Formation"
+      }
+    ]
+  },
+  {
+    "group": "Audit & Controls",
+    "items": [
+      {
+        "slug": "internal-audit",
+        "scope": "Review of agreed processes and controls, with findings and management actions.",
+        "name": "Internal Audit"
+      },
+      {
+        "slug": "external-audit",
+        "scope": "Audit-readiness records and coordination. A separately appointed, appropriately licensed independent local audit firm performs the audit and issues its opinion.",
+        "name": "External Audit Coordination"
+      }
+    ]
+  },
+  {
+    "group": "Saudi Arabia",
+    "items": [
+      {
+        "slug": "ksa-company-formation",
+        "scope": "A Saudi setup roadmap, documentation requirements and adviser dependencies.",
+        "name": "KSA Company Formation"
+      },
+      {
+        "slug": "ksa-vat",
+        "scope": "Saudi VAT reconciliations, reviewed schedules and clear approval and filing handover.",
+        "name": "KSA VAT Services"
+      },
+      {
+        "slug": "zatca-filing",
+        "scope": "An obligation-specific preparation pack, open issues and authorized-submission handover.",
+        "name": "ZATCA Filing Support"
+      }
+    ]
+  }
+]

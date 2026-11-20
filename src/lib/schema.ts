@@ -215,11 +215,13 @@ export function buildServiceSchema({
   name,
   description,
   serviceType,
+  jurisdiction,
 }: {
   path: string;
   name: string;
   description: string;
   serviceType?: string | string[];
+  jurisdiction?: string;
 }): JsonLdNode {
   const url = absoluteUrl(path);
 
@@ -231,7 +233,7 @@ export function buildServiceSchema({
     description,
     serviceType: serviceType ?? name,
     provider: { "@id": ORGANIZATION_ID },
-    areaServed: serviceAreas,
+    areaServed: jurisdiction ? [{ "@type": "Country", name: jurisdiction }] : serviceAreas,
   };
 }
 

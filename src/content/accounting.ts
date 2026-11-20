@@ -8,6 +8,7 @@ export interface CopySection {
   heading: string;
   paragraphs: string[];
   bullets: string[];
+  blocks?: (string | string[])[];
 }
 export interface AccountingPage {
   title: string;

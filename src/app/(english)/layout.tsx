@@ -8,7 +8,8 @@ import { AccountingHeader } from "@/components/accounting/site-header";
 import { StructuredData } from "@/components/structured-data";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { availableArabicPairs } from "@/lib/localization";
-import { seoPages, getPageSeo } from "@/content/seo";
+import { getPageSeo } from "@/content/seo";
+import { publicEnglishPaths } from "@/lib/public-english-paths";
 import { buildGlobalSchema } from "@/lib/schema";
 import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "../globals.css";
@@ -107,7 +108,7 @@ export default function RootLayout({
         )}
         {children}
         <AccountingFooter />
-        <SiteAnalytics allowedPaths={Object.keys(seoPages)} />
+        <SiteAnalytics allowedPaths={publicEnglishPaths} />
       </body>
     </html>
   );

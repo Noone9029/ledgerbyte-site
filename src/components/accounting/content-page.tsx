@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
@@ -6,10 +7,14 @@ import {
   accountingPages,
   accountingServices,
   contentPath,
+  marketNames,
   serviceContactHref,
   type AccountingPage,
 } from "@/content/accounting";
 import { team } from "@/content";
+import { guideExamples } from "@/content/insight-guides";
+import { getPageSeo, type SeoPagePath } from "@/content/seo";
+import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -17,6 +22,7 @@ import {
   buildSchemaGraph,
   buildServiceSchema,
   buildWebPageSchema,
+  ORGANIZATION_ID,
 } from "@/lib/schema";
 
 export function CopyText({ text }: { text: string }) {
@@ -104,6 +110,8 @@ export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
 }
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
+  const example = guideExamples[pageKey];
+  const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
   const group =
     service?.group ??
@@ -114,6 +122,14 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
         : "Accounting. Tax. Advisory.");
   const context =
     service?.title ?? (pageKey === "uae-vat" ? "UAE VAT support" : undefined);
+  const breadcrumbs = [{ name: "LedgerByte", path: "/" }];
+  if (service) breadcrumbs.push({ name: "Services", path: "/finance/services" });
+  else if (group === "Insights") breadcrumbs.push({ name: group, path: "/insights" });
+  else if (group === "Markets") breadcrumbs.push({ name: group, path: "/regions" });
+  breadcrumbs.push({
+    name: service?.title ?? marketNames[pageKey] ?? page.eyebrow ?? page.title.replace(/\s*\|\s*LedgerByte$/i, ""),
+    path: page.path,
+  });
   return (
     <>
       <StructuredData
@@ -122,22 +138,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             path: page.path,
             name: page.title,
             description: page.description,
-            dateModified: "2026-11-10",
+            dateModified,
           }),
-          buildBreadcrumbSchema([
-            { name: "LedgerByte", path: "/" },
-            {
-              name: service ? "Services" : group,
-              path: service
-                ? "/finance/services"
-                : pageKey.startsWith("regions/")
-                  ? "/regions"
-                  : pageKey.startsWith("insights/")
-                    ? "/insights"
-                    : page.path,
-            },
-            ...(service ? [{ name: service.title, path: page.path }] : []),
-          ]),
+          buildBreadcrumbSchema(breadcrumbs),
           ...(service
             ? [
                 buildServiceSchema({
@@ -145,9 +148,24 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                   name: service.title,
                   description: page.intro,
                   serviceType: service.title,
+                  jurisdiction: ({
+                    "UAE Tax & Formation": "United Arab Emirates",
+                    "Saudi Arabia": "Saudi Arabia",
+                  } as Record<string, string>)[service.group],
                 }),
               ]
             : []),
+          ...(example ? [{
+            "@type": "Article",
+            "@id": absoluteUrl(page.path) + "#article",
+            mainEntityOfPage: { "@id": absoluteUrl(page.path) + "#webpage" },
+            headline: page.heading,
+            description: page.description,
+            inLanguage: "en",
+            publisher: { "@id": ORGANIZATION_ID, "@type": "Organization", name: SITE_NAME },
+            dateModified,
+            citation: example.url,
+          }] : []),
           ...(page.faqs.length ? [buildFaqSchema(page.faqs)] : []),
         )}
       />
@@ -156,25 +174,21 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           className="accounting-breadcrumb accounting-wrap"
           aria-label="Breadcrumb"
         >
-          <Link href="/">LedgerByte</Link>
-          <span>/</span>
-          {service ? (
-            <Link href="/finance/services">Services</Link>
-          ) : (
-            <span>{group}</span>
-          )}
-          {service && (
-            <>
-              <span>/</span>
-              <span aria-current="page">{service.title}</span>
-            </>
-          )}
+          {breadcrumbs.map(({ name, path }, index) => (
+            <Fragment key={path}>
+              {index > 0 && <span aria-hidden="true">/</span>}
+              {path === page.path
+                ? <span aria-current="page">{name}</span>
+                : <Link href={path}>{name}</Link>}
+            </Fragment>
+          ))}
         </nav>
         <section className="accounting-detail-hero accounting-wrap">
           <div data-aeo-answer>
             <p className="eyebrow">{page.eyebrow ?? group}</p>
             <h1>{page.heading}</h1>
             <p className="accounting-lead">{page.intro}</p>
+            {example && <p className="guide-publisher">Published by <Link href="/about">{SITE_NAME}</Link></p>}
             <EnquiryLink label={page.cta} service={context} />
           </div>
           {service ? (
@@ -186,6 +200,22 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               <p>{service.output}</p>
               <hr />
               <small>{service.boundary}</small>
+            </aside>
+          ) : pageKey === "regions/uae" ? (
+            <aside className="accounting-output">
+              <p className="eyebrow">Monthly bookkeeping</p>
+              <h2>From AED 500 per month</h2>
+              <p>The starting team includes 15 hours and VAT filing. A senior accountant reviews reconciliations and flags balances that need your attention.</p>
+              <hr />
+              <Link href="/build-your-finance-department">See the hours and price before tax ↗</Link>
+            </aside>
+          ) : example ? (
+            <aside className="accounting-output guide-example" aria-label="Worked example">
+              <p className="eyebrow">Worked example</p>
+              <p>{example.summary}</p>
+              <a href="#worked-example">See the calculation</a>
+              <hr />
+              <small><a href={example.url}>{example.reference}</a></small>
             </aside>
           ) : (
             <div className="accounting-detail-motif" aria-hidden="true">
@@ -216,20 +246,19 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                 <span className="accounting-section-number">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h2>{section.heading}</h2>
-                {section.paragraphs.map((text) => (
-                  <p key={text}>
-                    <CopyText text={text} />
-                  </p>
-                ))}
-                {section.bullets.length > 0 && (
-                  <ul>
-                    {section.bullets.map((text) => (
+                <h2 id={example && section.heading.startsWith("Worked example") ? "worked-example" : undefined}>{section.heading}</h2>
+                {(section.blocks ?? [...section.paragraphs, section.bullets]).map((block) =>
+                  typeof block === "string" ? <p key={block}><CopyText text={block} /></p> : block.length > 0 && (
+                  <ul key={block[0]}>
+                    {block.map((text) => (
                       <li key={text}>
                         <CopyText text={text} />
                       </li>
                     ))}
                   </ul>
+                ))}
+                {example && section.heading.startsWith("Worked example") && (
+                  <p><Link href={example.servicePath}>{example.service}</Link></p>
                 )}
                 {pageKey === "about" &&
                   section.heading === "Meet the people behind the work" && (

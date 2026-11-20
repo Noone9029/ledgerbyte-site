@@ -43,6 +43,7 @@
 ## LedgerByte
 
 - [About us](https://ledgerbyte.io/about)
+- [Build your finance department](https://ledgerbyte.io/build-your-finance-department)
 - [How we work](https://ledgerbyte.io/how-we-work)
 - [UAE VAT support](https://ledgerbyte.io/uae-vat)
 - [Markets](https://ledgerbyte.io/regions)

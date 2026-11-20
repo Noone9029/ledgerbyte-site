@@ -258,7 +258,8 @@
     "services/accounts-payable": "/finance/services/accounts-payable",
     "services": "/finance/services",
     "regions": "/regions",
-    "insights": "/insights"
+    "insights": "/insights",
+    "build-your-finance-department": "/build-your-finance-department"
   },
   "pages": {
     "services/accounting-bookkeeping": {
@@ -1344,11 +1345,11 @@
       "eyebrow": "UAE VAT support"
     },
     "regions/uae": {
-      "title": "Accounting & Finance Support in the UAE | LedgerByte",
-      "description": "Sharjah-based accounting, close, finance leadership, UAE VAT and corporate tax services, company formation and separately scoped audit coordination.",
+      "title": "Outsourced Accounting & Bookkeeping in the UAE | LedgerByte",
+      "description": "Sharjah-based bookkeeping for UAE SMEs. See what AED 500 per month covers, who reviews your books and how VAT filing fits into your finance team.",
       "path": "/regions/uae",
-      "heading": "Accounting and finance support for UAE businesses.",
-      "intro": "Connect the everyday books to management reporting, cash planning and your UAE tax preparation calendar. LedgerByte is based in Sharjah and scopes the work around your entity, records and business priorities.",
+      "heading": "Outsourced accounting and bookkeeping for UAE businesses",
+      "intro": "Our Sharjah team keeps the books, reconciles bank balances and flags missing records for UAE SMEs. Choose monthly accounting support or build a team around the work you need.",
       "cta": "Discuss your UAE business",
       "cardStrapline": "",
       "sections": [
@@ -1397,6 +1398,10 @@
       ],
       "faqs": [
         {
+          "question": "What does AED 500 a month cover?",
+          "answer": "The finance team builder starts at AED 500 per month before tax for 15 hours. That buys three hours of junior admin support, eight hours of junior accounting and four hours of senior accounting. Bookkeeping includes VAT filing. The managed SME accounting and tax service also starts at AED 500 per month, with records and deadlines agreed in your quote."
+        },
+        {
           "question": "Can a free-zone business use the same tax assumptions as a mainland business?",
           "answer": "Not automatically. Free-zone status alone does not determine all VAT or corporate tax treatment. In particular, the corporate tax rules for a Qualifying Free Zone Person distinguish qualifying income from other taxable income. The entity's activities and conditions need review. Source check: 9 November 2026. [FTA: Determination of Taxable Income, section 3.3](https://tax.gov.ae/DataFolder/Files/Pdf/2024/Determination%20of%20Taxable%20Income%20-%2031%2007%202024.pdf)."
         },
@@ -1414,6 +1419,18 @@
         }
       ],
       "related": [
+        {
+          "route": "services/accounting-bookkeeping",
+          "label": "Monthly accounting and bookkeeping"
+        },
+        {
+          "route": "build-your-finance-department",
+          "label": "Build a finance team from AED 500 per month"
+        },
+        {
+          "route": "services/fractional-cfo",
+          "label": "Fractional CFO and finance advisory"
+        },
         {
           "route": "services/payroll-wps",
           "label": "Payroll & WPS Management",
@@ -1684,16 +1701,18 @@
       "sections": [
         {
           "heading": "Start with five questions",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "Before adding more spreadsheets, establish the basics:",
+            [
+              "Which entity and reporting period are being closed?",
+              "What accounting basis and policies apply?",
+              "Who supplies each source record, and what is the cutoff?",
+              "Which balances need reconciliation or supporting schedules?",
+              "Who reviews the close, and which issues must be escalated?"
+            ],
             "A close checklist should make the work visible. Give each task an owner, a status, a link to its evidence and a reviewer where needed. “Done” should mean the task has an identifiable result, not that somebody opened the file."
-          ],
-          "bullets": [
-            "Which entity and reporting period are being closed?",
-            "What accounting basis and policies apply?",
-            "Who supplies each source record, and what is the cutoff?",
-            "Which balances need reconciliation or supporting schedules?",
-            "Who reviews the close, and which issues must be escalated?"
           ]
         },
         {
@@ -1747,17 +1766,19 @@
         },
         {
           "heading": "6. Close with an honest status report",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "A useful close pack includes the agreed accounts, completed reconciliations, supporting schedules, adjustments and an open-items list. Where your system and process allow, establish who can reopen a closed period and how changes will be recorded.",
             "Use a simple open-item format:",
+            [
+              "Item: a supplier charge has no supporting invoice.",
+              "Period and amount: the affected month and known amount, if available.",
+              "Possible effect: the account or report that may change.",
+              "Owner and next action: who will obtain or assess the evidence.",
+              "Status: outstanding, resolved or included as a clearly identified estimate."
+            ],
             "This is more useful than a general statement that “the accounts are almost ready.”"
-          ],
-          "bullets": [
-            "Item: a supplier charge has no supporting invoice.",
-            "Period and amount: the affected month and known amount, if available.",
-            "Possible effect: the account or report that may change.",
-            "Owner and next action: who will obtain or assess the evidence.",
-            "Status: outstanding, resolved or included as a clearly identified estimate."
           ]
         },
         {
@@ -1840,37 +1861,43 @@
         },
         {
           "heading": "Worked example: positive profit, falling cash",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "Illustrative example for one month, using accrual accounting. All figures are in AED and exclude VAT, sales taxes, income tax, interest, inventory, owner transactions and other adjustments for simplicity. Assume there are no collections, payments or other movements relating to opening receivables and payables.",
             "The profit-and-loss view is:",
+            [
+              "Revenue: 100,000.",
+              "Operating expenses other than depreciation: 65,000.",
+              "Depreciation: 5,000.",
+              "Accounting profit: 30,000."
+            ],
             "Now look at the cash movements:",
+            [
+              "Customers paid 60,000 of the month's sales; 40,000 remains receivable.",
+              "The business paid 50,000 of the month's operating expenses; 15,000 remains payable.",
+              "It bought equipment for 20,000 in cash.",
+              "It repaid 10,000 of loan principal."
+            ],
             "Cash received is 60,000. Cash paid is 50,000 + 20,000 + 10,000 = 80,000. The bank balance therefore falls by 20,000, despite the 30,000 profit. If opening cash was 50,000, closing cash is 30,000."
-          ],
-          "bullets": [
-            "Revenue: 100,000.",
-            "Operating expenses other than depreciation: 65,000.",
-            "Depreciation: 5,000.",
-            "Accounting profit: 30,000.",
-            "Customers paid 60,000 of the month's sales; 40,000 remains receivable.",
-            "The business paid 50,000 of the month's operating expenses; 15,000 remains payable.",
-            "It bought equipment for 20,000 in cash.",
-            "It repaid 10,000 of loan principal."
           ]
         },
         {
           "heading": "Build the bridge from profit to cash",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "The same example can be explained as a bridge:",
+            [
+              "Start with accounting profit of 30,000.",
+              "Add back non-cash depreciation of 5,000.",
+              "Subtract the 40,000 increase in receivables.",
+              "Add the 15,000 increase in payables.",
+              "Result: 10,000 of operating cash generated in this simplified example.",
+              "Subtract equipment spending of 20,000 and loan-principal repayment of 10,000.",
+              "Result: a 20,000 decrease in cash overall."
+            ],
             "This separates operating cash from investment and financing movements. It also prevents two common errors: counting depreciation as a current cash payment, and treating the full loan repayment as an operating expense. Actual financial statements may have additional adjustments and classification requirements."
-          ],
-          "bullets": [
-            "Start with accounting profit of 30,000.",
-            "Add back non-cash depreciation of 5,000.",
-            "Subtract the 40,000 increase in receivables.",
-            "Add the 15,000 increase in payables.",
-            "Result: 10,000 of operating cash generated in this simplified example.",
-            "Subtract equipment spending of 20,000 and loan-principal repayment of 10,000.",
-            "Result: a 20,000 decrease in cash overall."
           ]
         },
         {
@@ -1883,17 +1910,19 @@
         },
         {
           "heading": "Turn the explanation into a dated forecast",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "A historical bridge explains what happened. A forecast estimates what will happen next. Start with the cleared bank balance, then list expected receipts and payments by date.",
             "For a short-term view, include:",
+            [
+              "Customer receipts with an expected collection date and the reason for that assumption.",
+              "Supplier payments using agreed terms and known commitments.",
+              "Payroll and other recurring operating payments.",
+              "Tax payments, loan payments and planned capital spending.",
+              "Any committed funding, separately identified from financing still being discussed."
+            ],
             "Use the lowest projected balance during the period as well as the ending balance. A customer receipt at month-end cannot fund a payroll payment due earlier unless the business has another source of cash."
-          ],
-          "bullets": [
-            "Customer receipts with an expected collection date and the reason for that assumption.",
-            "Supplier payments using agreed terms and known commitments.",
-            "Payroll and other recurring operating payments.",
-            "Tax payments, loan payments and planned capital spending.",
-            "Any committed funding, separately identified from financing still being discussed."
           ]
         },
         {
@@ -1987,38 +2016,42 @@
         },
         {
           "heading": "2. Assemble the transaction schedules",
-          "paragraphs": [
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
             "Prepare listings that preserve a reference back to each source document:",
+            [
+              "Sales invoices and sales credit notes, with dates, values, tax codes and customer details needed for review.",
+              "Purchase invoices and purchase credit notes, including supporting tax documentation.",
+              "Import and customs records, with amounts reconciled to the accounting records.",
+              "Overseas-service purchases and other transactions needing reverse-charge consideration.",
+              "Adjustments and unusual transactions with a clear explanation."
+            ],
             "Keep zero-rated, exempt and out-of-scope categories distinct for review. They are different treatments, even if no VAT amount appears on an individual transaction. Do not decide the category from the customer's location or a software default alone."
-          ],
-          "bullets": [
-            "Sales invoices and sales credit notes, with dates, values, tax codes and customer details needed for review.",
-            "Purchase invoices and purchase credit notes, including supporting tax documentation.",
-            "Import and customs records, with amounts reconciled to the accounting records.",
-            "Overseas-service purchases and other transactions needing reverse-charge consideration.",
-            "Adjustments and unusual transactions with a clear explanation."
           ]
         },
         {
           "heading": "3. Check evidence and treatment before totaling the return",
           "paragraphs": [
             "Confirm that the transaction belongs to the entity and period under review, that supporting documents are available and that the tax code reflects the treatment being applied. Flag transactions requiring technical judgment rather than guessing a category to finish the spreadsheet.",
-            "Input VAT is not automatically recoverable because an expense appears in the accounts. The documentation, purpose of the cost, applicable restrictions and recovery timing need to be considered. Source check: 9 November 2026. [FTA: VAT Returns User Guide, input-tax section](https://tax.gov.ae/DataFolder/Files/Pdf/VAT%20Returns%20User%20GuideEnglishV40%2015%2008%202021%20SEP2021.pdf)."
+            "Input VAT is not automatically recoverable because an expense appears in the accounts. The documentation, purpose of the cost, applicable restrictions and recovery timing need to be considered. Source checked 20 November 2026. [UAE VAT law, Articles 54 and 55](https://tax.gov.ae/Datafolder/Files/Legislation/2025/Federal-Decree-Law-No-8-of-2017-and-amendments.pdf)."
           ],
           "bullets": []
         },
         {
           "heading": "Worked example: a simple net VAT calculation",
-          "paragraphs": [
-            "Hypothetical illustration only. Assume a UAE VAT-registered business has only standard-rated transactions for this example, all items fall in the correct return period, the credit note is valid, all purchase VAT shown is fully recoverable and no other adjustments apply. The UAE's standard VAT rate is 5%. Source check: 9 November 2026. [FTA: Standard VAT rate](https://tax.gov.ae/en/faq.aspx?keyword=What+is+the+standard+rate+of+VAT+in+the+UAE%3F).",
+          "paragraphs": [],
+          "bullets": [],
+          "blocks": [
+            "Hypothetical illustration only. Assume a UAE VAT-registered business has only standard-rated transactions for this example, all items fall in the correct return period, the credit note is valid, all purchase VAT shown is fully recoverable and no other adjustments apply. The UAE's standard VAT rate is 5%. Source checked 20 November 2026. [UAE VAT law, Article 3](https://tax.gov.ae/Datafolder/Files/Legislation/2025/Federal-Decree-Law-No-8-of-2017-and-amendments.pdf).",
+            [
+              "Sales excluding VAT: AED 100,000. Output VAT: AED 5,000.",
+              "Sales credit note excluding VAT: AED 10,000. Output VAT reduction: AED 500.",
+              "Net output VAT: AED 4,500.",
+              "Eligible purchases excluding VAT: AED 40,000. Recoverable input VAT: AED 2,000.",
+              "Simplified net VAT payable: AED 4,500 minus AED 2,000 = AED 2,500."
+            ],
             "This is an explanation of the arithmetic, not a completed return or a conclusion that a particular business can recover all purchase VAT. Imports, reverse charge, mixed-use costs, exempt activities, adjustments and other facts may change the actual result."
-          ],
-          "bullets": [
-            "Sales excluding VAT: AED 100,000. Output VAT: AED 5,000.",
-            "Sales credit note excluding VAT: AED 10,000. Output VAT reduction: AED 500.",
-            "Net output VAT: AED 4,500.",
-            "Eligible purchases excluding VAT: AED 40,000. Recoverable input VAT: AED 2,000.",
-            "Simplified net VAT payable: AED 4,500 minus AED 2,000 = AED 2,500."
           ]
         },
         {
@@ -2114,7 +2147,7 @@
       "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
       "path": "/",
       "heading": "Know your numbers. Plan your next move.",
-      "intro": "Accounting operations, finance leadership, UAE and Saudi tax support, company formation and audit coordination for startups and SMEs. Connect the work your business needs through a clearly defined scope.",
+      "intro": "Why hire one accountant when you can get a finance team? Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
       "cta": "Discuss your requirements",
       "sections": [
         {
@@ -2134,16 +2167,20 @@
       ],
       "faqs": [
         {
-          "question": "Which service should we start with?",
-          "answer": "Start with the problem and the condition of the records. If the books are incomplete, bookkeeping or cleanup may be the first dependency. If the accounts are current but decisions lack context, reporting, cash planning or finance advisory may be more useful."
+          "question": "What does AED 500 per month cover in the builder and the SME offer?",
+          "answer": "The finance team builder starts at AED 500 per month before tax for 15 hours. Bookkeeping includes VAT filing, and the monthly fee depends on the role hours you choose. SME Accounting & Tax Management also starts at AED 500 per month. We quote it separately after agreeing which records and deadlines the work covers. Standalone VAT Return Support starts at AED 750 per return."
         },
         {
-          "question": "Can you work alongside our finance team or existing adviser?",
-          "answer": "Yes. The engagement can complement the work already being done. Agree the handover, ownership and review points so there is no gap between transaction processing, management reporting and local tax or statutory work."
+          "question": "What affects the final price?",
+          "answer": "We look at the period to cover, the number of transactions and any gaps in the records. For example, tell us if earlier months still need reconciling so we can agree on that work before we quote."
         },
         {
-          "question": "Does the accounting website include technology development?",
-          "answer": "This website focuses on accounting, tax, finance leadership, audit support and company formation. Accounting-system configuration is part of the finance service range. Website, application and wider technology work is available to explore separately at LedgerByte Tech, ledgerbyte.co."
+          "question": "Does SME Accounting & Tax Management include all four pillars?",
+          "answer": "The starting price applies to SME Accounting & Tax Management. Controller and fractional CFO services are separately scoped and quoted. Discuss the combination your business needs."
+        },
+        {
+          "question": "Can I start with just one service?",
+          "answer": "Yes. You can start with one task, such as a VAT return or a month-end close. If you’re unsure where to start, tell us what’s due next."
         }
       ],
       "related": [],
@@ -2157,7 +2194,7 @@
           "path_status": "existing"
         }
       },
-      "closing_heading": "Tell us what your finance function needs next.",
+      "closing_heading": "Let’s talk about your finance team.",
       "section_order": [
         "Hero and two actions",
         "Trustpilot reviews immediately below the hero",

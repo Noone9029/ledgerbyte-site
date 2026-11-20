@@ -38,6 +38,10 @@ function Navigation() {
             UAE VAT support
             <ArrowUpRight aria-hidden="true" />
           </Link>
+          <Link href="/build-your-finance-department">
+            Build your finance department
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
         </div>
       </details>
       <Link href="/about">About us</Link>

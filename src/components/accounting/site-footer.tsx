@@ -22,6 +22,7 @@ export function AccountingFooter() {
         <div className="accounting-footer-grid">
           <div>
             <h2>Services</h2>
+            <Link href="/build-your-finance-department">Build your finance department</Link>
             {accountingServices.map((service) => (
               <Link
                 key={service.slug}
