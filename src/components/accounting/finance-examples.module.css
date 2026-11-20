@@ -89,6 +89,16 @@
 .worksheet tfoot th, .worksheet tfoot td { font-weight: 650; border-bottom: 0; }
 .worksheet .track { height: .38rem; }
 .worksheet .splitRow td { padding: .7rem 0 .2rem; border: 0; }
+.cashComparison {
+  display: grid;
+  gap: .85rem;
+  max-width: 34rem;
+  margin: 1rem 0 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+.cashComparison dt { color: var(--stone-250); font-size: .9rem; }
+.cashComparison dd { margin: .12rem 0 0; font-size: 1.4rem; font-weight: 620; line-height: 1.2; }
+.cashComparison .track { height: .55rem; }
 .split { display: flex; gap: 2px; height: .8rem; }
 .split i { flex-basis: 0; }
 .key { display: inline-block; width: .65rem; height: .65rem; margin-inline-end: .35rem; }
@@ -102,6 +112,23 @@
   .measures > div { display: flex; flex-direction: column; justify-content: space-between; }
   .measures dd { font-size: clamp(.95rem, 3.9cqi, 1.36rem); }
   .measures dt { font-size: .82rem; }
+}
+@media (max-width: 1200px) {
+  /* Keep the values outside the fixed contact button's column at any scroll position. */
+  .preview figcaption { padding-inline-end: calc(66px + env(safe-area-inset-right, 0px)); }
+}
+@container (max-width: 450px) {
+  .measures { grid-template-columns: 1fr; gap: .65rem; }
+  .measures > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: .6rem;
+    position: relative;
+    padding-bottom: .65rem;
+  }
+  .measures dd { margin: 0; white-space: nowrap; }
+  .measures .track { position: absolute; inset: auto 0 0; }
 }
 .offerPrice { margin: .65rem 0; color: var(--ivory-100); font-size: clamp(1.4rem, 2.8vw, 2.1rem); line-height: 1.15; }
 .offerPrice small { color: var(--stone-250); font-size: .56em; font-weight: 400; }

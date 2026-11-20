@@ -1,5 +1,28 @@
 import { expect, test } from "@playwright/test";
 
+test("sample workpapers download the records displayed on each service", async ({ page, request }) => {
+  for (const slug of ["accounts-payable", "accounts-receivable", "corporate-tax-filing", "internal-audit", "external-audit"]) {
+    await page.goto(`/finance/services/${slug}#sample-deliverable`);
+    const sample = page.locator("#sample-deliverable");
+    const link = sample.getByRole("link", { name: /Download sample/ });
+    const file = await link.getAttribute("href");
+    expect(file).toMatch(/^\/samples\/[a-z-]+\.csv$/);
+    const response = await request.get(file!);
+    expect(response.ok()).toBeTruthy();
+    expect(response.headers()["content-disposition"]).toMatch(/^attachment;/);
+    const labels = await sample.locator('tbody th[scope="row"]').allTextContents();
+    expect(labels.length).toBeGreaterThan(0);
+    const csv = await response.text();
+    for (const label of labels) expect(csv).toContain(`"${label}"`);
+    if (slug === "accounts-receivable") {
+      const download = page.waitForEvent("download");
+      await link.click();
+      expect((await download).suggestedFilename()).toBe("ledgerbyte-illustrative-receipt-allocation.csv");
+    }
+  }
+  expect((await request.get("/samples/unknown.csv")).status()).toBe(404);
+});
+
 test("each worked example loads its own illustration at the example section", async ({ page }) => {
   const examples = [
     ["/", "worked-example", "profit-to-cash"],
@@ -53,7 +76,20 @@ test("homepage offers lead to scoped contact requests and the existing sliding c
   await expect(page.locator(".accounting-home-process-steps > li").last()).toBeVisible();
   await expect(page.locator(".accounting-featured [data-service-flashcards] > details")).toHaveCount(8);
   await page.getByRole("link", { name: "Discuss SME support", exact: true }).click();
-  await expect(page.getByLabel("Support you need")).toHaveValue("Accounting & Bookkeeping");
+  const service = page.getByLabel("Support you need");
+  await expect(service).toHaveValue("SME Accounting & Tax Management");
+  await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
+  await expect(page.locator("#enquiry-offer-scope")).toContainText("Monthly books and tax work");
+  const whatsapp = page.locator("a.floating-whatsapp");
+  await expect(whatsapp).toHaveCount(1);
+  const draft = decodeURIComponent((await whatsapp.getAttribute("href"))!);
+  expect(draft).toContain("SME Accounting & Tax Management");
+  expect(draft).toContain("Monthly books and tax work");
+  expect(draft).toContain("United Arab Emirates");
+  await service.selectOption("Accounting Automation & Systems");
+  await expect(page.locator("#enquiry-offer-scope")).toHaveCount(0);
+  await expect(whatsapp).toHaveAttribute("href", /Accounting%20Automation/);
+  await expect(whatsapp).not.toHaveAttribute("href", /SME/);
 });
 
 test("homepage catalogue filters service scopes and restores all services after an empty search", async ({ page }) => {
@@ -74,9 +110,16 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
     const search = page.getByRole("searchbox", { name: "Find your service" });
     for (const [term, destination] of [
       ["accounting automation", "/finance/services/accounting-automation-systems"],
+      ["automate", "/finance/services/accounting-automation-systems"],
+      ["overdue invoices", "/finance/services/accounts-receivable"],
+      ["supplier bills", "/finance/services/accounts-payable"],
       ["supplier payments", "/finance/services/accounts-payable"],
       ["tax return", "/finance/services/corporate-tax-filing"],
       ["cfo fractional", "/finance/services/fractional-cfo-advisory"],
+      ["KSA VAT", "/finance/services/ksa-vat"],
+      ["VAT registration", "/finance/services/vat-registration"],
+      ["VAT", "/uae-vat"],
+      ["quarterly VAT", "/uae-vat"],
       ["VAT returns", "/uae-vat"],
       ["VAT return", "/uae-vat"],
     ]) {
@@ -84,8 +127,30 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
       await expect(page.locator(".accounting-service-results h3 a").first()).toHaveAttribute("href", destination);
     }
     await page.getByRole("link", { name: "Discuss VAT Return Support", exact: true }).click();
-    await expect(page.getByLabel("Support you need")).toHaveValue("UAE VAT support");
+    await expect(page.getByLabel("Support you need")).toHaveValue("VAT Return Support");
+    await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
     await expect(page).toHaveURL(/#enquiry-heading$/);
+  }
+});
+
+test("@nojs the UAE offer keeps its identity in the email and WhatsApp drafts", async ({ page }) => {
+  for (const [cta, name, scope] of [
+    ["Discuss SME support", "SME Accounting & Tax Management", "Monthly books and tax work"],
+    ["Discuss VAT return support", "VAT Return Support", "Standalone support"],
+    ["Discuss corporate tax", "UAE Corporate Tax Review & Filing", "Review and filing"],
+  ]) {
+    await page.goto("/");
+    await page.locator("#offers").getByRole("link", { name: cta, exact: true }).click();
+    const inline = page.locator('.accounting-contact-intro a[href*="wa.me"]');
+    const floating = page.locator("a.floating-whatsapp");
+    await expect(floating).toHaveCount(1);
+    const href = (await inline.getAttribute("href"))!;
+    await expect(floating).toHaveAttribute("href", href);
+    for (const draft of [href, (await page.locator(".accounting-form-panel noscript a").getAttribute("href"))!]) {
+      expect(decodeURIComponent(draft)).toContain(name);
+      expect(decodeURIComponent(draft)).toContain(scope);
+      expect(decodeURIComponent(draft)).toContain("United Arab Emirates");
+    }
   }
 });
 

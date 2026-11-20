@@ -5,6 +5,7 @@ export const homeUpdate = {
   offers: [
     {
       name: "SME Accounting & Tax Management",
+      serviceSlug: "accounting-bookkeeping",
       fit: "Monthly books and tax work, quoted separately from the team builder.",
       description: "Keep your books current and plan for upcoming tax work. We agree which records and deadlines your monthly fee covers.",
       price: 500,
@@ -16,6 +17,7 @@ export const homeUpdate = {
     },
     {
       name: "VAT Return Support",
+      serviceSlug: "tax-vat-compliance",
       fit: "Standalone support for one UAE VAT return.",
       description: "We reconcile your VAT records and prepare the return for review. We agree with you separately on who approves it and who is authorized to file.",
       price: 750,
@@ -27,6 +29,7 @@ export const homeUpdate = {
     },
     {
       name: "UAE Corporate Tax Review & Filing",
+      serviceSlug: "corporate-tax-filing",
       fit: "Review and filing for an agreed tax period.",
       description: "Get help reviewing the tax calculation and preparing your return for the agreed period. We confirm who is authorized to file before submission.",
       price: 750,

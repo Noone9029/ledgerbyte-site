@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { serviceContactHref } from "@/content/accounting";
+import { marketNames, serviceContactHref } from "@/content/accounting";
 import { homeUpdate } from "@/content/home-update";
 
 export function HomeOffers() {
@@ -23,7 +23,7 @@ export function HomeOffers() {
               <p>{offer.description}</p>
               <Link className="accounting-offer-scope" href={offer.href}>{offer.scope} ↗</Link>
             </details>
-            <Link className="text-link" href={serviceContactHref(offer.service)}>{offer.cta}<ArrowUpRight aria-hidden="true" /></Link>
+            <Link className="text-link" href={serviceContactHref(offer.name, marketNames["regions/uae"])}>{offer.cta}<ArrowUpRight aria-hidden="true" /></Link>
           </section>
         ))}
       </div>
@@ -40,9 +40,8 @@ export function HomeWorkstreams() {
     <div className="accounting-home-pillars">
       {homeUpdate.workstreams.map(work => (
         <article key={work.name}>
-          <Link href={work.href}>
-            <h3>{work.need}</h3>
-            <span>{work.name}<ArrowUpRight aria-hidden="true" /></span>
+          <Link href={work.href} title={work.need}>
+            {work.name}<ArrowUpRight aria-hidden="true" />
           </Link>
         </article>
       ))}

@@ -24,6 +24,32 @@ async function openServices(page: Page) {
   return nav;
 }
 
+test("the worked-example jump clears the header and the cash figure clears WhatsApp", async ({ page, isMobile }) => {
+  test.skip(!isMobile);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const viewport of [{ width: 320, height: 640 }, { width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 844, height: 390 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await page.getByRole("link", { name: "See the profit-to-cash example" }).click();
+    const section = page.locator("#worked-example");
+    await expect.poll(() => section.evaluate(element => {
+      const header = document.querySelector("header")!;
+      const gap = element.getBoundingClientRect().top - header.getBoundingClientRect().bottom;
+      return gap >= -1 && gap <= 32;
+    })).toBe(true);
+    const lastAmount = section.locator("dd").last();
+    await expect(lastAmount).toContainText("−AED 20,000");
+    const horizontalClearance = await lastAmount.evaluate(element => {
+      const text = document.createRange();
+      text.selectNodeContents(element.firstChild!);
+      const bubble = document.querySelector(".floating-whatsapp")!.getBoundingClientRect();
+      return bubble.left - text.getBoundingClientRect().right;
+    });
+    expect(horizontalClearance).toBeGreaterThan(0);
+  }
+});
+
 test("mobile primary actions leave the WhatsApp hit target clear", async ({ page, isMobile }) => {
   test.skip(!isMobile);
   for (const width of [320, 390]) {

@@ -1,7 +1,9 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { serviceWhatsAppHref } from "@/lib/enquiry-options";
+import { serviceEmailHref, serviceWhatsAppHref } from "@/lib/enquiry-options";
+import { accountingContact } from "@/content/accounting";
+import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
 
 const ServiceContext = createContext<{
   service: string;
@@ -22,11 +24,18 @@ export function useEnquiryService() {
   return useContext(ServiceContext);
 }
 
-export function EnquiryWhatsApp() {
+export function EnquiryWhatsApp({ floating = false }: { floating?: boolean }) {
   const selection = useEnquiryService();
+  const href = serviceWhatsAppHref(selection?.service ?? "", selection?.market);
+  if (floating) return <FloatingWhatsApp href={href} />;
   return (
-    <a className="button button-amber" href={serviceWhatsAppHref(selection?.service ?? "", selection?.market)} target="_blank" rel="noreferrer">
+    <a className="button button-amber" href={href} target="_blank" rel="noreferrer">
       WhatsApp ↗
     </a>
   );
+}
+
+export function EnquiryEmail() {
+  const selection = useEnquiryService();
+  return <a href={serviceEmailHref(selection?.service ?? "", selection?.market)}>{accountingContact.contact.email}</a>;
 }

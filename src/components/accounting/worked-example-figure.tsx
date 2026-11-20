@@ -97,7 +97,7 @@ export function WorkedExampleFigure({ pageKey }: { pageKey: string }) {
   return (
     <figure className={styles.figure}>
       <Image className={styles.artwork} src={`/art/examples/${figure.artwork}.webp`} alt=""
-        width={960} height={640} sizes="(max-width: 600px) 92vw, (max-width: 1100px) 38vw, 365px" />
+        width={960} height={640} sizes="auto, (max-width: 575px) 94vw, (max-width: 920px) 60vw, (max-width: 1100px) 37vw, 450px" />
       <figcaption className={styles.caption}>
         <strong className={styles.title}>{figure.title}</strong>
         {figure.chart.kind === "allocation" ? <Allocation chart={figure.chart} /> : <Comparison chart={figure.chart} />}

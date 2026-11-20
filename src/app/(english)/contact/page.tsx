@@ -1,5 +1,5 @@
 import { AccountingContactForm } from "@/components/accounting/contact-form";
-import { EnquiryChannels, EnquiryWhatsApp } from "@/components/accounting/enquiry-channels";
+import { EnquiryChannels, EnquiryEmail, EnquiryWhatsApp } from "@/components/accounting/enquiry-channels";
 import { enquiryMarket, financeEnquiryChoices } from "@/lib/enquiry-options";
 import {
   accountingContact,
@@ -35,9 +35,7 @@ export default async function ContactPage({ searchParams }: ContactProps) {
               it in WhatsApp.
             </p>
             <div className="accounting-contact-details">
-              <a href={"mailto:" + accountingContact.contact.email}>
-                {accountingContact.contact.email}
-              </a>
+              <EnquiryEmail />
               <a
                 href={"tel:" + accountingContact.contact.phone.replace(/\s/g, "")}
               >
@@ -55,6 +53,7 @@ export default async function ContactPage({ searchParams }: ContactProps) {
             <AccountingContactForm initialService={service} initialMarket={market} />
           </section>
         </section>
+        <EnquiryWhatsApp floating />
       </EnquiryChannels>
     </main>
   );

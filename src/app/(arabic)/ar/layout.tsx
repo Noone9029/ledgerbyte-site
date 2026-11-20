@@ -8,6 +8,7 @@ import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
+import { accountingContact } from "@/content/accounting";
 import { availableArabicPairs, isSeoReview } from "@/lib/localization";
 import "../../globals.css";
 
@@ -28,6 +29,6 @@ export default function ArabicLayout({ children }: { children: React.ReactNode }
     {children}
     <footer className="arabic-footer accounting-wrap"><p>LedgerByte · الشارقة، الإمارات العربية المتحدة</p><nav aria-label="روابط التواصل"><a href="mailto:info@ledgerbyte.io" dir="ltr">info@ledgerbyte.io</a><a href="tel:+971561371569" dir="ltr">+971 56 137 1569</a><a href="https://wa.me/971561371569">واتساب</a><Link href="/privacy-policy" lang="en">Privacy policy (English)</Link></nav></footer>
     <SiteAnalytics allowedPaths={pairs.map((pair) => pair.ar)} />
-    <FloatingWhatsApp />
+    <FloatingWhatsApp href={accountingContact.social.whatsapp} />
   </body></html>;
 }

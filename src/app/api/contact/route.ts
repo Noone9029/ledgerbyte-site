@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { financeEnquiryChoices } from "@/lib/enquiry-options";
+import { financeEnquiryChoices, selectedOffer } from "@/lib/enquiry-options";
 
 const choices = new Set(financeEnquiryChoices);
 const schema = z
@@ -85,6 +85,7 @@ export async function POST(request: Request) {
       },
       { status: 503 },
     );
+  const offer = selectedOffer(contact.service);
   const text = [
     "LedgerByte website enquiry",
     "",
@@ -93,6 +94,7 @@ export async function POST(request: Request) {
     "Business location: " + contact.location,
     "Company: " + (contact.companyName || "Not provided"),
     "Service: " + contact.service,
+    ...(offer ? ["Offer scope: " + offer.fit] : []),
     "",
     "Message:",
     contact.message || "Not provided",

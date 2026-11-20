@@ -1,0 +1,60 @@
+export interface ServiceSample {
+  file: string;
+  title: string;
+  columns: string[];
+  rows: (string | number)[][];
+}
+
+// Illustrative records based on the service scopes and receipt example in accounting.json.
+export const serviceSamples: Partial<Record<string, ServiceSample>> = {
+  "services/accounts-payable": {
+    file: "supplier-exceptions.csv",
+    title: "Supplier exceptions log",
+    columns: ["Item", "Evidence to check", "Status"],
+    rows: [
+      ["Resent invoice", "Supplier, reference and amount", "Possible duplicate"],
+      ["Unmatched credit", "Supplier statement", "Awaiting reconciliation"],
+      ["Bank details change", "Vendor verification", "On hold"],
+    ],
+  },
+  "services/accounts-receivable": {
+    file: "receipt-allocation.csv",
+    title: "Receipt allocation",
+    columns: ["Ledger entry", "Applied · AED", "Unallocated · AED"],
+    rows: [
+      ["Bank receipt", 0, 10000],
+      ["First unpaid invoice", 6000, 4000],
+      ["Second unpaid invoice", 4000, 0],
+    ],
+  },
+  "services/corporate-tax-filing": {
+    file: "filing-pack-index.csv",
+    title: "Filing pack index",
+    columns: ["Record", "Basis", "Status"],
+    rows: [
+      ["Accounting result", "Trial balance", "Reconciled"],
+      ["Proposed adjustment", "Supporting schedule", "For review"],
+      ["Proposed return", "Tax computation", "Awaiting approval"],
+    ],
+  },
+  "services/internal-audit": {
+    file: "controls-testing.csv",
+    title: "Supplier-payment control test",
+    columns: ["Control", "Evidence", "Follow-up"],
+    rows: [
+      ["Vendor changes", "System role list", "Check access"],
+      ["Invoice approval", "Approval record", "Trace sign-off"],
+      ["Payment release", "Payment confirmation", "Verify authority"],
+    ],
+  },
+  "services/external-audit": {
+    file: "audit-request-tracker.csv",
+    title: "Audit request tracker",
+    columns: ["Request", "Supporting record", "Status"],
+    rows: [
+      ["Bank balances", "Bank reconciliation", "Prepared"],
+      ["Receivables", "Ageing report", "For review"],
+      ["Adjustments", "Adjustment log", "Awaiting approval"],
+    ],
+  },
+};

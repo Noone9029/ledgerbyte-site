@@ -1,0 +1,49 @@
+.guides {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.card {
+  display: grid;
+  align-content: start;
+  height: 100%;
+  gap: .9rem;
+  color: var(--ivory-100);
+  border-bottom: 1px solid var(--line-dark);
+  padding-bottom: 1.2rem;
+}
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 3 / 2;
+}
+.card h2, .card h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .65rem;
+  margin: 0;
+  font-size: clamp(1.18rem, 1.7vw, 1.6rem);
+  line-height: 1.2;
+}
+.card h2 svg, .card h3 svg { align-self: start; flex: none; width: 1.1rem; height: 1.1rem; margin: .15em 0 0; color: var(--amber-400); }
+.card p { margin: .7rem 0 0; line-height: 1.55; color: var(--stone-250); }
+.card:is(:hover, :focus-visible) :is(h2, h3) { text-decoration: underline; text-underline-offset: .16em; }
+.index { padding-bottom: clamp(2.75rem, 6vw, 5rem); }
+@media (max-width: 760px) {
+  .guides { grid-template-columns: 1fr; gap: .9rem; }
+  .card {
+    grid-template-columns: minmax(72px, 29%) minmax(0, 1fr);
+    align-items: center;
+    align-content: normal;
+    gap: .8rem;
+    padding-bottom: .9rem;
+  }
+  .card p { font-size: .93rem; }
+  .index .card { align-items: start; }
+}

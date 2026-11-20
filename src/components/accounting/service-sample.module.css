@@ -1,0 +1,24 @@
+.sheet {
+  background: var(--graphite-850);
+  color: var(--ivory-100);
+  border: 1px solid var(--line-dark);
+  border-top: 3px solid var(--amber-400);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  min-width: 0;
+  margin: 0;
+  padding: clamp(.85rem, 2vw, 1.55rem);
+}
+.sheet figcaption { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .4rem; }
+.imprint, .sampleLabel { color: var(--stone-250); font-size: .72rem; line-height: 1.4; }
+.imprint { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.sheet figcaption strong { width: 100%; margin-block: .7rem .9rem; font-size: clamp(1.3rem, 2.1vw, 1.85rem); line-height: 1.12; font-weight: 550; letter-spacing: -.04em; }
+.sheet table { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: clamp(.78rem, 1vw, .9rem); line-height: 1.35; }
+.sheet th, .sheet td { padding: .65rem .24rem; border-bottom: 1px solid var(--line-dark); text-align: start; vertical-align: top; overflow-wrap: anywhere; }
+.sheet th:first-child { padding-inline-start: 0; }
+.sheet thead th { color: var(--stone-250); font-size: .9em; font-weight: 550; border-top: 1px solid var(--line-dark); }
+.sheet tbody th { font-weight: 600; }
+.sheet .number { text-align: end; font-variant-numeric: tabular-nums; }
+.sheet tbody tr:last-child .number:last-child { color: var(--amber-400); font-weight: 700; }
+.sheet .download { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; margin-block-start: .45rem; color: var(--ivory-100); font-size: .88rem; font-weight: 650; text-decoration: underline; text-underline-offset: .2rem; }
+.download span { font-size: .75rem; font-weight: 400; color: var(--stone-250); }
+:global(.accounting-prose) .sheet { margin-block: 1rem 1.5rem; }

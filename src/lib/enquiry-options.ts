@@ -1,6 +1,8 @@
 import { accountingContact, accountingCopy, accountingServices, marketNames } from "@/content/accounting";
+import { homeUpdate } from "@/content/home-update";
 
 export const financeEnquiryChoices = [
+  ...homeUpdate.offers.map(offer => offer.name),
   ...accountingServices.map((service) => service.title),
   "UAE VAT support",
   "Not sure yet",
@@ -13,11 +15,28 @@ export function enquiryMarket(value: unknown) {
   return typeof value === "string" && markets.has(value) ? value : "";
 }
 
-export function serviceWhatsAppHref(service: string, market = "") {
+export function selectedOffer(service: string) {
+  return homeUpdate.offers.find(offer => offer.name === service);
+}
+
+function enquiryDraft(service: string, market: string) {
   let message = accountingCopy.C08.whatsapp_generic_text;
   if (financeEnquiryChoices.includes(service)) {
     message = `Hi LedgerByte, I would like to discuss ${service}.`;
+    const offer = selectedOffer(service);
+    if (offer) message += ` ${offer.fit}`;
   }
   if (enquiryMarket(market)) message += ` Market: ${market}.`;
-  return `${accountingContact.social.whatsapp}?text=${encodeURIComponent(message)}`;
+  return message;
+}
+
+export function serviceWhatsAppHref(service: string, market = "") {
+  return `${accountingContact.social.whatsapp}?text=${encodeURIComponent(enquiryDraft(service, market))}`;
+}
+
+export function serviceEmailHref(service: string, market = "") {
+  const email = "mailto:" + accountingContact.contact.email;
+  if (!financeEnquiryChoices.includes(service) && !enquiryMarket(market)) return email;
+  const subject = financeEnquiryChoices.includes(service) ? "LedgerByte enquiry: " + service : "LedgerByte enquiry";
+  return `${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(enquiryDraft(service, market))}`;
 }

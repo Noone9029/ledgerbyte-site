@@ -45,6 +45,24 @@ function SplitBar({ first, second }: { first: number; second: number }) {
   );
 }
 
+export function GuideCashChart({ view }: { view: "result" | "movements" }) {
+  const measures = view === "result"
+    ? [{ label: "Accounting profit", amount: balances[1] }, { label: "Change in cash", amount: balances[6] }]
+    : [{ label: "Cash received", amount: 60000 }, { label: "Cash paid", amount: 80000 }];
+  const min = Math.min(0, ...measures.map(row => row.amount));
+  const max = Math.max(...measures.map(row => row.amount));
+  return (
+    <dl className={styles.cashComparison}>
+      {measures.map(row => (
+        <div key={row.label}>
+          <dt>{row.label}</dt>
+          <dd>{aed(row.amount)}<RangeBar to={row.amount} min={min} max={max} /></dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 export function CashBridgePreview() {
   const totals = [
     { label: "Accounting profit", amount: balances[1] },

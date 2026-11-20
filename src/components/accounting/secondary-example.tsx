@@ -50,7 +50,7 @@ export function SecondaryExample({ kind }: { kind: "tax-adjustment" | "delayed-c
   return (
     <figure className={frame.figure}>
       <Image className={frame.artwork} src={`/art/examples/${kind}.webp`} alt=""
-        width={960} height={640} sizes="(max-width: 600px) 92vw, (max-width: 1100px) 38vw, 365px" />
+        width={960} height={640} sizes="auto, (max-width: 575px) 94vw, (max-width: 920px) 60vw, (max-width: 1100px) 37vw, 450px" />
       <figcaption className={frame.caption}>
         <strong className={frame.title}>{tax ? "From ledger to tax review" : "Projected closing cash"}</strong>
         {tax ? <TaxReviewFlow /> : <CollectionComparison />}

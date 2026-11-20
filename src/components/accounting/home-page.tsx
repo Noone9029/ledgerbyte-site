@@ -2,11 +2,12 @@ import Image from "next/image";
 import { insightsEnglishUrl } from "@/lib/review-links";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { accountingContact, accountingPages, accountingServices, contentPath, guideKeys } from "@/content/accounting";
+import { accountingContact, accountingPages, accountingServices } from "@/content/accounting";
 import { Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
 import { ScrollReveals } from "@/components/motion/scroll-reveals";
 import { HomeCatalogue } from "./home-catalogue";
+import { GuideCards } from "./guide-cards";
 import { HomeOffers, HomeWorkingProcess, HomeWorkstreams } from "./home-offers";
 import { homeUpdate } from "@/content/home-update";
 import { CashBridgePreview } from "./finance-examples";
@@ -52,6 +53,7 @@ export function AccountingHome() {
             <p className="eyebrow">Worked example</p>
             <h2>{accountingPages["insights/profit-and-cash"].heading}</h2>
             <p>Customers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.</p>
+            <Link className="text-link" href="/finance/services/accounts-receivable#sample-deliverable">Sample receipt allocation<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <div className="accounting-home-example"><CashBridgePreview /></div>
           <aside className="accounting-review-link" aria-label="Client reviews">
@@ -61,9 +63,7 @@ export function AccountingHome() {
         </section>
 
         <section className="accounting-finance-services accounting-wrap" data-home-section="finance-services" data-scroll-reveal>
-          <div className="accounting-section-heading">
-            <div><p className="eyebrow">A team around your business</p><h2>{home.sections[0].heading}</h2></div>
-          </div>
+          <h2>{home.sections[0].heading}</h2>
           <HomeWorkstreams />
           <aside className="accounting-home-department">
             <h3><Link href="/finance/services/finance-department-outsourcing">Full finance department outsourcing<ArrowUpRight aria-hidden="true" /></Link></h3>
@@ -84,13 +84,13 @@ export function AccountingHome() {
         <section id="team" className="accounting-team accounting-wrap" data-home-section="team" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div><p className="eyebrow">The people behind the work</p><h2>Meet your finance team.</h2></div>
-            <p>Explore the team’s backgrounds and discuss the people responsible for your engagement.</p>
+            <Link className="text-link" href="/about#team">About us<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <aside className="accounting-founder-note">
             <p className="eyebrow">From the founder</p><h3>Can we afford the next move?</h3><p>{homeUpdate.founder}</p>
             <Link className="text-link" href="/about/team/haider-ali">Haider Ali, ACMA, CGMA · Founder &amp; Managing Partner<ArrowUpRight aria-hidden="true" /></Link>
           </aside>
-          <TeamGrid />
+          <TeamGrid compact />
         </section>
 
         <section id="guides" className="accounting-guides accounting-wrap" data-home-section="guides" data-scroll-reveal>
@@ -99,14 +99,7 @@ export function AccountingHome() {
             <Link className="text-link" href="/insights">Browse practical guides<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <p className="accounting-home-blog"><a className="text-link" href={insightsEnglishUrl()} target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
-          <div>
-            {guideKeys.map((key, index) => (
-              <Link href={contentPath(key)} key={key}>
-                <span className="accounting-section-number">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{accountingPages[key].heading}</h3><ArrowUpRight aria-hidden="true" />
-              </Link>
-            ))}
-          </div>
+          <GuideCards />
         </section>
 
         <Faqs items={home.faqs} heading="Before you get in touch." />

@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import content from "../src/content/accounting.json";
+import { homeUpdate } from "../src/content/home-update";
 
 const routes = [
   ...new Set([
@@ -96,6 +97,28 @@ test("filing prices survive the handoff and worked examples reconcile", async ({
   await page.goto("/finance/services/accounting-bookkeeping");
   const receipt = page.getByRole("table", { name: "Illustrative receipt allocation · AED" });
   await expect(receipt.locator("tfoot td")).toHaveText("0");
+});
+
+test("guide cards lead to illustrated articles and the profit guide shows its ledger once", async ({ page }) => {
+  for (const path of ["/#guides", "/insights"]) {
+    await page.goto(path);
+    const cards = page.locator(path === "/insights" ? 'section[aria-label="Practical guides"] li' : "#guides li");
+    await expect(cards).toHaveCount(3);
+    for (const [slug, art] of [
+      ["month-end-close", "insurance-prepayment"],
+      ["profit-and-cash", "profit-to-cash"],
+      ["vat-records", "vat-reconciliation"],
+    ]) {
+      await expect(cards.locator(`a[href="/insights/${slug}"] img[src*="${art}.webp"]`)).toBeVisible();
+    }
+  }
+  await page.goto("/insights/profit-and-cash");
+  await expect(page.locator('main img[src*="profit-to-cash.webp"]')).toHaveCount(1);
+  await page.getByRole("link", { name: "See the calculation" }).click();
+  await expect(page.locator("#section-2 dl")).toContainText("AED 60,000");
+  await page.getByRole("link", { name: "See the cash bridge" }).click();
+  await expect(page).toHaveURL(/#cash-bridge$/);
+  await expect(page.getByRole("table", { name: "Illustrative cash bridge · AED" })).toBeVisible();
 });
 
 test("catalogue shows all 22 services and filters by task and category", async ({
@@ -205,7 +228,7 @@ test("contact retains service context and separates email acceptance from WhatsA
   );
   await expect(
     page.getByLabel("Support you need").locator("option"),
-  ).toHaveCount(content.services.length + 3);
+  ).toHaveCount(content.services.length + homeUpdate.offers.length + 3);
   const whatsapp = page.getByRole("link", { name: "WhatsApp ↗", exact: true });
   expect(
     new URL((await whatsapp.getAttribute("href")) ?? "").searchParams.get(
@@ -286,6 +309,7 @@ test("contact API rejects bad data and validates every service without sending m
   };
   for (const service of [
     ...content.services.map((s) => s.title),
+    ...homeUpdate.offers.map(offer => offer.name),
     "UAE VAT support",
     "Not sure yet",
   ])

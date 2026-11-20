@@ -1,10 +1,6 @@
-import Link from "next/link";
-import {
-  accountingCopy,
-  accountingPages,
-  contentPath,
-  guideKeys,
-} from "@/content/accounting";
+import { accountingCopy } from "@/content/accounting";
+import { GuideCards } from "@/components/accounting/guide-cards";
+import styles from "@/components/accounting/guide-cards.module.css";
 import { createMetadata } from "@/lib/seo";
 import { insightsEnglishUrl } from "@/lib/review-links";
 export const metadata = createMetadata({
@@ -23,18 +19,8 @@ export default function InsightsPage() {
           LedgerByte Insights ↗
         </a>
       </section>
-      <section className="accounting-market-grid accounting-wrap">
-        {guideKeys.map((key) => (
-          <article key={key}>
-            <p className="eyebrow">Practical guides</p>
-            <h2>
-              <Link href={contentPath(key)}>
-                {accountingPages[key].heading} ↗
-              </Link>
-            </h2>
-            <p>{accountingPages[key].intro}</p>
-          </article>
-        ))}
+      <section className={`accounting-wrap ${styles.index}`} aria-label="Practical guides">
+        <GuideCards summaries />
       </section>
     </main>
   );

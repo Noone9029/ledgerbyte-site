@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
-import { enquiryMarket, financeEnquiryChoices, serviceWhatsAppHref } from "@/lib/enquiry-options";
+import { enquiryMarket, financeEnquiryChoices, selectedOffer, serviceEmailHref, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { useEnquiryService } from "./enquiry-channels";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -23,6 +23,7 @@ export function AccountingContactForm({
   initialService: string; initialMarket?: string; locale?: "en" | "ar";
 }) {
   const selection = useEnquiryService();
+  const offer = selectedOffer(selection?.service ?? initialService);
   const enhanced = useHydrated();
   const [fallbackService, setFallbackService] = useState(initialService);
   const ar = locale === "ar";
@@ -157,6 +158,7 @@ export function AccountingContactForm({
               <select
                 name="service"
                 onChange={(event) => selection?.setService(event.target.value)}
+                aria-describedby={offer ? "enquiry-offer-scope" : undefined}
                 required
                 defaultValue={
                   financeEnquiryChoices.includes(initialService) ? initialService : ""
@@ -169,6 +171,7 @@ export function AccountingContactForm({
                   <option key={service} value={service}>{ar ? (arabicDrafts.services[service as keyof typeof arabicDrafts.services] || service) : service}</option>
                 ))}
               </select>
+              {offer && <small id="enquiry-offer-scope">{offer.fit}</small>}
             </label>
           </div>
           <label>
@@ -213,7 +216,7 @@ export function AccountingContactForm({
           >
             <p>{feedback}</p>
             {status === "error" && <div className="hero-actions">
-              <a className="text-link" href={`mailto:info@ledgerbyte.io?subject=${encodeURIComponent("LedgerByte enquiry: " + fallbackService)}`}>info@ledgerbyte.io</a>
+              <a className="text-link" href={serviceEmailHref(fallbackService, selection?.market)}>info@ledgerbyte.io</a>
               <a className="text-link" href={serviceWhatsAppHref(fallbackService, selection?.market)} target="_blank" rel="noreferrer">WhatsApp ↗</a>
             </div>}
           </div>
@@ -221,7 +224,7 @@ export function AccountingContactForm({
       </form>
       <noscript>
         <p>
-          {say("To send an enquiry, please email")} <a href="mailto:info@ledgerbyte.io">info@ledgerbyte.io</a> {say("or use the WhatsApp link on this page.")}
+          {say("To send an enquiry, please email")} <a href={serviceEmailHref(initialService, initialMarket)}>info@ledgerbyte.io</a> {say("or use the WhatsApp link on this page.")}
         </p>
       </noscript>
     </>

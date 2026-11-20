@@ -136,13 +136,13 @@ export function ServiceCatalogue({ children }: { children?: ReactNode }) {
       {home && !filtering && children}
       {showRows && (
         <ul className="accounting-service-results">
-          {results.map(({ service, title, scope, href, enquiry }) => (
-            <li key={service.slug} data-service-card data-service-slug={service.slug}>
+          {results.map(({ service, title, scope, href, enquiry, market }) => (
+            <li key={href} data-service-card data-service-slug={service.slug}>
               <div>
                 <h3><Link href={href}>{title}</Link></h3>
                 <p>{scope}</p>
               </div>
-              <Link className="text-link" aria-label={`Discuss ${title}`} href={serviceContactHref(enquiry)}>Discuss ↗</Link>
+              <Link className="text-link" aria-label={`Discuss ${title}`} href={serviceContactHref(enquiry, market)}>Discuss ↗</Link>
             </li>
           ))}
         </ul>

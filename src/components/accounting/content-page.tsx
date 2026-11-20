@@ -14,10 +14,12 @@ import {
 import { team } from "@/content";
 import { guideExamples } from "@/content/insight-guides";
 import { homeUpdate } from "@/content/home-update";
-import { CashBridgeWorksheet, CashTimingSample, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
+import { CashBridgeWorksheet, CashTimingSample, GuideCashChart, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import { WorkedExampleFigure } from "./worked-example-figure";
 import figureStyles from "./worked-example-figure.module.css";
 import { SecondaryExample } from "./secondary-example";
+import { ServiceSample } from "./service-sample";
+import { serviceSamples } from "@/content/service-samples";
 import exampleStyles from "./finance-examples.module.css";
 import { getPageSeo, type SeoPagePath } from "@/content/seo";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
@@ -92,10 +94,10 @@ export function Faqs({ items, heading = "Questions, answered." }: { items: Accou
     </section>
   );
 }
-export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
+export function TeamGrid({ locale = "en", compact = false }: { locale?: "en" | "ar"; compact?: boolean }) {
   const roles: Record<string, string> = { "Managing Partner": "الشريك الإداري", "CTO": "المدير التقني", "Financial Controller": "المراقب المالي", "Fractional Controller": "المراقب المالي الجزئي", "Customer Success Manager": "مديرة نجاح العملاء", "Senior Tax Consultant": "مستشار ضرائب أول" };
   return (
-    <div className="accounting-team-grid">
+    <div className={compact ? "accounting-team-grid accounting-team-roster" : "accounting-team-grid"}>
       {team.map((person) => (
         <article key={person.name}>
           <Link href={buildPersonPath(person.name)}>
@@ -103,15 +105,18 @@ export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
               <Image
                 src={person.image}
                 alt=""
-                unoptimized
+                unoptimized={!compact}
                 fill
-                sizes="(max-width: 600px) 44vw, (max-width: 1000px) 28vw, 18vw"
+                sizes={compact ? "54px" : "(max-width: 600px) 44vw, (max-width: 1000px) 28vw, 18vw"}
               />
             </div>
             <h3>{person.name}</h3>
+            {compact && <p>{person.role}</p>}
           </Link>
-          <p>{locale === "ar" ? roles[person.role] || person.role : person.role}</p>
-          <small>{person.credentials}</small>
+          {!compact && <>
+            <p>{locale === "ar" ? roles[person.role] || person.role : person.role}</p>
+            <small>{person.credentials}</small>
+          </>}
         </article>
       ))}
     </div>
@@ -126,16 +131,13 @@ const pageEnquiryServices: Record<string, string> = {
 };
 
 const exampleThumbnails: Record<string, string> = {
-  "insights/month-end-close": "insurance-prepayment",
-  "insights/profit-and-cash": "profit-to-cash",
-  "insights/vat-records": "vat-reconciliation",
   "services/accounting-automation-systems": "processor-settlement",
   "services/accounting-bookkeeping": "receipt-matching",
   "services/cash-flow-working-capital": "cash-timing",
 };
 
 function ExampleIllustrationLink({ pageKey, href, label }: { pageKey: string; href: string; label: string }) {
-  const artwork = exampleThumbnails[pageKey];
+  const artwork = guideExamples[pageKey]?.artwork ?? exampleThumbnails[pageKey];
   return (
     <a className={figureStyles.teaser} href={href}>
       {artwork && <Image src={`/art/examples/${artwork}.webp`} alt="" width={360} height={240}
@@ -147,7 +149,11 @@ function ExampleIllustrationLink({ pageKey, href, label }: { pageKey: string; hr
 
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
+  const sample = serviceSamples[pageKey];
   const example = guideExamples[pageKey];
+  const profitGuide = pageKey === "insights/profit-and-cash";
+  const hasNumberedSteps = page.sections.some(section => /^\d+\.\s/.test(section.heading));
+  const founder = pageKey === "about" ? team.find(person => person.name === "Haider Ali") : undefined;
   const filingOffer = homeUpdate.offers.find(offer => offer.href === page.path && offer.service !== "Accounting & Bookkeeping");
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
@@ -244,6 +250,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               <hr />
               {pageKey === "uae-vat"
                 ? <Link className="text-link" href="/insights/vat-records#worked-example">See a VAT reconciliation ↗</Link>
+                : sample ? <a className="text-link" href="#sample-deliverable">View the sample filing pack ↓</a>
                 : detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
             </aside>
           ) : service && (pageKey === "services/accounting-bookkeeping" || pageKey === "services/cash-flow-working-capital") ? (
@@ -252,6 +259,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               {pageKey === "services/accounting-bookkeeping" ? <ReceiptMatchingSample /> : <CashTimingSample />}
               {exampleSection >= 0 && <a className="text-link" href={`#section-${exampleSection + 1}`}>{page.sections[exampleSection].heading} ↓</a>}
             </aside>
+          ) : sample ? (
+            <aside aria-label="Sample deliverable"><ServiceSample sample={sample} /></aside>
           ) : service ? (
             <aside className="accounting-output" id={heroExample ? "example-illustration" : undefined}>
               <p className="eyebrow">Typical output</p>
@@ -272,15 +281,30 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           ) : example ? (
             <aside className="accounting-output guide-example" aria-label="Worked example">
               <p className="eyebrow">Worked example</p>
-              <ExampleIllustrationLink pageKey={pageKey} href="#worked-example" label="See the calculation" />
-              <dl className="guide-calculation">
-                {example.amounts.map(([label, amount]) => (
-                  <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
-                ))}
-              </dl>
+              {profitGuide ? (
+                <>
+                  <GuideCashChart view="result" />
+                  <a className="text-link" href="#worked-example">See the calculation ↓</a>
+                </>
+              ) : (
+                <>
+                  <ExampleIllustrationLink pageKey={pageKey} href="#worked-example" label="See the calculation" />
+                  <dl className="guide-calculation">
+                    {example.amounts.map(([label, amount]) => (
+                      <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
+                    ))}
+                  </dl>
+                </>
+              )}
               <hr />
               <small><a href={example.url}>{example.reference}</a></small>
             </aside>
+          ) : founder ? (
+            <Link className={figureStyles.founder} href={buildPersonPath(founder.name)}>
+              <Image src="/team/haider-ali.jpg" alt="" width={747} height={770}
+                sizes="(max-width: 600px) calc(100vw - 36px), (max-width: 900px) 60vw, 470px" />
+              <div><span><strong>{founder.name}</strong><small>{founder.role} · {founder.credentials}</small></span><ArrowUpRight aria-hidden="true" /></div>
+            </Link>
           ) : marketOutput ? (
             <aside className="accounting-output market-output">
               <p className="eyebrow">{marketNames[pageKey]}</p>
@@ -319,10 +343,20 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               const headingId = isCashBridge ? "cash-bridge" : isExampleSection ? "worked-example" : undefined;
               return (
               <section id={`section-${i + 1}`} key={section.heading}>
-                <span className="accounting-section-number">
+                {!hasNumberedSteps && <span className="accounting-section-number">
                   {String(i + 1).padStart(2, "0")}
-                </span>
+                </span>}
                 <h2 id={headingId}>{section.heading}</h2>
+                {sample && i === deliverableSection && (
+                  filingOffer ? <ServiceSample sample={sample} /> : service && (
+                    <div className="accounting-output">
+                      <p className="eyebrow">Typical output</p>
+                      <p>{service.output}</p>
+                      <small>{service.boundary}</small>
+                      <a className="text-link" href="#sample-deliverable">View the sample ↑</a>
+                    </div>
+                  )
+                )}
                 {pageKey === "services/tax-vat-compliance" && section.heading === "Why the accounting-to-tax bridge matters" && (
                   <SecondaryExample kind="tax-adjustment" />
                 )}
@@ -331,7 +365,10 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                 )}
                 {isExampleSection && (
                   heroExample ? <ExampleIllustrationLink pageKey={pageKey} href="#example-illustration" label="View the illustration ↑" />
-                  : pageKey === "insights/profit-and-cash" ? <ExampleIllustrationLink pageKey={pageKey} href="#cash-bridge" label="See the cash bridge ↓" />
+                  : profitGuide ? <>
+                    <GuideCashChart view="movements" />
+                    <a className="text-link" href="#cash-bridge">See the cash bridge ↓</a>
+                  </>
                   : <WorkedExampleFigure pageKey={pageKey} />
                 )}
                 {(section.blocks ?? [...section.paragraphs, section.bullets]).map((block) =>

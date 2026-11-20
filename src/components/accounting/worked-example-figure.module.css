@@ -13,6 +13,29 @@
   width: 100%;
   height: auto;
 }
+.founder {
+  display: block;
+  justify-self: end;
+  width: min(100%, 30rem);
+  color: var(--ivory-100);
+}
+.founder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-md);
+}
+.founder > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--line-dark); }
+.founder strong, .founder small { display: block; }
+.founder strong { font-size: 1.15rem; }
+.founder small { margin-top: .15rem; color: var(--stone-250); }
+.founder svg { width: 1.1rem; color: var(--amber-400); }
+@media (max-width: 900px) {
+  .founder { justify-self: start; }
+}
 .teaser {
   display: inline-flex;
   align-items: center;
