@@ -27,31 +27,6 @@
       "searchVolumeStatus": "unmeasured"
     },
     {
-      "path": "/finance/services/accounting-automation-systems",
-      "slug": "accounting-automation-systems",
-      "title": "Accounting Automation & Systems",
-      "primaryQuery": "accounting automation and systems",
-      "intent": "Finance workflow and accounting-system configuration",
-      "market": "all",
-      "priority": false,
-      "reviewTitle": "Accounting Automation & Systems | LedgerByte",
-      "reviewDescription": "Configure accounting tools around the way your finance team works, from the chart of accounts to approval and reconciliation routines.",
-      "directAnswer": "An accounting tool is only useful when its setup, records and routines work together. LedgerByte helps structure the accounts, reduce repeated manual work and test the process before the team relies on it.",
-      "output": "An agreed accounting setup, documented workflows and a checklist for the team that will run them.",
-      "boundary": "This is accounting systems support, not custom software development. Software subscriptions, integration work and access permissions are agreed separately.",
-      "reviewChecks": [
-        "Confirm actual service availability and engagement responsibilities",
-        "Confirm title matches the query and avoids overlap with neighbouring services",
-        "Preserve factual limits and primary-source dates",
-        "Add genuine client proof only after written permission"
-      ],
-      "sourceKey": "services/accounting-automation-systems",
-      "sourceDigest": "7e19baa699f712010abf55aac104fb48ed9a17bd9651d31dda6a612aef000265",
-      "status": "draft",
-      "searchVolume": null,
-      "searchVolumeStatus": "unmeasured"
-    },
-    {
       "path": "/finance/services/payroll-wps-management",
       "slug": "payroll-wps-management",
       "title": "Payroll & WPS Management",

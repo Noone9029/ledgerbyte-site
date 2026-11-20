@@ -7,30 +7,11 @@ const projectRoot = process.cwd();
 const manifestPath = path.join(projectRoot, "src", "content", "visuals.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 
-const expectedCounts = {
-  financeServices: 8,
-  technologyServices: 6,
-  technologyPartnerships: 6,
-};
-
-const entries = [];
-
-for (const [group, expectedCount] of Object.entries(expectedCounts)) {
-  const groupEntries = Object.entries(manifest[group] ?? {});
-
-  if (groupEntries.length !== expectedCount) {
-    throw new Error(
-      `${group} must contain ${expectedCount} visuals; found ${groupEntries.length}.`,
-    );
-  }
-
-  for (const [slot, assetPath] of groupEntries) {
-    entries.push([`${group}.${slot}`, assetPath]);
-  }
+const financeArtwork = Object.entries(manifest.financeServices);
+if (financeArtwork.length !== 7) {
+  throw new Error("Expected individual artwork for the seven archived finance services.");
 }
-
-entries.push(["technologyProcess", manifest.technologyProcess]);
-entries.push(["financeOversight", manifest.financeOversight]);
+const entries = [...financeArtwork, ["financeOversight", manifest.financeOversight]];
 
 const paths = entries.map(([, assetPath]) => assetPath);
 

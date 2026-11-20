@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import content from "../src/content/accounting.json";
 import { seoPages } from "../src/content/seo";
-import { team, technologyServices } from "../src/content";
+import { team } from "../src/content";
 import { buildPersonPath } from "../src/lib/person-identity";
 
 const origin = "https://ledgerbyte.io";
@@ -9,7 +9,6 @@ const paths = [
   ...new Set([
     ...Object.keys(seoPages),
     ...team.map((p) => buildPersonPath(p.name)),
-    ...technologyServices.map((service) => `/technology/services/${service.slug}`),
   ]),
 ];
 
@@ -74,8 +73,8 @@ test("sitemap, permanent redirects and footer cover the current service routes",
   expect(urls.join(" ")).not.toContain("/review-notes");
   await page.goto("/finance/services");
   await expect(page.locator("footer").getByRole("link", { name: "Finance overview" })).toHaveAttribute("href", "/finance");
-  await expect(page.locator("footer").getByRole("link", { name: "All 22 services" })).toHaveAttribute("href", "/finance/services");
-  await expect(page.locator("main [data-service-card]")).toHaveCount(22);
+  await expect(page.locator("footer").getByRole("link", { name: "All 21 services" })).toHaveAttribute("href", "/finance/services");
+  await expect(page.locator("main [data-service-card]")).toHaveCount(21);
   for (const service of content.services) {
     const destination = "/finance/services/" + service.slug;
     await expect(

@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { financeEnquiryChoices, technologyEnquiryChoices } from "@/lib/enquiry-options";
+import { financeEnquiryChoices } from "@/lib/enquiry-options";
 
-const choices = new Set([...financeEnquiryChoices, ...technologyEnquiryChoices]);
+const choices = new Set(financeEnquiryChoices);
 const schema = z
   .object({
     fullName: z.string().trim().min(2).max(100),

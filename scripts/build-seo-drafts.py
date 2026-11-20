@@ -12,7 +12,6 @@ if manifest_path.exists() and any(p.get('status') == 'approved' for p in json.lo
 source = json.loads((root / 'src/content/accounting.json').read_text(encoding='utf-8'))
 titles = [
 ('المحاسبة ومسك الدفاتر','تنظيم المعاملات اليومية وتسويات الأرصدة والإقفال الشهري مع بيان ما اكتمل وما يحتاج إلى مراجعتك.'),
-('أتمتة المحاسبة والأنظمة','ربط السجلات وسير العمل المحاسبي بأنظمة أوضح، وفق نطاق متفق عليه للتهيئة والتنفيذ.'),
 ('إدارة الرواتب ونظام حماية الأجور','تنظيم مدخلات الرواتب المعتمدة والحسابات والقيود وملفات نظام حماية الأجور حيث ينطبق.'),
 ('الاستعانة بمصادر خارجية للإدارة المالية','تنسيق المحاسبة والإقفال والتقارير والعمليات المالية ضمن نموذج عمل ومسؤوليات محددة.'),
 ('المراقب المالي الجزئي','دعم مراجعة الإقفال والرقابة المالية وجودة التقارير بالتنسيق مع فريقك.'),
@@ -41,14 +40,18 @@ for original, (title, summary) in zip(source['services'], titles, strict=True):
 
 def page(path, title, intro, sections, source_key, faqs=None):
     original = source['pages'].get(source_key, source['replacements'])
-    digest = hashlib.sha256(json.dumps(original,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
-    return {'path':'/ar'+('' if path=='/' else path),'englishPath':path,'title':title,'description':intro,'intro':intro,'sections':[{'heading':h,'paragraphs':[p],'bullets':b} for h,p,b in sections], 'faqs':faqs or [],'sourceKey':source_key,'sourceDigest':digest,'status':'draft','lastModified':'2026-11-14'}
+    return {'path':'/ar'+('' if path=='/' else path),'englishPath':path,'title':title,'description':intro,'intro':intro,'sections':[{'heading':h,'paragraphs':[p],'bullets':b} for h,p,b in sections], 'faqs':faqs or [],'sourceKey':source_key,'sourceDigest':digest(original),'status':'draft','lastModified':'2026-11-14'}
+
+def digest(value):
+    # Use the same sorted, compact JSON representation as publishedArabicPages.
+    serialized = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    return hashlib.sha256(serialized.encode('utf-8')).hexdigest()
 
 pages = [
 page('/','اعرف أرقامك. وخطّط لخطوتك التالية.','دعم العمليات المحاسبية والقيادة المالية والضرائب في الإمارات والسعودية، وتنسيق تأسيس الشركات والتدقيق للشركات الناشئة والمنشآت الصغيرة والمتوسطة، ضمن نطاق واضح.',[
 ('من السجلات إلى القرارات','السجلات المحاسبية هي الأساس. تشرح التقارير حركة الأداء، وتساعد الموازنات والتوقعات النقدية على دراسة ما قد يحدث لاحقاً. اختر خدمة محددة أو اربط المهام بتقويم مالي واحد.',[]),
 ('اعرف ما ستتسلمه','قد تشمل المخرجات سجلات تمت تسويتها أو حزمة تحضير قابلة للمراجعة أو تقريراً إدارياً أو توقعاً بافتراضات واضحة. نحدد المدخلات والمسؤوليات والمخرجات قبل بدء العمل.',[])],'home'),
-page('/finance/services','المحاسبة والضرائب والاستشارات. اختر الدعم الذي تحتاجه.','استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.',[
+page('/finance/services','المحاسبة والضرائب والاستشارات. اختر الدعم الذي تحتاجه.','استعرض ٢١ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.',[
 ('ابدأ بالمشكلة','إذا كانت السجلات غير مكتملة فقد تحتاج إلى مسك الدفاتر أو تنظيف الفترات السابقة أولاً. وإذا كانت محدثة فقد تكون التقارير أو التخطيط النقدي أو الاستشارات أنسب.',[]),
 ('افصل نطاق كل مهمة','التسجيل والإقرارات الضريبية والتدقيق والتقارير الإدارية مهام مختلفة. يُتفق على الفترات والمستندات والمراجعين وصلاحيات التقديم بصورة صريحة.',[])],'services'),
 page('/about','فريق وراء السجلات والتقارير والقرارات التالية.','تربط LedgerByte الخبرة المحاسبية والمالية بتنظيم العمل، مع مسؤوليات واضحة ومخرجات يمكن لفريقك استخدامها.',[
@@ -101,6 +104,10 @@ for s in service_data:
 
 out=root/'src/content/seo-drafts';out.mkdir(exist_ok=True)
 (out/'arabic.json').write_text(json.dumps({'status':'draft','requiredReviews':['Haider','Fluent Arabic finance reviewer'],'pages':pages,'services':service_data},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-manifest={'version':1,'reviewRequired':['Haider factual and launch approval','Fluent Arabic finance review'],'pages':[{k:p[k] for k in ['path','englishPath','status','sourceKey','sourceDigest','lastModified']} for p in pages]}
+manifest = {'version': 1, 'reviewRequired': ['Haider factual and launch approval', 'Fluent Arabic finance review'], 'pages': []}
+for draft in pages:
+    record = {key: draft[key] for key in ('path', 'englishPath', 'status', 'sourceKey', 'sourceDigest', 'lastModified')}
+    record['targetDigest'] = digest(draft)
+    manifest['pages'].append(record)
 (root/'src/content/localization-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(f'Prepared {len(pages)} Arabic page drafts and {len(service_data)} translated service cards; zero approvals.')

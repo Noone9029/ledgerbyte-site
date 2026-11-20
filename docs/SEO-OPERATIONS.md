@@ -2,15 +2,15 @@
 
 ## Google Submission Checklist
 
-The canonical site is `https://ledgerbyte.io`; `www`, legacy paths, and the
-public Vercel alias must resolve to it in one permanent redirect. Complete these
+The canonical finance site is `https://ledgerbyte.io`. Supported legacy finance URLs,
+`www` and the public Vercel alias redirect to canonical finance pages. Complete these
 steps in the existing Search Console domain property after each production
 release that materially changes routes or page content:
 
 1. Open **Sitemaps** and submit or resubmit
    `https://ledgerbyte.io/sitemap.xml`. Do not remove the prior submission.
 2. Wait for the sitemap status to become **Success** and record the discovered
-   URL count. The expected count for this release is 31.
+   URL count. The finance-only build contains 46 English URLs.
 3. Use **URL Inspection → Test Live URL → Request Indexing** for:
    - `https://ledgerbyte.io/`
    - `https://ledgerbyte.io/finance`
@@ -19,8 +19,6 @@ release that materially changes routes or page content:
    - `https://ledgerbyte.io/finance/services/tax-vat-compliance`
    - `https://ledgerbyte.io/finance/services/payroll-wps-management`
    - `https://ledgerbyte.io/finance/services/fractional-cfo-advisory`
-   - `https://ledgerbyte.io/technology`
-   - `https://ledgerbyte.io/technology/services`
    - `https://ledgerbyte.io/contact`
 4. Do not request indexing for old URLs, repeatedly resubmit the same URL, use
    Removals, or use Change of Address. Let permanent redirects consolidate the
@@ -42,14 +40,10 @@ indexing.
 | `/about-us/` | `/about` |
 | `/lets-connect` | `/contact` |
 | `/lets-connect/` | `/contact` |
-| `/process` | `/technology/process` |
-| `/process/` | `/technology/process` |
-| `/why-ledgerbyte-tech` | `/technology/why-ledgerbyte` |
-| `/why-ledgerbyte-tech/` | `/technology/why-ledgerbyte` |
-| `tech.ledgerbyte.io/` | `/technology` |
-| `tech.ledgerbyte.io/services` | `/technology/services` |
-| `tech.ledgerbyte.io/about` | `/about` |
-| `tech.ledgerbyte.io/contact` | `/contact` |
+
+The service aliases above apply to the 21 current finance services. Retired
+technology paths, the former Accounting Automation & Systems service and the
+old technology hostname return HTTP 404.
 
 Keep redirects for at least 12 months. Preserve query strings and never send a
 retired content URL to the homepage unless the homepage is genuinely the

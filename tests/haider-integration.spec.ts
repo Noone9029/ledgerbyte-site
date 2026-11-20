@@ -25,7 +25,7 @@ test("homepage catalogue filters service scopes and restores all services after 
   await search.fill("no-matching-finance-scope");
   await expect(page.locator("#home-result-count")).toHaveText("0 services");
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator("#home-result-count")).toHaveText("22 services");
+  await expect(page.locator("#home-result-count")).toHaveText("21 services");
   await expect(search).toBeFocused();
 });
 

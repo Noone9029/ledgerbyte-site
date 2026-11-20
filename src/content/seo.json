@@ -2,7 +2,7 @@
   "pages": {
     "/": {
       "title": "Accounting, Tax & Finance Leadership | LedgerByte",
-      "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
+      "description": "Accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Owner-approved homepage and revised monthly SME offer"
@@ -23,51 +23,23 @@
     },
     "/finance/services": {
       "title": "Accounting, tax & advisory. Choose the support you need.",
-      "description": "Explore 22 services across finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
+      "description": "Finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
-    },
-    "/technology": {
-      "title": "Technology Solutions for Growing Businesses",
-      "description": "LedgerByte Tech delivers cutting-edge web, mobile, cloud, and AI solutions designed for reliability, security, and long-term growth.",
-      "image": "/art/technology-editorial-v3.webp",
-      "lastModified": "2026-07-27",
-      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/index.txt"
-    },
-    "/technology/services": {
-      "title": "Software Development Services for SMEs",
-      "description": "Explore web, mobile app, backend API, AI automation, cloud, DevOps, and UI/UX services designed for growing businesses.",
-      "image": "/art/technology-editorial-v3.webp",
-      "lastModified": "2026-07-27",
-      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/services.txt"
-    },
-    "/technology/process": {
-      "title": "Software Development Process",
-      "description": "A proven methodology that delivers exceptional results, from initial concept to ongoing support. Every step is designed to ensure transparency, quality, and success.",
-      "image": "/art/technology-infrastructure-editorial-v3.webp",
-      "lastModified": "2026-07-27",
-      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/process.txt"
-    },
-    "/technology/why-ledgerbyte": {
-      "title": "Why Choose Our Technology Team",
-      "description": "Built on trust, driven by excellence, focused on your success. At LedgerByte Tech, we don't just deliver projects, we build lasting partnerships.",
-      "image": "/art/partnership-editorial-v3.webp",
-      "lastModified": "2026-07-27",
-      "source": "Direct user SEO plan and rendered-text/tech.ledgerbyte.io/why-ledgerbyte-tech.txt"
     },
     "/about": {
       "title": "About Our Accounting, Tax & Advisory Team | LedgerByte",
       "description": "Meet LedgerByte's accounting, reporting, tax and client-success team. Learn about the firm's origins and its practical approach to business finance.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/contact": {
       "title": "Let’s talk accounting, tax & finance.",
       "description": "Tell us about your accounting, tax, audit, company formation or finance leadership needs.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/privacy-policy": {
@@ -87,13 +59,6 @@
     "/finance/services/accounting-bookkeeping": {
       "title": "Accounting & Bookkeeping Services | LedgerByte",
       "description": "Keep transactions, reconciliations and month-end records connected. Explore LedgerByte bookkeeping, backlog cleanup and close-pack support.",
-      "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
-    },
-    "/finance/services/accounting-automation-systems": {
-      "title": "Accounting Systems & Automation | LedgerByte",
-      "description": "Improve your chart of accounts, transaction workflows and accounting controls. Explore setup, migration checks, testing and team handover.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
       "source": "Haider November 10 replacement content"
@@ -317,7 +282,6 @@
     }
   },
   "financeServices": {
-    "accounting-automation-systems": "Accounting Systems & Automation | LedgerByte",
     "accounting-bookkeeping": "Accounting & Bookkeeping Services | LedgerByte",
     "budgeting-forecasting": "Budgeting & Forecasting Services | LedgerByte",
     "cash-flow-working-capital": "Cash Flow & Working Capital Support | LedgerByte",
@@ -339,13 +303,5 @@
     "month-end-year-end-close": "Month-End & Year-End Close Support | LedgerByte",
     "accounts-receivable": "Accounts Receivable Services | LedgerByte",
     "accounts-payable": "Accounts Payable Services | LedgerByte"
-  },
-  "technologyServices": {
-    "web-development": "Web Development Services for SMEs",
-    "mobile-app-development": "Mobile App Development for SMEs",
-    "backend-apis": "Backend & API Development Services",
-    "ai-automation": "AI & Automation Services for SMEs",
-    "cloud-devops": "Cloud & DevOps Services for SMEs",
-    "ui-ux-design": "UI/UX Design Services for SMEs"
   }
 }

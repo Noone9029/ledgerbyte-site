@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test("homepage flashcards keep the original eight services and work with hover or click", async ({ page }) => {
+test("homepage flashcards show eight finance services and work with hover or click", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   const deck = page.locator(".accounting-featured [data-service-flashcards]");
   await expect(deck.locator("details")).toHaveCount(8);
   await expect(deck.locator("details[open]")).toHaveCount(1);
-  await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounting-automation-systems");
+  await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounting-bookkeeping");
   const second = deck.locator("details").nth(1);
   if ((page.viewportSize()?.width ?? 0) > 1100) {
     await second.locator("summary").hover();
@@ -15,15 +15,15 @@ test("homepage flashcards keep the original eight services and work with hover o
   await second.locator("summary").click();
   await expect(second).toHaveAttribute("open", "");
   await expect(deck.locator("details[open]")).toHaveCount(1);
-  await expect(second.getByRole("link")).toHaveAttribute("href", "/finance/services/accounting-bookkeeping");
+  await expect(second.getByRole("link")).toHaveAttribute("href", "/finance/services/month-end-year-end-close");
   await second.getByRole("link").click();
-  await expect(page).toHaveURL(/\/finance\/services\/accounting-bookkeeping$/);
+  await expect(page).toHaveURL(/\/finance\/services\/month-end-year-end-close$/);
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
 });
 
 test("the full catalogue stays searchable and keyboard focus wins over hover", async ({ page }) => {
   await page.goto("/finance/services", { waitUntil: "networkidle" });
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
   await expect(page.locator("[data-service-flashcards]")).toHaveCount(5);
   const deck = page.getByRole("group", { name: "Finance Operations", exact: true });
   const summaries = deck.locator("summary");
@@ -124,11 +124,11 @@ test("@nojs native flashcards remain expandable and retain all service routes", 
   await page.goto("/");
   const deck = page.locator(".accounting-featured [data-service-flashcards]");
   await deck.locator("summary").nth(1).click();
-  await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounting-bookkeeping");
+  await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "month-end-year-end-close");
   await deck.locator("details[open] a").click();
-  await expect(page).toHaveURL(/\/finance\/services\/accounting-bookkeeping$/);
+  await expect(page).toHaveURL(/\/finance\/services\/month-end-year-end-close$/);
   await page.goto("/finance/services");
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
   const last = page.locator("[data-service-card]").last();
   await last.locator("summary").click();
   await expect(last.getByRole("link")).toHaveAttribute("href", "/finance/services/zatca-filing");

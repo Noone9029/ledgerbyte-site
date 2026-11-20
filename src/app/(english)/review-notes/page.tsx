@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { accountingPages, accountingServices } from "@/content/accounting";
 export const metadata = {
   title: "Private review notes | LedgerByte",
   robots: { index: false, follow: false },
@@ -12,7 +13,7 @@ export default function ReviewNotes() {
         <p className="eyebrow">Private review · Not approved for publication</p>
         <h1>November content review</h1>
         <p className="accounting-lead">
-          Haider’s November 10 copy is applied to 22 services and 33 substantive
+          Haider’s November 10 copy is applied to {accountingServices.length} services and {Object.keys(accountingPages).length} substantive
           pages. These owner decisions remain open before launch.
         </p>
         <ul className="accounting-review-list">
@@ -30,9 +31,7 @@ export default function ReviewNotes() {
           </li>
           <li>Confirm the official phone and WhatsApp number.</li>
           <li>
-            Confirm the new service and guide paths. The preview keeps all eight
-            existing service URLs, places added services under
-            /finance/services, and uses /insights for the three new guides.
+            Confirm the new service and guide paths.
           </li>
           <li>
             Approve the contracting entity, professional scope, tax-source

@@ -12,9 +12,6 @@ const routes = [
     "/insights",
     "/privacy-policy",
     "/terms-of-use",
-    "/technology",
-    "/technology/process",
-    "/technology/services",
     "/about/team/haider-ali",
     "/about/team/sayyam-nasir",
     "/about/team/faisal-nawaz",
@@ -51,6 +48,10 @@ test("every supplied page renders its complete copy with correct metadata and wo
       "href",
       `https://ledgerbyte.io${path === "/" ? "" : path}`,
     );
+    await expect(
+      page.locator('a[href*="/technology"], a[href*="division=technology"], a[href*="accounting-automation-systems"], a[href*="tech.ledgerbyte.io"]'),
+      path,
+    ).toHaveCount(0);
     if (path === "/")
       await page.screenshot({
         path: `.qa/home-${info.project.name}.png`,
@@ -97,11 +98,11 @@ test("filing prices survive the handoff and worked examples reconcile", async ({
   await expect(receipt.locator("tfoot td")).toHaveText("0");
 });
 
-test("catalogue shows all 22 services and filters by task and category", async ({
+test("catalogue shows all 21 services and filters by task and category", async ({
   page,
 }) => {
   await page.goto("/finance/services");
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
   await page.getByRole("searchbox").fill("registration");
   await expect(
     page.getByRole("heading", { name: "UAE VAT Registration", exact: true }),
@@ -126,7 +127,7 @@ test("catalogue shows all 22 services and filters by task and category", async (
     page.getByRole("heading", { name: "No matching services" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Show all services" }).click();
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
 });
 
 test("accounting navigation, Trustpilot and team changes match the handoff", async ({
@@ -204,7 +205,7 @@ test("contact retains service context and separates email acceptance from WhatsA
   );
   await expect(
     page.getByLabel("Support you need").locator("option"),
-  ).toHaveCount(25);
+  ).toHaveCount(content.services.length + 3);
   const whatsapp = page.getByRole("link", { name: "WhatsApp ↗", exact: true });
   expect(
     new URL((await whatsapp.getAttribute("href")) ?? "").searchParams.get(
@@ -376,7 +377,7 @@ test("@nojs supplied content and all services remain available without JavaScrip
     await expect(page.locator("main h1")).toBeVisible();
   }
   await page.goto("/finance/services");
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
   await page.goto("/contact");
   await expect(
     page.getByRole("link", { name: "WhatsApp ↗", exact: true }),

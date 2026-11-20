@@ -35,7 +35,6 @@ Google discovers the new service URLs.
 | `/finance/services/fractional-cfo-advisory` | fractional CFO services UAE | virtual CFO, outsourced CFO, strategic finance support |
 | `/finance/services/cash-flow-working-capital` | cash-flow management services UAE | cash-flow forecasting, working-capital planning, liquidity visibility |
 | `/finance/services/budgeting-forecasting` | financial forecasting services UAE | rolling forecasts, scenario modelling, SME budgeting |
-| `/finance/services/accounting-automation-systems` | accounting automation services UAE | accounting software implementation, workflow automation, systems setup |
 
 ## Content Queue
 
@@ -57,8 +56,6 @@ service pages.
 5. Publish a fractional CFO versus bookkeeper versus finance manager guide.
 6. Publish a cash-flow forecast template and a guide distinguishing advisory
    work from forecasting software.
-7. Publish an impartial UAE accounting-automation comparison based on genuine
-   implementation experience.
 
 ## Authority and Measurement
 

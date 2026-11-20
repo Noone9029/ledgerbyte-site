@@ -3,27 +3,19 @@ import { expect, test } from "@playwright/test";
 const cinematicRoutes = [
   "/",
   "/finance",
-  "/technology",
   "/finance/services",
-  "/technology/process",
-  "/technology/why-ledgerbyte",
   "/about",
   "/contact",
   "/finance/services/accounting-bookkeeping",
-  "/technology/services/web-development",
 ] as const;
 
 const cinematicHeroRoutes = [
   ["/", ".corporate-hero"],
   ["/finance", ".division-hero"],
-  ["/technology", ".division-hero"],
   ["/finance/services", ".inner-hero"],
-  ["/technology/process", ".inner-hero"],
-  ["/technology/why-ledgerbyte", ".inner-hero"],
   ["/about", ".inner-hero"],
   ["/contact", ".contact-hero"],
   ["/finance/services/accounting-bookkeeping", ".service-detail-hero"],
-  ["/technology/services/web-development", ".service-detail-hero"],
 ] as const;
 
 test("cinematic artwork keeps its complete 3:2 composition", async ({
@@ -168,11 +160,11 @@ test("@reduced cinematic artwork has no motion transform", async ({ page }) => {
 test("@nojs cinematic artwork remains rendered without JavaScript", async ({
   page,
 }) => {
-  await page.goto("/technology/services/web-development", {
+  await page.goto("/about/team/haider-ali", {
     waitUntil: "domcontentloaded",
   });
   const frames = page.locator(".cinematic-media-frame");
-  expect(await frames.count()).toBeGreaterThanOrEqual(3);
+  expect(await frames.count()).toBeGreaterThan(0);
   await expect(frames.first()).toBeVisible();
   await expect(frames.first().locator("img")).toBeVisible();
 });

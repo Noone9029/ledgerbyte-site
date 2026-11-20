@@ -93,6 +93,6 @@ test("@nojs every reveal section remains fully visible without scripts", async (
     await expect(section).toHaveCSS("transform", "none");
   }
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
-  await page.locator("main").getByRole("link", { name: "All 22 services", exact: true }).click();
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await page.locator("main").getByRole("link", { name: "All 21 services", exact: true }).click();
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
 });

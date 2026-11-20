@@ -3,13 +3,11 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { contactHrefForPath } from "@/lib/technology-enquiry";
 
-export function EnquiryLink({ children, className, technologyOnly = false }: {
+export function EnquiryLink({ children, className }: {
   children: ReactNode;
   className: string;
-  technologyOnly?: boolean;
 }) {
-  const href = contactHrefForPath(usePathname(), technologyOnly);
+  const href = usePathname() === "/contact" ? "#enquiry-heading" : "/contact";
   return <Link href={href} className={className}>{children}</Link>;
 }

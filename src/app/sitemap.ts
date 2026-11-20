@@ -7,8 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const english = publicEnglishPaths.map((path) => ({
     url: SITE_URL + (path === "/" ? "" : path),
     lastModified: new Date(
-      seoPages[path as keyof typeof seoPages]?.lastModified ??
-        (path.startsWith("/technology/services/") ? "2026-07-28" : "2026-11-10"),
+      seoPages[path as keyof typeof seoPages]?.lastModified ?? "2026-11-10",
     ),
     changeFrequency: "monthly" as const,
     priority: path === "/" ? 1 : 0.7,

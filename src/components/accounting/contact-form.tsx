@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
-import { financeEnquiryChoices, serviceWhatsAppHref, technologyEnquiryChoices } from "@/lib/enquiry-options";
+import { financeEnquiryChoices, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { useEnquiryService } from "./enquiry-channels";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -18,13 +18,12 @@ const safeFailures = new Set([
 ]);
 
 export function AccountingContactForm({
-  initialService, locale = "en", technology = false,
+  initialService, locale = "en",
 }: {
-  initialService: string; locale?: "en" | "ar"; technology?: boolean;
+  initialService: string; locale?: "en" | "ar";
 }) {
   const selection = useEnquiryService();
   const enhanced = useHydrated();
-  const enquiryChoices = technology ? technologyEnquiryChoices : financeEnquiryChoices;
   const [fallbackService, setFallbackService] = useState(initialService);
   const ar = locale === "ar";
   const say = (en: string) => ar ? (arabicDrafts.labels[en as keyof typeof arabicDrafts.labels] || en) : en;
@@ -155,13 +154,13 @@ export function AccountingContactForm({
               onChange={(event) => selection?.setService(event.target.value)}
               required
               defaultValue={
-                enquiryChoices.includes(initialService) ? initialService : ""
+                financeEnquiryChoices.includes(initialService) ? initialService : ""
               }
             >
               <option value="" disabled>
                 {say("Choose a service")}
               </option>
-              {enquiryChoices.map((service) => (
+              {financeEnquiryChoices.map((service) => (
                 <option key={service} value={service}>{ar ? (arabicDrafts.services[service as keyof typeof arabicDrafts.services] || service) : service}</option>
               ))}
             </select>

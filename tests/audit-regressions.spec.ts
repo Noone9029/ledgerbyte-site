@@ -32,7 +32,7 @@ test("mobile primary actions leave the WhatsApp hit target clear", async ({ page
       ["/", ".accounting-home-hero .button"],
       ["/finance", ".accounting-hub-link"],
       ["/finance/services/ksa-company-formation", ".accounting-detail-hero .button"],
-      ["/technology/services/cloud-devops", ".service-detail-copy .button"],
+      ["/uae-vat", ".accounting-detail-hero .button"],
     ]) {
       await page.goto(path);
       await page.evaluate(() => document.fonts.ready);
@@ -172,10 +172,10 @@ test("stalled requests release the form with a useful error", async ({
   ).toBeEnabled();
 });
 
-test("the first technology paint uses the system palette before hydration", async ({ page }) => {
+test("the first finance paint uses the system palette before hydration", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.route(/\/_next\/static\/.*\.js(?:\?|$)/, route => route.abort());
-  await page.goto("/technology", { waitUntil: "domcontentloaded" });
+  await page.goto("/finance", { waitUntil: "domcontentloaded" });
   await expect(page.locator("main h1")).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
 });
@@ -242,7 +242,7 @@ test("@nojs enquiry details cannot enter a URL and filter controls are unavailab
   await page.goto("/finance/services");
   await expect(page.getByRole("searchbox")).toHaveCount(0);
   await expect(page.locator(".accounting-search")).toBeHidden();
-  await expect(page.locator("[data-service-card]")).toHaveCount(22);
+  await expect(page.locator("[data-service-card]")).toHaveCount(21);
 });
 
 test("@reduced decorative hover effects do not move controls or cards", async ({

@@ -15,7 +15,7 @@ function nodes(value: unknown, result: Record<string, unknown>[] = []) {
   return result;
 }
 
-test("AI discovery lists accounting services and a working technology enquiry handoff", async ({
+test("AI discovery lists accounting services and finance contact details", async ({
   request,
 }) => {
   const response = await request.get("/llms.txt");
@@ -27,7 +27,8 @@ test("AI discovery lists accounting services and a working technology enquiry ha
       "https://ledgerbyte.io/finance/services/" + service.slug,
     );
   }
-  expect(text).toContain("https://ledgerbyte.io/contact?division=technology#enquiry-heading");
+  expect(text).toContain("[Contact](https://ledgerbyte.io/contact)");
+  expect(text).not.toMatch(/division=technology|accounting-automation-systems/);
   expect(text).not.toContain("https://ledgerbyte.co");
   expect(text).not.toContain("https://ledgerbyte.io/technology");
   expect(await (await request.get("/robots.txt")).text()).toContain(

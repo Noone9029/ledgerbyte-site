@@ -12,16 +12,6 @@
       "audience": "For businesses that need a consistent accounting routine, a backlog brought up to date, or a dependable foundation for reporting."
     },
     {
-      "key": "services/accounting-automation-systems",
-      "slug": "accounting-automation-systems",
-      "title": "Accounting Automation & Systems",
-      "group": "Finance Operations",
-      "summary": "Configure accounting tools around the way your finance team works, from the chart of accounts to approval and reconciliation routines.",
-      "output": "An agreed accounting setup, documented workflows and a checklist for the team that will run them.",
-      "boundary": "This is accounting systems support, not custom software development. Software subscriptions, integration work and access permissions are agreed separately.",
-      "audience": "For businesses setting up accounting software, changing their finance process or untangling inconsistent records."
-    },
-    {
       "key": "services/payroll-wps",
       "slug": "payroll-wps-management",
       "title": "Payroll & WPS Management",
@@ -224,7 +214,6 @@
   ],
   "paths": {
     "services/accounting-bookkeeping": "/finance/services/accounting-bookkeeping",
-    "services/accounting-automation-systems": "/finance/services/accounting-automation-systems",
     "services/financial-reporting-mis": "/finance/services/financial-reporting-mis",
     "services/budgeting-forecasting": "/finance/services/budgeting-forecasting",
     "services/payroll-wps": "/finance/services/payroll-wps-management",
@@ -412,101 +401,6 @@
             "page_key": "services/accounts-payable",
             "path": "/services/accounts-payable",
             "path_status": "proposed, confirm in the existing router"
-          }
-        }
-      ]
-    },
-    "services/accounting-automation-systems": {
-      "title": "Accounting Systems & Automation | LedgerByte",
-      "description": "Improve your chart of accounts, transaction workflows and accounting controls. Explore setup, migration checks, testing and team handover.",
-      "path": "/finance/services/accounting-automation-systems",
-      "heading": "Make your accounting system fit the way finance works.",
-      "intro": "An accounting tool is only useful when its setup, records and routines work together. LedgerByte helps structure the accounts, reduce repeated manual work and test the process before the team relies on it.",
-      "cta": "Discuss your accounting setup",
-      "cardStrapline": "A clearer setup. Fewer repeated workarounds.",
-      "sections": [
-        {
-          "heading": "When this service fits",
-          "paragraphs": [
-            "Your reports need manual repairs every month. Different users classify the same expense differently. A migration has left opening balances uncertain. Or the business has outgrown a chart of accounts that no longer shows the products, departments or projects management needs to understand.",
-            "Start with the accounting problem. Changing software is one option, but a better account structure or transaction routine may solve the issue without replacing the platform."
-          ],
-          "bullets": []
-        },
-        {
-          "heading": "What the work covers",
-          "paragraphs": [
-            "Custom applications, bespoke integrations and wider technology projects belong in a separate technology scope. Software subscriptions and platform-specific functionality are confirmed before recommending a change."
-          ],
-          "bullets": [
-            "Review the current chart of accounts and map it to the reports the business needs.",
-            "Design transaction categories, dimensions and tax-code mappings for agreed use cases.",
-            "Configure available approval steps, user roles and recurring transaction routines within the selected accounting system.",
-            "Map historical balances and records for a defined migration or cleanup.",
-            "Test sample transactions, reconciliation routines and reporting outputs.",
-            "Document the new process and prepare a practical handover for its users."
-          ]
-        },
-        {
-          "heading": "What you receive",
-          "paragraphs": [
-            "A setup specification, account-mapping record, migration or opening-balance checks, test results and a short operating guide. The handover should explain where a transaction enters the system, what evidence it needs, who checks it and how an exception is resolved."
-          ],
-          "bullets": []
-        },
-        {
-          "heading": "How the work moves",
-          "paragraphs": [],
-          "bullets": [
-            "Map a real transaction from source document to report. Identify duplication, missing checks and manual workarounds.",
-            "Agree the intended result. Define the required reporting views and acceptance tests before configuration begins.",
-            "Configure and test. Use representative examples, including refunds, credits, partial payments and unusual cases relevant to the business.",
-            "Reconcile and hand over. Compare control totals, review the resulting reports and document the routine the team will maintain."
-          ]
-        },
-        {
-          "heading": "An example of a better workflow",
-          "paragraphs": [
-            "Illustrative example, excluding VAT, sales taxes and other settlement adjustments: a retailer receives AED 9,700 from a payment processor for AED 10,000 of sales after AED 300 of fees. Recording only the bank deposit as sales understates both sales and fees. A suitable settlement routine records the gross sale, the fee and the net receipt separately, then reconciles the processor clearing account. The right automation follows that accounting logic instead of merely importing the bank amount faster."
-          ],
-          "bullets": []
-        }
-      ],
-      "faqs": [
-        {
-          "question": "Do we have to move to new software?",
-          "answer": "No. We first assess the existing system and the reports you need. A revised chart of accounts, clearer permissions or more consistent posting rules may be enough. Platform selection is discussed only when there is a defined requirement the current setup cannot reasonably meet."
-        },
-        {
-          "question": "How do we know a migration is complete?",
-          "answer": "Agree the checks in advance. These can include matching the opening trial balance, bank balances, receivables and payables to the original records, testing sample documents and comparing the first reporting period. A successful import alone does not prove the balances are correct."
-        },
-        {
-          "question": "Can every transaction be automated?",
-          "answer": "Rules work best for repeatable transactions with reliable inputs. Unusual items, missing evidence and accounting judgments still need review. The process should identify these exceptions instead of giving them an automatic treatment that is difficult to trace."
-        },
-        {
-          "question": "What happens after setup?",
-          "answer": "The handover defines the routine and its owner. Ongoing bookkeeping, support after a platform change and additional integrations are agreed separately so the team knows what maintenance is included."
-        }
-      ],
-      "related": [
-        {
-          "route": "services/accounting-bookkeeping",
-          "label": "Accounting & Bookkeeping",
-          "target": {
-            "page_key": "services/accounting-bookkeeping",
-            "path": "/finance/services/accounting-bookkeeping",
-            "path_status": "existing"
-          }
-        },
-        {
-          "route": "services/financial-reporting-mis",
-          "label": "Financial Reporting & MIS",
-          "target": {
-            "page_key": "services/financial-reporting-mis",
-            "path": "/finance/services/financial-reporting-mis",
-            "path_status": "existing"
           }
         }
       ]
@@ -841,15 +735,6 @@
           "target": {
             "page_key": "services/accounting-bookkeeping",
             "path": "/finance/services/accounting-bookkeeping",
-            "path_status": "existing"
-          }
-        },
-        {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
             "path_status": "existing"
           }
         },
@@ -1671,15 +1556,6 @@
           }
         },
         {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
-            "path_status": "existing"
-          }
-        },
-        {
           "route": "services/budgeting-forecasting",
           "label": "Budgeting & Forecasting",
           "target": {
@@ -1819,15 +1695,6 @@
           "target": {
             "page_key": "services/accounting-bookkeeping",
             "path": "/finance/services/accounting-bookkeeping",
-            "path_status": "existing"
-          }
-        },
-        {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
             "path_status": "existing"
           }
         },
@@ -2144,7 +2011,7 @@
     },
     "home": {
       "title": "Accounting, Tax & Finance Leadership | LedgerByte",
-      "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
+      "description": "Accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
       "path": "/",
       "heading": "Why hire one accountant when you can get a finance team?",
       "intro": "Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
@@ -2322,7 +2189,7 @@
           "heading": "From a freelance practice to a finance team",
           "paragraphs": [
             "LedgerByte began as a freelance practice in 2020. Founded by Haider Ali, it developed into an accounting and financial-management business. Haider's background includes finance work across Pakistan and the GCC.",
-            "Today, the 22-service range connects bookkeeping, month-end and year-end close, receivables, payables, accounting systems and payroll with management reporting, planning and cash flow. Full finance department outsourcing, fractional controller and fractional CFO support offer distinct levels of operational ownership and leadership. UAE and Saudi tax, company formation and audit workstreams have their own scopes."
+            "Full finance department outsourcing, fractional controller and fractional CFO support offer distinct levels of operational ownership and leadership. UAE and Saudi tax, company formation and audit workstreams have their own scopes."
           ],
           "bullets": []
         },
@@ -2365,10 +2232,6 @@
         {
           "question": "Will we know who handles our work?",
           "answer": "The proposed engagement should identify the preparation, review and relationship responsibilities, along with the route for questions and changes in scope. Discuss that working arrangement before the service begins."
-        },
-        {
-          "question": "Where can we explore technology services?",
-          "answer": "[Technology enquiry](/contact?division=technology#enquiry-heading)"
         }
       ],
       "related": [
@@ -2392,7 +2255,7 @@
         },
         {
           "route": "services",
-          "label": "All 22 services",
+          "label": "All services",
           "target": {
             "page_key": "services",
             "path": "/finance/services",
@@ -3091,15 +2954,6 @@
         }
       ],
       "related": [
-        {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
-            "path_status": "existing"
-          }
-        },
         {
           "route": "services/external-audit",
           "label": "External Audit",
@@ -3885,7 +3739,7 @@
         },
         {
           "question": "Where does e-invoicing fit?",
-          "answer": "It belongs in the accounting-process review, including invoice data, responsibility for exceptions and readiness for applicable ZATCA requirements. Phase Two is rolled out by taxpayer group, so the business's applicable notice and requirements need checking. [ZATCA e-invoicing phases](https://zatca.gov.sa/en/E-Invoicing/Introduction/Pages/Roll-out-phases.aspx). Accounting-side coordination is scoped here; wider technology work belongs at LedgerByte Tech."
+          "answer": "It belongs in the accounting-process review, including invoice data, responsibility for exceptions and readiness for applicable ZATCA requirements. Phase Two is rolled out by taxpayer group, so the business's applicable notice and requirements need checking. [ZATCA e-invoicing phases](https://zatca.gov.sa/en/E-Invoicing/Introduction/Pages/Roll-out-phases.aspx)."
         }
       ],
       "related": [
@@ -4122,15 +3976,6 @@
           }
         },
         {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
-            "path_status": "existing"
-          }
-        },
-        {
           "route": "services/financial-reporting-mis",
           "label": "Financial Reporting & MIS",
           "target": {
@@ -4234,15 +4079,6 @@
           }
         },
         {
-          "route": "services/accounting-automation-systems",
-          "label": "Accounting Automation & Systems",
-          "target": {
-            "page_key": "services/accounting-automation-systems",
-            "path": "/finance/services/accounting-automation-systems",
-            "path_status": "existing"
-          }
-        },
-        {
           "route": "services/cash-flow-working-capital",
           "label": "Cash Flow & Working Capital",
           "target": {
@@ -4275,8 +4111,6 @@
       ],
       "header_cta": "Get in touch",
       "footer_description": "Accounting. Tax. Advisory. Practical finance support for startups and SMEs.",
-      "technology_link_label": "Technology enquiries",
-      "technology_url": "/contact?division=technology#enquiry-heading",
       "copyright_draft": "© 2026 LedgerByte. All rights reserved."
     },
     "C03": {
@@ -4295,9 +4129,9 @@
         "Audit & Controls",
         "Saudi Arabia"
       ],
-      "service_count": 22,
+      "service_count": 21,
       "catalog_heading": "Accounting, tax & advisory. Choose the support you need.",
-      "catalog_intro": "Explore 22 services across finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
+      "catalog_intro": "Finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
       "search_placeholder": "Try registration, audit or close",
       "filters": [
         "All services",
@@ -4322,7 +4156,6 @@
         "Company",
         "What would you like help with?"
       ],
-      "service_options": "All 22 services, plus UAE VAT support and Not sure yet",
       "short_message_hint": "Briefly describe your needs and the period or task involved.",
       "privacy_hint": "Please do not include account credentials, financial documents, payroll details or sensitive personal information. Secure document intake will be agreed separately.",
       "quick_whatsapp_label": "WhatsApp",
@@ -4368,8 +4201,7 @@
     "social": {
       "linkedin": "https://www.linkedin.com/company/ledger-byte/",
       "trustpilot": "https://www.trustpilot.com/review/ledgerbyte.io",
-      "whatsapp": "https://wa.me/971561371569",
-      "technology": "/contact?division=technology#enquiry-heading"
+      "whatsapp": "https://wa.me/971561371569"
     },
     "status": "These links/contact values come from the public site and existing redesign; confirm official phone/WhatsApp before launch. Other social handles are not invented."
   }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { accountingShowcaseServices, serviceContactHref } from "@/content/accounting";
+import { accountingServices, accountingShowcaseServices, serviceContactHref } from "@/content/accounting";
 import catalogue from "@/content/home-service-scopes.json";
 import { ServiceCatalogue } from "./service-catalogue";
 import { ServiceFlashcards } from "./service-flashcards";
@@ -9,7 +9,7 @@ export function HomeCatalogue() {
     <ServiceCatalogue>
       <ServiceFlashcards services={accountingShowcaseServices} label="Featured accounting services" />
       <details className="accounting-home-catalogue" id="all-services">
-        <summary>All services <span>Explore 22 service scopes</span></summary>
+        <summary>All services <span>Explore {accountingServices.length} service scopes</span></summary>
         {catalogue.map(({ group, items }) => (
           <details key={group} className="accounting-home-catalogue-group">
             <summary>{group} <span>{items.length} services</span></summary>

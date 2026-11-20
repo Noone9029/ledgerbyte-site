@@ -1,11 +1,10 @@
 # LedgerByte
 
-> Accounting operations, finance leadership, UAE and Saudi tax support, company formation and audit coordination for startups and SMEs. Connect the work your business needs through a clearly defined scope.
+> Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.
 
 ## Services
 
 - [Accounting & Bookkeeping](https://ledgerbyte.io/finance/services/accounting-bookkeeping)
-- [Accounting Automation & Systems](https://ledgerbyte.io/finance/services/accounting-automation-systems)
 - [Payroll & WPS Management](https://ledgerbyte.io/finance/services/payroll-wps-management)
 - [Full Finance Department Outsourcing](https://ledgerbyte.io/finance/services/finance-department-outsourcing)
 - [Fractional Financial Controller](https://ledgerbyte.io/finance/services/fractional-controller)
@@ -29,7 +28,7 @@
 
 ## Markets
 
-- [Accounting and finance support for UAE businesses.](https://ledgerbyte.io/regions/uae)
+- [Outsourced accounting and bookkeeping for UAE businesses](https://ledgerbyte.io/regions/uae)
 - [Bookkeeping and management reporting for US business needs.](https://ledgerbyte.io/regions/united-states)
 - [Bookkeeping and finance support for Pakistan business needs.](https://ledgerbyte.io/regions/pakistan)
 - [Build a connected finance process for your Saudi business.](https://ledgerbyte.io/regions/saudi-arabia)
@@ -49,4 +48,3 @@
 - [Markets](https://ledgerbyte.io/regions)
 - [Contact](https://ledgerbyte.io/contact)
 - [LedgerByte Insights](https://blog.ledgerbyte.io)
-- [Technology enquiries](https://ledgerbyte.io/contact?division=technology#enquiry-heading)

@@ -1,28 +1,8 @@
 import financeData from "@/content/generated/finance-services.json";
-import technologyData from "@/content/generated/technology-services.json";
-import technologyProcessData from "@/content/generated/technology-process.json";
 import userProvidedCopy from "@/content/user-provided.json";
-import type {
-  FinanceService,
-  ProcessStep,
-  TeamMember,
-  TechnologyService,
-} from "@/content/types";
+import type { FinanceService, TeamMember } from "@/content/types";
 
 export const financeServices = financeData as FinanceService[];
-export const technologyServices: TechnologyService[] = technologyData.map((service) => ({
-  ...service,
-  division: "technology",
-  description: service.slug === "web-development"
-    ? "Responsive web applications, e-commerce platforms and custom web portals."
-    : service.description,
-}));
-
-export const technologyProcess = {
-  ...technologyProcessData,
-  steps: technologyProcessData.steps as ProcessStep[],
-};
-
 export const financeServiceGroups = [
   {
     title: "Finance Operations",
@@ -30,7 +10,6 @@ export const financeServiceGroups = [
       "Day-to-day accounting support, payroll discipline, and systems that keep finance operations running cleanly.",
     services: [
       "Accounting & Bookkeeping",
-      "Accounting Automation & Systems",
       "Payroll & WPS Management",
     ],
     source: "rendered-text/ledgerbyte.io/services.txt",
@@ -206,57 +185,6 @@ export const financeTools = [
   "QuickBooks",
 ] as const;
 
-export const technologyAdvantages = [
-  {
-    title: "Security-First Mindset",
-    description:
-      "We prioritize security at every stage of development.",
-  },
-  {
-    title: "Scalable Architecture",
-    description: "Our solutions are designed with growth in mind, using cloud-native architectures.",
-  },
-  {
-    title: "Business-Driven Solutions",
-    description:
-      "We take time to understand your objectives, challenges, and market position.",
-  },
-  {
-    title: "GCC & International Experience",
-    description:
-      "With extensive experience across GCC markets and international projects, we understand diverse regulatory requirements, cultural nuances, and business practices. We deliver solutions that work globally while respecting local contexts.",
-  },
-].map((value) => ({
-  ...value,
-  source: "rendered-text/tech.ledgerbyte.io/why-ledgerbyte-tech.txt",
-}));
-
-export const technologyValues = [
-  {
-    title: "Mission-Driven",
-    description:
-      "We focus on delivering solutions that drive real business outcomes and long-term success.",
-  },
-  {
-    title: "Client-Centric",
-    description:
-      "Your success is our priority. We build lasting partnerships based on trust and results.",
-  },
-  {
-    title: "Quality First",
-    description:
-      "We maintain the highest standards in every project, from code quality to user experience.",
-  },
-  {
-    title: "Global Reach",
-    description:
-      "With experience across GCC and international markets, we understand diverse business needs.",
-  },
-].map((value) => ({
-  ...value,
-  source: "rendered-text/tech.ledgerbyte.io/about.txt",
-}));
-
 export const contactDetails = {
   email: "info@ledgerbyte.io",
   phone: "+971 56 137 1569",
@@ -275,9 +203,6 @@ export const contactDetails = {
 
 export const getFinanceService = (slug: string) =>
   financeServices.find((service) => service.slug === slug);
-
-export const getTechnologyService = (slug: string) =>
-  technologyServices.find((service) => service.slug === slug);
 
 export const getFinanceServiceByTitle = (title: string) =>
   financeServices.find((service) => service.title === title);

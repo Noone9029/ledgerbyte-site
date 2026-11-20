@@ -1,6 +1,6 @@
 # LedgerByte Web
 
-Unified Next.js storefront for LedgerByte Finance and LedgerByte Technology.
+Finance website for ledgerbyte.io. Technology services belong on ledgerbyte.co.
 
 ## Local Development
 
@@ -50,7 +50,7 @@ WhatsApp works without Resend credentials. Never commit production values.
 SEO metadata, canonical paths, target intent, and modification dates are
 centralized in `src/content/seo.json`. Production uses
 `https://ledgerbyte.io`; Vercel previews are `noindex`, while permanent
-redirects preserve the legacy finance and technology URLs.
+redirects preserve legacy URLs for current finance services. Retired technology URLs return 404.
 
 Google Analytics is optional:
 

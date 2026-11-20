@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import financeServices from "../src/content/generated/finance-services.json";
-import technologyServices from "../src/content/generated/technology-services.json";
 import { team } from "../src/content";
 import { buildPersonPath } from "../src/lib/person-identity";
 
@@ -9,13 +8,6 @@ const routes = [
   "/finance",
   "/finance/services",
   ...financeServices.map((service) => `/finance/services/${service.slug}`),
-  "/technology",
-  "/technology/services",
-  ...technologyServices.map(
-    (service) => `/technology/services/${service.slug}`,
-  ),
-  "/technology/process",
-  "/technology/why-ledgerbyte",
   "/about",
   ...team.map((member) => buildPersonPath(member.name)),
   "/contact",
@@ -72,11 +64,8 @@ test("hero headings stay within three rendered lines", async ({ page }) => {
   const heroRoutes = [
     "/",
     "/finance",
-    "/technology",
+
     "/finance/services",
-    "/technology/services",
-    "/technology/process",
-    "/technology/why-ledgerbyte",
     "/about",
     "/contact",
   ];
@@ -204,7 +193,7 @@ test("@reduced reduced motion produces stable final layouts", async ({
       () => matchMedia("(prefers-reduced-motion: reduce)").matches,
     ),
   ).toBeTruthy();
-  for (const route of ["/", "/finance", "/technology", "/about"]) {
+  for (const route of ["/", "/finance", "/about"]) {
     await page.goto(route);
     await expect(page.locator("main")).toBeVisible();
     const stickyCards = await page.locator(".stack-card").evaluateAll((cards) =>

@@ -5,9 +5,9 @@ const representativeRoutes = [
   "/",
   "/finance",
   "/finance/services/accounting-bookkeeping",
-  "/technology",
-  "/technology/services/web-development",
-  "/technology/process",
+  "/build-your-finance-department",
+  "/uae-vat",
+  "/how-we-work",
   "/about",
   "/about/team/haider-ali",
   "/contact",
@@ -47,7 +47,7 @@ test("light theme has no serious accessibility violations", async ({ page }) => 
   for (const route of [
     "/",
     "/finance/services/accounting-bookkeeping",
-    "/technology/services/web-development",
+    "/uae-vat",
     "/about",
     "/contact",
   ]) {

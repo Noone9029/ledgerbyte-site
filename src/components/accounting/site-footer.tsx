@@ -4,6 +4,7 @@ import { Brand } from "@/components/layout/brand";
 import {
   accountingContact,
   accountingCopy,
+  accountingServices,
 } from "@/content/accounting";
 
 export function AccountingFooter() {
@@ -24,7 +25,7 @@ export function AccountingFooter() {
             <h2>Services</h2>
             <Link href="/finance">Finance overview</Link>
             <Link href="/build-your-finance-department">Build your finance department</Link>
-            <Link href="/finance/services">All 22 services</Link>
+            <Link href="/finance/services">All {accountingServices.length} services</Link>
             <Link href="/uae-vat">UAE VAT support</Link>
           </div>
           <div>
@@ -67,9 +68,6 @@ export function AccountingFooter() {
               WhatsApp
             </a>
             <address>{accountingContact.contact.address.join(", ")}</address>
-            <EnquiryLink className="accounting-tech-link" technologyOnly>
-              Technology enquiries ↗
-            </EnquiryLink>
           </div>
         </div>
         <div className="accounting-footer-bottom">

@@ -29,7 +29,7 @@
       ],
       "faqs": [],
       "sourceKey": "home",
-      "sourceDigest": "e9edb8b67c865e4f3862e25afe412729a7222bd3f73d396546fdb9c0820e728f",
+      "sourceDigest": "53aa229bea2db08ba2a957cf6aef6045211f197c7eec83f856fc2b94c60e3ef6",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -37,8 +37,8 @@
       "path": "/ar/finance/services",
       "englishPath": "/finance/services",
       "title": "المحاسبة والضرائب والاستشارات. اختر الدعم الذي تحتاجه.",
-      "description": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
-      "intro": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "description": "استعرض ٢١ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "intro": "استعرض ٢١ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
       "sections": [
         {
           "heading": "ابدأ بالمشكلة",
@@ -57,7 +57,7 @@
       ],
       "faqs": [],
       "sourceKey": "services",
-      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -85,7 +85,7 @@
       ],
       "faqs": [],
       "sourceKey": "about",
-      "sourceDigest": "31d2d3662277e269d9524768a535a300187174c616de3c0c1ae0201ac97821c6",
+      "sourceDigest": "c9054a59b1ef0e2cc5837912601fa14c34acfed11855e0a76462cd3ecfedbeeb",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -106,7 +106,7 @@
       ],
       "faqs": [],
       "sourceKey": "contact",
-      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -141,7 +141,7 @@
       ],
       "faqs": [],
       "sourceKey": "how-we-work",
-      "sourceDigest": "b650907eac9107cd9dd016d5b379d365fb1a699a7ca5e1cf5443eb69af9748f3",
+      "sourceDigest": "8625ffb3d767a04b45beb75005c4051641a1ed74d1d518393f7f62de01b30b6a",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -169,7 +169,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions",
-      "sourceDigest": "a09f1ea1f3ae8fea643b4b46efaaf795c026126facc974b999e1b531216e5a18",
+      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -201,7 +201,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions/uae",
-      "sourceDigest": "11e378a7cce9c0cf354fff13a583686ad8b754b69cd364481affe1dcc9ff9fc7",
+      "sourceDigest": "4855d5eed3d1f36858302b1ad38e9b07157b26f57d13f41c334684af863a5663",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -233,7 +233,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions/saudi-arabia",
-      "sourceDigest": "a5b30367a0e82a6e9f71c880255308f762b429eb670ab050c24f384920a01246",
+      "sourceDigest": "09423e9b3ca6c3ac9a576a56184947564f0846a47c55eec4a7336324a40e7955",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -265,7 +265,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions/united-states",
-      "sourceDigest": "598ec41c16fd89820198cf108db8886a332a4c8ec256d69b9759c7bbab82cc5c",
+      "sourceDigest": "b9dfa81feaa65211c8b6733bd8a29fa2665076bba5acbac4d046310838362541",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -297,7 +297,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions/pakistan",
-      "sourceDigest": "7d435abb3bcd40451f912dcbe39161b88cd1f9edda9baf86ed846f7ce2d43af0",
+      "sourceDigest": "f4f4db04781106b913fc32b752c0118a192c5e9ca17714d3b0c68c0a1181c438",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -341,7 +341,7 @@
         }
       ],
       "sourceKey": "services/accounting-bookkeeping",
-      "sourceDigest": "8d4294a3e5f79a30388149c1b5de0e3d4086a6208458c335cf06601a93e4ea5f",
+      "sourceDigest": "bce67e5a53d262e9c189405439f8d5599bb5c3a39473c450cb1d95b9c9e5ef73",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -385,7 +385,7 @@
         }
       ],
       "sourceKey": "services/finance-department-outsourcing",
-      "sourceDigest": "dee9ad1e8416a8578cb6c981f821ef4dff006f917b23ec334c9312b22e6973f9",
+      "sourceDigest": "898c652cb6d74347e84b74b4a0cd7a33033f190fd6f35c27641ecf48ba63c6e8",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -429,7 +429,7 @@
         }
       ],
       "sourceKey": "services/financial-reporting-mis",
-      "sourceDigest": "c1148c974f62af64156e9a4b568abcd2e07a849d7a73e798aeb19807019a86a5",
+      "sourceDigest": "963452e2e6e3315aa8102ed318fc600da796d772877654f696983cad315c631c",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -473,7 +473,7 @@
         }
       ],
       "sourceKey": "services/fractional-cfo",
-      "sourceDigest": "22af706f7a242eb32f2404e4c413305a394d651f2edd276451c256c1fafba4e7",
+      "sourceDigest": "fca2fb26b7b45d97156010ea845d771741fc6f716c57845f7eea136c2ee1f9de",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -517,7 +517,7 @@
         }
       ],
       "sourceKey": "services/tax-vat-compliance",
-      "sourceDigest": "ce423784d06018911e6117ec184a078df45b79f573f59806d03954571ad69ce6",
+      "sourceDigest": "99b061c9f6a2a119c7684bf86bdff42f5ddb4d20bc2ba72a0109c03d1c49b86b",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -561,7 +561,7 @@
         }
       ],
       "sourceKey": "services/corporate-tax-filing",
-      "sourceDigest": "58722284d7c531b91da1ea1169481fbe75434c1ee203880735830e1af2dafb91",
+      "sourceDigest": "3b14d7883c9ed5c20e1f5f1d6991885e37d2365ff90bc6509a11fb686086dc6d",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -605,7 +605,7 @@
         }
       ],
       "sourceKey": "services/ksa-vat",
-      "sourceDigest": "aa8675ec97b735dc946b90cffafb67b0e3083ff13f8ef9c10af1a342dfbbc634",
+      "sourceDigest": "3911ff780e614e26618865e7e71417de4413b7d80fe97b7e26e9403992295c56",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -649,7 +649,7 @@
         }
       ],
       "sourceKey": "services/zatca-filing",
-      "sourceDigest": "709e5f0d90fa2c5430c57b5b0c1775ec176b9a743e021558e70676d41a864508",
+      "sourceDigest": "6f30c55a62d9e9de4b5e4203140122b2a3a3bcd00373f86f7e2023c81c49578c",
       "status": "draft",
       "lastModified": "2026-11-14"
     }
@@ -666,18 +666,6 @@
       "audience": "For businesses that need a consistent accounting routine, a backlog brought up to date, or a dependable foundation for reporting.",
       "englishTitle": "Accounting & Bookkeeping",
       "arabicDetail": true
-    },
-    {
-      "key": "services/accounting-automation-systems",
-      "slug": "accounting-automation-systems",
-      "title": "أتمتة المحاسبة والأنظمة",
-      "group": "Finance Operations",
-      "summary": "ربط السجلات وسير العمل المحاسبي بأنظمة أوضح، وفق نطاق متفق عليه للتهيئة والتنفيذ.",
-      "output": "An agreed accounting setup, documented workflows and a checklist for the team that will run them.",
-      "boundary": "This is accounting systems support, not custom software development. Software subscriptions, integration work and access permissions are agreed separately.",
-      "audience": "For businesses setting up accounting software, changing their finance process or untangling inconsistent records.",
-      "englishTitle": "Accounting Automation & Systems",
-      "arabicDetail": false
     },
     {
       "key": "services/payroll-wps",

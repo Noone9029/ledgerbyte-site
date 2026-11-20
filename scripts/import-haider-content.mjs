@@ -12,7 +12,9 @@ if (
 ) {
   throw new Error("Unexpected handoff: expected 22 services and 33 pages.");
 }
-const services = handoff.service_changes.map((service) => ({
+const retiredService = "services/accounting-automation-systems";
+const pageCopy = Object.entries(handoff.page_copy).filter(([key]) => key !== retiredService);
+const services = handoff.service_changes.filter((service) => service.page_key !== retiredService).map((service) => ({
   key: service.page_key,
   slug: service.current_url
     ? new URL(service.current_url).pathname.split("/").at(-1)
@@ -25,7 +27,7 @@ const services = handoff.service_changes.map((service) => ({
   audience: service.who_it_is_for,
 }));
 const paths = Object.fromEntries(
-  Object.entries(handoff.page_copy).map(([key, page]) => [
+  pageCopy.map(([key, page]) => [
     key,
     services.some((s) => s.key === key)
       ? `/finance/services/${services.find((s) => s.key === key).slug}`
@@ -35,8 +37,9 @@ const paths = Object.fromEntries(
 paths.services = "/finance/services";
 paths.regions = "/regions";
 paths.insights = "/insights";
+paths["build-your-finance-department"] = "/build-your-finance-department";
 const pages = Object.fromEntries(
-  Object.entries(handoff.page_copy).map(([key, page]) => [
+  pageCopy.map(([key, page]) => [
     key,
     {
       title: page.seo_title,
@@ -52,6 +55,7 @@ const replacements = Object.fromEntries(
     .map((change) => [change.id, change.replacement]),
 );
 for (const page of Object.values(pages)) {
+  page.related = page.related.filter((link) => (link.target?.page_key ?? link.route) !== retiredService);
   for (const link of page.related) {
     const key = link.target?.page_key ?? link.route;
     if (!paths[key]) throw new Error(`Unmapped related content target: ${key}`);
@@ -72,18 +76,28 @@ const content = {
   replacements,
   contact: handoff.shared_contact_and_social,
 };
-// Use the working enquiry destination while the separate technology site is offline.
-const technologyContact = "/contact?division=technology#enquiry-heading";
-content.replacements.C01.technology_link_label = "Technology enquiries";
-content.replacements.C01.technology_url = technologyContact;
-content.contact.social.technology = technologyContact;
+// The supplied handoff covers both divisions. Publish only the finance catalogue.
+delete replacements.C01.technology_link_label;
+delete replacements.C01.technology_url;
+delete content.contact.social.technology;
+replacements.C06.service_count = services.length;
+replacements.C06.catalog_intro = replacements.C06.catalog_intro.replace("Explore 22 services across finance", "Finance");
+delete replacements.C08.service_options;
+pages.home.description = pages.home.description.replace("Explore 22 LedgerByte services: accounting", "Accounting");
+pages.about.related.forEach((link) => {
+  if (link.label === "All 22 services") link.label = "All services";
+});
 for (const section of pages.about.sections) {
   section.paragraphs = section.paragraphs.map((paragraph) =>
-    paragraph.replace(/ This website is dedicated to that finance work;[^.]+ledgerbyte[.]co[.]/, ""),
+    paragraph
+      .replace(/ This website is dedicated to that finance work;[^.]+ledgerbyte[.]co[.]/, "")
+      .replace("Today, the 22-service range connects bookkeeping, month-end and year-end close, receivables, payables, accounting systems and payroll with management reporting, planning and cash flow. ", ""),
   );
 }
-const technologyFaq = pages.about.faqs.find((item) => item.question === "Where can we explore technology services?");
-if (technologyFaq) technologyFaq.answer = `[Technology enquiry](${technologyContact})`;
+pages.about.faqs = pages.about.faqs.filter((item) => item.question !== "Where can we explore technology services?");
+for (const item of pages["regions/saudi-arabia"].faqs) {
+  item.answer = item.answer.replace(" Accounting-side coordination is scoped here; wider technology work belongs at LedgerByte Tech.", "");
+}
 fs.writeFileSync(
   "src/content/accounting.json",
   JSON.stringify(content, null, 2) + "\n",
@@ -125,7 +139,6 @@ const discovery = [
   "- [Markets](https://ledgerbyte.io/regions)",
   "- [Contact](https://ledgerbyte.io/contact)",
   "- [LedgerByte Insights](https://blog.ledgerbyte.io)",
-  "- [Technology enquiries](https://ledgerbyte.io/contact?division=technology#enquiry-heading)",
   "",
 ];
 fs.writeFileSync("public/llms.txt", discovery.join("\n"));

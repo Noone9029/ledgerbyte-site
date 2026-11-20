@@ -86,9 +86,9 @@ try {
     [
       ["home", "/"],
       ["finance", "/finance"],
-      ["technology", "/technology"],
+      ["finance-builder", "/build-your-finance-department"],
       ["finance-service", "/finance/services/accounting-bookkeeping"],
-      ["technology-service", "/technology/services/web-development"],
+      ["vat", "/uae-vat"],
       ["about", "/about"],
       ["contact", "/contact"],
     ],
@@ -100,7 +100,7 @@ try {
     [
       ["home", "/"],
       ["finance", "/finance"],
-      ["technology", "/technology"],
+      ["finance-builder", "/build-your-finance-department"],
       ["contact", "/contact"],
     ],
   );

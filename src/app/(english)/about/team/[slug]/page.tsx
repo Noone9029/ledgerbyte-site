@@ -7,10 +7,9 @@ import { PageMotion } from "@/components/motion/page-motion";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
-import { financeServices, team, technologyServices } from "@/content";
+import { financeServices, team } from "@/content";
 import { accountingPages, accountingServices, serviceContactHref } from "@/content/accounting";
 import { homeUpdate } from "@/content/home-update";
-import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import {
   buildBreadcrumbSchema,
   buildPersonId,
@@ -73,7 +72,6 @@ export default async function TeamProfilePage({
     "amir-ilyas": "ksa-vat",
   };
   const scope = accountingServices.find(service => service.slug === relatedScope[slug]);
-  const technology = member.role === "CTO";
 
   return (
     <>
@@ -153,10 +151,10 @@ export default async function TeamProfilePage({
           ) : null}
 
           <ConsultationCta
-            title={scope?.title ?? (technology ? "Technology enquiries" : accountingPages["how-we-work"].heading)}
-            description={scope?.output ?? (technology ? technologyServices.map(service => service.title).join(" · ") : homeUpdate.process[0].text)}
-            buttonLabel={scope ? "Discuss this service" : technology ? "Discuss your project" : "See how we work"}
-            href={scope ? serviceContactHref(scope.title) : technology ? technologyEnquiryHref() : "/how-we-work"}
+            title={scope?.title ?? accountingPages["how-we-work"].heading}
+            description={scope?.output ?? homeUpdate.process[0].text}
+            buttonLabel={scope ? "Discuss this service" : "See how we work"}
+            href={scope ? serviceContactHref(scope.title) : "/how-we-work"}
           />
         </PageMotion>
       </main>

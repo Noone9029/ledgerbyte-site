@@ -1,7 +1,5 @@
-export type Division = "finance" | "technology";
-
 export interface ServiceEntry {
-  division: Division;
+  division: "finance";
   slug: string;
   title: string;
   description: string;
@@ -72,11 +70,6 @@ export interface FinanceService extends ServiceEntry {
   };
 }
 
-export interface TechnologyService extends ServiceEntry {
-  features: string[];
-  technologies: string[];
-}
-
 export interface TeamMember {
   name: string;
   role: string;
@@ -84,10 +77,4 @@ export interface TeamMember {
   description: string;
   image: string;
   source: string;
-}
-
-export interface ProcessStep {
-  step: string;
-  title: string;
-  description: string;
 }

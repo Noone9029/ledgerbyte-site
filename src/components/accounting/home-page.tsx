@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { accountingContact, accountingPages, contentPath, guideKeys } from "@/content/accounting";
+import { accountingContact, accountingPages, accountingServices, contentPath, guideKeys } from "@/content/accounting";
 import { Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
 import { ScrollReveals } from "@/components/motion/scroll-reveals";
@@ -76,7 +76,7 @@ export function AccountingHome() {
             <p>{home.sections[1].paragraphs[0]}</p>
           </div>
           <HomeCatalogue />
-          <Link className="text-link accounting-all-services" href="/finance/services">All 22 services<ArrowUpRight aria-hidden="true" /></Link>
+          <Link className="text-link accounting-all-services" href="/finance/services">All {accountingServices.length} services<ArrowUpRight aria-hidden="true" /></Link>
         </section>
 
         <HomeWorkingProcess />
@@ -98,7 +98,7 @@ export function AccountingHome() {
             <div><p className="eyebrow">Insights &amp; practical guides</p><h2>A little preparation goes a long way.</h2></div>
             <Link className="text-link" href="/insights">Browse practical guides<ArrowUpRight aria-hidden="true" /></Link>
           </div>
-          <p className="accounting-home-blog">Explore LedgerByte articles on finance, technology and business decisions. <a className="text-link" href="https://blog.ledgerbyte.io/" target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
+          <p className="accounting-home-blog"><a className="text-link" href="https://blog.ledgerbyte.io/" target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
           <div>
             {guideKeys.map((key, index) => (
               <Link href={contentPath(key)} key={key}>

@@ -15,7 +15,7 @@ function Navigation({ mobile = false }: { mobile?: boolean }) {
         </summary>
         <div className="accounting-mega">
           <Link className="accounting-menu-all" href="/finance/services">
-            All 22 services
+            All {accountingServices.length} services
             <ArrowUpRight aria-hidden="true" />
           </Link>
           <Link href="/build-your-finance-department">

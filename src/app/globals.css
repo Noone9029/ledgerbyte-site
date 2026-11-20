@@ -4495,11 +4495,6 @@ button:active,
   line-height: 1.6;
   margin-block: 23px;
 }
-.accounting-footer-grid .accounting-tech-link {
-  font-size: 0.78rem;
-  border-top: 1px solid var(--line-dark);
-  padding-top: 22px;
-}
 .accounting-footer-bottom {
   display: flex;
   justify-content: space-between;

@@ -1,65 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-test("division switching and service discovery resolve to complete routes", async ({
-  page,
-  isMobile,
-}) => {
-  await page.goto("/");
-
-  if (isMobile) {
-    await page.getByRole("button", { name: "Open navigation" }).click();
-    const mobileNavigation = page.getByRole("navigation", {
-      name: "Mobile navigation",
-    });
-    await expect(mobileNavigation).toBeVisible();
-    await expect(
-      mobileNavigation.getByRole("link", { name: "Finance Services" }),
-    ).toHaveCount(0);
-    await expect(
-      mobileNavigation.getByRole("link", { name: "Technology Services" }),
-    ).toHaveCount(0);
-    await mobileNavigation
-      .getByRole("link", { name: "Technology", exact: true })
-      .click();
-  } else {
-    await page.getByRole("link", { name: "Technology", exact: true }).first().click();
-  }
-
-  await expect(page).toHaveURL(/\/technology$/);
-  await expect(
-    page.getByRole("heading", {
-      level: 1,
-      name: "Tech Solutions That Scale With Your Business",
-    }),
-  ).toBeVisible();
-
-  await page.goto("/finance/services");
-  const serviceLinks = page.locator(".service-card");
-  await expect(serviceLinks).toHaveCount(8);
-  await serviceLinks.first().click();
-  await expect(page).toHaveURL(/\/finance\/services\/.+/);
-  await expect(page.locator(".deliverables-grid")).toBeVisible();
-  await expect(page.locator("[data-aeo-answer]")).toHaveCount(1);
-  await expect(page.locator(".faq-list details")).toHaveCount(3);
-});
-
-test("desktop mega navigation exposes both service divisions", async ({
-  page,
-}) => {
-  test.skip(
-    (page.viewportSize()?.width ?? 0) <= 1120,
-    "Desktop mega navigation is replaced by the mobile menu.",
-  );
-  await page.goto("/");
-  await page.getByRole("button", { name: "Services" }).click();
-  const menu = page.locator("#services-menu");
-  await expect(menu).toBeVisible();
-  await expect(menu.getByRole("link", { name: "Finance Services" })).toBeVisible();
-  await expect(
-    menu.getByRole("link", { name: "Technology Services" }),
-  ).toBeVisible();
-});
-
 test("header, footer, and browser metadata use the LedgerByte mark", async ({
   page,
 }) => {
@@ -106,28 +46,6 @@ test("theme control follows the system preference and persists an override", asy
   await expect(
     page.getByRole("button", { name: "Switch to light mode" }),
   ).toBeVisible();
-});
-
-test("about values grid is completed by three working action cards", async ({
-  page,
-}) => {
-  await page.goto("/about");
-
-  const valuesGrid = page.locator(".values-grid");
-  await expect(valuesGrid.locator(":scope > *")).toHaveCount(12);
-  await expect(valuesGrid.locator(".value-action-card")).toHaveCount(3);
-
-  await expect(
-    valuesGrid.getByRole("link", { name: /Smart Accounting/ }),
-  ).toHaveAttribute("href", "/finance/services");
-  await expect(
-    valuesGrid.getByRole("link", { name: /Technology Solutions/ }),
-  ).toHaveAttribute("href", "/technology/services");
-  await expect(
-    valuesGrid.getByRole("link", {
-      name: /Ready to strengthen your finance function/,
-    }),
-  ).toHaveAttribute("href", "/contact");
 });
 
 test("about team places Muhammad Ahmad immediately after Haider", async ({
@@ -441,10 +359,6 @@ test("legacy routes redirect and invalid service slugs return 404", async ({
     ["/about-us/", "/about"],
     ["/lets-connect", "/contact"],
     ["/lets-connect/", "/contact"],
-    ["/process", "/technology/process"],
-    ["/process/", "/technology/process"],
-    ["/why-ledgerbyte-tech", "/technology/why-ledgerbyte"],
-    ["/why-ledgerbyte-tech/", "/technology/why-ledgerbyte"],
     ["/terms-of-service", "/terms-of-use"],
     ["/terms-of-service/", "/terms-of-use"],
   ]);
