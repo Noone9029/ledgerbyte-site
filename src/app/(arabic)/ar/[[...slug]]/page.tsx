@@ -16,6 +16,8 @@ async function resolve(params: Props["params"]) {
   const path = "/ar" + ((await params).slug?.length ? "/" + (await params).slug!.join("/") : "");
   return getArabicPages().find((page) => page.path === path);
 }
+export const dynamicParams = false;
+
 export function generateStaticParams() { return getArabicPages().map((page) => ({ slug: page.path.slice(4).split("/").filter(Boolean) })); }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await resolve(params);

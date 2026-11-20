@@ -1,3 +1,4 @@
+import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -14,7 +15,6 @@ import {
   technologyAdvantages,
   technologyProcess,
   technologyServices,
-  technologyStats,
 } from "@/content";
 import { getPageSeo } from "@/content/seo";
 import { technologyVisual } from "@/content/visuals";
@@ -73,12 +73,12 @@ export default function TechnologyPage() {
                   long-term growth.
                 </p>
                 <div className="hero-actions hero-reveal">
-                  <Link className="button button-amber" href="/contact">
+                  <Link className="button button-amber" href={technologyEnquiryHref()}>
                     Get a Quote
                     <ArrowUpRight weight="bold" aria-hidden="true" />
                   </Link>
                   <Link className="text-link" href="/technology/services">
-                    Talk to an Expert
+                    Explore services
                     <ArrowUpRight weight="bold" aria-hidden="true" />
                   </Link>
                 </div>
@@ -94,15 +94,6 @@ export default function TechnologyPage() {
                 </div>
               </div>
             </CinematicMedia>
-          </section>
-
-          <section className="stats-band page-section">
-            {technologyStats.map(([value, label]) => (
-              <article key={label}>
-                <strong>{value}</strong>
-                <span>{label}</span>
-              </article>
-            ))}
           </section>
 
           <section className="services-showcase page-section">
@@ -169,6 +160,7 @@ export default function TechnologyPage() {
           </section>
 
           <ConsultationCta
+            href={technologyEnquiryHref()}
             title="Ready to Transform Your Business?"
             description="Let's discuss your project and explore how LedgerByte Tech can deliver the solutions you need."
             buttonLabel="Start Your Project Today"

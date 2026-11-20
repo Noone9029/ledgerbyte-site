@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { accountingGroups, accountingServices } from "@/content/accounting";
 import { NavigationBehaviour } from "./navigation-behaviour";
 
-function Navigation() {
+function Navigation({ mobile = false }: { mobile?: boolean }) {
   return (
     <>
       <details className="accounting-services-menu">
@@ -17,11 +17,13 @@ function Navigation() {
             All 22 services
             <ArrowUpRight aria-hidden="true" />
           </Link>
+          <Link href="/build-your-finance-department">
+            Build your finance department
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
           <div>
-            {accountingGroups.map((group) => (
-              <section key={group}>
-                <h2>{group}</h2>
-                {accountingServices
+            {accountingGroups.map((group) => {
+              const links = accountingServices
                   .filter((s) => s.group === group)
                   .map((service) => (
                     <Link
@@ -30,16 +32,19 @@ function Navigation() {
                     >
                       {service.title}
                     </Link>
-                  ))}
-              </section>
-            ))}
+                  ));
+              return mobile ? (
+                <details key={group} className="accounting-menu-group">
+                  <summary>{group}</summary>
+                  {links}
+                </details>
+              ) : (
+                <section key={group}><h2>{group}</h2>{links}</section>
+              );
+            })}
           </div>
           <Link href="/uae-vat">
             UAE VAT support
-            <ArrowUpRight aria-hidden="true" />
-          </Link>
-          <Link href="/build-your-finance-department">
-            Build your finance department
             <ArrowUpRight aria-hidden="true" />
           </Link>
         </div>
@@ -73,7 +78,7 @@ export function AccountingHeader() {
               <span aria-hidden="true">☰</span>
             </summary>
             <nav aria-label="Mobile navigation">
-              <Navigation />
+              <Navigation mobile />
               <Link className="button button-amber" href="/contact">
                 Get in touch
                 <ArrowUpRight aria-hidden="true" />

@@ -1,5 +1,54 @@
 import { expect, test } from "@playwright/test";
 import manifest from "../src/content/localization-manifest.json";
+
+test.describe("mobile analytics consent", () => {
+  test.use({ isMobile: true, hasTouch: true });
+  for (const width of [320, 390]) {
+    for (const path of ["/", "/build-your-finance-department"]) {
+      test(`eligible prompt clears the main action on ${path} at ${width}px`, async ({ context, page }) => {
+        await page.setViewportSize({ width, height: width === 320 ? 568 : 844 });
+        const tagRequests: string[] = [];
+        // Serve every first-party request from loopback and contain every external request.
+        await context.route("**/*", async route => {
+          const url = new URL(route.request().url());
+          if (url.origin === "https://ledgerbyte.io") {
+            const port = process.env.LEDGERBYTE_QA_PROD_PORT || "4430";
+            const response = await route.fetch({ url: `http://127.0.0.1:${port}${url.pathname}${url.search}`, maxRedirects: 0 });
+            return route.fulfill({ response });
+          }
+          if (url.hostname === "www.googletagmanager.com") {
+            tagRequests.push(url.pathname);
+            return route.fulfill({ contentType: "application/javascript", body: "" });
+          }
+          return route.abort();
+        });
+        await page.goto("https://ledgerbyte.io" + path);
+        const panel = page.locator("#analytics-inline .analytics-choice");
+        await expect(panel).toBeVisible();
+        const hero = page.locator(path === "/" ? ".accounting-home-hero" : "main");
+        const action = hero.getByRole("link", { name: path === "/" ? "Build your finance department" : "Build my team", exact: false }).first();
+        const panelBox = (await panel.boundingBox())!;
+        const actionBox = (await action.boundingBox())!;
+        expect(panelBox.y).toBeGreaterThanOrEqual(actionBox.y + actionBox.height);
+        const whatsappBox = (await page.locator("a.floating-whatsapp").boundingBox())!;
+        expect(panelBox.x + panelBox.width).toBeLessThan(whatsappBox.x);
+        expect(tagRequests).toEqual([]);
+        await panel.getByRole("button", { name: "Decline analytics" }).click();
+        await page.reload();
+        await expect(page.locator(".analytics-choice")).toHaveCount(0);
+        expect(tagRequests).toEqual([]);
+        await page.getByRole("button", { name: "Cookie settings" }).click();
+        await page.getByRole("button", { name: "Allow analytics" }).click();
+        await expect.poll(() => tagRequests).toEqual(["/gtag/js"]);
+        await page.getByRole("button", { name: "Cookie settings" }).click();
+        await page.getByRole("button", { name: "Decline analytics" }).click();
+        expect((await context.cookies()).find(cookie => cookie.name === "ledgerbyte-analytics-consent")?.value).toBe("denied");
+        await page.close();
+        await context.unrouteAll({ behavior: "wait" });
+      });
+    }
+  }
+});
 test("production rejects every unapproved Arabic page and review route despite a review flag", async ({ request }) => {
   for (const entry of manifest.pages) {
     const response = await request.get(`http://127.0.0.1:4430${entry.path}`);

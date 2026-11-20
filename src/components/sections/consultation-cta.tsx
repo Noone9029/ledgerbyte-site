@@ -7,12 +7,14 @@ interface ConsultationCtaProps {
   title: string;
   description: string;
   buttonLabel?: string;
+  href?: string;
 }
 
 export function ConsultationCta({
   title,
   description,
   buttonLabel = "Book Your Free Consultation",
+  href = "/contact",
 }: ConsultationCtaProps) {
   return (
     <section className="consultation-cta motion-reveal">
@@ -26,7 +28,7 @@ export function ConsultationCta({
           <p className="eyebrow">Let&apos;s Connect</p>
           <h2>{title}</h2>
           <p>{description}</p>
-          <Link className="button button-amber" href="/contact">
+          <Link className="button button-amber" href={href}>
             {buttonLabel}
             <ArrowUpRight weight="bold" aria-hidden="true" />
           </Link>

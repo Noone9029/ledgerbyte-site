@@ -200,13 +200,6 @@ export const financeTools = [
   "QuickBooks",
 ] as const;
 
-export const technologyStats = [
-  ["50+", "PROJECTS DELIVERED"],
-  ["10", "TEAM MEMBERS"],
-  ["3+", "YEARS EXPERIENCE"],
-  ["98%", "CLIENT SATISFACTION"],
-] as const;
-
 export const technologyAdvantages = [
   {
     title: "Security-First Mindset",

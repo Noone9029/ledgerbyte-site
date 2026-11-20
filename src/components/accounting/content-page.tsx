@@ -28,8 +28,9 @@ import {
 export function CopyText({ text }: { text: string }) {
   return (
     <>
-      {text.split(/(\[[^\]]+\]\(https?:\/\/[^\s)]+\))/g).map((part, i) => {
-        const link = /^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)$/.exec(part);
+      {text.split(/(\[[^\]]+\]\((?:https?:\/\/|\/(?![\\/]))[^\s\\)]+\))/g).map((part, i) => {
+        const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
+        if (link?.[2].startsWith("/")) return <Link key={i} href={link[2]}>{link[1]}</Link>;
         return link ? (
           <a key={i} href={link[2]} target="_blank" rel="noreferrer">
             {link[1]}
@@ -51,7 +52,7 @@ export function EnquiryLink({
   return (
     <Link
       className="button button-amber"
-      href={service ? serviceContactHref(service) : "/contact"}
+      href={service ? serviceContactHref(service) : "/contact#enquiry-heading"}
     >
       {label}
       <ArrowUpRight aria-hidden="true" />
@@ -113,6 +114,10 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
   const example = guideExamples[pageKey];
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
+  const exampleSection = page.sections.findIndex(section => /example/i.test(section.heading));
+  const deliverableSection = page.sections.findIndex(section => /what you receive|what you provide and receive|what to have ready|return from supported records/i.test(section.heading));
+  const detailSection = exampleSection >= 0 ? exampleSection : deliverableSection;
+  const marketOutput = marketNames[pageKey] && page.sections.find(section => section.bullets.length);
   const group =
     service?.group ??
     (pageKey.startsWith("regions/")
@@ -193,11 +198,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           </div>
           {service ? (
             <aside className="accounting-output">
-              <span className="accounting-mark" aria-hidden="true">
-                ↗
-              </span>
               <p className="eyebrow">Typical output</p>
               <p>{service.output}</p>
+              {detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
               <hr />
               <small>{service.boundary}</small>
             </aside>
@@ -212,10 +215,21 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           ) : example ? (
             <aside className="accounting-output guide-example" aria-label="Worked example">
               <p className="eyebrow">Worked example</p>
-              <p>{example.summary}</p>
+              <dl className="guide-calculation">
+                {example.amounts.map(([label, amount]) => (
+                  <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
+                ))}
+              </dl>
               <a href="#worked-example">See the calculation</a>
               <hr />
               <small><a href={example.url}>{example.reference}</a></small>
+            </aside>
+          ) : marketOutput ? (
+            <aside className="accounting-output market-output">
+              <p className="eyebrow">{marketNames[pageKey]}</p>
+              <h2>{marketOutput.heading}</h2>
+              <ul>{marketOutput.bullets.slice(0, 2).map(text => <li key={text}><CopyText text={text} /></li>)}</ul>
+              <a className="text-link" href={`#section-${page.sections.indexOf(marketOutput) + 1}`}>See the full scope ↓</a>
             </aside>
           ) : (
             <div className="accounting-detail-motif" aria-hidden="true">

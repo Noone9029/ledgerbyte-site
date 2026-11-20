@@ -15,7 +15,7 @@ function nodes(value: unknown, result: Record<string, unknown>[] = []) {
   return result;
 }
 
-test("AI discovery lists all accounting services and keeps technology external", async ({
+test("AI discovery lists accounting services and a working technology enquiry handoff", async ({
   request,
 }) => {
   const response = await request.get("/llms.txt");
@@ -27,7 +27,8 @@ test("AI discovery lists all accounting services and keeps technology external",
       "https://ledgerbyte.io/finance/services/" + service.slug,
     );
   }
-  expect(text).toContain("https://ledgerbyte.co");
+  expect(text).toContain("https://ledgerbyte.io/contact?division=technology#enquiry-heading");
+  expect(text).not.toContain("https://ledgerbyte.co");
   expect(text).not.toContain("https://ledgerbyte.io/technology");
   expect(await (await request.get("/robots.txt")).text()).toContain(
     "Disallow: /",
@@ -53,11 +54,13 @@ test("service answers and FAQ schema match the supplied visible copy", async ({
       service.title,
     ).toBe(true);
     const faq = graph.find((n) => n["@type"] === "FAQPage");
+    const answers = await page.locator(".accounting-faq details p").allTextContents();
+    expect(answers).toHaveLength(source.faqs.length);
     expect(faq?.mainEntity).toEqual(
-      source.faqs.map((q) => ({
+      source.faqs.map((q, index) => ({
         "@type": "Question",
         name: q.question,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
+        acceptedAnswer: { "@type": "Answer", text: answers[index] },
       })),
     );
     for (const q of source.faqs)

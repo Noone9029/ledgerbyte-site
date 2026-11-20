@@ -40,12 +40,8 @@ test("the full catalogue stays searchable and keyboard focus wins over hover", a
     await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounts-payable");
   }
   await page.getByRole("searchbox").fill("registration");
-  await expect(page.locator("[data-service-card]")).toHaveCount(4);
-  await expect(page.locator("[data-service-flashcards]")).toHaveCount(2);
-  const filteredDeck = page.locator("[data-service-flashcards]").first();
-  await filteredDeck.locator("details").last().locator("summary").click();
-  await expect(filteredDeck.locator("details[open]")).toHaveCount(1);
-  await expect(filteredDeck.locator("details[open]")).toContainText("Typical output");
+  await expect(page.getByRole("link", { name: "UAE VAT Registration", exact: true }).and(page.locator("main h3 a"))).toHaveAttribute("href", "/finance/services/vat-registration");
+  await expect(page.locator("main [data-service-flashcards]")).toHaveCount(0);
   await page.getByRole("searchbox").fill("");
   await page.getByLabel("Service category").selectOption("Saudi Arabia");
   await expect(page.locator("[data-service-card]")).toHaveCount(3);

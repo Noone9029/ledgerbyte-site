@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { accountingContact, accountingPages, accountingShowcaseServices, contentPath, guideKeys } from "@/content/accounting";
-import { EnquiryLink, Faqs, TeamGrid } from "./content-page";
+import { accountingContact, accountingPages, contentPath, guideKeys, serviceContactHref } from "@/content/accounting";
+import { Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
 import { ScrollReveals } from "@/components/motion/scroll-reveals";
-import { ServiceFlashcards } from "./service-flashcards";
 import { HomeCatalogue } from "./home-catalogue";
 import { HomeOffers, HomeWorkingProcess, HomeWorkstreams } from "./home-offers";
 import { homeUpdate } from "@/content/home-update";
+import { guideExamples } from "@/content/insight-guides";
 import { buildFaqSchema, buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
 
 export function AccountingHome() {
@@ -30,7 +30,6 @@ export function AccountingHome() {
               <Link className="button button-amber" href="/build-your-finance-department">Build your finance department<ArrowUpRight aria-hidden="true" /></Link>
               <a className="text-link" href="#offers">Explore UAE offers<ArrowUpRight aria-hidden="true" /></a>
             </div>
-            <p className="accounting-location">Accounting · Tax · Controller · Fractional CFO</p>
           </div>
           <figure className="accounting-hero-figure">
             <div className="accounting-hero-image">
@@ -38,13 +37,26 @@ export function AccountingHome() {
             </div>
             <figcaption className="accounting-hero-caption"><span>LEDGERBYTE</span><span>ACCOUNTING. TAX. ADVISORY.</span></figcaption>
           </figure>
+          <div id="analytics-inline" />
         </section>
 
         <HomeOffers />
 
         <section className="accounting-reviews accounting-wrap" data-home-section="reviews" data-scroll-reveal>
-          <div><p className="eyebrow">Client reviews</p><h2>Hear from LedgerByte clients.</h2><p>Read their feedback on Trustpilot.</p></div>
-          <a className="text-link" href="https://www.trustpilot.com/review/ledgerbyte.io" target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
+          <div className="accounting-review-link">
+            <h2>Client reviews</h2>
+            <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
+          </div>
+          <article className="accounting-home-example">
+            <p className="eyebrow">Worked example</p>
+            <h3>{accountingPages["insights/profit-and-cash"].heading}</h3>
+            <dl className="accounting-example-numbers">
+              {guideExamples["insights/profit-and-cash"].amounts.map(([label, amount]) => (
+                <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
+              ))}
+            </dl>
+            <Link className="text-link" href="/insights/profit-and-cash#worked-example">See the calculation<ArrowUpRight aria-hidden="true" /></Link>
+          </article>
         </section>
 
         <section className="accounting-finance-services accounting-wrap" data-home-section="finance-services" data-scroll-reveal>
@@ -59,7 +71,7 @@ export function AccountingHome() {
             <p>{homeUpdate.department}</p>
             <div className="hero-actions">
               <Link className="button button-amber" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
-              <Link className="text-link" href="/contact?service=Full%20Finance%20Department%20Outsourcing">Discuss full finance support<ArrowUpRight aria-hidden="true" /></Link>
+              <Link className="text-link" href={serviceContactHref("Full Finance Department Outsourcing")}>Discuss full finance support<ArrowUpRight aria-hidden="true" /></Link>
               <Link className="text-link" href="/finance/services/finance-department-outsourcing">Explore the scope<ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </aside>
@@ -70,7 +82,6 @@ export function AccountingHome() {
             <div><p className="eyebrow">The service catalogue</p><h2>{home.sections[1].heading}</h2></div>
             <p>{home.sections[1].paragraphs[0]}</p>
           </div>
-          <ServiceFlashcards services={accountingShowcaseServices} label={home.sections[1].heading} />
           <HomeCatalogue />
           <Link className="text-link accounting-all-services" href="/finance/services">All 22 services<ArrowUpRight aria-hidden="true" /></Link>
         </section>
@@ -119,7 +130,7 @@ export function AccountingHome() {
               <address>{accountingContact.contact.address.join(", ")}</address>
             </div>
           </div>
-          <aside className="accounting-output"><h3>Discuss your requirements.</h3><p>Share your business location and the support you need through our enquiry form.</p><EnquiryLink label="Open enquiry form" /></aside>
+          <aside className="accounting-output"><h3>Discuss your requirements.</h3><p>Share your business location and the support you need through our enquiry form.</p><Link className="button button-amber" href="/contact#enquiry-heading">Open enquiry form<ArrowUpRight aria-hidden="true" /></Link></aside>
         </section>
       </main>
     </>

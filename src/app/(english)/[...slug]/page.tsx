@@ -6,6 +6,8 @@ import { createMetadata } from "@/lib/seo";
 const entries = Object.entries(accountingPages).filter(
   ([key]) => key !== "home" && key !== "about" && !key.startsWith("services/"),
 );
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return entries.map(([, page]) => ({ slug: page.path.slice(1).split("/") }));
 }

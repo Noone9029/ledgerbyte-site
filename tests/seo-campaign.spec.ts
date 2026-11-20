@@ -52,6 +52,8 @@ test("preview consent never loads Google and withdrawal persists", async ({ cont
   const requests: string[] = [];
   page.on("request", (request) => { if (/google-analytics|googletagmanager/.test(request.url())) requests.push(request.url()); });
   await page.goto("/ar");
+  await expect(page.locator("#analytics-choice")).toHaveCount(0);
+  await page.getByRole("button", { name: "إعدادات ملفات الارتباط", exact: true }).click();
   await page.getByRole("button", { name: "السماح بالتحليلات", exact: true }).click();
   await page.getByRole("button", { name: "إعدادات ملفات الارتباط", exact: true }).click();
   await page.getByRole("button", { name: "رفض التحليلات", exact: true }).click();

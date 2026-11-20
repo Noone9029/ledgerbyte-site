@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
-import { accountingServices } from "@/content/accounting";
+import { financeEnquiryChoices, serviceWhatsAppHref, technologyEnquiryChoices } from "@/lib/enquiry-options";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
 
@@ -16,17 +16,14 @@ const safeFailures = new Set([
   "Email delivery is unavailable. Please email info@ledgerbyte.io or choose WhatsApp.",
 ]);
 
-export const enquiryChoices = [
-  ...accountingServices.map((service) => service.title),
-  "UAE VAT support",
-  "Not sure yet",
-];
 export function AccountingContactForm({
-  initialService, locale = "en",
+  initialService, locale = "en", technology = false,
 }: {
-  initialService: string; locale?: "en" | "ar";
+  initialService: string; locale?: "en" | "ar"; technology?: boolean;
 }) {
   const enhanced = useHydrated();
+  const enquiryChoices = technology ? technologyEnquiryChoices : financeEnquiryChoices;
+  const [fallbackService, setFallbackService] = useState(initialService);
   const ar = locale === "ar";
   const say = (en: string) => ar ? (arabicDrafts.labels[en as keyof typeof arabicDrafts.labels] || en) : en;
   const [status, setStatus] = useState<
@@ -56,6 +53,7 @@ export function AccountingContactForm({
     if (!enhanced || inFlight.current) return;
     const form = new FormData(event.currentTarget);
     const payload = Object.fromEntries(form.entries());
+    setFallbackService(String(payload.service || ""));
     const payloadKey = JSON.stringify(payload);
     if (acceptedPayload.current === payloadKey) {
       setStatus("success");
@@ -205,7 +203,11 @@ export function AccountingContactForm({
             className={`accounting-form-feedback ${status}`}
             role={status === "error" ? "alert" : "status"}
           >
-            {feedback}
+            <p>{feedback}</p>
+            {status === "error" && <div className="hero-actions">
+              <a className="text-link" href={`mailto:info@ledgerbyte.io?subject=${encodeURIComponent("LedgerByte enquiry: " + fallbackService)}`}>info@ledgerbyte.io</a>
+              <a className="text-link" href={serviceWhatsAppHref(fallbackService)} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+            </div>}
           </div>
         )}
       </form>

@@ -3,7 +3,6 @@ import { Brand } from "@/components/layout/brand";
 import {
   accountingContact,
   accountingCopy,
-  accountingServices,
 } from "@/content/accounting";
 
 export function AccountingFooter() {
@@ -22,15 +21,10 @@ export function AccountingFooter() {
         <div className="accounting-footer-grid">
           <div>
             <h2>Services</h2>
+            <Link href="/finance">Finance overview</Link>
             <Link href="/build-your-finance-department">Build your finance department</Link>
-            {accountingServices.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/finance/services/${service.slug}`}
-              >
-                {service.title}
-              </Link>
-            ))}
+            <Link href="/finance/services">All 22 services</Link>
+            <Link href="/uae-vat">UAE VAT support</Link>
           </div>
           <div>
             <h2>LedgerByte</h2>
@@ -39,7 +33,6 @@ export function AccountingFooter() {
             <Link href="/regions">Markets</Link>
             <Link href="/insights">Practical guides</Link>
             <a href="https://blog.ledgerbyte.io">LedgerByte Insights</a>
-            <Link href="/uae-vat">UAE VAT support</Link>
             <a
               href={accountingContact.social.linkedin}
               target="_blank"
@@ -73,15 +66,12 @@ export function AccountingFooter() {
               WhatsApp
             </a>
             <address>{accountingContact.contact.address.join(", ")}</address>
-            <a
+            <Link
               className="accounting-tech-link"
-              href={accountingContact.social.technology}
-              target="_blank"
-              rel="noreferrer"
+              href="/contact?division=technology#enquiry-heading"
             >
-              Looking for technology services? LedgerByte Tech · ledgerbyte.co
-              ↗
-            </a>
+              Technology enquiries ↗
+            </Link>
           </div>
         </div>
         <div className="accounting-footer-bottom">

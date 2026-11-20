@@ -24,11 +24,33 @@ async function openServices(page: Page) {
   return nav;
 }
 
+test("mobile primary actions leave the WhatsApp hit target clear", async ({ page, isMobile }) => {
+  test.skip(!isMobile);
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: width === 320 ? 568 : 844 });
+    for (const [path, selector] of [
+      ["/", ".accounting-home-hero .button"],
+      ["/finance", ".accounting-hub-link"],
+      ["/finance/services/ksa-company-formation", ".accounting-detail-hero .button"],
+      ["/technology/services/cloud-devops", ".service-detail-copy .button"],
+    ]) {
+      await page.goto(path);
+      await page.evaluate(() => document.fonts.ready);
+      const button = (await page.locator("a.floating-whatsapp").boundingBox())!;
+      const action = (await page.locator(selector).first().boundingBox())!;
+      expect(action.x + action.width, path).toBeLessThan(button.x);
+    }
+  }
+});
+
 test("menus close on selection, Escape and outside interaction", async ({
   page,
 }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   let nav = await openServices(page);
+  if ((page.viewportSize()?.width ?? 0) <= 1180) {
+    await nav.locator("summary").filter({ hasText: "Finance Operations" }).click();
+  }
   await nav
     .getByRole("link", { name: "Accounting & Bookkeeping", exact: true })
     .click();
@@ -95,7 +117,7 @@ test("gateway, malformed and network failures use friendly copy and retain data"
       .getByRole("button", { name: "Send enquiry", exact: true })
       .click();
     await expect(
-      page.locator('.accounting-contact-form [role="alert"]'),
+      page.locator('.accounting-contact-form [role="alert"] > p'),
     ).toHaveText(failure);
     await expect(page.getByLabel("Name", { exact: false }).first()).toHaveValue(
       "Aleksandra Wiśniewska-Kowalczyk",
@@ -143,7 +165,7 @@ test("stalled requests release the form with a useful error", async ({
   await expect(page.getByRole("button", { name: "Sending…" })).toBeDisabled();
   await page.clock.fastForward(20001);
   await expect(
-    page.locator('.accounting-contact-form [role="alert"]'),
+    page.locator('.accounting-contact-form [role="alert"] > p'),
   ).toHaveText(failure);
   await expect(
     page.getByRole("button", { name: "Send enquiry", exact: true }),

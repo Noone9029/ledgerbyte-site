@@ -1,3 +1,4 @@
+import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
@@ -64,7 +65,7 @@ export default function TechnologyProcessPage() {
                 A proven methodology that delivers exceptional results, from
                 initial concept to ongoing support
               </p>
-              <Link className="button button-amber hero-reveal" href="/contact">
+              <Link className="button button-amber hero-reveal" href={technologyEnquiryHref()}>
                 Get Started Today
                 <ArrowUpRight weight="bold" aria-hidden="true" />
               </Link>
@@ -105,6 +106,7 @@ export default function TechnologyProcessPage() {
         </section>
 
         <ConsultationCta
+          href={technologyEnquiryHref()}
           title="Ready to Start Your Project?"
           description="Let's discuss how our proven process can bring your vision to life"
           buttonLabel="Get Started Today"

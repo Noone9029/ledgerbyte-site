@@ -73,12 +73,13 @@ test("sitemap, permanent redirects and footer cover the current service routes",
     expect(urls).toContain(origin + (path === "/" ? "" : path));
   expect(urls.join(" ")).not.toContain("/review-notes");
   await page.goto("/finance/services");
+  await expect(page.locator("footer").getByRole("link", { name: "Finance overview" })).toHaveAttribute("href", "/finance");
+  await expect(page.locator("footer").getByRole("link", { name: "All 22 services" })).toHaveAttribute("href", "/finance/services");
+  await expect(page.locator("main [data-service-card]")).toHaveCount(22);
   for (const service of content.services) {
     const destination = "/finance/services/" + service.slug;
     await expect(
-      page
-        .locator("footer")
-        .getByRole("link", { name: service.title, exact: true }),
+      page.locator(`main a[href="${destination}"]`).first(),
     ).toHaveAttribute("href", destination);
   }
   for (const slug of ["fractional-cfo-advisory", "payroll-wps-management"]) {

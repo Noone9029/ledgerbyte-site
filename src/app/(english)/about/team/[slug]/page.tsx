@@ -7,7 +7,10 @@ import { PageMotion } from "@/components/motion/page-motion";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
-import { financeServices, team } from "@/content";
+import { financeServices, team, technologyServices } from "@/content";
+import { accountingPages, accountingServices, serviceContactHref } from "@/content/accounting";
+import { homeUpdate } from "@/content/home-update";
+import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import {
   buildBreadcrumbSchema,
   buildPersonId,
@@ -27,6 +30,8 @@ function getTeamMember(slug: string) {
     (member) => buildPersonPath(member.name).split("/").at(-1) === slug,
   );
 }
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return team.map((member) => ({
@@ -61,6 +66,14 @@ export default async function TeamProfilePage({
   const reviewedServices = financeServices.filter(
     (service) => service.reviewer.name === member.name,
   );
+  const relatedScope: Record<string, string> = {
+    "haider-ali": "finance-department-outsourcing",
+    "faisal-nawaz": "month-end-year-end-close",
+    "sayyam-nasir": "fractional-controller",
+    "amir-ilyas": "ksa-vat",
+  };
+  const scope = accountingServices.find(service => service.slug === relatedScope[slug]);
+  const technology = member.role === "CTO";
 
   return (
     <>
@@ -119,7 +132,7 @@ export default async function TeamProfilePage({
 
           {reviewedServices.length ? (
             <section className="related-section page-section">
-              <SectionHeading eyebrow="Services" title={member.name} />
+              <SectionHeading eyebrow={member.role} title="Reviewed services" />
               <div className="related-grid">
                 {reviewedServices.map((service) => (
                   <Link
@@ -140,8 +153,10 @@ export default async function TeamProfilePage({
           ) : null}
 
           <ConsultationCta
-            title="Ready to strengthen your finance function?"
-            description="Get in touch with our team to discuss bookkeeping, reporting, compliance, payroll, cash flow planning, or CFO-level support for your business."
+            title={scope?.title ?? (technology ? "Technology enquiries" : accountingPages["how-we-work"].heading)}
+            description={scope?.output ?? (technology ? technologyServices.map(service => service.title).join(" · ") : homeUpdate.process[0].text)}
+            buttonLabel={scope ? "Discuss this service" : technology ? "Discuss your project" : "See how we work"}
+            href={scope ? serviceContactHref(scope.title) : technology ? technologyEnquiryHref() : "/how-we-work"}
           />
         </PageMotion>
       </main>

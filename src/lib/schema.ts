@@ -247,7 +247,7 @@ export function buildFaqSchema(
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer,
+        text: faq.answer.replace(/\[([^\]]+)\]\((?:https?:\/\/|\/)[^\s)]+\)/g, "$1"),
       },
     })),
   };

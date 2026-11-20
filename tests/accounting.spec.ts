@@ -125,7 +125,10 @@ test("accounting navigation, Trustpilot and team changes match the handoff", asy
   );
   if ((page.viewportSize()?.width ?? 0) <= 1180)
     await page.getByLabel("Open navigation").click();
-  await nav.locator("summary").click();
+  await nav.locator(".accounting-services-menu > summary").click();
+  if ((page.viewportSize()?.width ?? 0) <= 1180) {
+    await nav.locator("summary").filter({ hasText: "Finance Operations" }).click();
+  }
   await expect(
     nav.getByRole("link", {
       name: "Full Finance Department Outsourcing",
@@ -142,13 +145,14 @@ test("accounting navigation, Trustpilot and team changes match the handoff", asy
   await expect(
     page.locator(".accounting-home-hero + #offers + .accounting-reviews"),
   ).toBeVisible();
-  await expect(page.locator(".accounting-reviews a")).toHaveAttribute(
+  await expect(page.locator(".accounting-review-link a")).toHaveAttribute(
     "href",
     "https://www.trustpilot.com/review/ledgerbyte.io",
   );
-  await expect(page.locator(".accounting-reviews")).not.toContainText(
+  await expect(page.locator(".accounting-review-link")).not.toContainText(
     /\d\.\d|stars/i,
   );
+  await expect(page.locator(".accounting-home-example")).toContainText("−AED 20,000");
   await page.goto("/about");
   await expect(page.locator(".accounting-team-grid")).toContainText(
     "Financial Controller",
@@ -215,7 +219,7 @@ test("contact retains service context and separates email acceptance from WhatsA
   );
   await page.getByRole("button", { name: "Send enquiry" }).click();
   await expect(
-    page.locator(".accounting-contact-form [role='alert']"),
+    page.locator(".accounting-contact-form [role='alert'] > p"),
   ).toHaveText(
     "Email delivery is unavailable. Please email info@ledgerbyte.io or choose WhatsApp.",
   );

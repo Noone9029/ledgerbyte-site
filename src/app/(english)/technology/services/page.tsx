@@ -1,3 +1,4 @@
+import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
@@ -59,7 +60,7 @@ export default function TechnologyServicesPage() {
                 Comprehensive technology solutions designed to transform your
                 business and drive growth
               </p>
-              <Link className="button button-amber hero-reveal" href="/contact">
+              <Link className="button button-amber hero-reveal" href={technologyEnquiryHref()}>
                 Get a Quote
                 <ArrowUpRight weight="bold" aria-hidden="true" />
               </Link>
@@ -100,6 +101,7 @@ export default function TechnologyServicesPage() {
         </section>
 
         <ConsultationCta
+          href={technologyEnquiryHref()}
           title="Ready to Transform Your Business?"
           description="Let's discuss your project and explore how LedgerByte Tech can deliver the solutions you need."
           buttonLabel="Start Your Project Today"

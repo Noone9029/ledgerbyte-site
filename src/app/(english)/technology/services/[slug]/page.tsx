@@ -1,17 +1,13 @@
+import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
 import { CinematicMedia } from "@/components/sections/cinematic-media";
-import { ConsultationCta } from "@/components/sections/consultation-cta";
-import { InfiniteMarquee } from "@/components/sections/infinite-marquee";
-import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
 import {
   getTechnologyService,
-  technologyAdvantages,
-  technologyProcess,
   technologyServices,
 } from "@/content";
 import { getTechnologyServiceSeoTitle } from "@/content/seo";
@@ -30,6 +26,8 @@ import { createMetadata } from "@/lib/seo";
 interface TechnologyServicePageProps {
   params: Promise<{ slug: string }>;
 }
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return technologyServices.map((service) => ({ slug: service.slug }));
@@ -109,7 +107,7 @@ export default async function TechnologyServicePage({
                 <p className="hero-summary hero-reveal">
                   {service.description}
                 </p>
-                <Link className="button button-amber hero-reveal" href="/contact">
+                <Link className="button button-amber hero-reveal" href={technologyEnquiryHref(service.title)}>
                   Get a Quote
                   <ArrowUpRight weight="bold" aria-hidden="true" />
                 </Link>
@@ -118,10 +116,7 @@ export default async function TechnologyServicePage({
           </section>
 
           <section className="deliverables-section page-section">
-            <SectionHeading
-              eyebrow="Key Features"
-              title={service.title}
-            />
+            <h2>Key features</h2>
             <div className="deliverables-grid">
               {service.features.map((feature) => (
                 <article className="deliverable-card motion-reveal" key={feature}>
@@ -130,60 +125,15 @@ export default async function TechnologyServicePage({
                 </article>
               ))}
             </div>
-            <InfiniteMarquee items={service.technologies} />
           </section>
-
-          <section className="process-detail page-section">
-            <SectionHeading
-              eyebrow="Our Development Process"
-              title="A proven methodology that delivers exceptional results, from initial concept to ongoing support"
-              description="Every step is designed to ensure transparency, quality, and success"
-            />
-            <div className="stack-cards">
-              {technologyProcess.steps.map((step, index) => (
-                <article
-                  className="stack-card"
-                  style={{ "--stack-index": index } as React.CSSProperties}
-                  key={step.step}
-                >
-                  <span>{step.step}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="advantage-section page-section">
-            <SectionHeading
-              eyebrow="Our Competitive Advantages"
-              title="What sets us apart in a crowded marketplace"
-            />
-            <div className="advantage-grid">
-              {technologyAdvantages.map((advantage) => (
-                <article className="advantage-card motion-reveal" key={advantage.title}>
-                  <h3>{advantage.title}</h3>
-                  <p>{advantage.description}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
           <section className="partnership-promise page-section">
             <div className="partnership-promise-copy">
-              <p className="eyebrow">Our Partnership Promise</p>
-              <h2>Your Technology Partner for the Long Haul</h2>
-              <p>
-                When you work with LedgerByte Tech, you&apos;re not just hiring
-                a vendor, you&apos;re gaining a strategic partner committed to
-                your success. We&apos;re in this for the long haul, and
-                we&apos;ll be with you every step of the way as your business
-                grows and evolves.
-              </p>
-              <Link className="text-link" href="/technology/why-ledgerbyte">
-                Why LedgerByte Tech
-                <ArrowUpRight weight="bold" aria-hidden="true" />
+              <h2>Technologies</h2>
+              <ul>{service.technologies.map((item) => <li key={item}>{item}</li>)}</ul>
+              <Link className="button button-amber" href={technologyEnquiryHref(service.title)}>
+                Discuss your project <ArrowUpRight weight="bold" aria-hidden="true" />
               </Link>
+              <p><Link className="text-link" href="/technology/process">Our development process ↗</Link></p>
             </div>
             <CinematicMedia
               className="partnership-promise-art motion-reveal"
@@ -191,11 +141,6 @@ export default async function TechnologyServicePage({
             />
           </section>
 
-          <ConsultationCta
-            title="Ready to Transform Your Business?"
-            description="Let's discuss your project and explore how LedgerByte Tech can deliver the solutions you need."
-            buttonLabel="Start Your Project Today"
-          />
         </PageMotion>
       </main>
     </>

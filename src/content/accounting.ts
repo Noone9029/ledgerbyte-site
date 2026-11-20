@@ -86,7 +86,7 @@ export function contentPath(key: string) {
   return path;
 }
 export function serviceContactHref(service: string) {
-  return `/contact?service=${encodeURIComponent(service)}`;
+  return `/contact?service=${encodeURIComponent(service)}#enquiry-heading`;
 }
 export function getAccountingService(slug: string) {
   return accountingServices.find((service) => service.slug === slug);

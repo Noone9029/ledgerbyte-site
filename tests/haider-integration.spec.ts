@@ -19,15 +19,34 @@ test("homepage offers lead to scoped contact requests and the existing sliding c
 
 test("homepage catalogue filters service scopes and restores all services after an empty search", async ({ page }) => {
   await page.goto("/");
-  await page.locator("#all-services > summary").click();
   const search = page.getByRole("searchbox", { name: "Find your service", exact: true });
   await search.fill("corporate tax filing");
-  await expect(page.locator("#home-result-count")).toHaveText("1 service");
+  await expect(page.locator(".accounting-service-results h3 a").first()).toHaveAttribute("href", "/finance/services/corporate-tax-filing");
   await search.fill("no-matching-finance-scope");
   await expect(page.locator("#home-result-count")).toHaveText("0 services");
   await page.getByRole("button", { name: "Clear filters" }).click();
   await expect(page.locator("#home-result-count")).toHaveText("22 services");
   await expect(search).toBeFocused();
+});
+
+test("the homepage and full catalogue find the offers visitors are sold", async ({ page }) => {
+  for (const path of ["/", "/finance/services"]) {
+    await page.goto(path);
+    const search = page.getByRole("searchbox", { name: "Find your service" });
+    for (const [term, destination] of [
+      ["supplier payments", "/finance/services/accounts-payable"],
+      ["tax return", "/finance/services/corporate-tax-filing"],
+      ["cfo fractional", "/finance/services/fractional-cfo-advisory"],
+      ["VAT returns", "/uae-vat"],
+      ["VAT return", "/uae-vat"],
+    ]) {
+      await search.fill(term);
+      await expect(page.locator(".accounting-service-results h3 a").first()).toHaveAttribute("href", destination);
+    }
+    await page.getByRole("link", { name: "Discuss VAT Return Support", exact: true }).click();
+    await expect(page.getByLabel("Support you need")).toHaveValue("UAE VAT support");
+    await expect(page).toHaveURL(/#enquiry-heading$/);
+  }
 });
 
 test("finance builder keeps displayed prices and all enquiry channels in sync", async ({ page }) => {
@@ -62,6 +81,66 @@ test("finance builder scales workload and enforces the included minimum hours", 
   await senior.fill("0");
   await senior.blur();
   await expect(senior).toHaveValue("4");
+});
+
+test("finance builder carries role adjustments into payroll and restores the tab's estimate", async ({ page }) => {
+  await page.goto("/build-your-finance-department");
+  const senior = page.getByLabel("Senior accountant monthly hours");
+  await senior.fill("10");
+  await page.getByRole("button", { name: "Payroll support", exact: true }).click();
+  await expect(senior).toHaveValue("12");
+  await expect(page.locator("#monthly-total")).toHaveText("1,080");
+  await expect(page.locator("#hours")).toHaveText("27 hrs / mo");
+  await page.locator("#cadence").selectOption("Weekly");
+  await page.locator("#channel").selectOption("Phone");
+  await page.getByRole("link", { name: "See our working process" }).click();
+  await expect(page).toHaveURL(/how-we-work/);
+  await page.goBack();
+  await expect(senior).toHaveValue("12");
+  await expect(page.locator("#cadence")).toHaveValue("Weekly");
+  await expect(page.locator("#channel")).toHaveValue("Phone");
+  const draft = decodeURIComponent((await page.locator("#discuss").getAttribute("href"))!);
+  expect(draft).toContain("AED 1,080/month before tax");
+  expect(draft).toContain("My phone number (including country code)");
+  await page.getByRole("button", { name: "Restore recommended hours" }).click();
+  await expect(senior).toHaveValue("6");
+  await expect(page.locator("#monthly-total")).toHaveText("780");
+});
+
+test("finance builder prices only allocated work when advisory hours are missing", async ({ page }) => {
+  await page.goto("/build-your-finance-department");
+  await page.getByRole("button", { name: "CFO advisory", exact: true }).click();
+  await expect(page.locator("#monthly-total")).toHaveText("1,240");
+  await page.getByLabel("Fractional CFO monthly hours").fill("0");
+  await page.getByLabel("Fractional controller monthly hours").fill("0");
+  await expect(page.locator("#monthly-total")).toHaveText("500");
+  await expect(page.locator("#role-gap")).toContainText("Fractional CFO (0 of 4 h)");
+  await expect(page.locator("#workload-scope")).toBeVisible();
+  await expect(page.locator("#scope-note")).toContainText("Requested work needing a quote: CFO advisory. The estimate covers the hours shown.");
+  await expect(page.locator("#covered-work")).not.toContainText("CFO advisory");
+  for (const channel of ["Email", "WhatsApp"]) {
+    await page.locator("#channel").selectOption(channel);
+    const draft = decodeURIComponent((await page.locator("#discuss").getAttribute("href"))!);
+    expect(draft).toContain("Work covered by these hours: Bookkeeping with VAT filing\n");
+    expect(draft).toContain("Requested work needing a quote: CFO advisory. The estimate covers the hours shown.");
+    expect(draft).toContain("Estimated department cost: AED 500/month before tax.");
+  }
+  await page.getByRole("button", { name: "Restore recommended hours" }).click();
+  await expect(page.locator("#scope-note")).toBeHidden();
+  await expect(page.locator("#covered-work")).toContainText("CFO advisory");
+});
+
+test("mobile estimate shortcut is reserved for the calculator controls", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "The shortcut is only displayed on mobile.");
+  await page.goto("/build-your-finance-department");
+  await expect(page.locator("#industry")).toBeEnabled();
+  await expect(page.locator("#mobile")).toBeHidden();
+  await page.locator("#work").scrollIntoViewIfNeeded();
+  await expect(page.locator("#mobile")).toBeVisible();
+  await page.locator("#mobile a").click();
+  await expect(page.locator("#mobile")).toBeHidden();
+  await page.locator("#people").scrollIntoViewIfNeeded();
+  await expect(page.locator("#mobile")).toBeHidden();
 });
 
 test("@nojs finance builder keeps a usable starting estimate and enquiry draft", async ({ page }) => {

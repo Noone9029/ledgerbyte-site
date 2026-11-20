@@ -49,4 +49,4 @@
 - [Markets](https://ledgerbyte.io/regions)
 - [Contact](https://ledgerbyte.io/contact)
 - [LedgerByte Insights](https://blog.ledgerbyte.io)
-- [LedgerByte Tech](https://ledgerbyte.co)
+- [Technology enquiries](https://ledgerbyte.io/contact?division=technology#enquiry-heading)

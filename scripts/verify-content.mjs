@@ -119,7 +119,9 @@ const skippedDataKeys = new Set([
 
 const validateData = (value, origin, key = "") => {
   if (typeof value === "string") {
-    if (!skippedDataKeys.has(key)) checkCopy(value, origin);
+    if (skippedDataKeys.has(key) || /^\/(?!\/)[^\s]*$/.test(value)) return;
+    const standaloneLink = /^\[([^\]]+)\]\(\/(?!\/)[^\s)]+\)$/.exec(value);
+    checkCopy(standaloneLink?.[1] ?? value, origin);
     return;
   }
   if (Array.isArray(value)) {
@@ -181,12 +183,11 @@ const ignoredPropertyNames = new Set([
 ]);
 
 const isIgnoredString = (node) => {
+  const attribute = ts.findAncestor(node, ts.isJsxAttribute);
+  if (attribute && ignoredPropertyNames.has(attribute.name.getText())) return true;
   const parent = node.parent;
   if (ts.isImportDeclaration(parent) || ts.isExportDeclaration(parent)) {
     return true;
-  }
-  if (ts.isJsxAttribute(parent)) {
-    return ignoredPropertyNames.has(parent.name.getText());
   }
   if (ts.isPropertyAssignment(parent)) {
     const propertyName = parent.name.getText().replaceAll(/['"]/g, "");

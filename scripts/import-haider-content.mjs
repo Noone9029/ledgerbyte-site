@@ -57,6 +57,13 @@ for (const page of Object.values(pages)) {
     if (!paths[key]) throw new Error(`Unmapped related content target: ${key}`);
   }
 }
+// The supplied payroll bibliography used a ministry attachment that no longer loads.
+const payrollRegulationSource = "[UAE Cabinet Resolution No. 1 of 2022, Article 16 (Arabic PDF, p. 80)](https://assets.u.ae/api/public/content/06fd4e5b72d646c8abe247fa4ff83104?v=946ce745#page=80)";
+for (const section of pages["services/payroll-wps"].sections) {
+  section.paragraphs = section.paragraphs.map((paragraph) =>
+    paragraph.replace(/\[MoHRE employment law and executive-regulation text, Article 16 of the Executive Regulations\]\(https:\/\/www\.mohre\.gov\.ae\/assets\/download\/[^)]+\)/, payrollRegulationSource),
+  );
+}
 const content = {
   sourceDate: "2026-11-10",
   services,
@@ -65,6 +72,18 @@ const content = {
   replacements,
   contact: handoff.shared_contact_and_social,
 };
+// Use the working enquiry destination while the separate technology site is offline.
+const technologyContact = "/contact?division=technology#enquiry-heading";
+content.replacements.C01.technology_link_label = "Technology enquiries";
+content.replacements.C01.technology_url = technologyContact;
+content.contact.social.technology = technologyContact;
+for (const section of pages.about.sections) {
+  section.paragraphs = section.paragraphs.map((paragraph) =>
+    paragraph.replace(/ This website is dedicated to that finance work;[^.]+ledgerbyte[.]co[.]/, ""),
+  );
+}
+const technologyFaq = pages.about.faqs.find((item) => item.question === "Where can we explore technology services?");
+if (technologyFaq) technologyFaq.answer = `[Technology enquiry](${technologyContact})`;
 fs.writeFileSync(
   "src/content/accounting.json",
   JSON.stringify(content, null, 2) + "\n",
@@ -106,7 +125,7 @@ const discovery = [
   "- [Markets](https://ledgerbyte.io/regions)",
   "- [Contact](https://ledgerbyte.io/contact)",
   "- [LedgerByte Insights](https://blog.ledgerbyte.io)",
-  "- [LedgerByte Tech](https://ledgerbyte.co)",
+  "- [Technology enquiries](https://ledgerbyte.io/contact?division=technology#enquiry-heading)",
   "",
 ];
 fs.writeFileSync("public/llms.txt", discovery.join("\n"));

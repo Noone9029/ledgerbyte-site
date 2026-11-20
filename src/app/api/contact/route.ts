@@ -1,13 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { accountingServices } from "@/content/accounting";
+import { financeEnquiryChoices, technologyEnquiryChoices } from "@/lib/enquiry-options";
 
-const choices = new Set([
-  ...accountingServices.map((s) => s.title),
-  "UAE VAT support",
-  "Not sure yet",
-]);
+const choices = new Set([...financeEnquiryChoices, ...technologyEnquiryChoices]);
 const schema = z
   .object({
     fullName: z.string().trim().min(2).max(100),
@@ -25,7 +21,18 @@ const failure =
 const attempts = new Map<string, { count: number; expires: number }>();
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && new URL(request.url).origin !== origin)
+  const requestUrl = new URL(request.url);
+  // Next can canonicalize loopback addresses to localhost while the browser keeps the requested host.
+  const loopback = new Set(["localhost", "127.0.0.1", "[::1]"]);
+  const trustedOrigins = new Set([requestUrl.origin]);
+  if (loopback.has(requestUrl.hostname)) {
+    for (const host of loopback) {
+      const alternate = new URL(requestUrl);
+      alternate.hostname = host;
+      trustedOrigins.add(alternate.origin);
+    }
+  }
+  if (origin && !trustedOrigins.has(origin))
     return NextResponse.json({ message: failure }, { status: 403 });
   if (Number(request.headers.get("content-length") || 0) > 16000)
     return NextResponse.json({ message: failure }, { status: 413 });

@@ -14,10 +14,13 @@ export function HomeOffers() {
         {homeUpdate.offers.map(offer => (
           <section className="accounting-home-offer" key={offer.name}>
             <h3>{offer.name}</h3>
-            <p>{offer.description}</p>
             <p className="accounting-offer-price"><span>From</span> AED {offer.price}<small>{offer.unit}</small></p>
+            <details className="accounting-offer-details">
+              <summary>What’s included</summary>
+              <p>{offer.description}</p>
+              <Link className="accounting-offer-scope" href={offer.href}>{offer.scope} ↗</Link>
+            </details>
             <Link className="text-link" href={serviceContactHref(offer.service)}>{offer.cta}<ArrowUpRight aria-hidden="true" /></Link>
-            <Link className="accounting-offer-scope" href={offer.href}>{offer.scope} ↗</Link>
           </section>
         ))}
       </div>
@@ -29,14 +32,16 @@ export function HomeOffers() {
 export function HomeWorkstreams() {
   return (
     <div className="accounting-home-pillars">
-      {homeUpdate.workstreams.map((work, index) => (
+      {homeUpdate.workstreams.map(work => (
         <article key={work.name}>
-          <span className="accounting-section-number">{String(index + 1).padStart(2, "0")}</span>
           <h3>{work.name}</h3>
-          <p>{work.description}</p>
-          <p><strong>Typical output:</strong> {work.output}</p>
-          <Link className="text-link" href={serviceContactHref(work.service)}>{work.cta}<ArrowUpRight aria-hidden="true" /></Link>
-          <Link className="accounting-offer-scope" href={work.href}>Explore service ↗</Link>
+          <p>{work.output}</p>
+          <details className="accounting-work-details">
+            <summary>Explore service</summary>
+            <p>{work.description}</p>
+            <Link className="accounting-offer-scope" href={work.href}>{work.name} ↗</Link>
+            <Link className="text-link" href={serviceContactHref(work.service)}>{work.cta}<ArrowUpRight aria-hidden="true" /></Link>
+          </details>
         </article>
       ))}
     </div>
@@ -50,11 +55,11 @@ export function HomeWorkingProcess() {
         <p className="eyebrow">How we work</p><h2>Clear scope. Clear responsibility.</h2>
         <p>From the first conversation to the next reporting cycle, agree what the work needs to achieve and who owns each step.</p>
         <Link className="text-link" href="/how-we-work">Read the full working process<ArrowUpRight aria-hidden="true" /></Link>
-        <p>{homeUpdate.preparation}</p>
+        <details className="accounting-process-preparation"><summary>What to have ready</summary><p>{homeUpdate.preparation}</p></details>
       </div>
       <ol className="accounting-home-process-steps">
         {homeUpdate.process.map(step => (
-          <li key={step.title}><h3>{step.title}</h3><p>{step.text}</p></li>
+          <li key={step.title}><details><summary>{step.title}</summary><p>{step.text}</p></details></li>
         ))}
       </ol>
     </section>

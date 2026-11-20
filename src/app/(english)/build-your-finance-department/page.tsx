@@ -6,8 +6,10 @@ import { buildSchemaGraph, buildWebPageSchema, ORGANIZATION_ID } from "@/lib/sch
 import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { BuilderControls } from "./builder-controls";
 import { createEnquiryHref, includedWork, industries, minimumHours, roles } from "./calculator";
+import styles from "./builder.module.css";
 
 const path = "/build-your-finance-department";
+const labourLaw = "https://dda.gov.ae/-/media/22A3CF4734034742B62468DB2721BEF1.pdf";
 const page = getPageSeo(path);
 const description = "Build a UAE finance team from AED 500 per month before tax. See role hours and rates, including bookkeeping, senior review and VAT filing.";
 export const metadata = createPageMetadata(page, { path, description });
@@ -43,19 +45,25 @@ const schema = buildSchemaGraph(
 );
 
 function Introduction() {
-  return <>
-    <section className="accounting-home-hero finance-intro accounting-wrap" aria-labelledby="builder-title">
+  return (
+    <section className={`finance-intro accounting-wrap ${styles.intro}`} aria-labelledby="builder-title">
       <div className="intro-copy">
         <p className="eyebrow">Finance team builder</p>
         <h1 id="builder-title">Build your <em>finance department.</em></h1>
-        <p className="intro-lead">Know who keeps your books, who reviews the numbers and who follows up when a deadline is at risk. Your team includes senior review and VAT filing from <strong>AED 500/month before tax</strong>.</p>
+        <p className="intro-lead">Estimate the hours and monthly cost for your workload. Bookkeeping, senior review and VAT filing start at <strong>AED 500/month before tax</strong>.</p>
         <div className="intro-actions">
           <a className="button button-amber" href="#builder">Build my team <span aria-hidden="true">↗</span></a>
           <a className="finance-link" href="#people">Meet the people <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <figure className="accounting-hero-figure"><div className="accounting-hero-image"><Image src="/art/finance-editorial-v3.webp" alt="Editorial illustration of finance records, reporting and planning" width={1536} height={1024} sizes="(max-width: 900px) 90vw, 44vw" priority /></div><figcaption className="accounting-hero-caption"><span>LEDGERBYTE</span><span>ACCOUNTING. TAX. ADVISORY.</span></figcaption></figure>
+      <figure className={styles.artwork}><Image src="/art/finance-editorial-v3.webp" alt="" width={1536} height={1024} sizes="(max-width: 700px) 1px, 24vw" /></figure>
+      <div id="analytics-inline" />
     </section>
+  );
+}
+
+function People() {
+  return (
     <section id="people" className="finance-people" aria-labelledby="people-title"><div className="accounting-wrap">
       <div className="people-heading">
         <h2 id="people-title">The people behind LedgerByte</h2>
@@ -68,7 +76,7 @@ function Introduction() {
         </Link>
       ))}</div>
     </div></section>
-  </>;
+  );
 }
 
 function SectionTitle({ icon, children }: { icon: string; children: React.ReactNode }) {
@@ -87,7 +95,7 @@ function Business() {
       <div className="range-labels"><span>25</span><span>2,500</span></div>
     </div>
     <div className="workload-estimate" id="monthly-estimate">
-      <div><span>Estimated monthly department cost</span><strong id="workload-price">{monthlyPrice}</strong><small>Minimum package · AED 500 for 15 hours before tax</small></div>
+      <div><span>Estimated monthly cost for allocated hours</span><strong id="workload-price">{monthlyPrice}</strong><small>Minimum package · AED 500 for 15 hours before tax</small><small id="workload-scope" hidden>Some selected work needs a separate quote. See the breakdown.</small></div>
       <a className="finance-link" href="#estimate">View breakdown</a>
     </div>
   </section>;
@@ -120,12 +128,13 @@ function ComparisonDetails() {
       <p id="capacity" className="capacity" /><button type="button" className="plain" id="reset-assumptions">Restore benchmark assumptions</button>
     </details>
     <details className="sources" id="method"><summary>How we compare hourly rates</summary>
-      <p>Market comparisons use the starting rate or lower end of the cited provider range. The controller comparison uses an offshore provider benchmark in US dollars, converted at AED 3.6725 per US dollar. Actual quotes depend on scope.</p>
+      <p>Each comparison uses one published provider example for that role. The controller example is an offshore service for US firms, converted at AED 3.6725 per US dollar. The CFO example has a 24-hour minimum. Actual quotes depend on location, scope and commitment.</p>
       <p>For an in-house hire, we divide annual pay, gratuity accrual and employer expenses by available working hours. Team averages weight each role by the hours you select. Savings are the difference divided by the comparison rate.</p>
       <ul id="sources">{roles.map(role => <li key={role.name}>
         <b>{role.name}</b> · {role.marketNote}. <a href={role.url}>{role.source} provider benchmark</a> · <a href={role.salaryUrl}>{role.salarySource} salary guide</a>.
       </li>)}</ul>
-      <p className="helper">Benchmarks reviewed November 2026. <a href="https://centralbank.ae/en/forex-eibor/exchange-rates/">UAE exchange rates</a> · <a href="https://employerofrecord.ae/visas/">Dubai visa fees</a> · <a href="https://www.dha.gov.ae/uploads/032022/AR2022322813.pdf">Health coverage</a> · <a href="https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/end-of-service-benefits-for-employees-in-the-private-sector">Gratuity</a> · <a href="https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/types-of-leaves-and-entitlements-in-the-private-sector/annual-leave">Annual leave</a> · <a href="https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/types-of-leaves-and-entitlements-in-the-private-sector/sick-leave">Sick leave</a></p>
+      <p className="helper">Benchmarks reviewed November 2026. <a href="https://centralbank.ae/en/forex-eibor/exchange-rates/">UAE exchange rates</a> · <a href="https://employerofrecord.ae/visas/">Dubai visa fees</a> · <a href="https://www.dha.gov.ae/uploads/032022/AR2022322813.pdf">Health coverage</a></p>
+      <p className="helper">UAE Federal Decree-Law No. 33 of 2021 (PDF) · <a href={labourLaw + "#page=17"}>Annual leave, Article 29</a> · <a href={labourLaw + "#page=19"}>Sick leave, Article 31</a> · <a href={labourLaw + "#page=28"}>Gratuity, Article 51</a></p>
     </details>
   </>;
 }
@@ -142,9 +151,11 @@ function Estimate() {
       <strong className="subtotal">AED {startingSubtotals[i]}</strong>
     </div>)}</div>
     <p id="vat-included" className="included-service"><strong>VAT filing included</strong> with bookkeeping</p>
+    <p id="covered-work" className="helper" />
+    <p id="scope-note" className={styles.notice} hidden />
     <p id="comm" className="comm-summary">Preferred contact · Email · monthly check-in</p>
     <a className="cta button button-amber" id="discuss" href={startingEnquiry}><span className="icon" data-icon="chat" aria-hidden="true" />Review my team with LedgerByte</a>
-    <p className="footnote">Review and send your enquiry in WhatsApp or email. If you prefer a phone call, your email draft requests a callback.</p>
+    <p className="footnote">Review and send your enquiry in WhatsApp or email. For a callback, add your phone number to the email draft.</p>
   </aside>;
 }
 
@@ -153,17 +164,18 @@ export default function FinanceDepartmentPage() {
     <StructuredData data={schema} />
     <Introduction />
     <noscript><p className="accounting-wrap">Turn on JavaScript to adjust your estimate, or <Link href="/contact">discuss your workload with LedgerByte</Link>.</p></noscript>
-    <div className="workspace accounting-wrap" id="builder">
+    <div className={`workspace accounting-wrap ${styles.workspace}`} id="builder">
       <fieldset className="builder-fields" id="builder-controls" aria-labelledby="builder-title" disabled>
         <Business />
         <section className="form-section"><SectionTitle icon="work">Work to cover</SectionTitle><p className="helper">Bookkeeping and VAT filing come with your team. Choose any additional services you need.</p><div className="chips" id="work" /></section>
-        <section className="form-section"><SectionTitle icon="team">Roles, rates &amp; hours</SectionTitle><p className="helper">Every team starts with 3 junior admin hours, 8 junior accountant hours and 4 senior accountant hours. Add time or finance leadership as needed.</p><div id="roles" /><button className="plain" id="restore" type="button">Restore recommended hours</button></section>
+        <section className="form-section"><SectionTitle icon="team">Roles, rates &amp; hours</SectionTitle><p className="helper">Your team starts with 3 junior admin hours, 8 junior accountant hours and 4 senior accountant hours. Hours you add or remove carry over when your workload changes.</p><div id="roles" /><p id="role-gap" className={styles.notice} hidden /><button className="plain" id="restore" type="button">Restore recommended hours</button></section>
         <ContactPreferences />
         <ComparisonDetails />
       </fieldset>
       <Estimate />
     </div>
-    <div className="mobile-est" id="mobile"><strong id="mobile-price">{monthlyPrice}</strong><a className="button button-amber button-small" href="#estimate">My team <span aria-hidden="true">↑</span></a></div>
+    <People />
+    <div className="mobile-est" id="mobile" hidden><strong id="mobile-price">{monthlyPrice}</strong><a className="button button-amber button-small" href="#estimate">My team <span aria-hidden="true">↓</span></a></div>
     <div role="status" id="status" className="sr-only" />
     <BuilderControls />
   </main>;

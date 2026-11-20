@@ -1,46 +1,43 @@
 import { AccountingContactForm } from "@/components/accounting/contact-form";
+import Link from "next/link";
+import { financeEnquiryChoices, serviceWhatsAppHref, technologyEnquiryChoices } from "@/lib/enquiry-options";
 import {
   accountingContact,
   accountingCopy,
-  accountingServices,
 } from "@/content/accounting";
 import { createMetadata } from "@/lib/seo";
-export const metadata = createMetadata({
-  path: "/contact",
-  title: accountingCopy.C08.heading,
-  description: accountingCopy.C08.intro,
-});
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ service?: string }>;
-}) {
-  const value = (await searchParams).service ?? "";
-  const service = [
-    ...accountingServices.map((s) => s.title),
-    "UAE VAT support",
-    "Not sure yet",
-  ].includes(value)
-    ? value
-    : "";
-  const whatsapp =
-    accountingContact.social.whatsapp +
-    "?text=" +
-    encodeURIComponent(
-      service
-        ? "Hi LedgerByte, I would like to discuss " + service + "."
-        : accountingCopy.C08.whatsapp_generic_text,
-    );
+const technologyIntro = "Let’s discuss your project requirements.";
+
+type ContactProps = {
+  searchParams: Promise<{ service?: string; division?: string }>;
+};
+
+export async function generateMetadata({ searchParams }: ContactProps) {
+  const technology = (await searchParams).division === "technology";
+  return createMetadata({
+    path: "/contact",
+    title: technology ? "Technology project enquiry" : accountingCopy.C08.heading,
+    description: technology ? technologyIntro : accountingCopy.C08.intro,
+  });
+}
+
+export default async function ContactPage({ searchParams }: ContactProps) {
+  const { service: value = "", division } = await searchParams;
+  const technology = division === "technology";
+  const choices = technology ? technologyEnquiryChoices : financeEnquiryChoices;
+  const service = choices.includes(value) ? value : technology ? "Technology project" : "";
+  const heading = technology ? "Technology project enquiry" : accountingCopy.C08.heading;
   return (
     <main id="main-content" className="accounting-page">
       <section className="accounting-contact-layout accounting-wrap">
         <div className="accounting-contact-intro">
           <p className="eyebrow">Get in touch</p>
-          <h1>{accountingCopy.C08.heading}</h1>
-          <p className="accounting-lead">{accountingCopy.C08.intro}</p>
+          <h1>{heading}</h1>
+          <p className="accounting-lead">{technology ? technologyIntro : accountingCopy.C08.intro}</p>
+          {technology && <p><Link className="text-link" href="/technology">Browse technology services ↗</Link></p>}
           <a
             className="button button-amber"
-            href={whatsapp}
+            href={serviceWhatsAppHref(service)}
             target="_blank"
             rel="noreferrer"
           >
@@ -67,8 +64,8 @@ export default async function ContactPage({
           aria-labelledby="enquiry-heading"
         >
           <p className="eyebrow">Email enquiry</p>
-          <h2 id="enquiry-heading">{accountingCopy.C08.form_heading}</h2>
-          <AccountingContactForm initialService={service} />
+          <h2 id="enquiry-heading">{technology ? "Technology enquiry" : accountingCopy.C08.form_heading}</h2>
+          <AccountingContactForm key={heading + service} initialService={service} technology={technology} />
         </section>
       </section>
     </main>

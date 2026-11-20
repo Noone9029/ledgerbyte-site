@@ -2,6 +2,7 @@
 import { consentLabels } from "@/content/consent-ui";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { analyticsReferrer, classifyAiReferrer, configureAnalytics, CONSENT_COOKIE, type Consent, readConsent, revokeAnalytics, safeAnalyticsPath, safePageDimensions, trackEvent, writePreference } from "@/lib/analytics";
 
@@ -20,13 +21,26 @@ export function SiteAnalytics({ allowedPaths = [] }: { allowedPaths?: string[] }
   const consent = useSyncExternalStore(subscribeConsent, readConsent, () => null);
   const hydrated = useSyncExternalStore(subscribeHydration, () => true, () => false);
   const [choiceOpen, setVisible] = useState<boolean | null>(null);
-  const visible = hydrated && (choiceOpen ?? consent === null);
+  const [inlineSlot, setInlineSlot] = useState<HTMLElement | null>(null);
   const [ready, setReady] = useState(false);
   const lastPage = useRef("");
   const copy = pathname?.startsWith("/ar") ? labels.ar : labels.en;
   const studio = pathname?.startsWith("/studio");
   const publicHost = hydrated && /^(blog\.)?ledgerbyte\.io$/.test(location.hostname);
-  const enabled = Boolean(production && publicHost && !studio && consent === "granted" && measurementId && /^G-[A-Z0-9]+$/.test(measurementId) && allowedPaths.length);
+  const eligible = Boolean(production && publicHost && !studio && measurementId && /^G-[A-Z0-9]+$/.test(measurementId) && allowedPaths.length);
+  const visible = hydrated && (choiceOpen ?? (eligible && consent === null));
+  const enabled = eligible && consent === "granted";
+
+  useEffect(() => {
+    const smallScreen = window.matchMedia("(max-width: 700px)");
+    const updateSlot = () => setInlineSlot(smallScreen.matches ? document.getElementById("analytics-inline") : null);
+    const frame = requestAnimationFrame(updateSlot);
+    smallScreen.addEventListener("change", updateSlot);
+    return () => {
+      cancelAnimationFrame(frame);
+      smallScreen.removeEventListener("change", updateSlot);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!enabled || !measurementId) return;
@@ -88,12 +102,13 @@ export function SiteAnalytics({ allowedPaths = [] }: { allowedPaths?: string[] }
     if (value === "denied") { revokeAnalytics(measurementId); lastPage.current = ""; }
   }
   if (studio) return null;
+  const panel = visible && <section id="analytics-choice" className="analytics-choice" aria-labelledby="analytics-choice-title">
+      <h2 id="analytics-choice-title">{copy.prompt}</h2>
+      <details className="analytics-explanation"><summary>{copy.details}</summary><p>{copy.text} <a href="https://ledgerbyte.io/privacy-policy">{copy.policy}</a></p></details>
+      <div><button type="button" aria-label={copy.accept} onClick={() => choose("granted")}>{copy.allowShort}</button><button type="button" aria-label={copy.decline} onClick={() => choose("denied")}>{copy.declineShort}</button>{choiceOpen && <button type="button" onClick={() => setVisible(false)}>{copy.close}</button>}</div>
+    </section>;
   return <>
     <div className="analytics-preferences"><button type="button" onClick={() => setVisible(true)} aria-expanded={visible} aria-controls="analytics-choice">{copy.settings}</button></div>
-    {visible && <section id="analytics-choice" className="analytics-choice" aria-labelledby="analytics-choice-title">
-      <h2 id="analytics-choice-title">{copy.title}</h2><p>{copy.text} <a href="https://ledgerbyte.io/privacy-policy">{copy.policy}</a></p>
-      <div><button type="button" onClick={() => choose("granted")}>{copy.accept}</button><button type="button" onClick={() => choose("denied")}>{copy.decline}</button>{consent && <button type="button" onClick={() => setVisible(false)}>{copy.close}</button>}</div>
-    </section>}
-
+    {inlineSlot && choiceOpen === null ? createPortal(panel, inlineSlot) : panel}
   </>;
 }

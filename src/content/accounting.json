@@ -804,7 +804,7 @@
           "heading": "Where WPS fits",
           "paragraphs": [
             "The UAE Wages Protection System supports wage payments and regulatory monitoring. Establishments registered with MoHRE are required to pay wages through WPS or another system approved by the Ministry. Applicability, the responsible authority, provider requirements and the current payment timetable need to be checked for the specific employer, including free-zone arrangements.",
-            "Source check: 9 November 2026. [Central Bank of the UAE: UAEWPS](https://centralbank.ae/en/our-operations/payments-and-settlements/uae-wages-protection-system-uaewps/) and [MoHRE employment law and executive-regulation text, Article 16 of the Executive Regulations](https://www.mohre.gov.ae/assets/download/e82f7872/Federal%20Decree-Law%20No.%2033%20of%202021%20Regarding%20the%20Regulation%20of%20Employment%20Relationship%20and%20its%20amendments_638990571068264034.pdf.aspx)."
+            "Source check: 9 November 2026. [Central Bank of the UAE: UAEWPS](https://centralbank.ae/en/our-operations/payments-and-settlements/uae-wages-protection-system-uaewps/) and [UAE Cabinet Resolution No. 1 of 2022, Article 16 (Arabic PDF, p. 80)](https://assets.u.ae/api/public/content/06fd4e5b72d646c8abe247fa4ff83104?v=946ce745#page=80)."
           ],
           "bullets": []
         },
@@ -2322,7 +2322,7 @@
           "heading": "From a freelance practice to a finance team",
           "paragraphs": [
             "LedgerByte began as a freelance practice in 2020. Founded by Haider Ali, it developed into an accounting and financial-management business. Haider's background includes finance work across Pakistan and the GCC.",
-            "Today, the 22-service range connects bookkeeping, month-end and year-end close, receivables, payables, accounting systems and payroll with management reporting, planning and cash flow. Full finance department outsourcing, fractional controller and fractional CFO support offer distinct levels of operational ownership and leadership. UAE and Saudi tax, company formation and audit workstreams have their own scopes. This website is dedicated to that finance work; LedgerByte's technology services have their own destination at ledgerbyte.co."
+            "Today, the 22-service range connects bookkeeping, month-end and year-end close, receivables, payables, accounting systems and payroll with management reporting, planning and cash flow. Full finance department outsourcing, fractional controller and fractional CFO support offer distinct levels of operational ownership and leadership. UAE and Saudi tax, company formation and audit workstreams have their own scopes."
           ],
           "bullets": []
         },
@@ -2368,7 +2368,7 @@
         },
         {
           "question": "Where can we explore technology services?",
-          "answer": "Visit ledgerbyte.co for LedgerByte Tech. This accounting website focuses on finance operations and leadership, tax, audit support and company formation."
+          "answer": "[Technology enquiry](/contact?division=technology#enquiry-heading)"
         }
       ],
       "related": [
@@ -4275,8 +4275,8 @@
       ],
       "header_cta": "Get in touch",
       "footer_description": "Accounting. Tax. Advisory. Practical finance support for startups and SMEs.",
-      "technology_link_label": "Looking for technology services? LedgerByte Tech · ledgerbyte.co",
-      "technology_url": "https://ledgerbyte.co",
+      "technology_link_label": "Technology enquiries",
+      "technology_url": "/contact?division=technology#enquiry-heading",
       "copyright_draft": "© 2026 LedgerByte. All rights reserved."
     },
     "C03": {
@@ -4369,7 +4369,7 @@
       "linkedin": "https://www.linkedin.com/company/ledger-byte/",
       "trustpilot": "https://www.trustpilot.com/review/ledgerbyte.io",
       "whatsapp": "https://wa.me/971561371569",
-      "technology": "https://ledgerbyte.co"
+      "technology": "/contact?division=technology#enquiry-heading"
     },
     "status": "These links/contact values come from the public site and existing redesign; confirm official phone/WhatsApp before launch. Other social handles are not invented."
   }

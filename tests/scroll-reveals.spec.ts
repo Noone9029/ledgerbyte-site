@@ -27,7 +27,8 @@ test("scroll reveals keep the original page height, stay readable and play once"
   await page.goto("/", { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   const baseline = await page.evaluate(() => document.documentElement.scrollHeight);
-  const fallback = await browser.newContext({ javaScriptEnabled: false, viewport: page.viewportSize()! });
+  // Both views have the search controls. The only intended layout difference here is the motion preference.
+  const fallback = await browser.newContext({ reducedMotion: "reduce", viewport: page.viewportSize()! });
   const staticPage = await fallback.newPage();
   await staticPage.goto(page.url(), { waitUntil: "networkidle" });
   await staticPage.evaluate(() => document.fonts.ready);
@@ -52,9 +53,10 @@ test("keyboard focus and unavailable animation support leave content usable", as
   test.skip((page.viewportSize()?.width ?? 0) < 1024, "Desktop reveals only");
   await page.goto("/", { waitUntil: "networkidle" });
   const section = page.locator(".accounting-finance-services");
-  await section.locator("a").first().focus();
+  const control = section.locator("summary").first();
+  await control.focus();
   await expect(section).toHaveAttribute("data-reveal-state", "done");
-  await expect(section.locator("a").first()).toBeFocused();
+  await expect(control).toBeFocused();
   expect(await section.evaluate((element) => element.getAnimations().length)).toBe(0);
   await page.addInitScript(() => { Object.defineProperty(Element.prototype, "animate", { value: undefined }); });
   await page.reload({ waitUntil: "networkidle" });
@@ -91,6 +93,6 @@ test("@nojs every reveal section remains fully visible without scripts", async (
     await expect(section).toHaveCSS("transform", "none");
   }
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
-  await page.getByRole("link", { name: "All 22 services", exact: true }).click();
+  await page.locator("main").getByRole("link", { name: "All 22 services", exact: true }).click();
   await expect(page.locator("[data-service-card]")).toHaveCount(22);
 });
