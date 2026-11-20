@@ -73,15 +73,15 @@ test("sitemap, permanent redirects and footer cover the current service routes",
   expect(urls.join(" ")).not.toContain("/review-notes");
   await page.goto("/finance/services");
   await expect(page.locator("footer").getByRole("link", { name: "Finance overview" })).toHaveAttribute("href", "/finance");
-  await expect(page.locator("footer").getByRole("link", { name: "All 21 services" })).toHaveAttribute("href", "/finance/services");
-  await expect(page.locator("main [data-service-card]")).toHaveCount(21);
+  await expect(page.locator("footer").getByRole("link", { name: "All 22 services" })).toHaveAttribute("href", "/finance/services");
+  await expect(page.locator("main [data-service-card]")).toHaveCount(22);
   for (const service of content.services) {
     const destination = "/finance/services/" + service.slug;
     await expect(
       page.locator(`main a[href="${destination}"]`).first(),
     ).toHaveAttribute("href", destination);
   }
-  for (const slug of ["fractional-cfo-advisory", "payroll-wps-management"]) {
+  for (const slug of ["accounting-automation-systems", "fractional-cfo-advisory", "payroll-wps-management"]) {
     const redirect = await request.get("/services/" + slug + "?source=review", {
       maxRedirects: 0,
     });

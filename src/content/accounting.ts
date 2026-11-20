@@ -44,10 +44,10 @@ export interface AccountingService {
 }
 export const accountingPages = data.pages as Record<string, AccountingPage>;
 export const accountingServices = data.services as AccountingService[];
-// Keep eight finance services in the expanding-card showcase.
+// The eight services in the original expanding-card showcase, with approved copy.
 export const accountingShowcaseServices = [
+  "accounting-automation-systems",
   "accounting-bookkeeping",
-  "month-end-year-end-close",
   "budgeting-forecasting",
   "cash-flow-working-capital",
   "financial-reporting-mis",

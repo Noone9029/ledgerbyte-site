@@ -10,36 +10,36 @@
       "englishPath": "/",
       "status": "draft",
       "sourceKey": "home",
-      "sourceDigest": "53aa229bea2db08ba2a957cf6aef6045211f197c7eec83f856fc2b94c60e3ef6",
+      "sourceDigest": "72566caa9d0d17b67b4528026d9ab4ecdcc229113925117942337f8582b26b1f",
       "lastModified": "2026-11-14",
-      "targetDigest": "df0f229de61c56c7bebaa8032059e166c69648533e4c0dde6f45770d8f867bd1"
+      "targetDigest": "69463dbdab6d578db1fd011204debf473bb0736ea0749d39936b8448c9ee998f"
     },
     {
       "path": "/ar/finance/services",
       "englishPath": "/finance/services",
       "status": "draft",
       "sourceKey": "services",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "lastModified": "2026-11-14",
-      "targetDigest": "b6569d5186aeece5d7ef344d8a96247c923b689932fa82c230f8b0fdfff6b6ca"
+      "targetDigest": "8ec5d8aa2ec3f82ecd1bd0df56a21ca9c5c6fc45da73cca28327cd5e496ed2de"
     },
     {
       "path": "/ar/about",
       "englishPath": "/about",
       "status": "draft",
       "sourceKey": "about",
-      "sourceDigest": "c9054a59b1ef0e2cc5837912601fa14c34acfed11855e0a76462cd3ecfedbeeb",
+      "sourceDigest": "6b7e997d77c8f4a8c23a1b90ce01489f471671a967b92a391dbb461b5d450d4e",
       "lastModified": "2026-11-14",
-      "targetDigest": "f0dfc84478cbdbaffad3205137a180bc54fc99c31fab9c4ef1187e5eb563be43"
+      "targetDigest": "3c70870bb06160fa6ba196ea9b7f52edc8a1a29c8657a6ba62c9d106ca03570f"
     },
     {
       "path": "/ar/contact",
       "englishPath": "/contact",
       "status": "draft",
       "sourceKey": "contact",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "lastModified": "2026-11-14",
-      "targetDigest": "49faed5781a0d4a39e49a6919f93951746d2f4450e4e5b978dc873c9355f3d9e"
+      "targetDigest": "d750ee821a638f6fbcd5f4c3ad9e1768ed81caceff78b5094f20b4a1825c1024"
     },
     {
       "path": "/ar/how-we-work",
@@ -55,9 +55,9 @@
       "englishPath": "/regions",
       "status": "draft",
       "sourceKey": "regions",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "lastModified": "2026-11-14",
-      "targetDigest": "ed4a68b8797a9f897dc0b3cdd6f2e798f0ef5b67d14aa5273f4318482558a450"
+      "targetDigest": "defe1f59fe2e1f9150f176b1c394b98dae0dae3dd541213cb5adaebc46ce34f5"
     },
     {
       "path": "/ar/regions/uae",
@@ -91,9 +91,9 @@
       "englishPath": "/regions/pakistan",
       "status": "draft",
       "sourceKey": "regions/pakistan",
-      "sourceDigest": "f4f4db04781106b913fc32b752c0118a192c5e9ca17714d3b0c68c0a1181c438",
+      "sourceDigest": "7afac9c8f970d2636f96ac91fd56c3c1d1b30fe356db77714e0406b291ba7b59",
       "lastModified": "2026-11-14",
-      "targetDigest": "79b37cf76a7a8af04431b8d146a39a2c0aae1b7bd354f30bf4e8862d5cf624e9"
+      "targetDigest": "aaac208dedbfec0b70e7aa22fdaa0f608be43f569229dd0b841593a491f89dc0"
     },
     {
       "path": "/ar/finance/services/accounting-bookkeeping",

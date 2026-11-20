@@ -2,7 +2,7 @@
   "pages": {
     "/": {
       "title": "Accounting, Tax & Finance Leadership | LedgerByte",
-      "description": "Accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
+      "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Owner-approved homepage and revised monthly SME offer"
@@ -23,7 +23,7 @@
     },
     "/finance/services": {
       "title": "Accounting, tax & advisory. Choose the support you need.",
-      "description": "Finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
+      "description": "Explore 22 services across finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
@@ -61,6 +61,13 @@
       "description": "Keep transactions, reconciliations and month-end records connected. Explore LedgerByte bookkeeping, backlog cleanup and close-pack support.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
+      "source": "Haider November 10 replacement content"
+    },
+    "/finance/services/accounting-automation-systems": {
+      "title": "Accounting Systems & Automation | LedgerByte",
+      "description": "Improve your chart of accounts, transaction workflows and accounting controls. Explore setup, migration checks, testing and team handover.",
+      "image": "/art/finance-editorial-v3.webp",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/finance/services/financial-reporting-mis": {
@@ -282,6 +289,7 @@
     }
   },
   "financeServices": {
+    "accounting-automation-systems": "Accounting Systems & Automation | LedgerByte",
     "accounting-bookkeeping": "Accounting & Bookkeeping Services | LedgerByte",
     "budgeting-forecasting": "Budgeting & Forecasting Services | LedgerByte",
     "cash-flow-working-capital": "Cash Flow & Working Capital Support | LedgerByte",

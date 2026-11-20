@@ -10,6 +10,7 @@ export const financeServiceGroups = [
       "Day-to-day accounting support, payroll discipline, and systems that keep finance operations running cleanly.",
     services: [
       "Accounting & Bookkeeping",
+      "Accounting Automation & Systems",
       "Payroll & WPS Management",
     ],
     source: "rendered-text/ledgerbyte.io/services.txt",

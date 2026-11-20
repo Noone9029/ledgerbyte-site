@@ -242,7 +242,7 @@ test("@nojs enquiry details cannot enter a URL and filter controls are unavailab
   await page.goto("/finance/services");
   await expect(page.getByRole("searchbox")).toHaveCount(0);
   await expect(page.locator(".accounting-search")).toBeHidden();
-  await expect(page.locator("[data-service-card]")).toHaveCount(21);
+  await expect(page.locator("[data-service-card]")).toHaveCount(22);
 });
 
 test("@reduced decorative hover effects do not move controls or cards", async ({

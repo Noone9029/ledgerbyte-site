@@ -3,7 +3,7 @@
 The finance homepage now uses the eight-card showcase from the live site's
 interaction pattern, populated with the current approved accounting copy. The
 services catalogue uses the same component in its five existing categories,
-covering all 21 finance services, summaries, typical outputs, filters and destinations.
+covering all 22 finance services, summaries, typical outputs, filters and destinations.
 The showcase has a direct anchor at `/#services-showcase`.
 
 ## Interaction and motion

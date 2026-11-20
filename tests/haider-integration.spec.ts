@@ -25,7 +25,7 @@ test("homepage catalogue filters service scopes and restores all services after 
   await search.fill("no-matching-finance-scope");
   await expect(page.locator("#home-result-count")).toHaveText("0 services");
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator("#home-result-count")).toHaveText("21 services");
+  await expect(page.locator("#home-result-count")).toHaveText("22 services");
   await expect(search).toBeFocused();
 });
 
@@ -34,6 +34,7 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
     await page.goto(path);
     const search = page.getByRole("searchbox", { name: "Find your service" });
     for (const [term, destination] of [
+      ["accounting automation", "/finance/services/accounting-automation-systems"],
       ["supplier payments", "/finance/services/accounts-payable"],
       ["tax return", "/finance/services/corporate-tax-filing"],
       ["cfo fractional", "/finance/services/fractional-cfo-advisory"],

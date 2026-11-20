@@ -10,7 +10,7 @@ release that materially changes routes or page content:
 1. Open **Sitemaps** and submit or resubmit
    `https://ledgerbyte.io/sitemap.xml`. Do not remove the prior submission.
 2. Wait for the sitemap status to become **Success** and record the discovered
-   URL count. The finance-only build contains 46 English URLs.
+   URL count. The finance-only build contains 47 English URLs.
 3. Use **URL Inspection → Test Live URL → Request Indexing** for:
    - `https://ledgerbyte.io/`
    - `https://ledgerbyte.io/finance`
@@ -41,9 +41,9 @@ indexing.
 | `/lets-connect` | `/contact` |
 | `/lets-connect/` | `/contact` |
 
-The service aliases above apply to the 21 current finance services. Retired
-technology paths, the former Accounting Automation & Systems service and the
-old technology hostname return HTTP 404.
+The service aliases above apply to all 22 finance services, including Accounting
+Automation & Systems. Retired technology paths and the old technology hostname
+return HTTP 404.
 
 Keep redirects for at least 12 months. Preserve query strings and never send a
 retired content URL to the homepage unless the homepage is genuinely the

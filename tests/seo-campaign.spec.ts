@@ -20,7 +20,7 @@ test("Arabic drafts render complete SSR copy with private metadata", async ({ pa
 test("Arabic native service cards are readable and keyboard accessible", async ({ page }, info) => {
   await page.goto("/ar/finance/services");
   const summaries = page.locator(".accounting-flashcard > summary");
-  await expect(summaries).toHaveCount(21);
+  await expect(summaries).toHaveCount(22);
   await summaries.nth(1).click();
   await expect(page.locator(".accounting-flashcard[open]")).toHaveCount(1);
   expect(await summaries.nth(1).locator("h3").evaluate((element) => getComputedStyle(element).writingMode)).toBe("horizontal-tb");

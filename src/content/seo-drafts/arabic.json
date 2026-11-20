@@ -29,7 +29,7 @@
       ],
       "faqs": [],
       "sourceKey": "home",
-      "sourceDigest": "53aa229bea2db08ba2a957cf6aef6045211f197c7eec83f856fc2b94c60e3ef6",
+      "sourceDigest": "72566caa9d0d17b67b4528026d9ab4ecdcc229113925117942337f8582b26b1f",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -37,8 +37,8 @@
       "path": "/ar/finance/services",
       "englishPath": "/finance/services",
       "title": "المحاسبة والضرائب والاستشارات. اختر الدعم الذي تحتاجه.",
-      "description": "استعرض ٢١ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
-      "intro": "استعرض ٢١ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "description": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
+      "intro": "استعرض ٢٢ خدمة تربط مسك الدفاتر والتقارير والقيادة المالية بالمهام الضريبية وتأسيس الشركات وتنسيق التدقيق.",
       "sections": [
         {
           "heading": "ابدأ بالمشكلة",
@@ -57,7 +57,7 @@
       ],
       "faqs": [],
       "sourceKey": "services",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -85,7 +85,7 @@
       ],
       "faqs": [],
       "sourceKey": "about",
-      "sourceDigest": "c9054a59b1ef0e2cc5837912601fa14c34acfed11855e0a76462cd3ecfedbeeb",
+      "sourceDigest": "6b7e997d77c8f4a8c23a1b90ce01489f471671a967b92a391dbb461b5d450d4e",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -106,7 +106,7 @@
       ],
       "faqs": [],
       "sourceKey": "contact",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -169,7 +169,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions",
-      "sourceDigest": "9a77e53fcac523502169a9390d8cd242a9063a3990822536f9140acb87770e51",
+      "sourceDigest": "5ccf31e62caae8b77936fcd6e10f9b746b6f348870c598c8115ef49c5c3fb035",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -297,7 +297,7 @@
       ],
       "faqs": [],
       "sourceKey": "regions/pakistan",
-      "sourceDigest": "f4f4db04781106b913fc32b752c0118a192c5e9ca17714d3b0c68c0a1181c438",
+      "sourceDigest": "7afac9c8f970d2636f96ac91fd56c3c1d1b30fe356db77714e0406b291ba7b59",
       "status": "draft",
       "lastModified": "2026-11-14"
     },
@@ -666,6 +666,18 @@
       "audience": "For businesses that need a consistent accounting routine, a backlog brought up to date, or a dependable foundation for reporting.",
       "englishTitle": "Accounting & Bookkeeping",
       "arabicDetail": true
+    },
+    {
+      "key": "services/accounting-automation-systems",
+      "slug": "accounting-automation-systems",
+      "title": "أتمتة المحاسبة والأنظمة",
+      "group": "Finance Operations",
+      "summary": "ربط السجلات وسير العمل المحاسبي بأنظمة أوضح، وفق نطاق متفق عليه للتهيئة والتنفيذ.",
+      "output": "An agreed accounting setup, documented workflows and a checklist for the team that will run them.",
+      "boundary": "This is accounting systems support, not custom software development. Software subscriptions, integration work and access permissions are agreed separately.",
+      "audience": "For businesses setting up accounting software, changing their finance process or untangling inconsistent records.",
+      "englishTitle": "Accounting Automation & Systems",
+      "arabicDetail": false
     },
     {
       "key": "services/payroll-wps",

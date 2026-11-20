@@ -8,8 +8,8 @@ const manifestPath = path.join(projectRoot, "src", "content", "visuals.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 
 const financeArtwork = Object.entries(manifest.financeServices);
-if (financeArtwork.length !== 7) {
-  throw new Error("Expected individual artwork for the seven archived finance services.");
+if (financeArtwork.length !== 8) {
+  throw new Error("Expected individual artwork for the eight archived finance services.");
 }
 const entries = [...financeArtwork, ["financeOversight", manifest.financeOversight]];
 

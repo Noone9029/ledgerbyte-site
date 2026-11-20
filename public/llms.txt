@@ -5,6 +5,7 @@
 ## Services
 
 - [Accounting & Bookkeeping](https://ledgerbyte.io/finance/services/accounting-bookkeeping)
+- [Accounting Automation & Systems](https://ledgerbyte.io/finance/services/accounting-automation-systems)
 - [Payroll & WPS Management](https://ledgerbyte.io/finance/services/payroll-wps-management)
 - [Full Finance Department Outsourcing](https://ledgerbyte.io/finance/services/finance-department-outsourcing)
 - [Fractional Financial Controller](https://ledgerbyte.io/finance/services/fractional-controller)

@@ -28,7 +28,7 @@ test("AI discovery lists accounting services and finance contact details", async
     );
   }
   expect(text).toContain("[Contact](https://ledgerbyte.io/contact)");
-  expect(text).not.toMatch(/division=technology|accounting-automation-systems/);
+  expect(text).not.toContain("division=technology");
   expect(text).not.toContain("https://ledgerbyte.co");
   expect(text).not.toContain("https://ledgerbyte.io/technology");
   expect(await (await request.get("/robots.txt")).text()).toContain(

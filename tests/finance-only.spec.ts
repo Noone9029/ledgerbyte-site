@@ -11,7 +11,6 @@ const retiredServices = [
 const retiredTitles = [
   ...retiredServices.map(([, title]) => title),
   "Technology project",
-  "Accounting Automation & Systems",
 ];
 const retiredPaths = [
   "/technology",
@@ -20,8 +19,6 @@ const retiredPaths = [
   "/technology/why-ledgerbyte",
   "/process",
   "/why-ledgerbyte-tech",
-  "/finance/services/accounting-automation-systems",
-  "/services/accounting-automation-systems",
   ...retiredServices.flatMap(([slug]) => ["/technology/services/" + slug, "/services/" + slug]),
 ];
 
@@ -35,7 +32,8 @@ test("retired offers are absent from discovery and return a direct 404", async (
     expect(response.ok(), path).toBe(true);
     const body = await response.text();
     expect(body, path).toContain("/finance/services/accounting-bookkeeping");
-    expect(body, path).not.toMatch(/\/technology|division=technology|accounting-automation-systems|tech\.ledgerbyte\.io|ledgerbyte\.co\b/i);
+    expect(body, path).toContain("/finance/services/accounting-automation-systems");
+    expect(body, path).not.toMatch(/\/technology|division=technology|tech\.ledgerbyte\.io|ledgerbyte\.co\b/i);
   }
 });
 
@@ -47,10 +45,20 @@ test("retired domain and service aliases do not expose finance or technology pag
     expect(html).toContain('href="https://ledgerbyte.io/"');
     expect(html).toContain('href="https://ledgerbyte.io/finance/services"');
   }
-  for (const path of ["/technology/services/", "/services/web-development/", "/finance/services/accounting-automation-systems/"]) {
+  for (const path of ["/technology/services/", "/services/web-development/", "/technology/services/ai-automation/"]) {
     const response = await request.get(path, { headers: { Host: "www.ledgerbyte.io" }, maxRedirects: 0 });
     expect(response.status(), path).toBe(404);
   }
+});
+
+test("accounting automation leads from the finance directory to a scoped enquiry", async ({ page }) => {
+  await page.goto("/finance/services");
+  await page.getByRole("searchbox").fill("accounting automation");
+  await page.locator(".accounting-service-results").getByRole("link", { name: "Accounting Automation & Systems", exact: true }).click();
+  await expect(page).toHaveURL(/\/finance\/services\/accounting-automation-systems$/);
+  await page.locator("main").getByRole("link", { name: "Discuss your accounting setup", exact: true }).first().click();
+  await expect(page.getByLabel("Support you need")).toHaveValue("Accounting Automation & Systems");
+  await expect(page.locator('.accounting-contact-intro a[href*="wa.me"]')).toHaveAttribute("href", /Accounting%20Automation%20%26%20Systems/);
 });
 
 test("old technology enquiry links show only finance choices and contact channels", async ({ page }) => {
@@ -85,13 +93,13 @@ test("the enquiry endpoint rejects retired services and accepts finance choices"
     const response = await request.post("/api/contact", { headers, data: { ...payload, service } });
     expect(response.status(), service).toBe(400);
   }
-  const data = { ...payload, service: "Accounting & Bookkeeping" };
+  const data = { ...payload, service: "Accounting Automation & Systems" };
   expect((await request.post("/api/contact", { headers, data })).status()).toBe(202);
   expect((await request.post("/api/contact", { headers: { Origin: "https://unrelated.example" }, data })).status()).toBe(403);
 });
 
 test("@nojs missing and retired URLs return an HTML recovery page", async ({ page }) => {
-  for (const path of ["/nonexistent-example", "/finance/services/nonexistent", "/technology", "/technology/services/web-development", "/finance/services/accounting-automation-systems", "/about/team/nonexistent", "/ar/nonexistent"]) {
+  for (const path of ["/nonexistent-example", "/finance/services/nonexistent", "/technology", "/technology/services/web-development", "/about/team/nonexistent", "/ar/nonexistent"]) {
     expect((await page.goto(path))?.status(), path).toBe(404);
     await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Back to home" })).toHaveAttribute("href", "/");

@@ -248,7 +248,7 @@ const parseFinanceService = (textFileName) => {
     engagementExamples,
     relatedResources,
     faqs,
-    relatedServices: relatedServices.filter((service) => service.title !== "Accounting Automation & Systems"),
+    relatedServices,
     cta: {
       title: lines[finalServiceLinkIndex + 1],
       description: lines[finalServiceLinkIndex + 2],
@@ -263,7 +263,7 @@ const parseFinanceService = (textFileName) => {
 
 const financeServices = fs
   .readdirSync(financeTextRoot)
-  .filter((fileName) => /^services__.*\.txt$/.test(fileName) && fileName !== "services__accounting-automation-systems.txt")
+  .filter((fileName) => /^services__.*\.txt$/.test(fileName))
   .sort()
   .map(parseFinanceService);
 

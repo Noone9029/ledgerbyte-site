@@ -1,6 +1,162 @@
 [
   {
     "division": "finance",
+    "slug": "accounting-automation-systems",
+    "source": "rendered-text/ledgerbyte.io/services__accounting-automation-systems.txt",
+    "sourceHtml": "ledgerbyte.io/pages/services/accounting-automation-systems.html",
+    "category": "Finance Operations",
+    "primaryFocus": "accounting automation services",
+    "title": "Accounting Automation & Systems",
+    "description": "We help businesses replace fragmented finance processes with better systems, cleaner workflows, and accounting automation that scales with the operation.",
+    "outcomes": [
+      "Less manual entry and duplicated effort",
+      "More consistent data across reports and systems",
+      "Finance processes that scale with the company"
+    ],
+    "reviewer": {
+      "name": "Haider Ali",
+      "role": "Managing Partner",
+      "credentials": "CGMA, ACMA",
+      "summary": "Haider leads LedgerByte's finance systems, planning, and operating-model work, helping businesses build cleaner finance functions as complexity grows."
+    },
+    "idealFor": [
+      "Businesses outgrowing spreadsheet-led finance processes",
+      "Teams rolling out Xero, QuickBooks, Zoho, or integrated accounting tools",
+      "Operations that need cleaner handoffs between finance and the rest of the business"
+    ],
+    "overviewHeading": "accounting automation services built around a dependable finance workflow",
+    "overview": [
+      "Finance systems usually become painful gradually. Teams start in spreadsheets, add a bookkeeping platform, then patch together approvals, supporting files, and reporting workarounds. What looks manageable at first eventually turns into rework, inconsistent data, and unclear ownership across finance operations.",
+      "LedgerByte helps businesses design a more usable finance stack. We support software setup, chart of accounts structure, workflow design, approval logic, and migration planning so the system reflects how the business actually operates.",
+      "The goal is not automation for its own sake. We focus on removing unnecessary manual work, improving data consistency, and building finance processes that leadership can rely on as transaction volume and reporting expectations increase."
+    ],
+    "deliverables": [
+      "Accounting software setup and configuration support",
+      "Workflow and approval-flow design for finance operations",
+      "Chart of accounts structure and cleanup",
+      "Migration planning and cutover support",
+      "Process mapping between finance and operations teams",
+      "Documentation for recurring finance workflows and controls"
+    ],
+    "platforms": [
+      "Xero",
+      "QuickBooks",
+      "Zoho Books",
+      "Microsoft 365 workflows",
+      "Cloud-based finance approval and document workflows"
+    ],
+    "processIntro": "We keep the process practical, documented, and aligned to what your leadership team actually needs from finance.",
+    "process": [
+      {
+        "step": "01",
+        "title": "Map the current workflow",
+        "description": "We review how transactions, approvals, supporting documents, and reporting currently move through the business."
+      },
+      {
+        "step": "02",
+        "title": "Design the future-state process",
+        "description": "We define what should be automated, what should stay controlled manually, and where ownership needs to be clarified."
+      },
+      {
+        "step": "03",
+        "title": "Configure the finance stack",
+        "description": "We support the system setup, accounting structure, and workflow configuration needed to make the process usable in day-to-day operations."
+      },
+      {
+        "step": "04",
+        "title": "Stabilize adoption",
+        "description": "We refine the setup after real usage starts so the process remains practical for finance, leadership, and adjacent teams."
+      }
+    ],
+    "trustPoints": [
+      "Systems work designed around finance operations, not just software menus",
+      "Setup decisions tied back to reporting needs, controls, and close quality",
+      "Documentation that reduces key-person dependency after implementation",
+      "Practical automation that respects review points instead of removing needed control"
+    ],
+    "engagementExamples": [
+      {
+        "profile": "GROWING BUSINESS MOVING FROM SPREADSHEET-HEAVY FINANCE PROCESSES INTO A PROPER ACCOUNTING WORKFLOW",
+        "title": "Spreadsheet-to-system transition",
+        "challenge": "Teams were duplicating work across spreadsheets, email approvals, and manual report preparation.",
+        "result": "Finance activities became more standardized, reporting inputs were cleaner, and recurring manual steps were reduced materially."
+      },
+      {
+        "profile": "OPERATIONS-HEAVY BUSINESS NEEDING BETTER HANDOFFS BETWEEN FINANCE, PURCHASING, AND LEADERSHIP",
+        "title": "Finance workflow redesign",
+        "challenge": "There was no consistent workflow for approvals, supporting documents, or issue escalation.",
+        "result": "The finance team gained a clearer process, better accountability, and a system structure that was easier to maintain over time."
+      }
+    ],
+    "relatedResources": [
+      {
+        "pillar": "BOOKKEEPING & ACCOUNTING OPS",
+        "title": "Cloud Accounting Tools Worth Standardizing",
+        "description": "An overview of modern accounting systems and why a connected cloud stack improves speed, visibility, and controls.",
+        "href": "https://blog.ledgerbyte.io/cloud-accounting-2025-the-tools-every-business-should-adopt-and-why"
+      },
+      {
+        "pillar": "BOOKKEEPING & ACCOUNTING OPS",
+        "title": "The Hidden Cost of Manual Accounting",
+        "description": "How manual finance work creates delays, mistakes, and avoidable rework as a business gets more complex.",
+        "href": "https://blog.ledgerbyte.io/the-hidden-cost-of-manual-accounting-how-automation-saves-time-money-and-mistakes"
+      },
+      {
+        "pillar": "BOOKKEEPING & ACCOUNTING OPS",
+        "title": "Finance Operations Setup for Startups",
+        "description": "A practical guide to building a cleaner finance function before growth creates reporting and control gaps.",
+        "href": "https://blog.ledgerbyte.io/setting-up-finance-operations-for-startups-the-complete-playbook"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What kinds of businesses benefit most from accounting automation services?",
+        "answer": "Businesses benefit most when transaction volume is growing, approvals are unclear, reporting is delayed, or finance teams are duplicating effort across spreadsheets, inboxes, and disconnected tools."
+      },
+      {
+        "question": "Do you replace our accounting system or improve what we already use?",
+        "answer": "Both are possible. Some businesses need a better system choice, while others can improve outcomes significantly by reconfiguring an existing setup, redesigning workflows, and cleaning up data structures."
+      },
+      {
+        "question": "Will automation remove financial controls?",
+        "answer": "It should do the opposite. Good automation reduces repetitive manual work while preserving approval points, documentation, and review controls that protect accuracy."
+      },
+      {
+        "question": "How do you know if the system design is successful?",
+        "answer": "A successful design reduces repeated manual work, improves reporting consistency, clarifies process ownership, and makes finance easier to run month after month."
+      }
+    ],
+    "relatedServices": [
+      {
+        "category": "FINANCE OPERATIONS",
+        "title": "Accounting & Bookkeeping",
+        "description": "Clean, timely bookkeeping support built for global businesses that need dependable records, reconciliations, and a disciplined month-end close."
+      },
+      {
+        "category": "COMPLIANCE & REPORTING",
+        "title": "Financial Reporting & MIS",
+        "description": "Turn raw accounting data into management reports, KPI packs, and decision-ready visibility that leaders can actually use month after month."
+      }
+    ],
+    "cta": {
+      "title": "Make finance systems easier to run",
+      "description": "If your accounting workflow still depends on spreadsheets, inbox approvals, and duplicated effort, we can help redesign it into a cleaner operating system."
+    },
+    "seo": {
+      "title": "Accounting Automation Services & Finance Systems Setup | LedgerByte",
+      "description": "LedgerByte helps businesses implement accounting automation, finance systems setup, and workflow design that reduce manual work and improve data flow.",
+      "keywords": [
+        "accounting automation services",
+        "finance systems setup",
+        "accounting software implementation",
+        "finance workflow automation",
+        "chart of accounts design",
+        "accounting process improvement"
+      ]
+    }
+  },
+  {
+    "division": "finance",
     "slug": "accounting-bookkeeping",
     "source": "rendered-text/ledgerbyte.io/services__accounting-bookkeeping.txt",
     "sourceHtml": "ledgerbyte.io/pages/services/accounting-bookkeeping.html",
@@ -127,6 +283,11 @@
       }
     ],
     "relatedServices": [
+      {
+        "category": "FINANCE OPERATIONS",
+        "title": "Accounting Automation & Systems",
+        "description": "We streamline finance operations by implementing the right accounting stack, reducing manual work, and creating cleaner data flow across your business."
+      },
       {
         "category": "COMPLIANCE & REPORTING",
         "title": "Financial Reporting & MIS",

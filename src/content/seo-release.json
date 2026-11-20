@@ -3,9 +3,7 @@
     "status": "approved",
     "approvedBy": "Website owner, approval in Codex chat on 2026-11-17",
     "approvedAt": "2026-11-17T15:21:36.879Z",
-    "approvedDigest": "0fb70c84ba4afd94eebfc594a4c4762fb1c48be89629c27154addbe65f2c5511",
-    "originalApprovedDigest": "e5e38b4a2d7dfe21d8dd33508fc3317ade4b4db6e222b22ea6616fd2e67f4b1e",
-    "scopeNote": "On 2026-11-20 the owner removed technology services from the finance site. The remaining 21 service records are identical to their approved versions."
+    "approvedDigest": "e5e38b4a2d7dfe21d8dd33508fc3317ade4b4db6e222b22ea6616fd2e67f4b1e"
   },
   "privacy": {
     "status": "approved",

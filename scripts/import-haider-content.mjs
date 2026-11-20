@@ -12,9 +12,8 @@ if (
 ) {
   throw new Error("Unexpected handoff: expected 22 services and 33 pages.");
 }
-const retiredService = "services/accounting-automation-systems";
-const pageCopy = Object.entries(handoff.page_copy).filter(([key]) => key !== retiredService);
-const services = handoff.service_changes.filter((service) => service.page_key !== retiredService).map((service) => ({
+const pageCopy = Object.entries(handoff.page_copy);
+const services = handoff.service_changes.map((service) => ({
   key: service.page_key,
   slug: service.current_url
     ? new URL(service.current_url).pathname.split("/").at(-1)
@@ -55,7 +54,6 @@ const replacements = Object.fromEntries(
     .map((change) => [change.id, change.replacement]),
 );
 for (const page of Object.values(pages)) {
-  page.related = page.related.filter((link) => (link.target?.page_key ?? link.route) !== retiredService);
   for (const link of page.related) {
     const key = link.target?.page_key ?? link.route;
     if (!paths[key]) throw new Error(`Unmapped related content target: ${key}`);
@@ -81,17 +79,14 @@ delete replacements.C01.technology_link_label;
 delete replacements.C01.technology_url;
 delete content.contact.social.technology;
 replacements.C06.service_count = services.length;
-replacements.C06.catalog_intro = replacements.C06.catalog_intro.replace("Explore 22 services across finance", "Finance");
-delete replacements.C08.service_options;
-pages.home.description = pages.home.description.replace("Explore 22 LedgerByte services: accounting", "Accounting");
-pages.about.related.forEach((link) => {
-  if (link.label === "All 22 services") link.label = "All services";
-});
 for (const section of pages.about.sections) {
   section.paragraphs = section.paragraphs.map((paragraph) =>
-    paragraph
-      .replace(/ This website is dedicated to that finance work;[^.]+ledgerbyte[.]co[.]/, "")
-      .replace("Today, the 22-service range connects bookkeeping, month-end and year-end close, receivables, payables, accounting systems and payroll with management reporting, planning and cash flow. ", ""),
+    paragraph.replace(/ This website is dedicated to that finance work;[^.]+ledgerbyte[.]co[.]/, ""),
+  );
+}
+for (const section of pages["services/accounting-automation-systems"].sections) {
+  section.paragraphs = section.paragraphs.map((paragraph) =>
+    paragraph.replace("Custom applications, bespoke integrations and wider technology projects belong in a separate technology scope. ", ""),
   );
 }
 pages.about.faqs = pages.about.faqs.filter((item) => item.question !== "Where can we explore technology services?");
