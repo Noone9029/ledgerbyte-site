@@ -2,6 +2,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
 import { financeEnquiryChoices, serviceWhatsAppHref, technologyEnquiryChoices } from "@/lib/enquiry-options";
+import { useEnquiryService } from "./enquiry-channels";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
 
@@ -21,6 +22,7 @@ export function AccountingContactForm({
 }: {
   initialService: string; locale?: "en" | "ar"; technology?: boolean;
 }) {
+  const selection = useEnquiryService();
   const enhanced = useHydrated();
   const enquiryChoices = technology ? technologyEnquiryChoices : financeEnquiryChoices;
   const [fallbackService, setFallbackService] = useState(initialService);
@@ -150,6 +152,7 @@ export function AccountingContactForm({
             {say("Support you need")} <span aria-hidden="true">*</span>
             <select
               name="service"
+              onChange={(event) => selection?.setService(event.target.value)}
               required
               defaultValue={
                 enquiryChoices.includes(initialService) ? initialService : ""

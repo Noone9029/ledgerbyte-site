@@ -1,4 +1,6 @@
 import { technologyEnquiryHref } from "@/lib/enquiry-options";
+import { BuilderExample } from "./builder-example";
+import styles from "./service.module.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -83,9 +85,9 @@ export default async function TechnologyServicePage({
           }),
         )}
       />
-      <main id="main-content">
+      <main id="main-content" className={styles.page}>
         <PageMotion>
-          <nav className="breadcrumbs page-section" aria-label="Breadcrumb">
+          <nav className={`breadcrumbs page-section ${styles.breadcrumbs}`} aria-label="Breadcrumb">
             <Link href="/technology">Technology</Link>
             <span>/</span>
             <Link href="/technology/services">Services</Link>
@@ -93,7 +95,7 @@ export default async function TechnologyServicePage({
             <span aria-current="page">{service.title}</span>
           </nav>
 
-          <section className="service-detail-hero page-section">
+          <section className={`service-detail-hero page-section ${styles.hero}`}>
             <CinematicMedia
               className="service-detail-art hero-reveal"
               src={serviceVisual}
@@ -115,25 +117,23 @@ export default async function TechnologyServicePage({
             </CinematicMedia>
           </section>
 
-          <section className="deliverables-section page-section">
-            <h2>Key features</h2>
-            <div className="deliverables-grid">
-              {service.features.map((feature) => (
-                <article className="deliverable-card motion-reveal" key={feature}>
-                  <Check weight="bold" aria-hidden="true" />
-                  <p>{feature}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-          <section className="partnership-promise page-section">
-            <div className="partnership-promise-copy">
-              <h2>Technologies</h2>
-              <ul>{service.technologies.map((item) => <li key={item}>{item}</li>)}</ul>
-              <Link className="button button-amber" href={technologyEnquiryHref(service.title)}>
-                Discuss your project <ArrowUpRight weight="bold" aria-hidden="true" />
-              </Link>
-              <p><Link className="text-link" href="/technology/process">Our development process ↗</Link></p>
+          {service.slug === "web-development" && <BuilderExample />}
+          <section className={styles.specs} aria-labelledby="features-heading">
+            <div>
+              <h2 id="features-heading">Key features</h2>
+              <ul className={styles.features}>
+                {service.features.map((feature) => (
+                  <li key={feature}><Check weight="bold" aria-hidden="true" />{feature}</li>
+                ))}
+              </ul>
+              <h3>Technologies</h3>
+              <ul className={styles.tools}>{service.technologies.map((item) => <li key={item}>{item}</li>)}</ul>
+              <div className="hero-actions">
+                <Link className="button button-amber" href={technologyEnquiryHref(service.title)}>
+                  Discuss your project <ArrowUpRight weight="bold" aria-hidden="true" />
+                </Link>
+                <Link className="text-link" href="/technology/process">Our development process ↗</Link>
+              </div>
             </div>
             <CinematicMedia
               className="partnership-promise-art motion-reveal"

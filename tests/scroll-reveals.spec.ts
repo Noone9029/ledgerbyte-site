@@ -53,7 +53,7 @@ test("keyboard focus and unavailable animation support leave content usable", as
   test.skip((page.viewportSize()?.width ?? 0) < 1024, "Desktop reveals only");
   await page.goto("/", { waitUntil: "networkidle" });
   const section = page.locator(".accounting-finance-services");
-  const control = section.locator("summary").first();
+  const control = section.getByRole("link", { name: "Accounting & Bookkeeping" });
   await control.focus();
   await expect(section).toHaveAttribute("data-reveal-state", "done");
   await expect(control).toBeFocused();

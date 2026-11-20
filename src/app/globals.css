@@ -5269,3 +5269,70 @@ body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
 html[lang=ar] .accounting-flashcards{display:grid;min-height:0;overflow:visible;container-type:normal}html[lang=ar] .accounting-flashcards>.accounting-flashcard{flex:none;transition:none}html[lang=ar] .accounting-flashcards>.accounting-flashcard>summary{display:grid;grid-template-columns:max-content minmax(0,1fr) max-content;align-items:center;gap:1rem;min-height:76px;padding:1.25rem 1.5rem}html[lang=ar] .accounting-flashcards .accounting-flashcard-number{padding:0;border:0;font-size:1.7rem;line-height:1.4;color:var(--amber-400)}html[lang=ar] .accounting-flashcards>.accounting-flashcard>summary h3{width:auto;min-width:0;margin:0;writing-mode:horizontal-tb;white-space:normal;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.7;letter-spacing:0;overflow-wrap:normal}html[lang=ar] .accounting-flashcards .accounting-flashcard-body{width:auto;margin-inline:1.5rem;padding-block:1.25rem 1.75rem}html[lang=ar] .accounting-flashcards .accounting-flashcard-toggle{display:block;font-size:1.5rem;color:var(--amber-400)}html[lang=ar] .accounting-flashcards .accounting-flashcard-toggle::after{content:"+"}html[lang=ar] .accounting-flashcards>.accounting-flashcard[open] .accounting-flashcard-toggle::after{content:"−"}
 
 .accounting-honeypot{left:auto;right:auto;inset-inline-start:0;clip-path:inset(50%);overflow:hidden;width:1px;height:1px;white-space:nowrap}
+
+.accounting-catalogue-shortcut {
+  align-self: end;
+  min-height: 44px;
+}
+
+.accounting-offer-overview { display: contents; }
+
+.accounting-home-pillars h3 a {
+  display: inline-flex;
+  gap: .45em;
+  align-items: baseline;
+}
+
+.accounting-home-pillars h3 a svg {
+  width: .72em;
+  height: .72em;
+  flex: none;
+  color: var(--amber-400);
+}
+
+.accounting-home-pillars h3 a:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .accounting-catalogue-shortcut { align-self: start; }
+
+  .accounting-home-flow .accounting-home-offer {
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 4px 14px;
+    padding: 16px;
+  }
+  .accounting-offer-overview {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 12px;
+  }
+  .accounting-home-offer h3 {
+    font-size: clamp(1.18rem, 4.8vw, 1.5rem);
+    line-height: 1.14;
+    margin: 0;
+  }
+  .accounting-home-offers .accounting-offer-price {
+    margin: 0;
+    text-align: end;
+    white-space: nowrap;
+    font-size: clamp(1.18rem, 4.8vw, 1.5rem);
+  }
+  .accounting-offer-price > span { margin-bottom: 2px; }
+  .accounting-offer-price small { display: block; margin: 2px 0 0; }
+  .accounting-home-flow .accounting-home-offer > .text-link {
+    margin: 0;
+    min-height: 44px;
+    padding-block: 6px;
+  }
+  .accounting-home-offer .accounting-offer-details[open] { width: 100%; }
+  .accounting-home-offer .accounting-offer-details > summary { min-height: 44px; }
+
+  .accounting-home-flow .accounting-home-pillars article { padding: 12px 16px; }
+  .accounting-home-pillars h3 { font-size: 1.2rem; margin-bottom: 2px; }
+  .accounting-home-pillars h3 a { min-height: 44px; align-items: center; }
+  .accounting-home-pillars p { margin: 0; line-height: 1.4; }
+  .accounting-home-flow .accounting-home-department { margin-top: 20px; padding-top: 18px; }
+  .accounting-home-department .hero-actions { gap: 10px; margin-top: 12px; }
+}

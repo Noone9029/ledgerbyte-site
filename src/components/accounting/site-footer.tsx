@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EnquiryLink } from "./enquiry-link";
 import { Brand } from "@/components/layout/brand";
 import {
   accountingContact,
@@ -14,9 +15,9 @@ export function AccountingFooter() {
             <Brand />
             <p>{accountingCopy.C01.footer_description}</p>
           </div>
-          <Link className="button button-amber" href="/contact">
+          <EnquiryLink className="button button-amber">
             Get in touch ↗
-          </Link>
+          </EnquiryLink>
         </div>
         <div className="accounting-footer-grid">
           <div>
@@ -66,12 +67,9 @@ export function AccountingFooter() {
               WhatsApp
             </a>
             <address>{accountingContact.contact.address.join(", ")}</address>
-            <Link
-              className="accounting-tech-link"
-              href="/contact?division=technology#enquiry-heading"
-            >
+            <EnquiryLink className="accounting-tech-link" technologyOnly>
               Technology enquiries ↗
-            </Link>
+            </EnquiryLink>
           </div>
         </div>
         <div className="accounting-footer-bottom">

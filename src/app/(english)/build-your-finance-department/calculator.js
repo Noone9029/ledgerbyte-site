@@ -44,7 +44,7 @@ export function createEnquiryHref({name, industry, volume, work, pending = [], h
     'Work covered by these hours: '+(work.join(', ') || 'Custom role hours only'),
     ...(pending.length ? [pendingWorkLabel+': '+pending.join(', ')+'. The estimate covers the hours shown.'] : []),
     ...roles.flatMap((role,i)=>hours[i]?[role.name+' · '+hours[i]+' h/month at AED '+role.rate+'/hr = AED '+number(subtotals[i])+'/month']:[]),
-    'Minimum package: AED 500/month for 15 hours, including bookkeeping and VAT filing.',
+    'Minimum package: AED 500/month for 15 hours of bookkeeping, senior review and VAT filing.',
     'Estimated department cost: AED '+number(monthly)+'/month before tax.',
     'Blended hourly rate: AED '+money(hourly)+'/hr before tax.',
     'Preferred contact: '+channel+'; '+cadence.toLowerCase()+' check-in. Please confirm scope and availability.',
@@ -149,7 +149,7 @@ export function initializeBuilder(root) {
     button.setAttribute('aria-pressed',selected.has(index));
     if(index===0){
       button.disabled=true;
-      button.textContent='Included · Bookkeeping with VAT filing';
+      button.textContent='Included in your hours · '+includedWork;
     }
     button.addEventListener('click',() => {
       if(selected.has(index)) selected.delete(index); else selected.add(index);
@@ -228,11 +228,14 @@ export function initializeBuilder(root) {
   }
   function render(){
     const baseHours = workloadHours([0]);
-    const work = [], pending = [];
+    // Assign the chosen hours to the included scope first. Only its shortfall needs a quote.
+    const extraBaseHours = baseHours.reduce((sum, needed, i) => sum + Math.max(0, needed - hours[i]), 0);
+    const work = [includedWork], pending = [];
+    if (extraBaseHours) pending.push('Additional bookkeeping and VAT filing time for this workload (' + extraBaseHours + ' h/month)');
     for (const serviceIndex of selected) {
+      if (serviceIndex === 0) continue;
       const service = services[serviceIndex];
-      const needed = serviceIndex === 0 ? baseHours : suggested;
-      const short = service.hours.some((h, i) => h > 0 && hours[i] < needed[i]);
+      const short = service.hours.some((h, i) => h > 0 && hours[i] < suggested[i]);
       (short ? pending : work).push(service.name);
     }
     const totalHours=hours.reduce((sum,h)=>sum+h,0);
@@ -252,7 +255,6 @@ export function initializeBuilder(root) {
     const custom=hours.some((h,i)=>h!==suggested[i]);
     const name=totalHours===0?'Choose your coverage':custom?'Custom finance team':hours[0]>0?'Finance leadership':hours[1]>0?'Managed finance':'Finance essentials';
     byId('plan').textContent=name;
-    byId('vat-included').hidden=!work.includes(includedWork);
     byId('covered-work').textContent=work.filter(item=>item!==includedWork).join(' · ');
     const scopeNote = byId('scope-note');
     scopeNote.hidden = pending.length === 0;
@@ -297,4 +299,5 @@ export function initializeBuilder(root) {
   byId('cadence').addEventListener('change',render);
   recommend();
   byId('builder-controls').disabled = false;
+  byId('adjust-hours').hidden = false;
 }

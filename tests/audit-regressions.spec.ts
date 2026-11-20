@@ -172,6 +172,14 @@ test("stalled requests release the form with a useful error", async ({
   ).toBeEnabled();
 });
 
+test("the first technology paint uses the system palette before hydration", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.route(/\/_next\/static\/.*\.js(?:\?|$)/, route => route.abort());
+  await page.goto("/technology", { waitUntil: "domcontentloaded" });
+  await expect(page.locator("main h1")).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});
+
 test("keyboard theme changes skip view and icon transitions", async ({
   page,
 }) => {

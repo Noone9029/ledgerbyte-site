@@ -13,6 +13,9 @@ import {
 } from "@/content/accounting";
 import { team } from "@/content";
 import { guideExamples } from "@/content/insight-guides";
+import { homeUpdate } from "@/content/home-update";
+import { CashBridgeWorksheet, CashTimingSample, ReceiptMatchingSample } from "./finance-examples";
+import exampleStyles from "./finance-examples.module.css";
 import { getPageSeo, type SeoPagePath } from "@/content/seo";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 import {
@@ -112,6 +115,7 @@ export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
   const example = guideExamples[pageKey];
+  const filingOffer = homeUpdate.offers.find(offer => offer.href === page.path && offer.service !== "Accounting & Bookkeeping");
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
   const exampleSection = page.sections.findIndex(section => /example/i.test(section.heading));
@@ -196,7 +200,23 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             {example && <p className="guide-publisher">Published by <Link href="/about">{SITE_NAME}</Link></p>}
             <EnquiryLink label={page.cta} service={context} />
           </div>
-          {service ? (
+          {filingOffer ? (
+            <aside className="accounting-output">
+              <p className="eyebrow">{filingOffer.name}</p>
+              <h2 className={exampleStyles.offerPrice}><small>From</small> AED {filingOffer.price} {filingOffer.unit && <small>{filingOffer.unit}</small>}</h2>
+              <p>{filingOffer.description}</p>
+              <hr />
+              {pageKey === "uae-vat"
+                ? <Link className="text-link" href="/insights/vat-records#worked-example">See a VAT reconciliation ↗</Link>
+                : detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
+            </aside>
+          ) : service && (pageKey === "services/accounting-bookkeeping" || pageKey === "services/cash-flow-working-capital") ? (
+            <aside className="accounting-output">
+              <p className="eyebrow">Worked example</p>
+              {pageKey === "services/accounting-bookkeeping" ? <ReceiptMatchingSample /> : <CashTimingSample />}
+              {exampleSection >= 0 && <a className="text-link" href={`#section-${exampleSection + 1}`}>{page.sections[exampleSection].heading} ↓</a>}
+            </aside>
+          ) : service ? (
             <aside className="accounting-output">
               <p className="eyebrow">Typical output</p>
               <p>{service.output}</p>
@@ -255,14 +275,20 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             ))}
           </aside>
           <div className="accounting-prose">
-            {page.sections.map((section, i) => (
+            {page.sections.map((section, i) => {
+              const isCashBridge = pageKey === "insights/profit-and-cash" && section.heading === "Build the bridge from profit to cash";
+              const isWorkedExample = example && section.heading.startsWith("Worked example");
+              const headingId = isCashBridge ? "cash-bridge" : isWorkedExample ? "worked-example" : undefined;
+              return (
               <section id={`section-${i + 1}`} key={section.heading}>
                 <span className="accounting-section-number">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h2 id={example && section.heading.startsWith("Worked example") ? "worked-example" : undefined}>{section.heading}</h2>
+                <h2 id={headingId}>{section.heading}</h2>
                 {(section.blocks ?? [...section.paragraphs, section.bullets]).map((block) =>
-                  typeof block === "string" ? <p key={block}><CopyText text={block} /></p> : block.length > 0 && (
+                  typeof block === "string" ? <p key={block}><CopyText text={block} /></p>
+                  : isCashBridge ? <CashBridgeWorksheet key={section.heading} />
+                  : block.length > 0 && (
                   <ul key={block[0]}>
                     {block.map((text) => (
                       <li key={text}>
@@ -271,7 +297,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                     ))}
                   </ul>
                 ))}
-                {example && section.heading.startsWith("Worked example") && (
+                {isWorkedExample && (
                   <p><Link href={example.servicePath}>{example.service}</Link></p>
                 )}
                 {pageKey === "about" &&
@@ -281,7 +307,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                     </div>
                   )}
               </section>
-            ))}
+              );
+            })}
           </div>
         </div>
         <Faqs items={page.faqs} />

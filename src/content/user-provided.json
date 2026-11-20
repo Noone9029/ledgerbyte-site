@@ -1,4 +1,16 @@
 {
+  "auditFinanceExamples": {
+    "value": "Profit to cash · One month\nCustomers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.\nOperating cash generated\nIllustrative cash bridge · AED\nIllustrative receipt allocation · AED\nUnallocated after remittance is confirmed\nIllustrative cash forecast · AED\nSee a VAT reconciliation",
+    "source": "Worksheet labels and summary adapted from the illustrative accounting-bookkeeping, cash-flow-working-capital and profit-and-cash examples in Haider’s supplied website. The owner requested these examples for the local review. The figures describe worked examples and are not client results."
+  },
+  "auditBuilderCoverage": {
+    "value": "Your hours cover bookkeeping and VAT filing. Any extra time needed for that work is quoted separately.\nVAT filing included in your bookkeeping hours.\nIncluded in your hours · Bookkeeping with VAT filing.\nAdditional bookkeeping and VAT filing time for this workload\nMinimum package: AED 500/month for 15 hours of bookkeeping, senior review and VAT filing.\nAdjust role hours\nView estimate",
+    "source": "Interface wording for Haider’s approved AED 500 team, its included work, and separately quoted extra hours in the site calculator."
+  },
+  "auditBuilderWebExample": {
+    "value": "Responsive web applications, e-commerce platforms and custom web portals.\nOn this website\nInside the finance team builder\nStart with the 15-hour team. Change senior accountant time from four to ten hours, then add payroll. The builder keeps your adjustment as it allocates the extra work.\nThe result is 27 hours and AED 1,080 a month before tax. The email and WhatsApp drafts carry the same roles, hours and price.\nTry the finance team builder\nTeam allocation from the LedgerByte calculator\nController 1 hour, senior accountant 12 hours, junior accountant 10 hours and junior admin 4 hours.",
+    "source": "Service types are from the archived Web Development page. The first-party example describes the actual LedgerByte finance builder supplied by Haider and its verified 27-hour payroll scenario. The image is captured from that tool."
+  },
   "payrollWpsArticle16Source": {
     "value": "Source check: 9 November 2026. [Central Bank of the UAE: UAEWPS](https://centralbank.ae/en/our-operations/payments-and-settlements/uae-wages-protection-system-uaewps/) and [UAE Cabinet Resolution No. 1 of 2022, Article 16 (Arabic PDF, p. 80)](https://assets.u.ae/api/public/content/06fd4e5b72d646c8abe247fa4ff83104?v=946ce745#page=80).",
     "source": "Correction to the supplied payroll bibliography, verified 2026-11-20 against the UAE government-hosted Arabic text of Cabinet Resolution No. 1 of 2022, Article 16(1)(b), page 80."

@@ -49,6 +49,27 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
   }
 });
 
+test("role-hour inputs stay tappable beside WhatsApp while scrolling", async ({ page }, info) => {
+  test.skip(info.project.name !== "mobile-390", "Touch layout");
+  for (const [width, height] of [[320, 568], [390, 844]]) {
+    await page.setViewportSize({ width, height });
+    await page.goto("/build-your-finance-department");
+    const fields = page.locator("#roles input");
+    await expect(fields).toHaveCount(5);
+    for (const field of await fields.all()) {
+      const tappable = await field.evaluate(input => {
+        const bubble = document.querySelector(".floating-whatsapp")!.getBoundingClientRect();
+        const box = input.getBoundingClientRect();
+        window.scrollBy({ top: box.top + box.height / 2 - bubble.top - bubble.height / 2, behavior: "instant" });
+        const current = input.getBoundingClientRect();
+        return document.elementFromPoint(current.left + current.width / 2, current.top + current.height / 2) === input
+          && current.right <= bubble.left;
+      });
+      expect(tappable).toBe(true);
+    }
+  }
+});
+
 test("finance builder keeps displayed prices and all enquiry channels in sync", async ({ page }) => {
   await page.goto("/build-your-finance-department");
   await expect(page.getByLabel("Industry", { exact: true })).toBeEnabled();
@@ -130,15 +151,52 @@ test("finance builder prices only allocated work when advisory hours are missing
   await expect(page.locator("#covered-work")).toContainText("CFO advisory");
 });
 
+test("finance builder keeps base bookkeeping in the estimate and quotes only excess workload", async ({ page }) => {
+  await page.goto("/build-your-finance-department");
+  await page.getByLabel("Industry", { exact: true }).selectOption({ label: "Retail & e-commerce" });
+  await page.getByLabel("Senior accountant monthly hours").fill("4");
+  await page.getByLabel("Junior accountant monthly hours").fill("8");
+  await page.getByLabel("Junior admin support monthly hours").fill("3");
+  await expect(page.locator("#monthly-total")).toHaveText("500");
+  await expect(page.locator("#hours")).toHaveText("15 hrs / mo");
+  await expect(page.locator("#vat-included")).toBeVisible();
+  const shortfall = "Additional bookkeeping and VAT filing time for this workload (6 h/month)";
+  await expect(page.locator("#scope-note")).toContainText(shortfall);
+  await expect(page.getByRole("status").filter({ hasText: "Requested work needing a quote" })).toContainText(shortfall);
+  for (const channel of ["Email", "WhatsApp", "Phone"]) {
+    await page.locator("#channel").selectOption(channel);
+    const draft = decodeURIComponent((await page.locator("#discuss").getAttribute("href"))!);
+    expect(draft).toContain("Work covered by these hours: Bookkeeping with VAT filing\n");
+    expect(draft).toContain("Requested work needing a quote: " + shortfall);
+    expect(draft).toContain("Minimum package: AED 500/month for 15 hours of bookkeeping, senior review and VAT filing.");
+  }
+  await page.getByRole("button", { name: "Restore recommended hours" }).click();
+  await expect(page.locator("#scope-note")).toBeHidden();
+  await expect(page.locator("#hours")).toHaveText("21 hrs / mo");
+  const restoredDraft = decodeURIComponent((await page.locator("#discuss").getAttribute("href"))!);
+  expect(restoredDraft).not.toContain("Requested work needing a quote");
+});
+
 test("mobile estimate shortcut is reserved for the calculator controls", async ({ page, isMobile }) => {
   test.skip(!isMobile, "The shortcut is only displayed on mobile.");
-  await page.goto("/build-your-finance-department");
-  await expect(page.locator("#industry")).toBeEnabled();
-  await expect(page.locator("#mobile")).toBeHidden();
-  await page.locator("#work").scrollIntoViewIfNeeded();
-  await expect(page.locator("#mobile")).toBeVisible();
-  await page.locator("#mobile a").click();
-  await expect(page.locator("#mobile")).toBeHidden();
+  for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/build-your-finance-department");
+    await expect(page.locator("#industry")).toBeEnabled();
+    await expect(page.locator("#mobile")).toBeHidden();
+    await page.locator("#work").scrollIntoViewIfNeeded();
+    await expect(page.locator("#mobile")).toBeVisible();
+    await page.locator("#mobile a").click();
+    await expect(page.locator("#mobile")).toBeHidden();
+    const shortcut = await page.locator(".floating-whatsapp").boundingBox();
+    const figures = await page.locator("#estimate .comparison strong, #hours, #mix .subtotal").evaluateAll(
+      elements => elements.map(element => element.getBoundingClientRect().right),
+    );
+    expect(Math.max(...figures)).toBeLessThan(shortcut!.x);
+    await page.getByRole("link", { name: "Adjust role hours" }).click();
+    await expect(page.locator("#role-hours")).toBeFocused();
+    await expect(page.getByRole("heading", { name: "Roles, rates & hours" })).toBeInViewport();
+  }
   await page.locator("#people").scrollIntoViewIfNeeded();
   await expect(page.locator("#mobile")).toBeHidden();
 });
@@ -150,6 +208,9 @@ test("@nojs finance builder keeps a usable starting estimate and enquiry draft",
   await expect(page.getByLabel("Industry", { exact: true })).toBeDisabled();
   const href = (await page.locator("#discuss").getAttribute("href"))!;
   expect(decodeURIComponent(href)).toContain("AED 500/month before tax");
+  expect(decodeURIComponent(href)).toContain("Work covered by these hours: Bookkeeping with VAT filing");
+  expect(decodeURIComponent(href)).not.toContain("Requested work needing a quote");
+  await expect(page.getByRole("link", { name: "Adjust role hours" })).toBeHidden();
   await expect(page.getByRole("link", { name: "discuss your workload with LedgerByte" })).toHaveAttribute("href", "/contact");
 });
 

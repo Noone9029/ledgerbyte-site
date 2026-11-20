@@ -1,14 +1,14 @@
 import { technologyEnquiryHref } from "@/lib/enquiry-options";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { PageMotion } from "@/components/motion/page-motion";
-import { CinematicMedia } from "@/components/sections/cinematic-media";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
-import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
 import { technologyServices } from "@/content";
 import { getPageSeo } from "@/content/seo";
-import { technologyVisual } from "@/content/visuals";
+import { getTechnologyServiceVisual } from "@/content/visuals";
+import styles from "./catalogue.module.css";
 import {
   buildSchemaGraph,
   buildServiceSchema,
@@ -43,58 +43,25 @@ export default function TechnologyServicesPage() {
       />
       <main id="main-content">
         <PageMotion>
-        <section className="inner-hero page-section">
-          <CinematicMedia
-            className="inner-hero-art hero-reveal"
-            src={technologyVisual}
-            mode="overlay"
-            copySide="left"
-            priority
-          >
-            <div className="inner-hero-copy">
-              <p className="eyebrow hero-reveal">Our Services</p>
-              <h1 className="hero-reveal">
-                Comprehensive Technology Solutions
-              </h1>
-              <p className="hero-summary hero-reveal">
-                Comprehensive technology solutions designed to transform your
-                business and drive growth
-              </p>
-              <Link className="button button-amber hero-reveal" href={technologyEnquiryHref()}>
-                Get a Quote
-                <ArrowUpRight weight="bold" aria-hidden="true" />
-              </Link>
-            </div>
-          </CinematicMedia>
-        </section>
-
-        <section className="service-index-section page-section">
-          <SectionHeading
-            eyebrow="Our Services"
-            title="Comprehensive technology solutions tailored to your business needs"
-          />
-          <div className="service-card-grid technology-service-grid">
+        <section className={styles.directory} aria-labelledby="technology-directory">
+          <header className={styles.intro}>
+            <div><p className="eyebrow">LedgerByte Tech</p><h1 id="technology-directory">Technology services</h1></div>
+            <Link className="button button-amber" href={technologyEnquiryHref()}>Get a Quote<ArrowUpRight weight="bold" aria-hidden="true" /></Link>
+          </header>
+          <div className={styles.grid}>
             {technologyServices.map((service) => (
               <Link
-                className="service-card motion-reveal"
+                className={styles.service}
+                aria-labelledby={`card-${service.slug}`}
                 href={`/technology/services/${service.slug}`}
                 key={service.slug}
               >
-                <p className="eyebrow">LedgerByte Tech</p>
-                <h2>{service.title}</h2>
-                <p>{service.description}</p>
-                <div className="service-included">
-                  {service.features.slice(0, 4).map((feature) => (
-                    <span key={feature}>
-                      <Check weight="bold" aria-hidden="true" />
-                      {feature}
-                    </span>
-                  ))}
+                <Image src={getTechnologyServiceVisual(service.slug)} width={212} height={142} sizes="(max-width: 700px) 76px, 116px" alt="" />
+                <div>
+                  <h2 id={`card-${service.slug}`}>{service.title}</h2>
+                  <p>{service.features.slice(0, 3).join(" · ")}</p>
                 </div>
-                <strong className="service-card-link">
-                  Learn more
-                  <ArrowUpRight weight="bold" aria-hidden="true" />
-                </strong>
+                <ArrowUpRight aria-hidden="true" />
               </Link>
             ))}
           </div>

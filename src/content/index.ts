@@ -10,7 +10,13 @@ import type {
 } from "@/content/types";
 
 export const financeServices = financeData as FinanceService[];
-export const technologyServices = technologyData as TechnologyService[];
+export const technologyServices: TechnologyService[] = technologyData.map((service) => ({
+  ...service,
+  division: "technology",
+  description: service.slug === "web-development"
+    ? "Responsive web applications, e-commerce platforms and custom web portals."
+    : service.description,
+}));
 
 export const technologyProcess = {
   ...technologyProcessData,
@@ -204,17 +210,16 @@ export const technologyAdvantages = [
   {
     title: "Security-First Mindset",
     description:
-      "We prioritize security at every stage of development. From secure coding practices to regular security audits, we ensure your data and applications are protected against modern threats. Our solutions comply with industry standards and best practices.",
+      "We prioritize security at every stage of development.",
   },
   {
     title: "Scalable Architecture",
-    description:
-      "Build once, scale forever. Our solutions are designed with growth in mind, using cloud-native architectures and best practices that allow your applications to handle increasing loads seamlessly. Whether you have 100 users or 1 million, we've got you covered.",
+    description: "Our solutions are designed with growth in mind, using cloud-native architectures.",
   },
   {
     title: "Business-Driven Solutions",
     description:
-      "Technology should serve your business goals, not the other way around. We take time to understand your objectives, challenges, and market position to deliver solutions that drive real ROI and competitive advantage.",
+      "We take time to understand your objectives, challenges, and market position.",
   },
   {
     title: "GCC & International Experience",

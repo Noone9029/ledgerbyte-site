@@ -82,6 +82,21 @@ test("every supplied page renders its complete copy with correct metadata and wo
   expect(errors).toEqual([]);
 });
 
+test("filing prices survive the handoff and worked examples reconcile", async ({ page }) => {
+  for (const route of ["/uae-vat", "/finance/services/corporate-tax-filing"]) {
+    await page.goto(route);
+    await expect(page.locator(".accounting-detail-hero aside")).toContainText("AED 750");
+  }
+  await page.goto("/");
+  await page.getByRole("link", { name: "See the calculation" }).click();
+  await expect(page).toHaveURL(/\/insights\/profit-and-cash#cash-bridge$/);
+  const worksheet = page.getByRole("table", { name: "Illustrative cash bridge · AED" });
+  await expect(worksheet.locator("tfoot")).toContainText("-20,000");
+  await page.goto("/finance/services/accounting-bookkeeping");
+  const receipt = page.getByRole("table", { name: "Illustrative receipt allocation · AED" });
+  await expect(receipt.locator("tfoot td")).toHaveText("0");
+});
+
 test("catalogue shows all 22 services and filters by task and category", async ({
   page,
 }) => {

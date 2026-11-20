@@ -114,8 +114,7 @@ export default function TechnologyPage() {
           <section className="process-preview page-section">
             <SectionHeading
               eyebrow="Our Development Process"
-              title="A proven methodology that delivers exceptional results, from initial concept to ongoing support"
-              description="Every step is designed to ensure transparency, quality, and success"
+              title="From initial concept to ongoing support"
             />
             <div className="stack-cards">
               {technologyProcess.steps.map((step, index) => (

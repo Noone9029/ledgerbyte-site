@@ -5,12 +5,16 @@ import catalogue from "./home-service-scopes.json";
 const scopes = new Map(catalogue.flatMap(group => group.items.map(item => [item.slug, item.scope] as const)));
 const vatOffer = homeUpdate.offers.find(offer => offer.service === "UAE VAT support")!;
 const aliases: Record<string, string> = {
+  "accounting-bookkeeping": "bookkeeper bookkeepers book keeping",
+  "fractional-cfo-advisory": "chief financial officer outsourced cfo",
+  "payroll-wps-management": "salary salaries wages protection system",
   "tax-vat-compliance": "VAT returns VAT filing",
   "corporate-tax-filing": "corporate tax return tax returns",
 };
 
 function normalize(text: string) {
-  return text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  return text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\bcashflows?\b/g, "cash flow").trim();
 }
 
 const index = accountingServices.map(service => {
@@ -27,7 +31,8 @@ const index = accountingServices.map(service => {
 
 export function findServices(term: string, category: string) {
   const query = normalize(term);
-  const words = query.split(" ").filter(Boolean);
+  const tokens = query.split(" ").filter(Boolean);
+  const words = tokens.length > 1 ? tokens.filter(word => !/^services?$/.test(word)) : tokens;
   return index.filter(({ service, terms }) =>
     (!category || service.group === category) && words.every(word => terms.includes(word)),
   ).map(({ service, scope, names }) => {

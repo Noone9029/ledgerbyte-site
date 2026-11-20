@@ -57,7 +57,8 @@ export function ServiceFlashcards({ services, label, catalogue = false, locale =
       onKeyDown={moveFocus}
       onPointerDownCapture={(event) => { keyboard.current = false; pointer.current = event.pointerType; }}
       onFocusCapture={(event) => {
-        if (event.target.matches(":focus-visible")) keyboard.current = true;
+        // A result link can also regain focus when returning through browser history.
+        if (event.target.matches("a, :focus-visible")) keyboard.current = true;
       }}
     >
       {services.map((service, index) => (

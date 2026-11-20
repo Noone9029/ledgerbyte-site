@@ -3,6 +3,7 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Brand } from "@/components/layout/brand";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { accountingGroups, accountingServices } from "@/content/accounting";
+import { EnquiryLink } from "./enquiry-link";
 import { NavigationBehaviour } from "./navigation-behaviour";
 
 function Navigation({ mobile = false }: { mobile?: boolean }) {
@@ -65,13 +66,10 @@ export function AccountingHeader() {
           <Navigation />
         </nav>
         <div className="accounting-header-actions">
-          <Link
-            className="button button-amber accounting-header-cta"
-            href="/contact"
-          >
+          <EnquiryLink className="button button-amber accounting-header-cta">
             Get in touch
             <ArrowUpRight aria-hidden="true" />
-          </Link>
+          </EnquiryLink>
           <ThemeToggle />
           <details className="accounting-mobile-nav">
             <summary aria-label="Open navigation">
@@ -79,10 +77,10 @@ export function AccountingHeader() {
             </summary>
             <nav aria-label="Mobile navigation">
               <Navigation mobile />
-              <Link className="button button-amber" href="/contact">
+              <EnquiryLink className="button button-amber">
                 Get in touch
                 <ArrowUpRight aria-hidden="true" />
-              </Link>
+              </EnquiryLink>
             </nav>
           </details>
         </div>

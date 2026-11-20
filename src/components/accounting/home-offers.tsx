@@ -8,13 +8,15 @@ export function HomeOffers() {
     <section className="accounting-home-offers accounting-wrap" id="offers" data-home-section="offers" data-scroll-reveal>
       <div className="accounting-section-heading">
         <div><p className="eyebrow">Three ways to start · UAE</p><h2>The support you need. A clear starting point.</h2></div>
-        <p>Choose monthly support for your books and tax work, or get help with a specific UAE return.</p>
+        <a className="text-link accounting-catalogue-shortcut" href="#catalogue-search">Find your service <span aria-hidden="true">↓</span></a>
       </div>
       <div className="accounting-home-offer-grid">
         {homeUpdate.offers.map(offer => (
           <section className="accounting-home-offer" key={offer.name}>
-            <h3>{offer.name}</h3>
-            <p className="accounting-offer-price"><span>From</span> AED {offer.price}<small>{offer.unit}</small></p>
+            <div className="accounting-offer-overview">
+              <h3>{offer.name}</h3>
+              <p className="accounting-offer-price"><span>From</span> AED {offer.price}<small>{offer.unit}</small></p>
+            </div>
             <details className="accounting-offer-details">
               <summary>What’s included</summary>
               <p>{offer.description}</p>
@@ -34,14 +36,8 @@ export function HomeWorkstreams() {
     <div className="accounting-home-pillars">
       {homeUpdate.workstreams.map(work => (
         <article key={work.name}>
-          <h3>{work.name}</h3>
+          <h3><Link href={work.href}>{work.name}<ArrowUpRight aria-hidden="true" /></Link></h3>
           <p>{work.output}</p>
-          <details className="accounting-work-details">
-            <summary>Explore service</summary>
-            <p>{work.description}</p>
-            <Link className="accounting-offer-scope" href={work.href}>{work.name} ↗</Link>
-            <Link className="text-link" href={serviceContactHref(work.service)}>{work.cta}<ArrowUpRight aria-hidden="true" /></Link>
-          </details>
         </article>
       ))}
     </div>

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import Script from "next/script";
 import Link from "next/link";
 import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { AccountingFooter } from "@/components/accounting/site-footer";
@@ -89,12 +88,11 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        {/* Apply the palette as the HTML is parsed, before any themed content can paint. */}
+        <script id="ledgerbyte-theme" dangerouslySetInnerHTML={{ __html: themeInitializer }} />
+      </head>
       <body>
-        <Script
-          id="ledgerbyte-theme"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: themeInitializer }}
-        />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

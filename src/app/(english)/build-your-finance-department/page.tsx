@@ -143,6 +143,7 @@ function Estimate() {
   return <aside className="estimate-card" id="estimate" aria-labelledby="plan">
     <p className="eyebrow">Your recommended team</p><h2 id="plan">Finance essentials</h2>
     <div className="price"><small>Estimated department cost</small><div><span className="currency">AED</span> <strong id="monthly-total">{startingPrice}</strong> <small>/ month</small></div><p>Before tax · AED <span id="total">{(startingPrice / startingHours).toFixed(2)}</span>/hr blended</p></div>
+    <a id="adjust-hours" className="finance-link" href="#role-hours" hidden>Adjust role hours <span aria-hidden="true">↑</span></a>
     <div id="savings" className="savings" />
     <div className="line mixhead"><b>Team allocation</b><span id="hours">{startingHours} hrs / mo</span></div>
     <div id="segments" className="segments" aria-hidden="true" />
@@ -150,7 +151,7 @@ function Estimate() {
       <span><i className="dot" style={{background: role.color}} />{role.name}<small className="allocation">{minimumHours[i]} h × AED {role.rate}/hr</small></span>
       <strong className="subtotal">AED {startingSubtotals[i]}</strong>
     </div>)}</div>
-    <p id="vat-included" className="included-service"><strong>VAT filing included</strong> with bookkeeping</p>
+    <p id="vat-included" className="included-service"><strong>VAT filing included</strong> in your bookkeeping hours.</p>
     <p id="covered-work" className="helper" />
     <p id="scope-note" className={styles.notice} hidden />
     <p id="comm" className="comm-summary">Preferred contact · Email · monthly check-in</p>
@@ -167,15 +168,15 @@ export default function FinanceDepartmentPage() {
     <div className={`workspace accounting-wrap ${styles.workspace}`} id="builder">
       <fieldset className="builder-fields" id="builder-controls" aria-labelledby="builder-title" disabled>
         <Business />
-        <section className="form-section"><SectionTitle icon="work">Work to cover</SectionTitle><p className="helper">Bookkeeping and VAT filing come with your team. Choose any additional services you need.</p><div className="chips" id="work" /></section>
-        <section className="form-section"><SectionTitle icon="team">Roles, rates &amp; hours</SectionTitle><p className="helper">Your team starts with 3 junior admin hours, 8 junior accountant hours and 4 senior accountant hours. Hours you add or remove carry over when your workload changes.</p><div id="roles" /><p id="role-gap" className={styles.notice} hidden /><button className="plain" id="restore" type="button">Restore recommended hours</button></section>
+        <section className="form-section"><SectionTitle icon="work">Work to cover</SectionTitle><p className="helper">Your hours cover bookkeeping and VAT filing. Any extra time needed for that work is quoted separately.</p><div className="chips" id="work" /></section>
+        <section id="role-hours" tabIndex={-1} className="form-section"><SectionTitle icon="team">Roles, rates &amp; hours</SectionTitle><p className="helper">Your team starts with 3 junior admin hours, 8 junior accountant hours and 4 senior accountant hours. Hours you add or remove carry over when your workload changes.</p><div id="roles" /><p id="role-gap" className={styles.notice} hidden /><button className="plain" id="restore" type="button">Restore recommended hours</button></section>
         <ContactPreferences />
         <ComparisonDetails />
       </fieldset>
       <Estimate />
     </div>
     <People />
-    <div className="mobile-est" id="mobile" hidden><strong id="mobile-price">{monthlyPrice}</strong><a className="button button-amber button-small" href="#estimate">My team <span aria-hidden="true">↓</span></a></div>
+    <div className="mobile-est" id="mobile" hidden><strong id="mobile-price">{monthlyPrice}</strong><a className="button button-amber button-small" href="#estimate">View estimate <span aria-hidden="true">↓</span></a></div>
     <div role="status" id="status" className="sr-only" />
     <BuilderControls />
   </main>;

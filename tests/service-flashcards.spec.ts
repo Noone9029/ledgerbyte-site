@@ -48,6 +48,54 @@ test("the full catalogue stays searchable and keyboard focus wins over hover", a
   await expect(page.locator("[data-service-flashcards]")).toHaveCount(1);
 });
 
+test("plain-language searches survive a return from a selected service", async ({ page }) => {
+  for (const path of ["/", "/finance/services"]) {
+    await page.goto(path);
+    const search = page.getByRole("searchbox");
+    const titles = page.locator(".accounting-service-results h3 a");
+    for (const [term, destination] of [
+      ["bookkeeper", "/finance/services/accounting-bookkeeping"],
+      ["cashflow", "/finance/services/cash-flow-working-capital"],
+      ["CFO services", "/finance/services/fractional-cfo-advisory"],
+    ]) {
+      await search.fill(term);
+      await expect(titles.first()).toHaveAttribute("href", destination);
+    }
+    const category = page.getByLabel("Service category");
+    await category.selectOption("Reporting & Advisory");
+    const result = titles.first();
+    await result.scrollIntoViewIfNeeded();
+    await result.focus();
+    const top = (await result.boundingBox())!.y;
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/finance\/services\/fractional-cfo-advisory$/);
+    await page.goBack();
+    await expect(search).toHaveValue("CFO services");
+    await expect(category).toHaveValue("Reporting & Advisory");
+    await expect(result).toBeFocused();
+    await expect.poll(async () => Math.abs((await result.boundingBox())!.y - top)).toBeLessThan(3);
+    expect(new URL(page.url()).search).toBe("");
+  }
+});
+
+test("returning twice keeps a category card open under a stationary pointer", async ({ page }) => {
+  await page.goto("/finance/services");
+  const category = page.getByLabel("Service category");
+  await category.selectOption("Reporting & Advisory");
+  const card = page.locator('[data-service-slug="fractional-cfo-advisory"]');
+  await card.locator("summary").click();
+  const result = card.getByRole("link");
+  await result.click();
+  for (let visit = 0; visit < 2; visit++) {
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Finance leadership");
+    await page.goBack();
+    await expect(category).toHaveValue("Reporting & Advisory");
+    await expect(card).toHaveAttribute("open", "");
+    await expect(result).toBeFocused();
+    if (visit === 0) await page.goForward();
+  }
+});
+
 test("touch layouts stack the same cards and open them by tapping", async ({ page }) => {
   test.skip((page.viewportSize()?.width ?? 0) > 1100, "Desktop uses horizontal cards");
   await page.goto("/finance/services");

@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { accountingContact, accountingPages, contentPath, guideKeys, serviceContactHref } from "@/content/accounting";
+import { accountingContact, accountingPages, contentPath, guideKeys } from "@/content/accounting";
 import { Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
 import { ScrollReveals } from "@/components/motion/scroll-reveals";
 import { HomeCatalogue } from "./home-catalogue";
 import { HomeOffers, HomeWorkingProcess, HomeWorkstreams } from "./home-offers";
 import { homeUpdate } from "@/content/home-update";
-import { guideExamples } from "@/content/insight-guides";
+import { CashBridgePreview } from "./finance-examples";
+import exampleStyles from "./finance-examples.module.css";
 import { buildFaqSchema, buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
 
 export function AccountingHome() {
@@ -43,20 +44,15 @@ export function AccountingHome() {
         <HomeOffers />
 
         <section className="accounting-reviews accounting-wrap" data-home-section="reviews" data-scroll-reveal>
-          <div className="accounting-review-link">
-            <h2>Client reviews</h2>
-            <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
-          </div>
-          <article className="accounting-home-example">
+          <div className={exampleStyles.proofIntro}>
             <p className="eyebrow">Worked example</p>
-            <h3>{accountingPages["insights/profit-and-cash"].heading}</h3>
-            <dl className="accounting-example-numbers">
-              {guideExamples["insights/profit-and-cash"].amounts.map(([label, amount]) => (
-                <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
-              ))}
-            </dl>
-            <Link className="text-link" href="/insights/profit-and-cash#worked-example">See the calculation<ArrowUpRight aria-hidden="true" /></Link>
-          </article>
+            <h2>{accountingPages["insights/profit-and-cash"].heading}</h2>
+            <p>Customers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.</p>
+            <div className={`accounting-review-link ${exampleStyles.reviewsLink}`}>
+              <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
+            </div>
+          </div>
+          <div className="accounting-home-example"><CashBridgePreview /></div>
         </section>
 
         <section className="accounting-finance-services accounting-wrap" data-home-section="finance-services" data-scroll-reveal>
@@ -66,12 +62,9 @@ export function AccountingHome() {
           </div>
           <HomeWorkstreams />
           <aside className="accounting-statement accounting-home-department">
-            <p className="eyebrow">Need the workstreams connected?</p>
             <h3>Full finance department outsourcing</h3>
-            <p>{homeUpdate.department}</p>
             <div className="hero-actions">
               <Link className="button button-amber" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
-              <Link className="text-link" href={serviceContactHref("Full Finance Department Outsourcing")}>Discuss full finance support<ArrowUpRight aria-hidden="true" /></Link>
               <Link className="text-link" href="/finance/services/finance-department-outsourcing">Explore the scope<ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </aside>

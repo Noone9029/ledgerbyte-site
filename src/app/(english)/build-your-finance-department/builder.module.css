@@ -38,7 +38,18 @@ main:global(.finance-builder) .workspace {
   line-height: 1.5;
 }
 
+@media (max-width: 900px) {
+  .workspace > aside:global(.estimate-card) {
+    scroll-margin-block-start: 0;
+    padding-inline: 18px var(--mobile-action-gutter, calc(68px + env(safe-area-inset-right, 0px)));
+  }
+}
+
 @media (max-width: 700px) {
+  .workspace :global(.role-top) {
+    padding-inline-end: var(--mobile-action-gutter, 68px);
+  }
+
   .intro {
     grid-template-columns: 1fr;
     padding-block: 28px 18px;
