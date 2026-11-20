@@ -2,25 +2,36 @@
 
 The owner requested the content and functionality from Haider's November 20
 source ZIP while keeping the current website's images, theme, fonts, structure,
-page flow and sliding service cards. This implementation starts from live-source
+sliding service cards. The owner subsequently clarified that the homepage
+sequence and content progression must match Haider’s supplied version. This
+implementation starts from live-source
 commit `2af7a11c12e3740e2c22b0f10dcc78785234c942` on an isolated local branch.
 
 | Before | After | Why |
 | --- | --- | --- |
-| Current hero, editorial image and headline | Same hero, image and headline; finance-team message in the lead and a builder action | Introduce the new message without replacing the existing identity |
-| Eight problem-led pathways | Same eight pathways, with three UAE starting offers in the same section | Include the AED 500/750 offers while retaining the original service flow |
-| Finance statement | Same statement treatment, with department-builder links and an expandable working process | Fit the supplied outsourcing and responsibility content into an existing block |
-| Eight expanding service cards | Same component, content, CSS and hover/touch/keyboard behavior | Preserve the interaction the owner explicitly requested |
-| Detailed service browsing on the services route | Existing route retained; homepage adds expandable scope search and four workstream summaries below the cards | Include the supplied discovery features without replacing the cards |
-| Existing six-person portrait grid | Same images, framing and order, with the supplied founder statement underneath | Add the founder's message without swapping portraits |
-| Three practical guide links | Same link layout with expanded guide content and a blog link | Keep the homepage reading flow and provide the supplied examples |
-| Current FAQs and closing action | Pricing/scope FAQs and a finance-team enquiry, using the existing components | Explain the offers in the site's existing presentation |
+| Original homepage order and headline | Supplied headline and section order, using the current hero image and typography | Follow the owner's corrected flow requirement |
+| Reviews immediately after the hero | Three UAE offers immediately after the hero, followed by reviews | Match the supplied introduction and pricing progression |
+| Eight problem-led pathway tiles | Four visible finance workstreams, followed by combined outsourcing | Match Haider's service narrative |
+| Original expanding service cards | Same eight sliding cards within the service catalogue section | Retain the requested interaction in the supplied flow |
+| Expandable working-process summary | Five visible steps in a dedicated section after the catalogue | Keep the explanation visible and in the supplied position |
+| Founder statement below portraits | Founder statement before the existing portrait grid | Match the supplied founder-to-team progression |
+| Existing guides, FAQs and closing enquiry | Guides, pricing FAQs, then the supplied contact details and enquiry handoff | Complete the supplied reading sequence |
+
+## Homepage sequence
+
+Hero → UAE offers → client reviews → four finance workstreams and combined
+outsourcing → service catalogue → working process → founder and team → guides
+→ FAQs → contact. The original eight problem-led pathway tiles are no longer
+rendered on the homepage. The eight sliding service cards remain unchanged in
+the catalogue section. Finance workstreams and the five working-process steps
+are visible without opening disclosure controls. The service catalogue's
+optional search disclosure retains its existing no-JavaScript fallback.
 
 ## Routes and behavior
 
 - `/`: finance-team message; monthly SME support from AED 500, VAT return
   support from AED 750 per return, corporate tax review/filing from AED 750;
-  original pathways and sliding cards; searchable 22-service scope list;
+  four visible finance workstreams and original sliding cards; searchable 22-service scope list;
   working process, founder note, guides and pricing FAQs.
 - `/build-your-finance-department`: industry/workload/service/role calculator
   rebuilt with existing artwork, fonts, colors, form treatment and navigation.
@@ -53,8 +64,9 @@ independently certify the supplied pricing, salary benchmarks or tax statements.
 
 Content provenance, original artwork checks, analytics privacy checks, ESLint
 and the Next.js production build pass. The main browser suite has 73 passing
-cases and 6 intentional viewport skips after correcting a new test fixture to
-the actual original hero headline. All existing card, navigation, contact,
+cases and 6 intentional viewport skips. The homepage regression verifies the
+complete supplied section order, headline, four workstreams and five visible
+process steps. All existing card, navigation, contact,
 reduced-motion and JavaScript-disabled regressions pass; new tests cover the
 offers, catalogue, calculator arithmetic, minimum hours and enquiry drafts.
 

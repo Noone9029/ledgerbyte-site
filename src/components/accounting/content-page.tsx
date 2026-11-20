@@ -58,7 +58,7 @@ export function EnquiryLink({
     </Link>
   );
 }
-export function Faqs({ items }: { items: AccountingPage["faqs"] }) {
+export function Faqs({ items, heading = "Questions, answered." }: { items: AccountingPage["faqs"]; heading?: string }) {
   if (!items.length) return null;
   return (
     <section
@@ -66,7 +66,7 @@ export function Faqs({ items }: { items: AccountingPage["faqs"] }) {
       aria-labelledby="accounting-faq-title"
     >
       <p className="eyebrow">FAQs</p>
-      <h2 id="accounting-faq-title">Questions, answered.</h2>
+      <h2 id="accounting-faq-title">{heading}</h2>
       <div>
         {items.map((faq) => (
           <details key={faq.question}>

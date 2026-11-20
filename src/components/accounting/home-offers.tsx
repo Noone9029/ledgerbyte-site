@@ -5,8 +5,11 @@ import { homeUpdate } from "@/content/home-update";
 
 export function HomeOffers() {
   return (
-    <aside className="accounting-home-offers" id="offers" aria-label="Three ways to start · UAE">
-      <p className="eyebrow">Three ways to start · UAE</p>
+    <section className="accounting-home-offers accounting-wrap" id="offers" data-home-section="offers" data-scroll-reveal>
+      <div className="accounting-section-heading">
+        <div><p className="eyebrow">Three ways to start · UAE</p><h2>The support you need. A clear starting point.</h2></div>
+        <p>Choose monthly support for your books and tax work, or get help with a specific UAE return.</p>
+      </div>
       <div className="accounting-home-offer-grid">
         {homeUpdate.offers.map(offer => (
           <section className="accounting-home-offer" key={offer.name}>
@@ -19,20 +22,22 @@ export function HomeOffers() {
         ))}
       </div>
       <p className="accounting-home-scope-note">{homeUpdate.offersNote}</p>
-    </aside>
+    </section>
   );
 }
 
 export function HomeWorkstreams() {
   return (
-    <div className="accounting-home-workstreams" aria-label="Finance support">
-      {homeUpdate.workstreams.map(work => (
-        <details key={work.name}>
-          <summary>{work.name}<span aria-hidden="true">+</span></summary>
+    <div className="accounting-home-pillars">
+      {homeUpdate.workstreams.map((work, index) => (
+        <article key={work.name}>
+          <span className="accounting-section-number">{String(index + 1).padStart(2, "0")}</span>
+          <h3>{work.name}</h3>
           <p>{work.description}</p>
           <p><strong>Typical output:</strong> {work.output}</p>
-          <Link className="text-link" href={work.href}>Explore service<ArrowUpRight aria-hidden="true" /></Link>
-        </details>
+          <Link className="text-link" href={serviceContactHref(work.service)}>{work.cta}<ArrowUpRight aria-hidden="true" /></Link>
+          <Link className="accounting-offer-scope" href={work.href}>Explore service ↗</Link>
+        </article>
       ))}
     </div>
   );
@@ -40,15 +45,18 @@ export function HomeWorkstreams() {
 
 export function HomeWorkingProcess() {
   return (
-    <details className="accounting-home-process">
-      <summary>Clear scope. Clear responsibility.<span aria-hidden="true">+</span></summary>
-      <ol>
+    <section id="how-we-work" className="accounting-home-process-section accounting-wrap" data-home-section="process" data-scroll-reveal>
+      <div>
+        <p className="eyebrow">How we work</p><h2>Clear scope. Clear responsibility.</h2>
+        <p>From the first conversation to the next reporting cycle, agree what the work needs to achieve and who owns each step.</p>
+        <Link className="text-link" href="/how-we-work">Read the full working process<ArrowUpRight aria-hidden="true" /></Link>
+        <p>{homeUpdate.preparation}</p>
+      </div>
+      <ol className="accounting-home-process-steps">
         {homeUpdate.process.map(step => (
           <li key={step.title}><h3>{step.title}</h3><p>{step.text}</p></li>
         ))}
       </ol>
-      <p>{homeUpdate.preparation}</p>
-      <Link className="text-link" href="/how-we-work">Read the full working process<ArrowUpRight aria-hidden="true" /></Link>
-    </details>
+    </section>
   );
 }

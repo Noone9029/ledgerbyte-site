@@ -5056,6 +5056,49 @@ body:has(.floating-whatsapp) .analytics-choice {
   max-height: calc(100dvh - 108px - env(safe-area-inset-bottom));
 }
 body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
+
+/* Supplied homepage sequence, expressed with the existing accounting design. */
+.accounting-home-flow .accounting-home-hero h1 { max-width: 15ch; font-size: clamp(2.8rem, 5.5vw, 5.4rem); }
+.accounting-home-flow .accounting-home-offers { margin-bottom: 0; padding-bottom: clamp(65px, 8vw, 110px); }
+.accounting-home-offer h3 { font-size: 1.65rem; line-height: 1.12; margin-bottom: 16px; }
+.accounting-home-offer > p { line-height: 1.65; }
+.accounting-finance-services { padding-block: clamp(65px, 8vw, 110px); }
+.accounting-home-pillars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-dark); border-radius: 18px; overflow: hidden; background: var(--line-dark); }
+.accounting-home-pillars article { display: flex; flex-direction: column; min-width: 0; padding: 28px; background: var(--graphite-900); }
+.accounting-home-pillars h3 { min-height: 2.3em; font-size: 1.65rem; line-height: 1.12; margin-bottom: 16px; }
+.accounting-home-pillars p { color: var(--stone-250); font-size: .95rem; line-height: 1.65; margin-bottom: 18px; }
+.accounting-home-pillars strong { color: var(--ivory-100); }
+.accounting-home-pillars .text-link { margin-top: auto; padding-top: 10px; font-size: .88rem; }
+.accounting-home-pillars .accounting-offer-scope { color: var(--amber-400); font-size: .8rem; margin-top: 16px; }
+.accounting-home-flow .accounting-home-department { margin-top: 35px; }
+.accounting-home-department > p:not(.eyebrow) { color: var(--stone-250); font-size: 1.05rem; line-height: 1.65; margin-top: 20px; }
+.accounting-home-process-section { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(35px, 6vw, 90px); padding-block: clamp(65px, 8vw, 110px); border-top: 1px solid var(--line-dark); }
+.accounting-home-process-section h2 { max-width: 18ch; font-size: clamp(2.25rem, 4.5vw, 4.25rem); line-height: 1.06; }
+.accounting-home-process-section > div > p:not(.eyebrow) { color: var(--stone-250); font-size: 1.05rem; line-height: 1.65; margin-top: 25px; }
+.accounting-home-process-section > div > .text-link { margin-top: 25px; }
+.accounting-home-process-steps { list-style: decimal; padding-left: 24px; }
+.accounting-home-process-steps li { padding: 22px 0 22px 15px; border-bottom: 1px solid var(--line-dark); }
+.accounting-home-process-steps li:first-child { padding-top: 0; }
+.accounting-home-process-steps li::marker { color: var(--amber-400); font-variant-numeric: tabular-nums; }
+.accounting-home-process-steps h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.accounting-home-process-steps p { color: var(--stone-250); font-size: .95rem; line-height: 1.65; }
+.accounting-home-flow .accounting-founder-note { margin: 0 0 40px; }
+.accounting-home-contact { display: grid; grid-template-columns: 1.15fr 1fr; align-items: start; gap: 45px; }
+.accounting-home-contact > div > p:not(.eyebrow) { color: var(--stone-250); line-height: 1.65; margin-block: 25px; }
+.accounting-home-contact > div > .button { margin-top: 10px; }
+.accounting-home-contact .accounting-output h3 { font-size: 1.6rem; line-height: 1.2; margin-bottom: 20px; }
+.accounting-home-contact .accounting-output > .button { margin-top: 25px; }
+.accounting-home-contact-details { display: grid; gap: 14px; color: var(--stone-250); font-size: .95rem; line-height: 1.65; }
+.accounting-home-contact-details a { width: fit-content; color: var(--amber-400); }
+.accounting-home-contact-details address { font-style: normal; }
+@media (max-width: 1000px) {
+  .accounting-home-pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .accounting-home-process-section, .accounting-home-contact { grid-template-columns: 1fr; }
+  .accounting-home-pillars { grid-template-columns: 1fr; }
+  .accounting-home-pillars h3 { min-height: 0; }
+}
 @media (max-width: 900px) {
   body:has(.finance-builder .mobile-est:not([hidden])) .floating-whatsapp {
     bottom: calc(96px + env(safe-area-inset-bottom));

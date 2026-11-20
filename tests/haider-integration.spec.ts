@@ -2,11 +2,16 @@ import { expect, test } from "@playwright/test";
 
 test("homepage offers lead to scoped contact requests and the existing sliding cards remain available", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".accounting-home-hero h1")).toHaveText("Know your numbers. Plan your next move.");
+  await expect(page.locator(".accounting-home-hero h1")).toHaveText("Why hire one accountant when you can get a finance team?");
   await expect(page.locator(".accounting-home-hero")).toContainText("Why hire one accountant when you can get a finance team?");
   await expect(page.locator(".accounting-home-offer")).toHaveCount(3);
   await expect(page.locator(".accounting-offer-price").first()).toContainText("AED 500");
-  await expect(page.locator(".accounting-pathways > div:last-child > article")).toHaveCount(8);
+  await expect(page.locator(".accounting-home-pillars > article")).toHaveCount(4);
+  expect(await page.locator("#main-content > section").evaluateAll(sections => sections.map(section =>
+    section.getAttribute("data-home-section") ?? (section.classList.contains("accounting-faq") ? "faq" : "unknown"),
+  ))).toEqual(["hero", "offers", "reviews", "finance-services", "catalogue", "process", "team", "guides", "faq", "contact"]);
+  await expect(page.locator(".accounting-home-process-steps > li")).toHaveCount(5);
+  await expect(page.locator(".accounting-home-process-steps > li").last()).toBeVisible();
   await expect(page.locator(".accounting-featured [data-service-flashcards] > details")).toHaveCount(8);
   await page.getByRole("link", { name: "Discuss SME support", exact: true }).click();
   await expect(page.getByLabel("Support you need")).toHaveValue("Accounting & Bookkeeping");

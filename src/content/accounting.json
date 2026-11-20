@@ -2146,21 +2146,21 @@
       "title": "Accounting, Tax & Finance Leadership | LedgerByte",
       "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
       "path": "/",
-      "heading": "Know your numbers. Plan your next move.",
-      "intro": "Why hire one accountant when you can get a finance team? Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
+      "heading": "Why hire one accountant when you can get a finance team?",
+      "intro": "Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
       "cta": "Discuss your requirements",
       "sections": [
         {
-          "heading": "From the ledger to the leadership discussion",
+          "heading": "Choose your next step in finance.",
           "paragraphs": [
-            "The accounting records are the foundation. Reporting explains the movement. Budgets and cash forecasts test what may happen next. Choose a focused service or connect the workstreams around one finance calendar, with the required inputs and deliverables clearly defined."
+            "Choose the work you need help with, from reconciling this month’s books to deciding whether you can fund your next hire."
           ],
           "bullets": []
         },
         {
-          "heading": "Know what you will receive",
+          "heading": "Need something more specific?",
           "paragraphs": [
-            "A useful engagement produces something your team can work with: reconciled records, a review-ready preparation pack, a management report or a forecast with visible assumptions. Explore the 22 services to see their scope, typical outputs and the questions to settle before work begins."
+            "Search for the work you need, such as “supplier payments” or “payroll”, or browse the services by category."
           ],
           "bullets": []
         }
@@ -2196,15 +2196,16 @@
       },
       "closing_heading": "Let’s talk about your finance team.",
       "section_order": [
-        "Hero and two actions",
-        "Trustpilot reviews immediately below the hero",
-        "Eight problem-led pathways",
-        "From the ledger to the leadership discussion",
-        "Three featured services",
-        "Finance-team proof",
-        "Three practical guides",
-        "FAQs",
-        "Closing enquiry action"
+        "Hero",
+        "Three UAE starting offers",
+        "Client reviews",
+        "Four finance workstreams and combined outsourcing",
+        "Service catalogue",
+        "Working process",
+        "Founder and team",
+        "Practical guides",
+        "Pricing FAQs",
+        "Contact"
       ],
       "pathways": [
         {

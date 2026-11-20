@@ -35,10 +35,10 @@ export const homeUpdate = {
     },
   ],
   workstreams: [
-    { name: "Accounting & Bookkeeping", description: "Keep day-to-day records and balances current.", output: "Reconciled books, supporting schedules and open items.", href: "/finance/services/accounting-bookkeeping" },
-    { name: "UAE Tax & VAT", description: "Choose the registration or filing task you need.", output: "A review-ready preparation pack with clear approval roles.", href: "/uae-vat" },
-    { name: "Financial Controller", description: "Get a second look at the month-end close.", output: "Reviewed balances and a list of control issues for your team to resolve.", href: "/finance/services/fractional-controller" },
-    { name: "Fractional CFO", description: "Work through a decision, such as when to hire.", output: "A cash forecast showing how the timing affects available funds.", href: "/finance/services/fractional-cfo-advisory" },
+    { name: "Accounting & Bookkeeping", service: "Accounting & Bookkeeping", cta: "Discuss accounting", description: "Keep day-to-day records and balances current.", output: "Reconciled books, supporting schedules and open items.", href: "/finance/services/accounting-bookkeeping" },
+    { name: "UAE Tax & VAT", service: "Tax, VAT & Compliance", cta: "Discuss tax", description: "Choose the registration or filing task you need.", output: "A review-ready preparation pack with clear approval roles.", href: "/uae-vat" },
+    { name: "Financial Controller", service: "Fractional Financial Controller", cta: "Discuss controller support", description: "Get a second look at the month-end close.", output: "Reviewed balances and a list of control issues for your team to resolve.", href: "/finance/services/fractional-controller" },
+    { name: "Fractional CFO", service: "Fractional CFO & Finance Advisory", cta: "Discuss CFO support", description: "Work through a decision, such as when to hire.", output: "A cash forecast showing how the timing affects available funds.", href: "/finance/services/fractional-cfo-advisory" },
   ],
   department: "Combine the agreed accounting, close, reporting and finance operations under one working model. Typical output: a finance calendar, responsibility map and recurring deliverables. Request a quote.",
   process: [
@@ -46,7 +46,7 @@ export const homeUpdate = {
     { title: "Agree the scope and responsibilities", text: "Define outputs, periods, fees, exclusions and the review calendar. Keep each workstream distinct." },
     { title: "Prepare and resolve exceptions", text: "Organize the agreed work and track missing evidence or questions with named owners." },
     { title: "Review and approve", text: "Review balances, calculations and the business context. Confirm client approval and authorized submission roles." },
-    { title: "Hand over and plan the next cycle", text: "Deliver the agreed output and open items, then confirm the next inputs and any scope changes." },
+    { title: "Hand over and plan the next cycle", text: "Provide the agreed output and open items, then confirm the next inputs and any scope changes." },
   ],
   preparation: "For our first conversation, tell us where you operate, which accounting system you use and the last month you closed. Mention any backlog or upcoming deadline. A short overview is enough.",
   founder: "That’s the question I want your numbers to help you answer. Can you take on a bigger project without tying up too much cash? Can you hire now and still cover next month’s commitments? I started LedgerByte to bring the books, tax work and financial planning together, so you can see what a decision will cost before you make it.",

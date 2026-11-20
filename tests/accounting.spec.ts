@@ -140,7 +140,7 @@ test("accounting navigation, Trustpilot and team changes match the handoff", asy
   ).toHaveCount(0);
   await page.goto("/");
   await expect(
-    page.locator(".accounting-home-hero + .accounting-reviews"),
+    page.locator(".accounting-home-hero + #offers + .accounting-reviews"),
   ).toBeVisible();
   await expect(page.locator(".accounting-reviews a")).toHaveAttribute(
     "href",
@@ -368,7 +368,7 @@ test("@reduced motion keeps the review stable and usable", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("h1")).toBeVisible();
-  await expect(page.locator(".accounting-pathways article")).toHaveCount(8);
+  await expect(page.locator(".accounting-home-pillars article")).toHaveCount(4);
   await page.locator(".accounting-faq summary").first().click();
   await expect(page.locator(".accounting-faq details").first()).toHaveAttribute(
     "open",
