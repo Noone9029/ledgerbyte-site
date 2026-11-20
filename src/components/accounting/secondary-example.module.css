@@ -1,0 +1,43 @@
+.balances, .balances dd { margin: 0; }
+.balances > div + div { margin-top: .95rem; }
+.balances dt, .flow span { color: var(--stone-250); font-size: .85rem; line-height: 1.35; }
+.balances dd strong { display: block; margin-top: .12rem; font-size: 1.15rem; }
+.axis {
+  position: relative;
+  display: block;
+  height: .55rem;
+  margin-top: .37rem;
+  background: var(--line-dark);
+}
+.axis i { position: absolute; inset-block: 0; }
+.axis b { position: absolute; inset-block: -.18rem; border-inline-start: 1px solid var(--ivory-100); }
+.surplus { background: var(--amber-400); }
+.shortfall { background: repeating-linear-gradient(135deg, var(--stone-250) 0 2px, transparent 2px 4px); border: 1px solid var(--stone-250); }
+.flow { margin: 0; padding: 0; list-style: none; }
+.flow > li {
+  position: relative;
+  display: grid;
+  gap: .1rem;
+  margin: 0;
+  padding: 0 0 .9rem 1rem;
+}
+.flow > li:last-child { padding-bottom: 0; }
+.flow > li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: .38rem;
+  inset-inline-start: 0;
+  width: .4rem;
+  height: .4rem;
+  border: 1px solid var(--amber-400);
+  background: var(--graphite-850);
+  border-radius: 50%;
+}
+.flow > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  inset-block: .78rem -.36rem;
+  inset-inline-start: .18rem;
+  border-inline-start: 1px solid var(--line-dark);
+}
+.flow strong { color: var(--ivory-100); font-size: .94rem; font-weight: 550; line-height: 1.3; }

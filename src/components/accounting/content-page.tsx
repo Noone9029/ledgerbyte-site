@@ -15,6 +15,9 @@ import { team } from "@/content";
 import { guideExamples } from "@/content/insight-guides";
 import { homeUpdate } from "@/content/home-update";
 import { CashBridgeWorksheet, CashTimingSample, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
+import { WorkedExampleFigure } from "./worked-example-figure";
+import figureStyles from "./worked-example-figure.module.css";
+import { SecondaryExample } from "./secondary-example";
 import exampleStyles from "./finance-examples.module.css";
 import { getPageSeo, type SeoPagePath } from "@/content/seo";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
@@ -122,6 +125,26 @@ const pageEnquiryServices: Record<string, string> = {
   "regions/pakistan": "Accounting & Bookkeeping",
 };
 
+const exampleThumbnails: Record<string, string> = {
+  "insights/month-end-close": "insurance-prepayment",
+  "insights/profit-and-cash": "profit-to-cash",
+  "insights/vat-records": "vat-reconciliation",
+  "services/accounting-automation-systems": "processor-settlement",
+  "services/accounting-bookkeeping": "receipt-matching",
+  "services/cash-flow-working-capital": "cash-timing",
+};
+
+function ExampleIllustrationLink({ pageKey, href, label }: { pageKey: string; href: string; label: string }) {
+  const artwork = exampleThumbnails[pageKey];
+  return (
+    <a className={figureStyles.teaser} href={href}>
+      {artwork && <Image src={`/art/examples/${artwork}.webp`} alt="" width={360} height={240}
+        sizes="(max-width: 600px) 108px, 150px" />}
+      <span>{label}</span>
+    </a>
+  );
+}
+
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
   const example = guideExamples[pageKey];
@@ -129,6 +152,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
   const exampleSection = page.sections.findIndex(section => /example/i.test(section.heading));
+  const heroExample = pageKey === "services/accounting-bookkeeping" ||
+    pageKey === "services/cash-flow-working-capital" || pageKey === "services/accounting-automation-systems";
   const deliverableSection = page.sections.findIndex(section => /what you receive|what you provide and receive|what to have ready|return from supported records/i.test(section.heading));
   const detailSection = exampleSection >= 0 ? exampleSection : deliverableSection;
   const marketOutput = marketNames[pageKey] && page.sections.find(section => section.bullets.length);
@@ -222,13 +247,13 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                 : detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
             </aside>
           ) : service && (pageKey === "services/accounting-bookkeeping" || pageKey === "services/cash-flow-working-capital") ? (
-            <aside className="accounting-output">
+            <aside className="accounting-output" id="example-illustration">
               <p className="eyebrow">Worked example</p>
               {pageKey === "services/accounting-bookkeeping" ? <ReceiptMatchingSample /> : <CashTimingSample />}
               {exampleSection >= 0 && <a className="text-link" href={`#section-${exampleSection + 1}`}>{page.sections[exampleSection].heading} ↓</a>}
             </aside>
           ) : service ? (
-            <aside className="accounting-output">
+            <aside className="accounting-output" id={heroExample ? "example-illustration" : undefined}>
               <p className="eyebrow">Typical output</p>
               <p>{service.output}</p>
               {pageKey === "services/accounting-automation-systems" && <ProcessorSettlementSample />}
@@ -247,12 +272,12 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           ) : example ? (
             <aside className="accounting-output guide-example" aria-label="Worked example">
               <p className="eyebrow">Worked example</p>
+              <ExampleIllustrationLink pageKey={pageKey} href="#worked-example" label="See the calculation" />
               <dl className="guide-calculation">
                 {example.amounts.map(([label, amount]) => (
                   <div key={label}><dt>{label}</dt><dd>{amount}</dd></div>
                 ))}
               </dl>
-              <a href="#worked-example">See the calculation</a>
               <hr />
               <small><a href={example.url}>{example.reference}</a></small>
             </aside>
@@ -290,13 +315,25 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             {page.sections.map((section, i) => {
               const isCashBridge = pageKey === "insights/profit-and-cash" && section.heading === "Build the bridge from profit to cash";
               const isWorkedExample = example && section.heading.startsWith("Worked example");
-              const headingId = isCashBridge ? "cash-bridge" : isWorkedExample ? "worked-example" : undefined;
+              const isExampleSection = i === exampleSection;
+              const headingId = isCashBridge ? "cash-bridge" : isExampleSection ? "worked-example" : undefined;
               return (
               <section id={`section-${i + 1}`} key={section.heading}>
                 <span className="accounting-section-number">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h2 id={headingId}>{section.heading}</h2>
+                {pageKey === "services/tax-vat-compliance" && section.heading === "Why the accounting-to-tax bridge matters" && (
+                  <SecondaryExample kind="tax-adjustment" />
+                )}
+                {pageKey === "insights/profit-and-cash" && section.heading === "Test one realistic delay" && (
+                  <SecondaryExample kind="delayed-collection" />
+                )}
+                {isExampleSection && (
+                  heroExample ? <ExampleIllustrationLink pageKey={pageKey} href="#example-illustration" label="View the illustration ↑" />
+                  : pageKey === "insights/profit-and-cash" ? <ExampleIllustrationLink pageKey={pageKey} href="#cash-bridge" label="See the cash bridge ↓" />
+                  : <WorkedExampleFigure pageKey={pageKey} />
+                )}
                 {(section.blocks ?? [...section.paragraphs, section.bullets]).map((block) =>
                   typeof block === "string" ? <p key={block}><CopyText text={block} /></p>
                   : isCashBridge ? <CashBridgeWorksheet key={section.heading} />

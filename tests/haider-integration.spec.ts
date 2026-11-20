@@ -1,5 +1,29 @@
 import { expect, test } from "@playwright/test";
 
+test("each worked example loads its own illustration at the example section", async ({ page }) => {
+  const examples = [
+    ["/", "worked-example", "profit-to-cash"],
+    ["/insights/profit-and-cash", "section-6", "delayed-collection"],
+    ["/insights/month-end-close", "section-6", "insurance-prepayment"],
+    ["/insights/vat-records", "section-4", "vat-reconciliation"],
+    ["/finance/services/accounting-bookkeeping", "section-5", "receipt-matching"],
+    ["/finance/services/accounting-automation-systems", "section-5", "processor-settlement"],
+    ["/finance/services/cash-flow-working-capital", "section-4", "cash-timing"],
+    ["/finance/services/financial-reporting-mis", "section-5", "margin-erosion"],
+    ["/finance/services/budgeting-forecasting", "section-5", "forecast-sensitivity"],
+    ["/finance/services/payroll-wps-management", "section-6", "payroll-variance"],
+    ["/finance/services/fractional-cfo-advisory", "section-4", "hiring-break-even"],
+    ["/finance/services/tax-vat-compliance", "section-5", "tax-adjustment"],
+  ];
+  for (const [path, anchor, artwork] of examples) {
+    await page.goto(`${path}#${anchor}`);
+    const illustration = page.locator(`section[id="${anchor}"] img[src*="${artwork}.webp"]`);
+    await illustration.scrollIntoViewIfNeeded();
+    await expect(illustration, artwork).toBeVisible();
+    await expect.poll(() => illustration.evaluate(el => (el as HTMLImageElement).naturalWidth), { message: artwork }).toBeGreaterThan(0);
+  }
+});
+
 test("homepage offers lead to scoped contact requests and the existing sliding cards remain available", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(".accounting-home-hero h1")).toHaveText("Why hire one accountant when you can get a finance team?");
