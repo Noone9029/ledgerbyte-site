@@ -11,8 +11,7 @@ export function FloatingWhatsApp() {
       dir="ltr"
     >
       <WhatsappLogo size={26} weight="regular" aria-hidden="true" />
-      <span>WhatsApp</span>
-      <span className="sr-only"> (opens in a new tab)</span>
+      <span className="sr-only">WhatsApp (opens in a new tab)</span>
     </a>
   );
 }

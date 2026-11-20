@@ -5037,11 +5037,11 @@ html[data-theme=dark] .analytics-choice{background:#242422;color:#f5f0e5}@media(
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 56px;
-  padding: 14px 20px;
+  width: 56px;
+  height: 56px;
+  padding: 0;
   border: 1px solid var(--whatsapp-ink);
-  border-radius: 999px;
+  border-radius: 50%;
   background: var(--whatsapp-fill);
   color: var(--whatsapp-ink);
   box-shadow: var(--nav-shadow);
