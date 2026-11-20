@@ -74,3 +74,26 @@ fragments.
 No real enquiry, email, WhatsApp message or analytics measurement was sent.
 Arabic publishing remains gated. No production deployment or main-branch
 update is part of this local implementation.
+
+## Persistent WhatsApp contact
+
+The owner's follow-up adds a fixed bottom-right WhatsApp link in both shared
+language layouts and the global fallback page. It uses the existing official
+WhatsApp destination and a server-rendered icon/link, so it works without
+JavaScript. The link opens a new tab and never sends a message automatically.
+The existing consent-gated click tracking recognizes this contact link.
+
+Cookie choices sit above the link. On narrow builder layouts the link clears
+the fixed estimate bar; the cookie panel clears both. The link remains visible
+instead of disappearing when either control is present. New green contact
+colors are kept in the shared CSS tokens.
+
+Validation found one server-rendered link on all 57 sitemap pages and the
+global fallback, plus 12 desktop/mobile/small-screen/no-JavaScript checks with
+no viewport clipping or cookie/estimate overlap. Automated checks found no
+accessibility violations in the contact link. Local screenshots and detailed
+results are in `.qa/whatsapp-check.json` and `.qa/whatsapp-*.png`.
+
+The builder's reduced-motion regression now checks the existing 0.01 ms,
+single-iteration fallback explicitly; requiring zero browser animation objects
+was sensitive to instantaneous focus/color transitions.

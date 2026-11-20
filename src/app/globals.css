@@ -19,6 +19,9 @@
   --amber-fill: #e0b562;
   --amber-fill-hover: #f0d7a8;
   --accent-ink: #111110;
+  --whatsapp-fill: #25d366;
+  --whatsapp-fill-hover: #45e280;
+  --whatsapp-ink: #082d18;
   --line-dark: rgba(245, 240, 229, 0.14);
   --line-light: rgba(23, 23, 22, 0.15);
   --shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
@@ -5024,6 +5027,44 @@ html[data-theme=dark] .analytics-choice{background:#242422;color:#f5f0e5}@media(
 }
 @media (max-width: 359px) {
   .finance-builder .roster { grid-template-columns: 1fr; }
+}
+
+.floating-whatsapp {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 14px 20px;
+  border: 1px solid var(--whatsapp-ink);
+  border-radius: 999px;
+  background: var(--whatsapp-fill);
+  color: var(--whatsapp-ink);
+  box-shadow: var(--nav-shadow);
+  font-size: .95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.floating-whatsapp svg { flex-shrink: 0; }
+.floating-whatsapp:hover { background: var(--whatsapp-fill-hover); }
+body:has(.floating-whatsapp) .analytics-choice {
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  max-height: calc(100dvh - 108px - env(safe-area-inset-bottom));
+}
+body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
+@media (max-width: 900px) {
+  body:has(.finance-builder .mobile-est:not([hidden])) .floating-whatsapp {
+    bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+  body:has(.finance-builder .mobile-est:not([hidden])) .analytics-choice {
+    bottom: calc(168px + env(safe-area-inset-bottom));
+    max-height: calc(100dvh - 184px - env(safe-area-inset-bottom));
+  }
+  body:has(.finance-builder) .analytics-preferences { padding-bottom: 176px; }
 }
 
 .seo-review{padding-block:3rem}.seo-review>p,.seo-review section>p{max-width:78ch;line-height:1.8}.seo-review section{margin-block:3rem}.seo-review h1{font-size:clamp(2rem,4vw,4rem)}.seo-review h2{font-size:2rem;margin-bottom:1.5rem}.seo-review-table{overflow:auto}.seo-review table{width:100%;border-collapse:collapse;min-width:650px}.seo-review caption{text-align:start;padding:1rem 0}.seo-review th,.seo-review td{padding:1rem;border-bottom:1px solid #82745d;text-align:start;vertical-align:top}.seo-review td p{font-size:.85rem;margin-top:.6rem;max-width:60ch}.seo-review a{text-decoration:underline}

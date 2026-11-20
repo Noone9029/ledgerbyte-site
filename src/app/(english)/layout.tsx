@@ -10,6 +10,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { availableArabicPairs } from "@/lib/localization";
 import { getPageSeo } from "@/content/seo";
 import { publicEnglishPaths } from "@/lib/public-english-paths";
+import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
 import { buildGlobalSchema } from "@/lib/schema";
 import { createPageMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "../globals.css";
@@ -109,6 +110,7 @@ export default function RootLayout({
         {children}
         <AccountingFooter />
         <SiteAnalytics allowedPaths={publicEnglishPaths} />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

@@ -75,5 +75,12 @@ test("@reduced finance builder remains operable with reduced motion", async ({ p
   await page.getByRole("spinbutton", { name: "Senior accountant monthly hours", exact: true }).fill("5");
   await expect(page.locator("#monthly-total")).toHaveText("550");
   await expect(page.locator("main")).toBeVisible();
-  expect(await page.locator("main").evaluate(node => node.getAnimations({ subtree: true }).length)).toBe(0);
+  // The shared reduced-motion styles use a 0.01 ms fallback, including focus colors.
+  const timings = await page.locator("main").evaluate(node =>
+    node.getAnimations({ subtree: true }).map(animation => animation.effect!.getComputedTiming()),
+  );
+  for (const timing of timings) {
+    expect(Number(timing.duration)).toBeLessThanOrEqual(0.01);
+    expect(timing.iterations).toBeLessThanOrEqual(1);
+  }
 });
