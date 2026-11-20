@@ -85,8 +85,11 @@ export function contentPath(key: string) {
   if (!path) throw new Error(`Unmapped accounting content target: ${key}`);
   return path;
 }
-export function serviceContactHref(service: string) {
-  return `/contact?service=${encodeURIComponent(service)}#enquiry-heading`;
+export function serviceContactHref(service?: string, market?: string) {
+  const params = [];
+  if (service) params.push(`service=${encodeURIComponent(service)}`);
+  if (market) params.push(`market=${encodeURIComponent(market)}`);
+  return `/contact${params.length ? "?" + params.join("&") : ""}#enquiry-heading`;
 }
 export function getAccountingService(slug: string) {
   return accountingServices.find((service) => service.slug === slug);

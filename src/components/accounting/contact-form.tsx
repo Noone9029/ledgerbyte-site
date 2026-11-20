@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
-import { financeEnquiryChoices, serviceWhatsAppHref } from "@/lib/enquiry-options";
+import { enquiryMarket, financeEnquiryChoices, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { useEnquiryService } from "./enquiry-channels";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -18,9 +18,9 @@ const safeFailures = new Set([
 ]);
 
 export function AccountingContactForm({
-  initialService, locale = "en",
+  initialService, initialMarket = "", locale = "en",
 }: {
-  initialService: string; locale?: "en" | "ar";
+  initialService: string; initialMarket?: string; locale?: "en" | "ar";
 }) {
   const selection = useEnquiryService();
   const enhanced = useHydrated();
@@ -116,79 +116,85 @@ export function AccountingContactForm({
         onFocus={start}
         onChange={edit}
       >
-        <div className="accounting-form-grid">
+        <fieldset disabled={status === "sending"}>
+          <div className="accounting-form-grid">
+            <label>
+              {say("Name")} <span aria-hidden="true">*</span>
+              <input
+                name="fullName"
+                autoComplete="name"
+                required
+                minLength={2}
+                maxLength={100}
+              />
+            </label>
+            <label>
+              {say("Email")} <span aria-hidden="true">*</span>
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                required
+                maxLength={254}
+              />
+            </label>
+            <label>
+              {say("Business location")} <span aria-hidden="true">*</span>
+              <input
+                name="location"
+                defaultValue={initialMarket}
+                onChange={(event) => selection?.setMarket(enquiryMarket(event.target.value))}
+                aria-describedby={initialMarket ? "enquiry-market-hint" : undefined}
+                autoComplete="country-name"
+                required
+                minLength={2}
+                maxLength={100}
+              />
+              {initialMarket && <small id="enquiry-market-hint">Suggested market. Edit here.</small>}
+            </label>
+            <label>
+              {say("Support you need")} <span aria-hidden="true">*</span>
+              <select
+                name="service"
+                onChange={(event) => selection?.setService(event.target.value)}
+                required
+                defaultValue={
+                  financeEnquiryChoices.includes(initialService) ? initialService : ""
+                }
+              >
+                <option value="" disabled>
+                  {say("Choose a service")}
+                </option>
+                {financeEnquiryChoices.map((service) => (
+                  <option key={service} value={service}>{ar ? (arabicDrafts.services[service as keyof typeof arabicDrafts.services] || service) : service}</option>
+                ))}
+              </select>
+            </label>
+          </div>
           <label>
-            {say("Name")} <span aria-hidden="true">*</span>
+            {say("Company")} <small>{say("(optional)")}</small>
             <input
-              name="fullName"
-              autoComplete="name"
-              required
-              minLength={2}
-              maxLength={100}
+              name="companyName"
+              autoComplete="organization"
+              maxLength={120}
             />
           </label>
           <label>
-            {say("Email")} <span aria-hidden="true">*</span>
-            <input
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-              maxLength={254}
+            {say("What would you like help with?")} <small>{say("(optional)")}</small>
+            <textarea
+              name="message"
+              rows={5}
+              maxLength={2000}
+              placeholder={say("Briefly describe your needs and the period or task involved.")}
             />
           </label>
-          <label>
-            {say("Business location")} <span aria-hidden="true">*</span>
-            <input
-              name="location"
-              autoComplete="country-name"
-              required
-              minLength={2}
-              maxLength={100}
-            />
-          </label>
-          <label>
-            {say("Support you need")} <span aria-hidden="true">*</span>
-            <select
-              name="service"
-              onChange={(event) => selection?.setService(event.target.value)}
-              required
-              defaultValue={
-                financeEnquiryChoices.includes(initialService) ? initialService : ""
-              }
-            >
-              <option value="" disabled>
-                {say("Choose a service")}
-              </option>
-              {financeEnquiryChoices.map((service) => (
-                <option key={service} value={service}>{ar ? (arabicDrafts.services[service as keyof typeof arabicDrafts.services] || service) : service}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <label>
-          {say("Company")} <small>{say("(optional)")}</small>
-          <input
-            name="companyName"
-            autoComplete="organization"
-            maxLength={120}
-          />
-        </label>
-        <label>
-          {say("What would you like help with?")} <small>{say("(optional)")}</small>
-          <textarea
-            name="message"
-            rows={5}
-            maxLength={2000}
-            placeholder={say("Briefly describe your needs and the period or task involved.")}
-          />
-        </label>
-        <div className="accounting-honeypot" aria-hidden="true">
-          <label>
-            Website
-            <input name="website" tabIndex={-1} autoComplete="off" />
-          </label>
-        </div>
+          <div className="accounting-honeypot" aria-hidden="true">
+            <label>
+              Website
+              <input name="website" tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
+        </fieldset>
         <p className="accounting-privacy-hint">
           {say("Please do not include account credentials, financial documents, payroll details or sensitive personal information. Secure document intake will be agreed separately.")}
         </p>
@@ -208,7 +214,7 @@ export function AccountingContactForm({
             <p>{feedback}</p>
             {status === "error" && <div className="hero-actions">
               <a className="text-link" href={`mailto:info@ledgerbyte.io?subject=${encodeURIComponent("LedgerByte enquiry: " + fallbackService)}`}>info@ledgerbyte.io</a>
-              <a className="text-link" href={serviceWhatsAppHref(fallbackService)} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+              <a className="text-link" href={serviceWhatsAppHref(fallbackService, selection?.market)} target="_blank" rel="noreferrer">WhatsApp ↗</a>
             </div>}
           </div>
         )}

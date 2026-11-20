@@ -1,6 +1,6 @@
 import { AccountingContactForm } from "@/components/accounting/contact-form";
 import { EnquiryChannels, EnquiryWhatsApp } from "@/components/accounting/enquiry-channels";
-import { financeEnquiryChoices } from "@/lib/enquiry-options";
+import { enquiryMarket, financeEnquiryChoices } from "@/lib/enquiry-options";
 import {
   accountingContact,
   accountingCopy,
@@ -8,7 +8,7 @@ import {
 import { createMetadata } from "@/lib/seo";
 
 type ContactProps = {
-  searchParams: Promise<{ service?: string | string[] }>;
+  searchParams: Promise<{ service?: string | string[]; market?: string | string[] }>;
 };
 
 export const metadata = createMetadata({
@@ -18,11 +18,12 @@ export const metadata = createMetadata({
 });
 
 export default async function ContactPage({ searchParams }: ContactProps) {
-  const { service: value } = await searchParams;
+  const { service: value, market: selectedMarket } = await searchParams;
+  const market = enquiryMarket(selectedMarket);
   const service = typeof value === "string" && financeEnquiryChoices.includes(value) ? value : "";
   return (
     <main id="main-content" className="accounting-page">
-      <EnquiryChannels key={service} initialService={service}>
+      <EnquiryChannels key={`${service}|${market}`} initialService={service} initialMarket={market}>
         <section className="accounting-contact-layout accounting-wrap">
           <div className="accounting-contact-intro">
             <p className="eyebrow">Get in touch</p>
@@ -51,7 +52,7 @@ export default async function ContactPage({ searchParams }: ContactProps) {
           >
             <p className="eyebrow">Email enquiry</p>
             <h2 id="enquiry-heading">{accountingCopy.C08.form_heading}</h2>
-            <AccountingContactForm initialService={service} />
+            <AccountingContactForm initialService={service} initialMarket={market} />
           </section>
         </section>
       </EnquiryChannels>

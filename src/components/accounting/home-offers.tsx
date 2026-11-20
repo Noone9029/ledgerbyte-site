@@ -17,6 +17,7 @@ export function HomeOffers() {
               <h3>{offer.name}</h3>
               <p className="accounting-offer-price"><span>From</span> AED {offer.price}<small>{offer.unit}</small></p>
             </div>
+            <p className="accounting-offer-fit">{offer.fit}</p>
             <details className="accounting-offer-details">
               <summary>What’s included</summary>
               <p>{offer.description}</p>
@@ -26,7 +27,10 @@ export function HomeOffers() {
           </section>
         ))}
       </div>
-      <p className="accounting-home-scope-note">{homeUpdate.offersNote}</p>
+      <aside className="accounting-builder-offer" aria-label="Finance team builder">
+        <Link className="text-link" href="/build-your-finance-department">Finance team builder<ArrowUpRight aria-hidden="true" /></Link>
+        <p>{homeUpdate.builderOffer}</p>
+      </aside>
     </section>
   );
 }
@@ -36,8 +40,10 @@ export function HomeWorkstreams() {
     <div className="accounting-home-pillars">
       {homeUpdate.workstreams.map(work => (
         <article key={work.name}>
-          <h3><Link href={work.href}>{work.name}<ArrowUpRight aria-hidden="true" /></Link></h3>
-          <p>{work.output}</p>
+          <Link href={work.href}>
+            <h3>{work.need}</h3>
+            <span>{work.name}<ArrowUpRight aria-hidden="true" /></span>
+          </Link>
         </article>
       ))}
     </div>

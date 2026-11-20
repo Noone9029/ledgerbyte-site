@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { insightsEnglishUrl } from "@/lib/review-links";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { accountingContact, accountingPages, accountingServices, contentPath, guideKeys } from "@/content/accounting";
@@ -36,47 +37,46 @@ export function AccountingHome() {
             <div className="accounting-hero-image">
               <Image src="/art/finance-editorial-v3.webp" alt="Editorial illustration of finance records, reporting and planning" width={1536} height={1024} priority sizes="(max-width: 900px) 90vw, 44vw" />
             </div>
-            <figcaption className="accounting-hero-caption"><span>LEDGERBYTE</span><span>ACCOUNTING. TAX. ADVISORY.</span></figcaption>
+            <figcaption className="accounting-hero-caption">
+              <span>LEDGERBYTE</span>
+              <a href="#worked-example">See the profit-to-cash example <span aria-hidden="true">↓</span></a>
+            </figcaption>
           </figure>
           <div id="analytics-inline" />
         </section>
 
         <HomeOffers />
 
-        <section className="accounting-reviews accounting-wrap" data-home-section="reviews" data-scroll-reveal>
+        <section id="worked-example" className="accounting-reviews accounting-wrap" data-home-section="reviews" data-scroll-reveal>
           <div className={exampleStyles.proofIntro}>
             <p className="eyebrow">Worked example</p>
             <h2>{accountingPages["insights/profit-and-cash"].heading}</h2>
             <p>Customers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.</p>
-            <div className={`accounting-review-link ${exampleStyles.reviewsLink}`}>
-              <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
-            </div>
           </div>
           <div className="accounting-home-example"><CashBridgePreview /></div>
+          <aside className="accounting-review-link" aria-label="Client reviews">
+            <p>Hear from LedgerByte clients.</p>
+            <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
+          </aside>
         </section>
 
         <section className="accounting-finance-services accounting-wrap" data-home-section="finance-services" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div><p className="eyebrow">A team around your business</p><h2>{home.sections[0].heading}</h2></div>
-            <p>{home.sections[0].paragraphs[0]}</p>
           </div>
           <HomeWorkstreams />
-          <aside className="accounting-statement accounting-home-department">
-            <h3>Full finance department outsourcing</h3>
-            <div className="hero-actions">
-              <Link className="button button-amber" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
-              <Link className="text-link" href="/finance/services/finance-department-outsourcing">Explore the scope<ArrowUpRight aria-hidden="true" /></Link>
-            </div>
+          <aside className="accounting-home-department">
+            <h3><Link href="/finance/services/finance-department-outsourcing">Full finance department outsourcing<ArrowUpRight aria-hidden="true" /></Link></h3>
+            <Link className="text-link" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
           </aside>
         </section>
 
         <section id="services-showcase" className="accounting-featured accounting-wrap" data-home-section="catalogue" data-scroll-reveal>
           <div className="accounting-section-heading">
             <div><p className="eyebrow">The service catalogue</p><h2>{home.sections[1].heading}</h2></div>
-            <p>{home.sections[1].paragraphs[0]}</p>
+            <Link className="text-link" href="/finance/services">All {accountingServices.length} services<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <HomeCatalogue />
-          <Link className="text-link accounting-all-services" href="/finance/services">All {accountingServices.length} services<ArrowUpRight aria-hidden="true" /></Link>
         </section>
 
         <HomeWorkingProcess />
@@ -98,7 +98,7 @@ export function AccountingHome() {
             <div><p className="eyebrow">Insights &amp; practical guides</p><h2>A little preparation goes a long way.</h2></div>
             <Link className="text-link" href="/insights">Browse practical guides<ArrowUpRight aria-hidden="true" /></Link>
           </div>
-          <p className="accounting-home-blog"><a className="text-link" href="https://blog.ledgerbyte.io/" target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
+          <p className="accounting-home-blog"><a className="text-link" href={insightsEnglishUrl()} target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
           <div>
             {guideKeys.map((key, index) => (
               <Link href={contentPath(key)} key={key}>

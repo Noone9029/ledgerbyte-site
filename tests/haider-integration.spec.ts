@@ -6,6 +6,21 @@ test("homepage offers lead to scoped contact requests and the existing sliding c
   await expect(page.locator(".accounting-home-hero")).toContainText("Why hire one accountant when you can get a finance team?");
   await expect(page.locator(".accounting-home-offer")).toHaveCount(3);
   await expect(page.locator(".accounting-offer-price").first()).toContainText("AED 500");
+  const offers = page.locator("#offers");
+  await expect(offers.locator(".accounting-home-offer details[open]")).toHaveCount(0);
+  await expect(offers.getByText("Monthly books and tax work, quoted separately from the team builder.")).toBeVisible();
+  const vat = offers.locator(".accounting-home-offer").filter({ has: page.getByRole("heading", { name: "VAT Return Support" }) });
+  await expect(vat.locator(".accounting-offer-price")).toContainText(/750\s*\/ return/);
+  await expect(vat.getByText("Standalone support for one UAE VAT return.")).toBeVisible();
+  const builder = offers.getByRole("complementary", { name: "Finance team builder" });
+  await expect(builder).toContainText("From AED 500/month before tax for 15 hours, including bookkeeping, senior review and VAT filing.");
+  await expect(builder.getByRole("link")).toHaveAttribute("href", "/build-your-finance-department");
+  const example = page.getByRole("link", { name: "See the profit-to-cash example" });
+  await expect(example).toHaveAttribute("href", "#worked-example");
+  await expect(page.locator("#worked-example")).toContainText("Operating cash generated");
+  const clientReviews = page.getByRole("complementary", { name: "Client reviews" });
+  await expect(clientReviews.getByRole("link")).toHaveAttribute("href", /trustpilot\.com\/review\//);
+  await expect(clientReviews.getByText("AED 40,000", { exact: false })).toHaveCount(0);
   await expect(page.locator(".accounting-home-pillars > article")).toHaveCount(4);
   expect(await page.locator("#main-content > section").evaluateAll(sections => sections.map(section =>
     section.getAttribute("data-home-section") ?? (section.classList.contains("accounting-faq") ? "faq" : "unknown"),
@@ -52,11 +67,13 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
 
 test("role-hour inputs stay tappable beside WhatsApp while scrolling", async ({ page }, info) => {
   test.skip(info.project.name !== "mobile-390", "Touch layout");
-  for (const [width, height] of [[320, 568], [390, 844]]) {
+  for (const [width, height] of [[320, 568], [390, 844], [736, 414], [812, 375], [844, 390], [768, 1024], [820, 1180], [900, 600]]) {
     await page.setViewportSize({ width, height });
     await page.goto("/build-your-finance-department");
     const fields = page.locator("#roles input");
     await expect(fields).toHaveCount(5);
+    await fields.nth(2).scrollIntoViewIfNeeded();
+    await expect(page.locator("#mobile")).toBeVisible();
     for (const field of await fields.all()) {
       const tappable = await field.evaluate(input => {
         const bubble = document.querySelector(".floating-whatsapp")!.getBoundingClientRect();
@@ -86,6 +103,12 @@ test("finance builder keeps displayed prices and all enquiry channels in sync", 
     expect(decodeURIComponent(href)).toContain("Estimated department cost: AED 550/month before tax.");
     expect(href.startsWith(channel === "WhatsApp" ? "https://wa.me/971561371569" : "mailto:info@ledgerbyte.io")).toBe(true);
   }
+  const callbackNumber = page.getByLabel("Callback number (optional)");
+  await callbackNumber.fill("+1 202-555-0100");
+  await expect(page.getByRole("link", { name: "Request a callback by email" })).toHaveAttribute("href", /%2B1%20202-555-0100/);
+  await page.getByLabel("Preferred contact", { exact: true }).selectOption("WhatsApp");
+  await expect(callbackNumber).toBeHidden();
+  await expect(page.locator("#discuss")).not.toHaveAttribute("href", /202-555-0100/);
   await page.getByRole("button", { name: "Restore recommended hours" }).click();
   await expect(page.locator("#monthly-total")).toHaveText("500");
 });

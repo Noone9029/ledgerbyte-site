@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EnquiryLink } from "./enquiry-link";
 import { Brand } from "@/components/layout/brand";
+import { insightsEnglishUrl } from "@/lib/review-links";
 import {
   accountingContact,
   accountingCopy,
@@ -34,7 +35,7 @@ export function AccountingFooter() {
             <Link href="/how-we-work">How we work</Link>
             <Link href="/regions">Markets</Link>
             <Link href="/insights">Practical guides</Link>
-            <a href="https://blog.ledgerbyte.io">LedgerByte Insights</a>
+            <a href={insightsEnglishUrl()}>LedgerByte Insights</a>
             <a
               href={accountingContact.social.linkedin}
               target="_blank"

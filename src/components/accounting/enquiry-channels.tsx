@@ -6,11 +6,16 @@ import { serviceWhatsAppHref } from "@/lib/enquiry-options";
 const ServiceContext = createContext<{
   service: string;
   setService: (service: string) => void;
+  market: string;
+  setMarket: (market: string) => void;
 } | null>(null);
 
-export function EnquiryChannels({ initialService, children }: { initialService: string; children: ReactNode }) {
+export function EnquiryChannels({ initialService, initialMarket, children }: {
+  initialService: string; initialMarket: string; children: ReactNode;
+}) {
   const [service, setService] = useState(initialService);
-  return <ServiceContext.Provider value={{ service, setService }}>{children}</ServiceContext.Provider>;
+  const [market, setMarket] = useState(initialMarket);
+  return <ServiceContext.Provider value={{ service, setService, market, setMarket }}>{children}</ServiceContext.Provider>;
 }
 
 export function useEnquiryService() {
@@ -20,7 +25,7 @@ export function useEnquiryService() {
 export function EnquiryWhatsApp() {
   const selection = useEnquiryService();
   return (
-    <a className="button button-amber" href={serviceWhatsAppHref(selection?.service ?? "")} target="_blank" rel="noreferrer">
+    <a className="button button-amber" href={serviceWhatsAppHref(selection?.service ?? "", selection?.market)} target="_blank" rel="noreferrer">
       WhatsApp ↗
     </a>
   );

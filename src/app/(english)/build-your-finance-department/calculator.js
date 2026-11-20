@@ -37,7 +37,7 @@ function inRange(value, min, max) {
   return Number.isFinite(value) && value >= min && value <= max;
 }
 
-export function createEnquiryHref({name, industry, volume, work, pending = [], hours, subtotals, monthly, hourly, channel, cadence}) {
+export function createEnquiryHref({name, industry, volume, work, pending = [], hours, subtotals, monthly, hourly, channel, cadence, callbackNumber = ''}) {
   const summary = [
     'Hello LedgerByte, I would like to discuss my '+name.toLowerCase()+' estimate.',
     industry+' | '+volume+' transactions/month',
@@ -48,7 +48,7 @@ export function createEnquiryHref({name, industry, volume, work, pending = [], h
     'Estimated department cost: AED '+number(monthly)+'/month before tax.',
     'Blended hourly rate: AED '+money(hourly)+'/hr before tax.',
     'Preferred contact: '+channel+'; '+cadence.toLowerCase()+' check-in. Please confirm scope and availability.',
-    ...(channel === 'Phone' ? ['Please call me back. My phone number (including country code): [enter your number]'] : [])
+    ...(channel === 'Phone' ? ['Please call me back. My phone number (including country code): '+(callbackNumber.trim() || '[enter your number]')] : [])
   ].join('\n');
   if (channel === 'WhatsApp') return 'https://wa.me/971561371569?text='+encodeURIComponent(summary);
   return 'mailto:info@ledgerbyte.io?subject='+encodeURIComponent('Finance department estimate — '+name)+'&body='+encodeURIComponent(summary);
@@ -280,11 +280,18 @@ export function initializeBuilder(root) {
     });
     if(!totalHours) byId('mix').textContent='Select work or add role hours to build your estimate.';
     const channel=byId('channel').value, cadence=byId('cadence').value;
+    byId('callback-field').hidden = channel !== 'Phone';
+    byId('discuss-label').textContent = channel === 'Phone' ? 'Request a callback by email' : 'Review my team with LedgerByte';
     byId('comm').textContent='Preferred contact · '+channel+' · '+cadence.toLowerCase()+' check-in';
-    byId('discuss').href = createEnquiryHref({
-      name, industry: industries[Number(byId('industry').value)][0], volume: byId('volume').value,
-      work, pending, hours, subtotals, monthly, hourly, channel, cadence
-    });
+    const callback = byId('callback-number');
+    const updateDraft = () => {
+      byId('discuss').href = createEnquiryHref({
+        name, industry: industries[Number(byId('industry').value)][0], volume: byId('volume').value,
+        work, pending, hours, subtotals, monthly, hourly, channel, cadence, callbackNumber: callback.value
+      });
+    };
+    updateDraft();
+    callback.oninput = updateDraft;
     byId('discuss').setAttribute('aria-disabled',String(!totalHours));
     byId('status').textContent=name+'. '+totalHours+' hours. Estimated department cost is AED '+number(monthly)+' per month. Your blended rate is AED '+money(hourly)+' per hour.'+(pending.length?' '+pendingWorkLabel+': '+pending.join(', ')+'.':'');
     saveSession();

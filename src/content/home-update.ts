@@ -1,10 +1,11 @@
 // Content from Haider's November 20 source ZIP, adapted into the existing site.
 export const homeUpdate = {
   heroLead: "Why hire one accountant when you can get a finance team? Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
-  offersNote: "These are starting prices. We confirm the work and fee with you after reviewing your transaction volume and the condition of your records. Other services are quoted individually.",
+  builderOffer: "From AED 500/month before tax for 15 hours, including bookkeeping, senior review and VAT filing.",
   offers: [
     {
       name: "SME Accounting & Tax Management",
+      fit: "Monthly books and tax work, quoted separately from the team builder.",
       description: "Keep your books current and plan for upcoming tax work. We agree which records and deadlines your monthly fee covers.",
       price: 500,
       unit: "/ month",
@@ -15,6 +16,7 @@ export const homeUpdate = {
     },
     {
       name: "VAT Return Support",
+      fit: "Standalone support for one UAE VAT return.",
       description: "We reconcile your VAT records and prepare the return for review. We agree with you separately on who approves it and who is authorized to file.",
       price: 750,
       unit: "/ return",
@@ -25,6 +27,7 @@ export const homeUpdate = {
     },
     {
       name: "UAE Corporate Tax Review & Filing",
+      fit: "Review and filing for an agreed tax period.",
       description: "Get help reviewing the tax calculation and preparing your return for the agreed period. We confirm who is authorized to file before submission.",
       price: 750,
       unit: "",
@@ -35,12 +38,11 @@ export const homeUpdate = {
     },
   ],
   workstreams: [
-    { name: "Accounting & Bookkeeping", service: "Accounting & Bookkeeping", cta: "Discuss accounting", description: "Keep day-to-day records and balances current.", output: "Reconciled books, supporting schedules and open items.", href: "/finance/services/accounting-bookkeeping" },
-    { name: "UAE Tax & VAT", service: "Tax, VAT & Compliance", cta: "Discuss tax", description: "Choose the registration or filing task you need.", output: "A review-ready preparation pack with clear approval roles.", href: "/uae-vat" },
-    { name: "Financial Controller", service: "Fractional Financial Controller", cta: "Discuss controller support", description: "Get a second look at the month-end close.", output: "Reviewed balances and a list of control issues for your team to resolve.", href: "/finance/services/fractional-controller" },
-    { name: "Fractional CFO", service: "Fractional CFO & Finance Advisory", cta: "Discuss CFO support", description: "Work through a decision, such as when to hire.", output: "A cash forecast showing how the timing affects available funds.", href: "/finance/services/fractional-cfo-advisory" },
+    { need: "Books or balances behind?", name: "Accounting & Bookkeeping", href: "/finance/services/accounting-bookkeeping" },
+    { need: "A UAE tax task due?", name: "UAE Tax & VAT", href: "/uae-vat" },
+    { need: "Need closer financial oversight?", name: "Financial Controller", href: "/finance/services/fractional-controller" },
+    { need: "Planning your next hire?", name: "Fractional CFO", href: "/finance/services/fractional-cfo-advisory" },
   ],
-  department: "Combine the agreed accounting, close, reporting and finance operations under one working model. Typical output: a finance calendar, responsibility map and recurring deliverables. Request a quote.",
   process: [
     { title: "Understand the starting point", text: "Discuss the entity, records, current system, deadlines and the people already involved." },
     { title: "Agree the scope and responsibilities", text: "Define outputs, periods, fees, exclusions and the review calendar. Keep each workstream distinct." },

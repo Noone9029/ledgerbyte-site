@@ -126,6 +126,75 @@ test("gateway, malformed and network failures use friendly copy and retain data"
   }
 });
 
+test("pending enquiries lock the submitted fields and release them after the response", async ({ page }) => {
+  let release: () => void = () => {};
+  const hold = new Promise<void>((resolve) => { release = resolve; });
+  let sent: Record<string, string> | undefined;
+  await page.route("**/api/contact", async (route) => {
+    sent = route.request().postDataJSON();
+    await hold;
+    await route.fulfill({ status: 201, json: { enquiryId: "accepted-first-draft" } });
+  });
+  await page.goto("/contact");
+  await fillEnquiry(page);
+  const service = page.getByLabel("Support you need");
+  const message = page.locator('[name="message"]');
+  await service.selectOption("Accounting Automation & Systems");
+  await message.fill("My first draft");
+  await page.getByRole("button", { name: "Send enquiry", exact: true }).click();
+  try {
+    await expect(page.getByRole("button", { name: "Sending…" })).toBeDisabled();
+    for (const field of await page.locator(".accounting-contact-form input, .accounting-contact-form select, .accounting-contact-form textarea").all()) {
+      await expect(field).toBeDisabled();
+    }
+    await expect.poll(() => sent?.service).toBe("Accounting Automation & Systems");
+    expect(sent?.message).toBe("My first draft");
+  } finally {
+    release();
+  }
+  await expect(page.getByRole("status")).toContainText("accepted for email delivery");
+  await expect(service).toBeEnabled();
+  await expect(message).toHaveValue("My first draft");
+  await message.fill("My next draft");
+  await expect(page.getByRole("button", { name: "Send enquiry", exact: true })).toBeEnabled();
+  await expect(page.locator(".accounting-form-feedback")).toHaveCount(0);
+});
+
+test("guide and market enquiry actions carry editable finance context", async ({ page }) => {
+  const service = page.getByLabel("Support you need");
+  const location = page.getByLabel("Business location");
+  for (const [route, label, expectedService, expectedMarket] of [
+    ["/insights/month-end-close", "Discuss your monthly close", "Month-End & Year-End Close Support", ""],
+    ["/insights/profit-and-cash", "Discuss your cash-flow picture", "Cash Flow & Working Capital", ""],
+    ["/insights/vat-records", "Discuss your VAT records", "UAE VAT support", ""],
+    ["/regions/uae", "Discuss your UAE business", "Accounting & Bookkeeping", "United Arab Emirates"],
+    ["/regions/united-states", "Discuss your US bookkeeping needs", "Accounting & Bookkeeping", "United States"],
+    ["/regions/pakistan", "Discuss your Pakistan finance needs", "Accounting & Bookkeeping", "Pakistan"],
+    ["/regions/saudi-arabia", "Discuss your Saudi finance needs", "", "Saudi Arabia"],
+  ]) {
+    await page.goto(route);
+    const hero = page.locator(".accounting-detail-hero").getByRole("link", { name: label, exact: true });
+    const target = await hero.getAttribute("href");
+    await expect(page.locator(".accounting-closing .button")).toHaveAttribute("href", target!);
+    await hero.click();
+    await expect(service).toHaveValue(expectedService);
+    await expect(location).toHaveValue(expectedMarket);
+    await expect(service).toBeEnabled();
+    await expect(location).toBeEditable();
+  }
+  const whatsapp = page.locator('.accounting-contact-intro a[href*="wa.me"]');
+  await expect(whatsapp).toHaveAttribute("href", /Saudi%20Arabia/);
+  await service.selectOption("KSA VAT Services");
+  await expect(whatsapp).toHaveAttribute("href", /KSA%20VAT%20Services/);
+  await location.fill("Private customer address");
+  const href = await whatsapp.getAttribute("href");
+  expect(decodeURIComponent(href!)).not.toMatch(/Saudi Arabia|Private customer address/);
+  expect(page.url()).not.toContain("Private");
+  await page.goto("/contact?market=MadeUpMarket&service=MadeUpService");
+  await expect(location).toHaveValue("");
+  await expect(service).toHaveValue("");
+});
+
 test("accepted enquiries cannot be resent unchanged", async ({ page }) => {
   let accepted = 0;
   await page.route("**/api/contact", (route) => {

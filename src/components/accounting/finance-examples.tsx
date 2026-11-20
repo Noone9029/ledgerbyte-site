@@ -77,6 +77,19 @@ export function ReceiptMatchingSample() {
   );
 }
 
+export function ProcessorSettlementSample() {
+  return (
+    <table className={styles.worksheet}>
+      <caption>Illustrative settlement · AED</caption>
+      <tbody>
+        <tr><th scope="row">Gross sales</th><td>10,000</td></tr>
+        <tr><th scope="row">Processing fees</th><td>−300</td></tr>
+      </tbody>
+      <tfoot><tr><th scope="row">Bank deposit</th><td>9,700</td></tr></tfoot>
+    </table>
+  );
+}
+
 export function CashTimingSample() {
   return (
     <table className={styles.worksheet}>

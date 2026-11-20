@@ -1,6 +1,6 @@
 .intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(140px, 24%);
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 30%);
   align-items: center;
   gap: clamp(24px, 6vw, 80px);
   padding-block: clamp(36px, 5vw, 64px) 26px;
@@ -14,11 +14,36 @@
   letter-spacing: -.045em;
 }
 
-.artwork img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
+.allocation {
+  margin: 0;
+  padding-block: 18px;
+  border-block: 1px solid var(--line-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.allocation figcaption, .allocation dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.allocation figcaption strong {
+  color: var(--ivory-100);
+  font-size: 1.35rem;
+}
+
+.allocation dl > div {
+  padding-block: 5px;
+}
+
+.allocation dd { margin: 0; font-weight: 700; }
+.allocation dt { color: var(--stone-250); }
+.allocationBar { display: flex; gap: 3px; height: 8px; margin-block: 12px; }
+
+.callbackNumber {
+  max-inline-size: 25rem;
+  margin-block-end: 20px;
 }
 
 main:global(.finance-builder) .workspace {
@@ -39,23 +64,31 @@ main:global(.finance-builder) .workspace {
 }
 
 @media (max-width: 900px) {
+  .workspace {
+    --builder-action-gutter: var(--mobile-action-gutter, calc(68px + env(safe-area-inset-right, 0px)));
+  }
+
+  .workspace :is(:global(.role-top), :global(.inputs), :global(.assumption-grid), :global(.chips)) {
+    padding-inline-end: var(--builder-action-gutter);
+  }
+
+  .workspace :global(.form-section) > :is(select, :global(.volume), .callbackNumber) {
+    max-inline-size: calc(100% - var(--builder-action-gutter));
+  }
+
   .workspace > aside:global(.estimate-card) {
     scroll-margin-block-start: 0;
-    padding-inline: 18px var(--mobile-action-gutter, calc(68px + env(safe-area-inset-right, 0px)));
+    padding-inline: 18px var(--builder-action-gutter);
   }
 }
 
 @media (max-width: 700px) {
-  .workspace :global(.role-top) {
-    padding-inline-end: var(--mobile-action-gutter, 68px);
-  }
-
   .intro {
     grid-template-columns: 1fr;
     padding-block: 28px 18px;
   }
 
-  .artwork {
+  .allocation {
     display: none;
   }
 

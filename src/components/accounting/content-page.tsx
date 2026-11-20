@@ -14,7 +14,7 @@ import {
 import { team } from "@/content";
 import { guideExamples } from "@/content/insight-guides";
 import { homeUpdate } from "@/content/home-update";
-import { CashBridgeWorksheet, CashTimingSample, ReceiptMatchingSample } from "./finance-examples";
+import { CashBridgeWorksheet, CashTimingSample, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import exampleStyles from "./finance-examples.module.css";
 import { getPageSeo, type SeoPagePath } from "@/content/seo";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
@@ -48,14 +48,16 @@ export function CopyText({ text }: { text: string }) {
 export function EnquiryLink({
   label,
   service,
+  market,
 }: {
   label: string;
   service?: string;
+  market?: string;
 }) {
   return (
     <Link
       className="button button-amber"
-      href={service ? serviceContactHref(service) : "/contact#enquiry-heading"}
+      href={serviceContactHref(service, market)}
     >
       {label}
       <ArrowUpRight aria-hidden="true" />
@@ -97,7 +99,7 @@ export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
             <div className="accounting-portrait">
               <Image
                 src={person.image}
-                alt={person.name}
+                alt=""
                 unoptimized
                 fill
                 sizes="(max-width: 600px) 44vw, (max-width: 1000px) 28vw, 18vw"
@@ -112,6 +114,14 @@ export function TeamGrid({ locale = "en" }: { locale?: "en" | "ar" }) {
     </div>
   );
 }
+const pageEnquiryServices: Record<string, string> = {
+  "uae-vat": "UAE VAT support",
+  "insights/month-end-close": "Month-End & Year-End Close Support",
+  "regions/uae": "Accounting & Bookkeeping",
+  "regions/united-states": "Accounting & Bookkeeping",
+  "regions/pakistan": "Accounting & Bookkeeping",
+};
+
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
   const example = guideExamples[pageKey];
@@ -129,8 +139,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
       : pageKey.startsWith("insights/")
         ? "Insights"
         : "Accounting. Tax. Advisory.");
-  const context =
-    service?.title ?? (pageKey === "uae-vat" ? "UAE VAT support" : undefined);
+  const market = marketNames[pageKey];
+  const context = service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
+  const closingHeading = page.cardStrapline || page.cta;
   const breadcrumbs = [{ name: "LedgerByte", path: "/" }];
   if (service) breadcrumbs.push({ name: "Services", path: "/finance/services" });
   else if (group === "Insights") breadcrumbs.push({ name: group, path: "/insights" });
@@ -198,7 +209,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <h1>{page.heading}</h1>
             <p className="accounting-lead">{page.intro}</p>
             {example && <p className="guide-publisher">Published by <Link href="/about">{SITE_NAME}</Link></p>}
-            <EnquiryLink label={page.cta} service={context} />
+            <EnquiryLink label={page.cta} service={context} market={market} />
           </div>
           {filingOffer ? (
             <aside className="accounting-output">
@@ -220,6 +231,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <aside className="accounting-output">
               <p className="eyebrow">Typical output</p>
               <p>{service.output}</p>
+              {pageKey === "services/accounting-automation-systems" && <ProcessorSettlementSample />}
               {detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
               <hr />
               <small>{service.boundary}</small>
@@ -330,8 +342,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
         )}
         <section className="accounting-closing accounting-wrap">
           <p className="eyebrow">Get in touch</p>
-          <h2>{page.cardStrapline || page.cta}</h2>
-          <EnquiryLink label={page.cta} service={context} />
+          <h2>{closingHeading}</h2>
+          <EnquiryLink label={closingHeading === page.cta ? "Open enquiry form" : page.cta} service={context} market={market} />
         </section>
       </main>
     </>

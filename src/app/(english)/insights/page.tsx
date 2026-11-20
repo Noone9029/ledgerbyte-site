@@ -6,6 +6,7 @@ import {
   guideKeys,
 } from "@/content/accounting";
 import { createMetadata } from "@/lib/seo";
+import { insightsEnglishUrl } from "@/lib/review-links";
 export const metadata = createMetadata({
   path: "/insights",
   title: accountingCopy.C10.insights_heading,
@@ -18,7 +19,7 @@ export default function InsightsPage() {
         <p className="eyebrow">Insights</p>
         <h1>{accountingCopy.C10.insights_heading}</h1>
         <p className="accounting-lead">{accountingCopy.C10.insights_intro}</p>
-        <a className="text-link" href="https://blog.ledgerbyte.io">
+        <a className="text-link" href={insightsEnglishUrl()}>
           LedgerByte Insights ↗
         </a>
       </section>

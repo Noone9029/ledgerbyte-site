@@ -56,7 +56,15 @@ function Introduction() {
           <a className="finance-link" href="#people">Meet the people <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <figure className={styles.artwork}><Image src="/art/finance-editorial-v3.webp" alt="" width={1536} height={1024} sizes="(max-width: 700px) 1px, 24vw" /></figure>
+      <figure className={styles.allocation}>
+        <figcaption><span className="eyebrow">Starting team</span><strong>{startingHours} h / month</strong></figcaption>
+        <div className={styles.allocationBar} aria-hidden="true">
+          {minimumHours.map((hours, i) => hours > 0 && <span key={roles[i].name} style={{ flexGrow: hours, backgroundColor: roles[i].color }} />)}
+        </div>
+        <dl>{roles.map((role, i) => minimumHours[i] > 0 && (
+          <div key={role.name}><dt><i className="dot" style={{ backgroundColor: role.color }} aria-hidden="true" />{role.name}</dt><dd>{minimumHours[i]} h</dd></div>
+        ))}</dl>
+      </figure>
       <div id="analytics-inline" />
     </section>
   );
@@ -110,8 +118,12 @@ function ContactPreferences() {
       <p><strong>A senior review.</strong> Your package includes at least four senior accountant hours. We check reconciliations and explain unusual balances before handing the figures over.</p>
     </div>
     <div className="inputs">
-      <div><label htmlFor="channel" className="field">Preferred contact</label><select id="channel"><option>Email</option><option>WhatsApp</option><option>Phone</option></select></div>
+      <div><label htmlFor="channel" className="field">Preferred contact</label><select id="channel"><option>Email</option><option>WhatsApp</option><option value="Phone">Phone callback (via email)</option></select></div>
       <div><label htmlFor="cadence" className="field">Preferred check-in</label><select id="cadence"><option>Monthly</option><option>Twice monthly</option><option>Weekly</option></select></div>
+    </div>
+    <div id="callback-field" className={styles.callbackNumber} hidden>
+      <label htmlFor="callback-number" className="field">Callback number (optional)</label>
+      <input id="callback-number" type="tel" autoComplete="tel" maxLength={40} />
     </div>
     <p className="helper">At kickoff, we’ll agree your check-in schedule and how to flag an urgent question. <Link href="/how-we-work">See our working process</Link> or <Link href="/regions/uae">explore UAE accounting and bookkeeping services</Link>.</p>
   </section>;
@@ -155,8 +167,8 @@ function Estimate() {
     <p id="covered-work" className="helper" />
     <p id="scope-note" className={styles.notice} hidden />
     <p id="comm" className="comm-summary">Preferred contact · Email · monthly check-in</p>
-    <a className="cta button button-amber" id="discuss" href={startingEnquiry}><span className="icon" data-icon="chat" aria-hidden="true" />Review my team with LedgerByte</a>
-    <p className="footnote">Review and send your enquiry in WhatsApp or email. For a callback, add your phone number to the email draft.</p>
+    <a className="cta button button-amber" id="discuss" href={startingEnquiry}><span className="icon" data-icon="chat" aria-hidden="true" /><span id="discuss-label">Review my team with LedgerByte</span></a>
+    <p className="footnote">Review and send your enquiry in WhatsApp or email.</p>
   </aside>;
 }
 
