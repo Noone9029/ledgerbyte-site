@@ -157,6 +157,10 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
   const filingOffer = homeUpdate.offers.find(offer => offer.href === page.path && offer.service !== "Accounting & Bookkeeping");
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
   const service = accountingServices.find((item) => item.key === pageKey);
+  const earlyContents = Boolean(service) || pageKey.startsWith("insights/");
+  const contentsLinks = page.sections.map((section, i) => (
+    <a key={section.heading} href={`#section-${i + 1}`}>{section.heading}</a>
+  ));
   const exampleSection = page.sections.findIndex(section => /example/i.test(section.heading));
   const heroExample = pageKey === "services/accounting-bookkeeping" ||
     pageKey === "services/cash-flow-working-capital" || pageKey === "services/accounting-automation-systems";
@@ -220,7 +224,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           ...(page.faqs.length ? [buildFaqSchema(page.faqs)] : []),
         )}
       />
-      <main id="main-content" className="accounting-page">
+      <main id="main-content" className="accounting-page" data-guide={example ? "" : undefined}>
         <nav
           className="accounting-breadcrumb accounting-wrap"
           aria-label="Breadcrumb"
@@ -241,6 +245,12 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <p className="accounting-lead">{page.intro}</p>
             {example && <p className="guide-publisher">Published by <Link href="/about">{SITE_NAME}</Link></p>}
             <EnquiryLink label={page.cta} service={context} market={market} />
+            {earlyContents && (
+              <details className="accounting-toc-compact">
+                <summary>On this page</summary>
+                <nav aria-label="On this page">{contentsLinks}</nav>
+              </details>
+            )}
           </div>
           {filingOffer ? (
             <aside className="accounting-output">
@@ -327,13 +337,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           )}
         </section>
         <div className="accounting-article-layout accounting-wrap">
-          <aside className="accounting-toc">
+          <aside className={earlyContents ? "accounting-toc accounting-toc-wide" : "accounting-toc"}>
             <p className="eyebrow">On this page</p>
-            {page.sections.map((section, i) => (
-              <a key={section.heading} href={`#section-${i + 1}`}>
-                {section.heading}
-              </a>
-            ))}
+            {contentsLinks}
           </aside>
           <div className="accounting-prose">
             {page.sections.map((section, i) => {

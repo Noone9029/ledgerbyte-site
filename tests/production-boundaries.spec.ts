@@ -26,7 +26,10 @@ test.describe("mobile analytics consent", () => {
         const panel = page.locator("#analytics-inline .analytics-choice");
         await expect(panel).toBeVisible();
         const hero = page.locator(path === "/" ? ".accounting-home-hero" : "main");
-        const action = hero.getByRole("link", { name: path === "/" ? "Build your finance department" : "Build my team", exact: false }).first();
+        const action = hero.getByRole("link", {
+          name: path === "/" && width >= 380 ? "Build your finance department" : "Build my team",
+          exact: true,
+        });
         const panelBox = (await panel.boundingBox())!;
         const actionBox = (await action.boundingBox())!;
         expect(panelBox.y).toBeGreaterThanOrEqual(actionBox.y + actionBox.height);

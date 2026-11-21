@@ -7,7 +7,7 @@ export function HomeOffers() {
   return (
     <section className="accounting-home-offers accounting-wrap" id="offers" data-home-section="offers" data-scroll-reveal>
       <div className="accounting-section-heading">
-        <div><p className="eyebrow">Three ways to start · UAE</p><h2>The support you need. A clear starting point.</h2></div>
+        <h2>UAE starting offers</h2>
         <a className="text-link accounting-catalogue-shortcut" href="#catalogue-search">Find your service <span aria-hidden="true">↓</span></a>
       </div>
       <div className="accounting-home-offer-grid">
@@ -54,7 +54,6 @@ export function HomeWorkingProcess() {
     <section id="how-we-work" className="accounting-home-process-section accounting-wrap" data-home-section="process" data-scroll-reveal>
       <div>
         <p className="eyebrow">How we work</p><h2>Clear scope. Clear responsibility.</h2>
-        <p>From the first conversation to the next reporting cycle, agree what the work needs to achieve and who owns each step.</p>
         <Link className="text-link" href="/how-we-work">Read the full working process<ArrowUpRight aria-hidden="true" /></Link>
         <details className="accounting-process-preparation"><summary>What to have ready</summary><p>{homeUpdate.preparation}</p></details>
       </div>

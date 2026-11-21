@@ -72,8 +72,9 @@ export function AccountingHeader() {
           </EnquiryLink>
           <ThemeToggle />
           <details className="accounting-mobile-nav">
-            <summary aria-label="Open navigation">
-              <span aria-hidden="true">☰</span>
+            <summary aria-label="Navigation menu">
+              <span className="menu-open-icon" aria-hidden="true">☰</span>
+              <span className="menu-close-icon" aria-hidden="true">×</span>
             </summary>
             <nav aria-label="Mobile navigation">
               <Navigation mobile />

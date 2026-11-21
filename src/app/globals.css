@@ -20,6 +20,10 @@
   --amber-fill-hover: #f0d7a8;
   --accent-ink: #111110;
   --whatsapp-fill: #25d366;
+  --whatsapp-size: 56px;
+  --whatsapp-right: max(20px, env(safe-area-inset-right, 0px));
+  /* Subtract the page's existing outer margin from the space needed by the circle. */
+  --whatsapp-content-gutter: max(0px, calc(var(--whatsapp-right) + var(--whatsapp-size) + 8px - max(18px, (100vw - 1320px) / 2)));
   --whatsapp-fill-hover: #45e280;
   --whatsapp-ink: #082d18;
   --line-dark: rgba(245, 240, 229, 0.14);
@@ -3562,6 +3566,10 @@ button:active,
 .accounting-mobile-nav > summary::-webkit-details-marker {
   display: none;
 }
+.accounting-mobile-nav:not([open]) > summary .menu-close-icon,
+.accounting-mobile-nav[open] > summary .menu-open-icon {
+  display: none;
+}
 .accounting-header-actions {
   display: flex;
   align-items: center;
@@ -4335,6 +4343,46 @@ button:active,
 .accounting-toc > a:hover {
   color: var(--amber-400);
 }
+.accounting-toc-compact,
+.accounting-builder-label-short {
+  display: none;
+}
+@media (max-width: 900px) {
+  .accounting-article-layout .accounting-toc-wide {
+    display: none;
+  }
+  .accounting-toc-compact {
+    display: block;
+    margin-top: 14px;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .accounting-toc-compact summary {
+    width: fit-content;
+    min-height: 44px;
+    padding-block: 12px;
+    color: var(--amber-400);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .accounting-toc-compact nav {
+    display: grid;
+    margin-inline-end: var(--mobile-action-gutter, 0px);
+    margin-bottom: 8px;
+  }
+  .accounting-toc-compact nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 8px;
+    border-top: 1px solid var(--line-dark);
+    line-height: 1.35;
+  }
+}
+@media (max-width: 379px) {
+  .accounting-builder-label { display: none; }
+  .accounting-builder-label-short { display: inline; }
+}
 .accounting-prose {
   min-width: 0;
 }
@@ -4511,6 +4559,9 @@ button:active,
   }
   .accounting-mobile-nav > summary {
     list-style: none;
+    min-width: 44px;
+    min-height: 44px;
+    text-align: center;
     padding: 7px 13px;
     border: 1px solid var(--line-dark);
     border-radius: 10px;
@@ -4716,6 +4767,21 @@ button:active,
   .accounting-prose li {
     font-size: 1.02rem;
   }
+  .accounting-page[data-guide] .accounting-prose > section {
+    padding-bottom: 36px;
+  }
+  .accounting-page[data-guide] .accounting-prose .accounting-section-number {
+    display: none;
+  }
+  .accounting-page[data-guide] .accounting-prose h2 {
+    margin-bottom: 16px;
+  }
+  .accounting-page[data-guide] .accounting-prose :is(p, li) {
+    line-height: 1.65;
+  }
+  .accounting-page[data-guide] .accounting-prose li {
+    margin-bottom: 9px;
+  }
   .accounting-footer-grid {
     grid-template-columns: 1fr;
   }
@@ -4864,7 +4930,6 @@ html[data-theme=dark] .analytics-choice{background:#242422;color:#f5f0e5}@media(
 .accounting-offer-price > span { display: block; color: var(--stone-400); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
 .accounting-offer-price small { font-size: .85rem; color: var(--stone-250); margin-left: 5px; }
 .accounting-home-offers .accounting-offer-scope { font-size: .8rem; margin-top: 0; padding-top: 14px; }
-.accounting-home-scope-note { font-size: .85rem; line-height: 1.6; color: var(--stone-400); margin-top: 18px; }
 .accounting-home-department { border-top: 1px solid var(--line-dark); margin-top: 32px; padding-top: 30px; }
 .accounting-statement:has(.accounting-home-department) > p:not(.eyebrow) { max-width: 70ch; margin: 30px 0 0; color: var(--stone-250); font-size: 1.25rem; }
 .accounting-home-department h3, .accounting-founder-note h3 { font-size: clamp(1.5rem, 2.5vw, 2.2rem); line-height: 1.15; margin-bottom: 18px; }
@@ -4902,8 +4967,6 @@ html[data-theme=dark] .analytics-choice{background:#242422;color:#f5f0e5}@media(
 .accounting-home-no-results .text-link { margin-left: 20px; }
 .accounting-founder-note { border-left: 1px solid var(--amber-400); padding-left: 28px; margin-top: 40px; }
 .accounting-founder-note > .text-link { margin-top: 22px; font-size: .9rem; }
-.accounting-home-blog { color: var(--stone-250); margin-bottom: 30px; max-width: 80ch; }
-.accounting-home-blog .text-link { display: inline-flex; }
 .guide-publisher { margin-top: 20px; color: var(--stone-400); font-size: .9rem; }
 .guide-publisher a { color: var(--amber-400); }
 
@@ -5023,14 +5086,14 @@ html[data-theme=dark] .analytics-choice{background:#242422;color:#f5f0e5}@media(
 
 .floating-whatsapp {
   position: fixed;
-  right: max(20px, env(safe-area-inset-right));
+  right: var(--whatsapp-right);
   bottom: calc(20px + env(safe-area-inset-bottom));
   z-index: 1001;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: var(--whatsapp-size);
+  height: var(--whatsapp-size);
   padding: 0;
   border: 1px solid var(--whatsapp-ink);
   border-radius: 50%;
@@ -5072,8 +5135,11 @@ body:has(.floating-whatsapp) .analytics-choice {
 body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
 
 /* Supplied homepage sequence, expressed with the existing accounting design. */
-.accounting-home-flow .accounting-hero-caption { align-items: center; padding-block: 0; }
+.accounting-home-flow .accounting-hero-caption { align-items: center; padding-block: 0; padding-inline-end: max(17px, var(--whatsapp-content-gutter)); }
 .accounting-hero-caption a { display: inline-flex; align-items: center; gap: .45em; min-height: 44px; font-size: .8rem; letter-spacing: normal; text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 450px) {
+  .accounting-hero-caption > span { display: none; }
+}
 .accounting-home-flow .accounting-home-hero h1 { max-width: 15ch; font-size: clamp(2.8rem, 5.5vw, 5.4rem); }
 .accounting-home-flow .accounting-home-offers { margin-bottom: 0; padding-bottom: clamp(65px, 8vw, 110px); }
 .accounting-home-offer h3 { font-size: 1.65rem; line-height: 1.12; margin-bottom: 16px; }
@@ -5117,11 +5183,32 @@ body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
 .accounting-builder-offer p { color: var(--stone-250); line-height: 1.5; }
 .accounting-home-offer .accounting-offer-fit { margin-bottom: 12px; line-height: 1.45; }
 .accounting-home-flow .accounting-review-link { grid-column: 1 / -1; border-top: 1px solid var(--line-dark); padding-bottom: 0; }
-.accounting-home-flow .accounting-review-link p { color: var(--ivory-100); }
+.accounting-receipt-proof {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.2fr) auto;
+  align-items: center;
+  gap: 10px 26px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-dark);
+}
+.accounting-receipt-proof h3 { font-size: 1.2rem; line-height: 1.2; }
+.accounting-receipt-title { display: flex; align-items: center; gap: 14px; }
+.accounting-receipt-title img { width: clamp(68px, 7vw, 96px); height: auto; border-radius: 6px; }
+.accounting-receipt-proof p:not(.eyebrow) { color: var(--stone-250); line-height: 1.5; }
+.accounting-receipt-proof .eyebrow { margin-bottom: 4px; }
+.accounting-guide-actions, .accounting-home-enquiry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 20px;
+}
+.accounting-guide-actions a, .accounting-home-enquiry-actions a, .accounting-receipt-proof a {
+  min-height: 44px;
+}
 .accounting-builder-offer a, .accounting-review-link a, .accounting-home-department > a { min-height: 44px; }
 .accounting-home-process-section { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(35px, 6vw, 90px); padding-block: clamp(65px, 8vw, 110px); border-top: 1px solid var(--line-dark); }
 .accounting-home-process-section h2 { max-width: 18ch; font-size: clamp(2.25rem, 4.5vw, 4.25rem); line-height: 1.06; }
-.accounting-home-process-section > div > p:not(.eyebrow) { color: var(--stone-250); font-size: 1.05rem; line-height: 1.65; margin-top: 25px; }
 .accounting-home-process-section > div > .text-link { margin-top: 25px; }
 .accounting-home-process-steps { list-style: decimal; padding-left: 24px; }
 .accounting-home-process-steps li { padding: 22px 0 22px 15px; border-bottom: 1px solid var(--line-dark); }
@@ -5154,9 +5241,6 @@ body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
 .accounting-team-roster a:hover h3 { text-decoration: underline; }
 .accounting-home-contact { display: grid; grid-template-columns: 1.15fr 1fr; align-items: start; gap: 45px; }
 .accounting-home-contact > div > p:not(.eyebrow) { color: var(--stone-250); line-height: 1.65; margin-block: 25px; }
-.accounting-home-contact > div > .button { margin-top: 10px; }
-.accounting-home-contact .accounting-output h3 { font-size: 1.6rem; line-height: 1.2; margin-bottom: 20px; }
-.accounting-home-contact .accounting-output > .button { margin-top: 25px; }
 .accounting-home-contact-details { display: grid; gap: 14px; color: var(--stone-250); font-size: .95rem; line-height: 1.65; }
 .accounting-home-contact-details a { width: fit-content; color: var(--amber-400); }
 .accounting-home-contact-details address { font-style: normal; }
@@ -5235,7 +5319,6 @@ body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
   .accounting-home-flow .accounting-reviews { grid-template-columns: 1fr; gap: 18px; padding-block: 24px; }
   .accounting-home-example { padding: 18px 0 0; border-inline: 0; border-top: 1px solid var(--line-dark); }
   .accounting-home-flow .accounting-home-process-section { gap: 20px; }
-  .accounting-home-process-section > div > p:not(.eyebrow),
   .accounting-home-process-section > div > .text-link { margin-top: 14px; }
   .accounting-home-process-steps li { padding-inline-start: 4px; }
   .accounting-home-flow .accounting-founder-note { margin-bottom: 24px; }
@@ -5368,10 +5451,47 @@ html[lang=ar] .accounting-flashcards{display:grid;min-height:0;overflow:visible;
 }
 
 @media (max-width: 600px) {
-  .accounting-team-grid.accounting-team-roster { grid-template-columns: 1fr; }
+  .accounting-team-grid.accounting-team-roster { grid-template-columns: repeat(auto-fit, minmax(min(100%, 155px), 1fr)); gap: 0 12px; }
   .accounting-team-roster article > a { grid-template-columns: 46px 1fr; padding-block: 7px; }
   .accounting-team-roster .accounting-portrait { width: 46px; }
   .accounting-home-flow .accounting-team > .accounting-section-heading { align-items: start; }
+}
+
+@media (max-width: 900px) {
+  .accounting-receipt-proof {
+    grid-template-columns: 1fr;
+    padding-block: 14px 0;
+  }
+  .accounting-receipt-proof > a {
+    justify-self: start;
+    max-inline-size: calc(100% - var(--mobile-action-gutter, 0px));
+  }
+}
+@media (max-width: 700px) {
+  .accounting-home-flow .accounting-home-contact {
+    gap: 20px;
+    margin-block: 20px 28px;
+    padding: 24px 20px;
+  }
+  .accounting-home-contact > div > p:not(.eyebrow) { margin-block: 12px; }
+  .accounting-home-contact-details { gap: 8px; padding-top: 16px; border-top: 1px solid var(--line-dark); }
+  .accounting-home-flow .accounting-faq > div { margin-top: 18px; }
+  .accounting-home-flow .accounting-faq summary { min-height: 48px; padding-block: 15px; font-size: 1.08rem; }
+  .accounting-home-flow .accounting-faq { padding-block: 28px; }
+  .accounting-home-flow .accounting-home-process-steps li { padding-block: 0; }
+  .accounting-home-flow .accounting-home-process-steps summary { min-height: 48px; padding-block: 12px; font-size: 1.03rem; }
+  .accounting-home-flow .accounting-guide-actions { gap: 4px 20px; }
+}
+@media (min-width: 380px) and (max-width: 700px) {
+  .accounting-home-flow .accounting-featured .accounting-section-heading {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+  }
+  .accounting-home-flow .accounting-featured .accounting-section-heading h2 {
+    font-size: 1.7rem;
+  }
 }
 
 @media (orientation: landscape) and (max-width: 900px) and (max-height: 500px) {

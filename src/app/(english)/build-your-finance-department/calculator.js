@@ -18,6 +18,14 @@ export const industries = [
 
 export const minimumHours=[0,0,4,8,3];
 export const includedWork = 'Bookkeeping with VAT filing';
+export const startingHours = minimumHours.reduce((sum, hours) => sum + hours, 0);
+const startingSubtotals = roles.map((role, i) => minimumHours[i] * role.rate);
+const startingPrice = startingSubtotals.reduce((sum, subtotal) => sum + subtotal, 0);
+export const startingEstimate = {
+  name: 'Finance essentials', industry: industries[0][0], volume: 150, work: [includedWork],
+  hours: minimumHours, subtotals: startingSubtotals, monthly: startingPrice, hourly: startingPrice / startingHours,
+  channel: 'Email', cadence: 'Monthly',
+};
 
 const number = value => value.toLocaleString('en-US');
 const money = value => value.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -37,7 +45,7 @@ function inRange(value, min, max) {
   return Number.isFinite(value) && value >= min && value <= max;
 }
 
-export function createEnquiryHref({name, industry, volume, work, pending = [], hours, subtotals, monthly, hourly, channel, cadence, callbackNumber = ''}) {
+export function createEnquiryHref({name, industry, volume, work, pending = [], hours, subtotals, monthly, hourly, channel, cadence, callbackNumber = ''}, delivery = channel) {
   const summary = [
     'Hello LedgerByte, I would like to discuss my '+name.toLowerCase()+' estimate.',
     industry+' | '+volume+' transactions/month',
@@ -50,13 +58,14 @@ export function createEnquiryHref({name, industry, volume, work, pending = [], h
     'Preferred contact: '+channel+'; '+cadence.toLowerCase()+' check-in. Please confirm scope and availability.',
     ...(channel === 'Phone' ? ['Please call me back. My phone number (including country code): '+(callbackNumber.trim() || '[enter your number]')] : [])
   ].join('\n');
-  if (channel === 'WhatsApp') return 'https://wa.me/971561371569?text='+encodeURIComponent(summary);
+  if (delivery === 'WhatsApp') return 'https://wa.me/971561371569?text='+encodeURIComponent(summary);
   return 'mailto:info@ledgerbyte.io?subject='+encodeURIComponent('Finance department estimate — '+name)+'&body='+encodeURIComponent(summary);
 }
 
 /** Initialise the owner-approved calculator on one mounted builder. */
 export function initializeBuilder(root) {
   const byId = id => root.querySelector('#' + id);
+  const floatingWhatsApp = root.querySelector('.floating-whatsapp');
   const saved = readSession();
   const assumptions = [
     ['visa','Visa, permits, ID & fitness test per cycle (AED)',2874,0,50000],
@@ -285,10 +294,12 @@ export function initializeBuilder(root) {
     byId('comm').textContent='Preferred contact · '+channel+' · '+cadence.toLowerCase()+' check-in';
     const callback = byId('callback-number');
     const updateDraft = () => {
-      byId('discuss').href = createEnquiryHref({
+      const estimate = {
         name, industry: industries[Number(byId('industry').value)][0], volume: byId('volume').value,
         work, pending, hours, subtotals, monthly, hourly, channel, cadence, callbackNumber: callback.value
-      });
+      };
+      byId('discuss').href = createEnquiryHref(estimate);
+      floatingWhatsApp.href = createEnquiryHref(estimate, 'WhatsApp');
     };
     updateDraft();
     callback.oninput = updateDraft;

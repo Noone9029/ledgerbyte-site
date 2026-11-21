@@ -94,20 +94,37 @@ test("homepage offers lead to scoped contact requests and the existing sliding c
 
 test("homepage catalogue filters service scopes and restores all services after an empty search", async ({ page }) => {
   await page.goto("/");
-  const search = page.getByRole("searchbox", { name: "Find your service", exact: true });
+  const search = page.getByRole("searchbox", { name: "Search all 22 services", exact: true });
+  await expect(page.locator("#home-result-count")).toHaveText("8 featured services");
   await search.fill("corporate tax filing");
   await expect(page.locator(".accounting-service-results h3 a").first()).toHaveAttribute("href", "/finance/services/corporate-tax-filing");
   await search.fill("no-matching-finance-scope");
   await expect(page.locator("#home-result-count")).toHaveText("0 services");
   await page.getByRole("button", { name: "Clear filters" }).click();
-  await expect(page.locator("#home-result-count")).toHaveText("22 services");
+  await expect(page.locator("#home-result-count")).toHaveText("8 featured services");
   await expect(search).toBeFocused();
+});
+
+test("@nojs mobile contents links reach service and guide sections directly from the introduction", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [path, heading] of [
+    ["/finance/services/accounting-bookkeeping", "What you receive"],
+    ["/insights/profit-and-cash", "Build the bridge from profit to cash"],
+  ]) {
+    await page.goto(path);
+    const contents = page.locator("details.accounting-toc-compact");
+    await expect(contents).toBeVisible();
+    await expect(page.locator(".accounting-toc-wide")).toBeHidden();
+    await contents.locator("summary").click();
+    await contents.getByRole("link", { name: heading, exact: true }).click();
+    await expect(page.getByRole("heading", { name: heading, exact: true })).toBeInViewport();
+  }
 });
 
 test("the homepage and full catalogue find the offers visitors are sold", async ({ page }) => {
   for (const path of ["/", "/finance/services"]) {
     await page.goto(path);
-    const search = page.getByRole("searchbox", { name: "Find your service" });
+    const search = page.getByRole("searchbox", { name: path === "/" ? "Search all 22 services" : "Find your service" });
     for (const [term, destination] of [
       ["accounting automation", "/finance/services/accounting-automation-systems"],
       ["automate", "/finance/services/accounting-automation-systems"],
@@ -191,13 +208,20 @@ test("finance builder keeps displayed prices and all enquiry channels in sync", 
     const href = (await page.locator("#discuss").getAttribute("href"))!;
     expect(decodeURIComponent(href)).toContain("Estimated department cost: AED 550/month before tax.");
     expect(href.startsWith(channel === "WhatsApp" ? "https://wa.me/971561371569" : "mailto:info@ledgerbyte.io")).toBe(true);
+    const reviewUrl = new URL(href);
+    const floating = new URL((await page.locator("a.floating-whatsapp").getAttribute("href"))!);
+    await expect(page.locator("footer").getByRole("link", { name: "WhatsApp", exact: true })).toHaveAttribute("href", floating.href);
+    expect(floating.origin + floating.pathname).toBe("https://wa.me/971561371569");
+    expect(floating.searchParams.get("text")).toBe(reviewUrl.searchParams.get(channel === "WhatsApp" ? "text" : "body"));
   }
   const callbackNumber = page.getByLabel("Callback number (optional)");
   await callbackNumber.fill("+1 202-555-0100");
   await expect(page.getByRole("link", { name: "Request a callback by email" })).toHaveAttribute("href", /%2B1%20202-555-0100/);
+  await expect(page.locator("a.floating-whatsapp")).toHaveAttribute("href", /%2B1%20202-555-0100/);
   await page.getByLabel("Preferred contact", { exact: true }).selectOption("WhatsApp");
   await expect(callbackNumber).toBeHidden();
   await expect(page.locator("#discuss")).not.toHaveAttribute("href", /202-555-0100/);
+  await expect(page.locator("a.floating-whatsapp")).not.toHaveAttribute("href", /202-555-0100/);
   await page.getByRole("button", { name: "Restore recommended hours" }).click();
   await expect(page.locator("#monthly-total")).toHaveText("500");
 });
@@ -320,6 +344,8 @@ test("@nojs finance builder keeps a usable starting estimate and enquiry draft",
   await expect(page.locator("#hours")).toHaveText("15 hrs / mo");
   await expect(page.getByLabel("Industry", { exact: true })).toBeDisabled();
   const href = (await page.locator("#discuss").getAttribute("href"))!;
+  const floating = new URL((await page.locator("a.floating-whatsapp").getAttribute("href"))!);
+  expect(floating.searchParams.get("text")).toBe(new URL(href).searchParams.get("body"));
   expect(decodeURIComponent(href)).toContain("AED 500/month before tax");
   expect(decodeURIComponent(href)).toContain("Work covered by these hours: Bookkeeping with VAT filing");
   expect(decodeURIComponent(href)).not.toContain("Requested work needing a quote");

@@ -1,4 +1,8 @@
 {
+  "receiptAllocationSummary": {
+    "value": "One AED 10,000 receipt settles invoices of AED 6,000 and AED 4,000. Once the remittance is confirmed, the unallocated balance is AED 0.",
+    "source": "Condensed for the owner’s requested homepage audit fixes from Haider’s illustrative receipt-matching example in accounting.json, pages.services/accounting-bookkeeping, and the corresponding sample receipt allocation workpaper. The numbers describe an illustration, not a named client engagement."
+  },
   "homepageOfferChoices": {
     "value": "Monthly books and tax work, quoted separately from the team builder.\nStandalone support for one UAE VAT return.\nReview and filing for an agreed tax period.\nFrom AED 500/month before tax for 15 hours, including bookkeeping, senior review and VAT filing.\nPlanning your next hire?\nSee the profit-to-cash example",
     "source": "Condensed for the owner's requested pricing and homepage flow fixes from the supplied SME, standalone UAE VAT and corporate tax offers, the 15-hour minimum in the finance team builder, the existing homepage pricing FAQ, the fractional CFO workstream and the profit-to-cash worked example. Prices and scope are the supplied terms."

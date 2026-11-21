@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect, useRef, useSyncExternalStore, type ReactNod
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { ServiceFlashcards } from "./service-flashcards";
 import { useHydrated } from "@/lib/use-hydrated";
-import { accountingCopy, accountingGroups, serviceContactHref } from "@/content/accounting";
+import { accountingCopy, accountingGroups, accountingServices, accountingShowcaseServices, serviceContactHref } from "@/content/accounting";
 import { findServices } from "@/content/service-search";
 
 type CatalogueVisit = {
@@ -107,7 +107,7 @@ export function ServiceCatalogue({ children }: { children?: ReactNode }) {
       className={home ? "accounting-home-search" : "accounting-catalogue accounting-wrap"} aria-label="All accounting services">
       {hydrated && <div className="accounting-search">
         <label>
-          <span>Find your service</span>
+          <span>{home ? `Search all ${accountingServices.length} services` : "Find your service"}</span>
           <div>
             <MagnifyingGlass aria-hidden="true" />
             <input type="search" ref={field} placeholder={accountingCopy.C06.search_placeholder}
@@ -123,7 +123,7 @@ export function ServiceCatalogue({ children }: { children?: ReactNode }) {
         </label>
       </div>}
       <p id={home ? "home-result-count" : undefined} className="accounting-results" role="status">
-        {results.length} {results.length === 1 ? "service" : "services"}
+        {home && !filtering ? `${accountingShowcaseServices.length} featured services` : `${results.length} ${results.length === 1 ? "service" : "services"}`}
       </p>
       {!results.length && (
         <div className="accounting-empty">

@@ -31,7 +31,11 @@ test("the worked-example jump clears the header and the cash figure clears Whats
     await page.setViewportSize(viewport);
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
-    await page.getByRole("link", { name: "See the profit-to-cash example" }).click();
+    const caption = page.getByRole("link", { name: "See the profit-to-cash example" });
+    const captionBox = (await caption.boundingBox())!;
+    const bubble = (await page.locator(".floating-whatsapp").boundingBox())!;
+    expect(captionBox.x + captionBox.width).toBeLessThan(bubble.x);
+    await caption.click({ position: { x: captionBox.width - 3, y: captionBox.height / 2 } });
     const section = page.locator("#worked-example");
     await expect.poll(() => section.evaluate(element => {
       const header = document.querySelector("header")!;
@@ -47,6 +51,14 @@ test("the worked-example jump clears the header and the cash figure clears Whats
       return bubble.left - text.getBoundingClientRect().right;
     });
     expect(horizontalClearance).toBeGreaterThan(0);
+    await page.getByRole("link", { name: "See the calculation" }).click();
+    const runningTotal = page.getByRole("row", { name: /Equipment purchases/ }).getByRole("cell").last();
+    await expect(runningTotal).toContainText("-10,000");
+    expect(await runningTotal.evaluate(element => {
+      const text = document.createRange();
+      text.selectNodeContents(element.firstChild!);
+      return text.getBoundingClientRect().right < document.querySelector(".floating-whatsapp")!.getBoundingClientRect().left;
+    })).toBe(true);
   }
 });
 

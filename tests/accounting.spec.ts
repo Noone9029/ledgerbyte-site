@@ -162,8 +162,12 @@ test("accounting navigation, Trustpilot and team changes match the handoff", asy
       ? ".accounting-desktop-nav"
       : ".accounting-mobile-nav nav",
   );
-  if ((page.viewportSize()?.width ?? 0) <= 1180)
-    await page.getByLabel("Open navigation").click();
+  if ((page.viewportSize()?.width ?? 0) <= 1180) {
+    const toggle = page.getByLabel("Navigation menu", { exact: true });
+    await toggle.click();
+    await expect(toggle.locator(".menu-close-icon")).toBeVisible();
+    await expect(toggle.locator(".menu-open-icon")).toBeHidden();
+  }
   await nav.locator(".accounting-services-menu > summary").click();
   if ((page.viewportSize()?.width ?? 0) <= 1180) {
     await nav.locator("summary").filter({ hasText: "Finance Operations" }).click();

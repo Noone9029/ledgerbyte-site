@@ -63,7 +63,7 @@
 .worksheet {
   table-layout: fixed;
   border-collapse: collapse;
-  width: 100%;
+  width: calc(100% - var(--whatsapp-content-gutter));
   margin: 0;
   font-size: clamp(.82rem, 2.7cqi, .97rem);
   line-height: 1.35;
@@ -113,10 +113,7 @@
   .measures dd { font-size: clamp(.95rem, 3.9cqi, 1.36rem); }
   .measures dt { font-size: .82rem; }
 }
-@media (max-width: 1200px) {
-  /* Keep the values outside the fixed contact button's column at any scroll position. */
-  .preview figcaption { padding-inline-end: calc(66px + env(safe-area-inset-right, 0px)); }
-}
+.preview figcaption { padding-inline-end: var(--whatsapp-content-gutter); }
 @container (max-width: 450px) {
   .measures { grid-template-columns: 1fr; gap: .65rem; }
   .measures > div {

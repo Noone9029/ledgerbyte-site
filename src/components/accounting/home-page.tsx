@@ -30,7 +30,11 @@ export function AccountingHome() {
             <h1>{home.heading}</h1>
             <p className="accounting-lead" data-aeo-answer>{home.intro}</p>
             <div className="hero-actions">
-              <Link className="button button-amber" href="/build-your-finance-department">Build your finance department<ArrowUpRight aria-hidden="true" /></Link>
+              <Link className="button button-amber" href="/build-your-finance-department">
+                <span className="accounting-builder-label">Build your finance department</span>
+                <span className="accounting-builder-label-short">Build my team</span>
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
               <a className="text-link" href="#offers">Explore UAE offers<ArrowUpRight aria-hidden="true" /></a>
             </div>
           </div>
@@ -53,11 +57,18 @@ export function AccountingHome() {
             <p className="eyebrow">Worked example</p>
             <h2>{accountingPages["insights/profit-and-cash"].heading}</h2>
             <p>Customers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.</p>
-            <Link className="text-link" href="/finance/services/accounts-receivable#sample-deliverable">Sample receipt allocation<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <div className="accounting-home-example"><CashBridgePreview /></div>
+          <div className="accounting-receipt-proof">
+            <div className="accounting-receipt-title">
+              <Image src="/art/examples/receipt-matching.webp" alt="" width={144} height={96}
+                sizes="96px" />
+              <div><p className="eyebrow">Illustrative workpaper</p><h3>Matching a customer receipt</h3></div>
+            </div>
+            <p>One AED 10,000 receipt settles invoices of AED 6,000 and AED 4,000. Once the remittance is confirmed, the unallocated balance is AED 0.</p>
+            <Link className="text-link" href="/finance/services/accounts-receivable#sample-deliverable">Sample receipt allocation<ArrowUpRight aria-hidden="true" /></Link>
+          </div>
           <aside className="accounting-review-link" aria-label="Client reviews">
-            <p>Hear from LedgerByte clients.</p>
             <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
           </aside>
         </section>
@@ -73,7 +84,7 @@ export function AccountingHome() {
 
         <section id="services-showcase" className="accounting-featured accounting-wrap" data-home-section="catalogue" data-scroll-reveal>
           <div className="accounting-section-heading">
-            <div><p className="eyebrow">The service catalogue</p><h2>{home.sections[1].heading}</h2></div>
+            <h2>{home.sections[1].heading}</h2>
             <Link className="text-link" href="/finance/services">All {accountingServices.length} services<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <HomeCatalogue />
@@ -95,10 +106,12 @@ export function AccountingHome() {
 
         <section id="guides" className="accounting-guides accounting-wrap" data-home-section="guides" data-scroll-reveal>
           <div className="accounting-section-heading">
-            <div><p className="eyebrow">Insights &amp; practical guides</p><h2>A little preparation goes a long way.</h2></div>
-            <Link className="text-link" href="/insights">Browse practical guides<ArrowUpRight aria-hidden="true" /></Link>
+            <h2>Practical guides</h2>
+            <div className="accounting-guide-actions">
+              <Link className="text-link" href="/insights">Browse practical guides<ArrowUpRight aria-hidden="true" /></Link>
+              <a className="text-link" href={insightsEnglishUrl()} target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a>
+            </div>
           </div>
-          <p className="accounting-home-blog"><a className="text-link" href={insightsEnglishUrl()} target="_blank" rel="noreferrer">Read the blog<ArrowUpRight aria-hidden="true" /></a></p>
           <GuideCards />
         </section>
 
@@ -106,17 +119,18 @@ export function AccountingHome() {
 
         <section id="contact" className="accounting-closing accounting-home-contact accounting-wrap" data-home-section="contact" data-scroll-reveal>
           <div>
-            <p className="eyebrow">Get in touch</p><h2>{home.closing_heading}</h2>
+            <h2>{home.closing_heading}</h2>
             <p>Accounting, tax, controller or fractional CFO support. Tell us what you need next.</p>
-            <a className="button button-amber" href={accountingContact.social.whatsapp} target="_blank" rel="noreferrer">Chat on WhatsApp<ArrowUpRight aria-hidden="true" /></a>
-            <p className="accounting-home-scope-note">Opens WhatsApp. You choose whether to send a message.</p>
-            <div className="accounting-home-contact-details">
-              <a href={`mailto:${accountingContact.contact.email}`}>{accountingContact.contact.email}</a>
-              <a href={`tel:${accountingContact.contact.phone.replace(/\s/g, "")}`}>{accountingContact.contact.phone}</a>
-              <address>{accountingContact.contact.address.join(", ")}</address>
+            <div className="accounting-home-enquiry-actions">
+              <a className="button button-amber" href={accountingContact.social.whatsapp} target="_blank" rel="noreferrer">Chat on WhatsApp<ArrowUpRight aria-hidden="true" /></a>
+              <Link className="text-link" href="/contact#enquiry-heading">Open enquiry form<ArrowUpRight aria-hidden="true" /></Link>
             </div>
           </div>
-          <aside className="accounting-output"><h3>Discuss your requirements.</h3><p>Share your business location and the support you need through our enquiry form.</p><Link className="button button-amber" href="/contact#enquiry-heading">Open enquiry form<ArrowUpRight aria-hidden="true" /></Link></aside>
+          <div className="accounting-home-contact-details">
+            <a href={`mailto:${accountingContact.contact.email}`}>{accountingContact.contact.email}</a>
+            <a href={`tel:${accountingContact.contact.phone.replace(/\s/g, "")}`}>{accountingContact.contact.phone}</a>
+            <address>{accountingContact.contact.address.join(", ")}</address>
+          </div>
         </section>
       </main>
     </>

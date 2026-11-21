@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { EnquiryLink } from "./enquiry-link";
 import { Brand } from "@/components/layout/brand";
+import { FooterWhatsApp } from "@/components/layout/floating-whatsapp";
+import { createEnquiryHref, startingEstimate } from "@/app/(english)/build-your-finance-department/calculator";
 import { insightsEnglishUrl } from "@/lib/review-links";
 import {
   accountingContact,
@@ -61,13 +63,7 @@ export function AccountingFooter() {
             >
               {accountingContact.contact.phone}
             </a>
-            <a
-              href={accountingContact.social.whatsapp}
-              target="_blank"
-              rel="noreferrer"
-            >
-              WhatsApp
-            </a>
+            <FooterWhatsApp href={accountingContact.social.whatsapp} startingHref={createEnquiryHref(startingEstimate, "WhatsApp")} />
             <address>{accountingContact.contact.address.join(", ")}</address>
           </div>
         </div>

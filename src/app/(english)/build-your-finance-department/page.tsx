@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
 import { StructuredData } from "@/components/structured-data";
 import { getPageSeo } from "@/content/seo";
 import { buildSchemaGraph, buildWebPageSchema, ORGANIZATION_ID } from "@/lib/schema";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { BuilderControls } from "./builder-controls";
-import { createEnquiryHref, includedWork, industries, minimumHours, roles } from "./calculator";
+import { createEnquiryHref, industries, minimumHours, roles, startingEstimate, startingHours } from "./calculator";
 import styles from "./builder.module.css";
 
 const path = "/build-your-finance-department";
@@ -21,14 +22,7 @@ const people = [
   { name: "Alina Khalid", role: "Customer Success Manager", slug: "alina-khalid", image: "/team/studio/alina-khalid.webp" },
 ];
 
-const startingHours = minimumHours.reduce((sum, hours) => sum + hours, 0);
-const startingSubtotals = roles.map((role, i) => minimumHours[i] * role.rate);
-const startingPrice = startingSubtotals.reduce((sum, subtotal) => sum + subtotal, 0);
-const startingEnquiry = createEnquiryHref({
-  name: "Finance essentials", industry: industries[0][0], volume: 150, work: [includedWork],
-  hours: minimumHours, subtotals: startingSubtotals, monthly: startingPrice, hourly: startingPrice / startingHours,
-  channel: "Email", cadence: "Monthly",
-});
+const { monthly: startingPrice, subtotals: startingSubtotals } = startingEstimate;
 const monthlyPrice = `AED ${startingPrice} / month`;
 const serviceId = absoluteUrl(path) + "#service";
 const schema = buildSchemaGraph(
@@ -167,7 +161,7 @@ function Estimate() {
     <p id="covered-work" className="helper" />
     <p id="scope-note" className={styles.notice} hidden />
     <p id="comm" className="comm-summary">Preferred contact · Email · monthly check-in</p>
-    <a className="cta button button-amber" id="discuss" href={startingEnquiry}><span className="icon" data-icon="chat" aria-hidden="true" /><span id="discuss-label">Review my team with LedgerByte</span></a>
+    <a className="cta button button-amber" id="discuss" href={createEnquiryHref(startingEstimate)}><span className="icon" data-icon="chat" aria-hidden="true" /><span id="discuss-label">Review my team with LedgerByte</span></a>
     <p className="footnote">Review and send your enquiry in WhatsApp or email.</p>
   </aside>;
 }
@@ -190,6 +184,7 @@ export default function FinanceDepartmentPage() {
     <People />
     <div className="mobile-est" id="mobile" hidden><strong id="mobile-price">{monthlyPrice}</strong><a className="button button-amber button-small" href="#estimate">View estimate <span aria-hidden="true">↓</span></a></div>
     <div role="status" id="status" className="sr-only" />
+    <FloatingWhatsApp href={createEnquiryHref(startingEstimate, "WhatsApp")} />
     <BuilderControls />
   </main>;
 }

@@ -53,7 +53,12 @@
   height: auto;
 }
 .teaser:focus-visible { outline: 2px solid var(--amber-400); outline-offset: 4px; }
-.caption { min-width: 0; padding: clamp(1rem, 2.5vw, 1.65rem); font-variant-numeric: tabular-nums; }
+.caption {
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 1.65rem);
+  padding-inline-end: max(clamp(1rem, 2.5vw, 1.65rem), var(--whatsapp-content-gutter));
+  font-variant-numeric: tabular-nums;
+}
 .title { display: block; margin-bottom: 1.05rem; font-size: clamp(1.12rem, 2vw, 1.45rem); line-height: 1.12; }
 .total, .legend > div, .comparison > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .2rem .55rem; }
 .total, .legend, .comparison { font-size: .9rem; line-height: 1.4; }
