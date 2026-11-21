@@ -72,7 +72,8 @@ test("canonical pages expose valid metadata and parseable page graphs", async ({
     if (path.startsWith("/about/team/")) {
       const person = nodes.find(node => node["@type"] === "Person");
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", person.image);
-      expect(person.image).toContain("/team/studio/");
+      const member = team.find(member => buildPersonPath(member.name) === path);
+      expect(person.image).toBe(origin + member!.image);
     }
     if (["/finance/services", "/regions", "/insights", "/finance"].includes(path)) {
       const collection = nodes.find(node => node["@type"] === "CollectionPage");
@@ -91,8 +92,8 @@ test("UAE starting offers retain the unit, jurisdiction and distinction from the
   const offers = documents.flatMap(d => d["@graph"]).filter(node => node["@type"] === "Offer");
   expect(offers.map(offer => [offer.name, offer.priceSpecification.minPrice, offer.priceSpecification.unitText])).toEqual([
     ["SME Accounting & Tax Management", 500, "month"],
-    ["VAT Return Support", 750, "return"],
-    ["UAE Corporate Tax Review & Filing", 750, undefined],
+    ["VAT Return Filing", 750, "return"],
+    ["UAE Corporate Tax Return Filing", 750, undefined],
   ]);
   for (const offer of offers) {
     expect(offer.eligibleRegion.name).toBe("United Arab Emirates");

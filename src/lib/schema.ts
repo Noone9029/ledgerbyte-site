@@ -19,7 +19,6 @@ const serviceAreas = [
 
 const sameAs = [
   "https://www.linkedin.com/company/ledger-byte/",
-  "https://www.trustpilot.com/review/ledgerbyte.io",
   "https://www.facebook.com/p/LedgerByte-61565427584875",
   "https://www.instagram.com/ledger_byte",
 ];

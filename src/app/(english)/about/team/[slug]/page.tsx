@@ -8,7 +8,8 @@ import { ConsultationCta } from "@/components/sections/consultation-cta";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { StructuredData } from "@/components/structured-data";
 import { financeServices, team } from "@/content";
-import { accountingPages, accountingServices, serviceContactHref } from "@/content/accounting";
+import { accountingPages, accountingServices } from "@/content/accounting";
+import { catalogueWhatsAppHref } from "@/lib/enquiry-options";
 import { homeUpdate } from "@/content/home-update";
 import {
   buildBreadcrumbSchema,
@@ -155,7 +156,7 @@ export default async function TeamProfilePage({
             title={scope?.title ?? accountingPages["how-we-work"].heading}
             description={scope?.output ?? homeUpdate.process[0].text}
             buttonLabel={scope ? "Discuss this service" : "See how we work"}
-            href={scope ? serviceContactHref(scope.title) : "/how-we-work"}
+            href={scope ? catalogueWhatsAppHref(scope.slug) : "/how-we-work"}
           />
         </PageMotion>
       </main>

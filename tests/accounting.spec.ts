@@ -181,7 +181,7 @@ test("catalogue shows all 22 services and filters by task and category", async (
   await expect(page.locator("[data-service-card]")).toHaveCount(22);
 });
 
-test("accounting navigation, Trustpilot and team changes match the handoff", async ({
+test("finance navigation, homepage example and team details follow the approved layout", async ({
   page,
 }) => {
   await page.goto("/");
@@ -214,15 +214,9 @@ test("accounting navigation, Trustpilot and team changes match the handoff", asy
   ).toHaveCount(0);
   await page.goto("/");
   await expect(
-    page.locator(".accounting-home-hero + #offers + .accounting-reviews"),
+    page.locator(".accounting-home-hero + #offers + #worked-example"),
   ).toBeVisible();
-  await expect(page.locator(".accounting-review-link a")).toHaveAttribute(
-    "href",
-    "https://www.trustpilot.com/review/ledgerbyte.io",
-  );
-  await expect(page.locator(".accounting-review-link")).not.toContainText(
-    /\d\.\d|stars/i,
-  );
+  await expect(page.locator('a[href*="trustpilot.com"]')).toHaveCount(0);
   await expect(page.locator(".accounting-home-example")).toContainText("−AED 20,000");
   await page.goto("/about");
   await expect(page.locator(".accounting-team-grid")).toContainText(
@@ -248,19 +242,20 @@ test("contact retains service context and separates email acceptance from WhatsA
   page,
 }) => {
   await page.goto("/finance/services/external-audit");
-  await page
-    .getByRole("link", {
-      name: content.pages["services/external-audit"].cta,
-      exact: true,
-    })
-    .first()
-    .click();
-  await expect(page.getByLabel("Support you need")).toHaveValue(
-    "External Audit Coordination",
+  const discussion = page.getByRole("link", { name: content.pages["services/external-audit"].cta, exact: true }).first();
+  const draft = new URL((await discussion.getAttribute("href"))!);
+  expect(draft.origin + draft.pathname).toBe("https://wa.me/971561371569");
+  expect(draft.searchParams.get("text")).toContain("External Audit Coordination");
+  await page.locator('footer a[href="/contact"]').first().click();
+  await page.getByLabel("Support you need").selectOption("External Audit Coordination");
+  const expectedChoices = new Set([
+    "", ...content.services.map(service => service.title), ...homeUpdate.offers.map(offer => offer.name),
+    "UAE VAT support", "Not sure yet",
+  ]);
+  const choices = await page.getByLabel("Support you need").locator("option").evaluateAll(
+    options => options.map(option => (option as HTMLOptionElement).value),
   );
-  await expect(
-    page.getByLabel("Support you need").locator("option"),
-  ).toHaveCount(content.services.length + homeUpdate.offers.length + 3);
+  expect(choices.sort()).toEqual([...expectedChoices].sort());
   const whatsapp = page.getByRole("link", { name: "WhatsApp ↗", exact: true });
   expect(
     new URL((await whatsapp.getAttribute("href")) ?? "").searchParams.get(
@@ -342,6 +337,9 @@ test("contact API rejects bad data and validates every service without sending m
   for (const service of [
     ...content.services.map((s) => s.title),
     ...homeUpdate.offers.map(offer => offer.name),
+    "VAT Return Support",
+    "UAE Corporate Tax Review & Filing",
+    "UAE Corporate Tax Filing",
     "UAE VAT support",
     "Not sure yet",
   ])
@@ -349,6 +347,7 @@ test("contact API rejects bad data and validates every service without sending m
       (
         await request.post("/api/contact", { data: { ...payload, service } })
       ).status(),
+      service,
     ).toBe(202);
   expect(
     (
@@ -438,6 +437,31 @@ test("@nojs supplied content and all services remain available without JavaScrip
   await expect(
     page.getByRole("link", { name: "WhatsApp ↗", exact: true }),
   ).toBeVisible();
+});
+
+test("the supplied founder portrait and team credentials follow visitors from the homepage to profiles and the builder", async ({ page }) => {
+  const portrait = /haider-ali-approved\.jpg/;
+  await page.goto("/");
+  const roster = page.locator("#team");
+  await expect(roster.locator(".accounting-founder-note img")).toHaveAttribute("src", portrait);
+  await expect(roster.locator("article h3")).toHaveText(["Muhammad Ahmad", "Faisal Nawaz", "Sayyam Nasir", "Alina Khalid"]);
+  await expect(roster).toContainText("FCA with an EY background");
+  await expect(roster).toContainText("MPhil in Development Studies");
+  const rosterBounds = await roster.locator(".accounting-team-roster").boundingBox();
+  const whatsappBounds = await page.locator(".floating-whatsapp").boundingBox();
+  expect(rosterBounds!.x + rosterBounds!.width).toBeLessThan(whatsappBounds!.x);
+  await roster.getByRole("link", { name: /Haider Ali/ }).click();
+  await expect(page.locator(".expert-profile-image img")).toHaveAttribute("src", portrait);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", portrait);
+
+  await page.goto("/about");
+  await expect(page.locator(".accounting-team-grid article")).toHaveCount(6);
+  const founderPhotos = page.locator('main a[href="/about/team/haider-ali"] img');
+  await expect(founderPhotos).toHaveCount(2);
+  for (const photo of await founderPhotos.all()) await expect(photo).toHaveAttribute("src", portrait);
+
+  await page.goto("/build-your-finance-department");
+  await expect(page.locator('#people a[href="/about/team/haider-ali"] img')).toHaveAttribute("src", portrait);
 });
 
 test("@reduced motion keeps the review stable and usable", async ({ page }) => {

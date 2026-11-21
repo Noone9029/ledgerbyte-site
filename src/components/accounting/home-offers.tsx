@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { marketNames, serviceContactHref } from "@/content/accounting";
+import { marketNames } from "@/content/accounting";
+import { catalogueWhatsAppHref, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { homeUpdate } from "@/content/home-update";
 
 export function HomeOffers() {
@@ -13,17 +14,18 @@ export function HomeOffers() {
       <div className="accounting-home-offer-grid">
         {homeUpdate.offers.map(offer => (
           <section className="accounting-home-offer" key={offer.name}>
-            <div className="accounting-offer-overview">
+            <Link className="accounting-offer-overview" href={offer.priceHref ?? offer.href}>
               <h3>{offer.name}</h3>
               <p className="accounting-offer-price"><span>From</span> AED {offer.price}<small>{offer.unit}</small></p>
-            </div>
+              {offer.priceLinkLabel && <span className="accounting-offer-destination">{offer.priceLinkLabel} <span aria-hidden="true">↗</span></span>}
+            </Link>
             <p className="accounting-offer-fit">{offer.fit}</p>
             <details className="accounting-offer-details">
               <summary>What’s included</summary>
               <p>{offer.description}</p>
               <Link className="accounting-offer-scope" href={offer.href}>{offer.scope} ↗</Link>
             </details>
-            <Link className="text-link" href={serviceContactHref(offer.name, marketNames["regions/uae"])}>{offer.cta}<ArrowUpRight aria-hidden="true" /></Link>
+            <a className="text-link" href={serviceWhatsAppHref(offer.name, marketNames["regions/uae"])} target="_blank" rel="noreferrer">{offer.cta}<ArrowUpRight aria-hidden="true" /></a>
           </section>
         ))}
       </div>
@@ -40,9 +42,18 @@ export function HomeWorkstreams() {
     <div className="accounting-home-pillars">
       {homeUpdate.workstreams.map(work => (
         <article key={work.name}>
-          <Link href={work.href} title={work.need}>
+          <h3><Link href={`/finance/services/${work.slug}`} title={work.need}>
             {work.name}<ArrowUpRight aria-hidden="true" />
-          </Link>
+          </Link></h3>
+          <details>
+            <summary>Typical output</summary>
+            <p>{work.output}</p>
+            {work.slug === "tax-vat-compliance" && <div className="accounting-workstream-tax-links">
+              <Link href="/uae-vat">VAT return scope ↗</Link>
+              <Link href="/finance/services/corporate-tax-filing">Corporate tax return filing ↗</Link>
+            </div>}
+          </details>
+          <a className="text-link" href={catalogueWhatsAppHref(work.slug)} target="_blank" rel="noreferrer">{work.discuss}<ArrowUpRight aria-hidden="true" /></a>
         </article>
       ))}
     </div>

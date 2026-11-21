@@ -45,7 +45,7 @@ function Navigation({ mobile = false }: { mobile?: boolean }) {
             })}
           </div>
           <Link href="/uae-vat">
-            UAE VAT support
+            UAE VAT return filing
             <ArrowUpRight aria-hidden="true" />
           </Link>
         </div>

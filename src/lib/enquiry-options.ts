@@ -1,12 +1,12 @@
-import { accountingContact, accountingCopy, accountingServices, marketNames } from "@/content/accounting";
+import { accountingContact, accountingCopy, accountingServices, getAccountingService, marketNames, serviceEnquiryMarket } from "@/content/accounting";
 import { homeUpdate } from "@/content/home-update";
 
-export const financeEnquiryChoices = [
+export const financeEnquiryChoices = [...new Set([
   ...homeUpdate.offers.map(offer => offer.name),
   ...accountingServices.map((service) => service.title),
   "UAE VAT support",
   "Not sure yet",
-];
+])];
 
 const markets = new Set(Object.values(marketNames));
 
@@ -19,9 +19,14 @@ export function selectedOffer(service: string) {
   return homeUpdate.offers.find(offer => offer.name === service);
 }
 
+export function currentEnquiryName(service: string) {
+  return homeUpdate.offers.find(offer => offer.previousNames?.includes(service))?.name ?? service;
+}
+
 export function enquiryService(value: unknown) {
   if (typeof value !== "string") return "";
-  if (financeEnquiryChoices.includes(value)) return value;
+  const service = currentEnquiryName(value);
+  if (financeEnquiryChoices.includes(service)) return service;
   return accountingServices.find((item) => item.slug === value)?.title ?? "";
 }
 
@@ -44,8 +49,13 @@ function enquiryDraft(service: string, market: string) {
   return message;
 }
 
-export function serviceWhatsAppHref(service: string, market = "") {
+export function serviceWhatsAppHref(service = "", market = "") {
   return `${accountingContact.social.whatsapp}?text=${encodeURIComponent(enquiryDraft(service, market))}`;
+}
+
+export function catalogueWhatsAppHref(slug: string) {
+  const service = getAccountingService(slug);
+  return serviceWhatsAppHref(service?.title, serviceEnquiryMarket(service));
 }
 
 export function serviceEmailHref(service: string, market = "") {

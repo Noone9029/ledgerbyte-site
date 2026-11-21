@@ -5,6 +5,7 @@ import { useId, useRef, type CSSProperties, type KeyboardEvent } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { contentPath, type AccountingService } from "@/content/accounting";
 import { hasHoverPointer } from "@/lib/pointer";
+import { catalogueWhatsAppHref } from "@/lib/enquiry-options";
 import { useHydrated } from "@/lib/use-hydrated";
 
 interface ServiceFlashcardsProps {
@@ -103,10 +104,13 @@ export function ServiceFlashcards({ services, label, catalogue = false, locale =
                 <p>{service.output}</p>
               </div>
             )}
-            <Link className="text-link" href={service.href || contentPath(service.key)} lang={locale === "ar" && !service.href?.startsWith("/ar/") ? "en" : undefined} aria-label={`${locale === "ar" ? "استعرض" : "Explore"} ${service.title}`}>
-              {locale === "ar" ? (service.href?.startsWith("/ar/") ? "استعرض الخدمة" : "استعرض الخدمة (بالإنجليزية)") : "Explore service"}
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
+            <div className="accounting-flashcard-actions">
+              <Link className="text-link" href={service.href || contentPath(service.key)} lang={locale === "ar" && !service.href?.startsWith("/ar/") ? "en" : undefined} aria-label={`${locale === "ar" ? "استعرض" : "Explore"} ${service.title}`}>
+                {locale === "ar" ? (service.href?.startsWith("/ar/") ? "استعرض الخدمة" : "استعرض الخدمة (بالإنجليزية)") : "Explore service"}
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+              {locale === "en" && <a className="text-link" aria-label={`Discuss ${service.title}`} href={catalogueWhatsAppHref(service.slug)} target="_blank" rel="noreferrer">Discuss ↗</a>}
+            </div>
           </div>
         </details>
       ))}

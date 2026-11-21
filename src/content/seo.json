@@ -31,9 +31,9 @@
     "/about": {
       "title": "About Our Accounting, Tax & Advisory Team | LedgerByte",
       "description": "Meet LedgerByte's accounting, reporting, tax and client-success team. Learn about the firm's origins and its practical approach to business finance.",
-      "image": "/team/studio/haider-ali.webp",
+      "image": "/team/haider-ali-approved.jpg",
       "lastModified": "2026-11-20",
-      "source": "Haider November 10 replacement content"
+      "source": "Haider November 10 replacement content and portrait supplied in his November 20 website handoff."
     },
     "/contact": {
       "title": "Contact LedgerByte for Accounting & Tax Support",
@@ -93,7 +93,7 @@
     },
     "/finance/services/tax-vat-compliance": {
       "title": "UAE VAT & Corporate Tax Support | LedgerByte",
-      "description": "Explore UAE corporate tax filing, VAT return support, VAT registration and corporate tax registration, with separate records and approval responsibilities.",
+      "description": "Explore UAE corporate tax filing, VAT return filing, VAT registration and corporate tax registration, with separate records and approval responsibilities.",
       "image": "/art/finance-compliance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Approved finance service page title and description"
@@ -113,11 +113,11 @@
       "source": "Search intent and service scope from the LedgerByte UAE, bookkeeping, management reporting and finance leadership pages, revised 2026-11-20"
     },
     "/uae-vat": {
-      "title": "UAE VAT Filing Support",
-      "description": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
+      "title": "UAE VAT Return Filing",
+      "description": "LedgerByte prepares your UAE VAT return and files it after you approve the figures and authorize us to submit.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
-      "source": "Haider November 10 replacement content"
+      "source": "Owner-confirmed November 20 UAE VAT Return Filing service scope."
     },
     "/regions/uae": {
       "title": "Outsourced Accounting & Bookkeeping in the UAE | LedgerByte",
@@ -169,11 +169,11 @@
       "source": "Haider November 10 replacement content"
     },
     "/finance/services/corporate-tax-filing": {
-      "title": "UAE Corporate Tax Filing Services | LedgerByte",
-      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process.",
+      "title": "UAE Corporate Tax Return Filing",
+      "description": "LedgerByte prepares your UAE corporate tax return and files it after you approve the return and authorize us to submit it.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
-      "source": "Approved finance service page title and description"
+      "source": "Owner-confirmed November 20 UAE corporate tax return filing service scope."
     },
     "/finance/services/vat-registration": {
       "title": "UAE VAT Registration Services | LedgerByte",
@@ -290,9 +290,9 @@
     "/about/team/haider-ali": {
       "title": "Haider Ali, Managing Partner",
       "description": "Haider Ali founded LedgerByte. He has over 13 years of experience in financial management across Pakistan and the GCC.",
-      "image": "/team/studio/haider-ali.webp",
+      "image": "/team/haider-ali-approved.jpg",
       "lastModified": "2026-11-20",
-      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+      "source": "Archived LedgerByte team biography, approved role in src/content/index.ts and portrait supplied in Haider's November 20 website handoff."
     },
     "/about/team/muhammad-ahmad": {
       "title": "Muhammad Ahmad, CTO",
@@ -339,7 +339,7 @@
     "fractional-cfo-advisory": "Fractional CFO Services for UAE Businesses | LedgerByte",
     "payroll-wps-management": "Payroll Management Services & WPS Support | LedgerByte",
     "tax-vat-compliance": "UAE VAT & Corporate Tax Support | LedgerByte",
-    "corporate-tax-filing": "UAE Corporate Tax Filing Services | LedgerByte",
+    "corporate-tax-filing": "UAE Corporate Tax Return Filing | LedgerByte",
     "vat-registration": "UAE VAT Registration Services | LedgerByte",
     "corporate-tax-registration": "UAE Corporate Tax Registration | LedgerByte",
     "uae-company-formation": "UAE Company Formation Support | LedgerByte",

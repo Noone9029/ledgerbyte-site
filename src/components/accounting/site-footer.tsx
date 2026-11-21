@@ -29,7 +29,7 @@ export function AccountingFooter() {
             <Link href="/finance">Finance overview</Link>
             <Link href="/build-your-finance-department">Build your finance department</Link>
             <Link href="/finance/services">All {accountingServices.length} services</Link>
-            <Link href="/uae-vat">UAE VAT support</Link>
+            <Link href="/uae-vat">UAE VAT return filing</Link>
           </div>
           <div>
             <h2>LedgerByte</h2>
@@ -44,13 +44,6 @@ export function AccountingFooter() {
               rel="noreferrer"
             >
               LinkedIn
-            </a>
-            <a
-              href={accountingContact.social.trustpilot}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Trustpilot
             </a>
           </div>
           <div>

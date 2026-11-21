@@ -2,6 +2,7 @@ import Image from "next/image";
 import { insightsEnglishUrl } from "@/lib/review-links";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { founder } from "@/content";
 import { accountingContact, accountingPages, accountingServices } from "@/content/accounting";
 import { Faqs, TeamGrid } from "./content-page";
 import { StructuredData } from "@/components/structured-data";
@@ -9,6 +10,7 @@ import { ScrollReveals } from "@/components/motion/scroll-reveals";
 import { HomeCatalogue } from "./home-catalogue";
 import { GuideCards } from "./guide-cards";
 import { HomeOffers, HomeWorkingProcess, HomeWorkstreams } from "./home-offers";
+import { catalogueWhatsAppHref } from "@/lib/enquiry-options";
 import { homeUpdate } from "@/content/home-update";
 import { CashBridgePreview } from "./finance-examples";
 import exampleStyles from "./finance-examples.module.css";
@@ -53,10 +55,10 @@ export function AccountingHome() {
 
         <HomeOffers />
 
-        <section id="worked-example" className="accounting-reviews accounting-wrap" data-home-section="reviews" data-scroll-reveal>
+        <section id="worked-example" className="accounting-worked-examples accounting-wrap" data-home-section="worked-example" aria-labelledby="worked-example-title" data-scroll-reveal>
           <div className={exampleStyles.proofIntro}>
             <p className="eyebrow">Worked example</p>
-            <h2>{accountingPages["insights/profit-and-cash"].heading}</h2>
+            <h2 id="worked-example-title">{accountingPages["insights/profit-and-cash"].heading}</h2>
             <p>Customers still owe AED 40,000 of the month’s sales. Check when those receipts will arrive before committing cash.</p>
           </div>
           <div className="accounting-home-example"><CashBridgePreview /></div>
@@ -69,9 +71,6 @@ export function AccountingHome() {
             <p>One AED 10,000 receipt settles invoices of AED 6,000 and AED 4,000. Once the remittance is confirmed, the unallocated balance is AED 0.</p>
             <Link className="text-link" href="/finance/services/accounts-receivable#sample-deliverable">Sample receipt allocation<ArrowUpRight aria-hidden="true" /></Link>
           </div>
-          <aside className="accounting-review-link" aria-label="Client reviews">
-            <a className="text-link" href={accountingContact.social.trustpilot} target="_blank" rel="noreferrer">Read our reviews on Trustpilot<ArrowUpRight aria-hidden="true" /></a>
-          </aside>
         </section>
 
         <section className="accounting-finance-services accounting-wrap" data-home-section="finance-services" data-scroll-reveal>
@@ -79,7 +78,10 @@ export function AccountingHome() {
           <HomeWorkstreams />
           <aside className="accounting-home-department">
             <h3><Link href="/finance/services/finance-department-outsourcing">Full finance department outsourcing<ArrowUpRight aria-hidden="true" /></Link></h3>
-            <Link className="text-link" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
+            <div className="accounting-department-actions">
+              <Link className="text-link" href="/build-your-finance-department">Estimate your team cost<ArrowUpRight aria-hidden="true" /></Link>
+              <a className="text-link" href={catalogueWhatsAppHref("finance-department-outsourcing")} target="_blank" rel="noreferrer">Discuss full finance support<ArrowUpRight aria-hidden="true" /></a>
+            </div>
           </aside>
         </section>
 
@@ -99,7 +101,11 @@ export function AccountingHome() {
             <Link className="text-link" href="/about#team">About us<ArrowUpRight aria-hidden="true" /></Link>
           </div>
           <aside className="accounting-founder-note">
-            <p className="eyebrow">From the founder</p><h3>Can we afford the next move?</h3><p>{homeUpdate.founder}</p>
+            <div className="accounting-founder-intro">
+              <Image src={founder.image} alt={founder.name} width={400} height={400} sizes="88px" />
+              <div><p className="eyebrow">From the founder</p><h3>Can we afford the next move?</h3></div>
+            </div>
+            <p>{homeUpdate.founder}</p>
             <Link className="text-link" href="/about/team/haider-ali">Haider Ali, ACMA, CGMA · Founder &amp; Managing Partner<ArrowUpRight aria-hidden="true" /></Link>
           </aside>
           <TeamGrid compact />

@@ -119,16 +119,18 @@ export const companyValues = [
   source: "rendered-text/ledgerbyte.io/index.txt",
 }));
 
-export const team: TeamMember[] = [
-  {
-    name: "Haider Ali",
-    role: "Managing Partner",
-    credentials: "CGMA, ACMA",
-    image: "/team/studio/haider-ali.webp",
-    description:
-      "The driving force behind Ledger Byte, Haider conceptualized and built the company from the ground up. With over 13 years of diversified experience in Pakistan and the GCC, he has successfully led financial management functions across multiple industries, delivering operational efficiency and strategic growth.",
-    source: "rendered-text/ledgerbyte.io/about-us.txt",
-  },
+export const founder: TeamMember = {
+  name: "Haider Ali",
+  role: "Managing Partner",
+  credentials: "CGMA, ACMA",
+  image: "/team/haider-ali-approved.jpg",
+  description:
+    "The driving force behind Ledger Byte, Haider conceptualized and built the company from the ground up. With over 13 years of diversified experience in Pakistan and the GCC, he has successfully led financial management functions across multiple industries, delivering operational efficiency and strategic growth.",
+  source: "rendered-text/ledgerbyte.io/about-us.txt",
+};
+
+// Featured alongside Haider in his November 20 homepage handoff.
+export const homeTeam: TeamMember[] = [
   {
     name: "Muhammad Ahmad",
     role: "CTO",
@@ -142,6 +144,7 @@ export const team: TeamMember[] = [
     name: "Faisal Nawaz",
     role: "Financial Controller",
     credentials: "FCA",
+    homepageCredentials: "FCA with an EY background and extensive financial control experience.",
     image: "/team/studio/faisal-nawaz.webp",
     description:
       "Bringing 25 years of distinguished experience, Faisal has an extensive track record with both national and multinational organizations in Pakistan, delivering exceptional financial leadership and governance.",
@@ -166,6 +169,11 @@ export const team: TeamMember[] = [
       "Leveraging over 5 years of multidisciplinary experience spanning education research, university lecturing, operations, HR, and administration across diverse sectors, Alina delivers strategic communication acumen and operational excellence to drive organizational success.",
     source: "rendered-text/ledgerbyte.io/about-us.txt",
   },
+];
+
+export const team: TeamMember[] = [
+  founder,
+  ...homeTeam,
   {
     name: "Amir Ilyas",
     role: "Senior Tax Consultant",

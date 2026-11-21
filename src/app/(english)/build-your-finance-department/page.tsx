@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
+import { founder } from "@/content";
 import { StructuredData } from "@/components/structured-data";
 import { getPageSeo } from "@/content/seo";
 import { buildSchemaGraph, buildWebPageSchema, ORGANIZATION_ID } from "@/lib/schema";
@@ -16,7 +17,7 @@ const description = page.description;
 export const metadata = createPageMetadata(page, { path, description });
 
 const people = [
-  { name: "Haider Ali", credentials: "CGMA, ACMA", role: "Managing Partner", slug: "haider-ali", image: "/team/studio/haider-ali.webp" },
+  { ...founder, slug: "haider-ali" },
   { name: "Faisal Nawaz", credentials: "FCA", role: "Financial Controller", slug: "faisal-nawaz", image: "/team/studio/faisal-nawaz.webp" },
   { name: "Sayyam Nasir", credentials: "ACCA", role: "Fractional Controller", slug: "sayyam-nasir", image: "/team/studio/sayyam-nasir.webp" },
   { name: "Alina Khalid", role: "Customer Success Manager", slug: "alina-khalid", image: "/team/studio/alina-khalid.webp" },
@@ -69,7 +70,6 @@ function People() {
     <section id="people" className="finance-people" aria-labelledby="people-title"><div className="accounting-wrap">
       <div className="people-heading">
         <h2 id="people-title">The people behind LedgerByte</h2>
-        <a className="finance-link" href="https://www.trustpilot.com/review/ledgerbyte.io" target="_blank" rel="noopener">Read client reviews <span aria-hidden="true">↗</span></a>
       </div>
       <div className="roster">{people.map(person => (
         <Link className="person" key={person.slug} href={`/about/team/${person.slug}`}>
@@ -170,7 +170,7 @@ export default function FinanceDepartmentPage() {
   return <main className="finance-builder" id="main-content" data-finance-builder="">
     <StructuredData data={schema} />
     <Introduction />
-    <noscript><p className="accounting-wrap">Turn on JavaScript to adjust your estimate, or <Link href="/contact">discuss your workload with LedgerByte</Link>.</p></noscript>
+    <noscript><p className="accounting-wrap">Turn on JavaScript to adjust your estimate, or <a href={createEnquiryHref(startingEstimate, "WhatsApp")} target="_blank" rel="noreferrer">discuss your workload with LedgerByte</a>.</p></noscript>
     <div className={`workspace accounting-wrap ${styles.workspace}`} id="builder">
       <fieldset className="builder-fields" id="builder-controls" aria-labelledby="builder-title" disabled>
         <Business />

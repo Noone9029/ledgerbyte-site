@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { financeEnquiryChoices, selectedOffer } from "@/lib/enquiry-options";
+import { currentEnquiryName, financeEnquiryChoices, selectedOffer } from "@/lib/enquiry-options";
 
 const choices = new Set(financeEnquiryChoices);
 const schema = z
@@ -9,7 +9,7 @@ const schema = z
     fullName: z.string().trim().min(2).max(100),
     email: z.string().trim().email().max(254),
     location: z.string().trim().min(2).max(100),
-    service: z.string().refine((value) => choices.has(value)),
+    service: z.string().transform(currentEnquiryName).refine((value) => choices.has(value)),
     companyName: z.string().trim().max(120).optional().default(""),
     message: z.string().trim().max(2000).optional().default(""),
     website: z.string().max(200).optional().default(""),

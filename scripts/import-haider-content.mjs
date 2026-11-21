@@ -50,7 +50,7 @@ const pages = Object.fromEntries(
 );
 const replacements = Object.fromEntries(
   handoff.changes
-    .filter((change) => ["C01", "C03", "C06", "C08", "C10"].includes(change.id))
+    .filter((change) => ["C01", "C06", "C08", "C10"].includes(change.id))
     .map((change) => [change.id, change.replacement]),
 );
 for (const page of Object.values(pages)) {
@@ -78,6 +78,12 @@ const content = {
 delete replacements.C01.technology_link_label;
 delete replacements.C01.technology_url;
 delete content.contact.social.technology;
+delete content.contact.social.trustpilot;
+if (Array.isArray(pages.home.section_order)) {
+  pages.home.section_order = pages.home.section_order.map(section =>
+    /trustpilot|client reviews/i.test(section) ? "Worked example" : section,
+  );
+}
 replacements.C06.service_count = services.length;
 for (const section of pages.about.sections) {
   section.paragraphs = section.paragraphs.map((paragraph) =>
@@ -130,7 +136,7 @@ const discovery = [
   "- [About us](https://ledgerbyte.io/about)",
   "- [Build your finance department](https://ledgerbyte.io/build-your-finance-department)",
   "- [How we work](https://ledgerbyte.io/how-we-work)",
-  "- [UAE VAT support](https://ledgerbyte.io/uae-vat)",
+  "- [UAE VAT return filing](https://ledgerbyte.io/uae-vat)",
   "- [Markets](https://ledgerbyte.io/regions)",
   "- [Contact](https://ledgerbyte.io/contact)",
   "- [LedgerByte Insights](https://blog.ledgerbyte.io)",

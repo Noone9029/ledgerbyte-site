@@ -56,9 +56,8 @@ test("accounting automation leads from the finance directory to a scoped enquiry
   await page.getByRole("searchbox").fill("accounting automation");
   await page.locator(".accounting-service-results").getByRole("link", { name: "Accounting Automation & Systems", exact: true }).click();
   await expect(page).toHaveURL(/\/finance\/services\/accounting-automation-systems$/);
-  await page.locator("main").getByRole("link", { name: "Discuss your accounting setup", exact: true }).first().click();
-  await expect(page.getByLabel("Support you need")).toHaveValue("Accounting Automation & Systems");
-  await expect(page.locator('.accounting-contact-intro a[href*="wa.me"]')).toHaveAttribute("href", /Accounting%20Automation%20%26%20Systems/);
+  const discuss = page.locator("main").getByRole("link", { name: "Discuss your accounting setup", exact: true }).first();
+  await expect(discuss).toHaveAttribute("href", /^https:\/\/wa\.me\/971561371569\?text=.*Accounting%20Automation%20%26%20Systems/);
 });
 
 test("old technology enquiry links show only finance choices and contact channels", async ({ page }) => {

@@ -1,4 +1,4 @@
-import { accountingServices, contentPath, marketNames, serviceJurisdiction } from "./accounting";
+import { accountingServices, contentPath, marketNames, serviceEnquiryMarket } from "./accounting";
 import { homeUpdate } from "./home-update";
 import catalogue from "./home-service-scopes.json";
 
@@ -84,7 +84,7 @@ export function findServices(term: string, category: string) {
     }
     if (words.every(word => hasWord(terms, word)) && rows[0]?.href !== href) {
       const rank = !query ? 0 : Number(words.every(word => hasWord(names, word))) + Number(names.includes(query));
-      rows.push({ service, scope, title: service.title, href, enquiry: service.title, market: serviceJurisdiction(service.group) ?? "", rank });
+      rows.push({ service, scope, title: service.title, href, enquiry: service.title, market: serviceEnquiryMarket(service) ?? "", rank });
     }
     return rows;
   }).sort((a, b) => b.rank - a.rank);

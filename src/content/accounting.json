@@ -126,18 +126,18 @@
       "slug": "tax-vat-compliance",
       "title": "Tax, VAT & Compliance",
       "group": "UAE Tax & Formation",
-      "summary": "Choose UAE VAT filing support, corporate tax filing, VAT registration or corporate tax registration, with distinct deliverables and approval responsibilities.",
+      "summary": "Choose UAE VAT return filing, corporate tax filing, VAT registration or corporate tax registration, with distinct deliverables and approval responsibilities.",
       "output": "A separately scoped registration or filing workstream, with reviewed records and clear approval responsibilities.",
       "boundary": "VAT returns, corporate tax filing and each registration are distinct services. Corrections, disputes and representation require separate agreement; no FTA tax-agent status is claimed.",
-      "audience": "For businesses that need tax-ready records, VAT return support or a clearer corporate tax preparation process."
+      "audience": "For businesses that need tax-ready records, VAT return filing or a clearer corporate tax preparation process."
     },
     {
       "key": "services/corporate-tax-filing",
       "slug": "corporate-tax-filing",
-      "title": "UAE Corporate Tax Filing",
+      "title": "UAE Corporate Tax Return Filing",
       "group": "UAE Tax & Formation",
-      "summary": "Prepare the corporate tax computation, return data and supporting records for the relevant UAE tax period.",
-      "output": "A corporate tax computation, review-ready return pack and agreed approval and filing record.",
+      "summary": "We prepare your UAE corporate tax return, explain the calculation and file the return after you approve it and authorize us to submit.",
+      "output": "Your corporate tax calculation, the filed return and its filing acknowledgement.",
       "boundary": "Taxpayer approval and authorized submission arrangements are confirmed in writing. No FTA tax-agent status or guaranteed tax result is claimed.",
       "audience": "Your entity, tax period, accounting records and any corporate tax issues requiring review."
     },
@@ -897,18 +897,18 @@
     },
     "services/tax-vat-compliance": {
       "title": "UAE VAT & Corporate Tax Support | LedgerByte",
-      "description": "Explore UAE corporate tax filing, VAT return support, VAT registration and corporate tax registration, with separate records and approval responsibilities.",
+      "description": "Explore UAE corporate tax filing, VAT return filing, VAT registration and corporate tax registration, with separate records and approval responsibilities.",
       "path": "/finance/services/tax-vat-compliance",
       "heading": "UAE tax support built on records you can explain.",
-      "intro": "Bring the accounting evidence, tax schedules and open questions together before a filing deadline becomes the whole conversation. LedgerByte provides distinct UAE corporate tax filing, VAT return support, VAT registration and corporate tax registration services, with the preparation, approval and authorized submission roles agreed for each.",
+      "intro": "Bring the accounting evidence, tax schedules and open questions together before a filing deadline becomes the whole conversation. LedgerByte provides distinct UAE corporate tax filing, VAT return filing, VAT registration and corporate tax registration services, with the preparation, approval and authorized submission roles agreed for each.",
       "cta": "Discuss your tax requirements",
       "cardStrapline": "Separate tax workstreams. Connected accounting evidence.",
       "sections": [
         {
           "heading": "Choose the workstream you need",
           "paragraphs": [
-            "[VAT preparation and review support](/uae-vat). Focus on the relevant return period, sales and purchase transactions, tax codes, imports, credit notes and reconciliations to the ledger. Identify items needing treatment review before the return figures are finalized.",
-            "[Corporate tax filing](/finance/services/corporate-tax-filing). Prepare the computation, accounting-to-tax bridge and return inputs for the entity's tax period, with financial statements and supporting schedules. Identify related-party transactions, reliefs or other areas needing specialist consideration rather than assuming the accounting profit is the taxable amount.",
+            "[VAT return filing](/uae-vat). We reconcile your sales and purchase records and prepare the figures for your review. Once you approve the return and authorize us to submit, we file it for you.",
+            "[Corporate tax return filing](/finance/services/corporate-tax-filing). We reconcile your accounts, check tax adjustments and prepare the return for your tax period. Once you approve the return and authorize us to submit it, we file it for you.",
             "[VAT registration](/finance/services/vat-registration). Review the relevant supplies, imports and registration position, then organize the application evidence and authorized submission handover.",
             "[Corporate tax registration](/finance/services/corporate-tax-registration). Identify the legal entity and registration requirements, check application information and coordinate the agreed registration steps. Registration is not the same as preparing a tax return.",
             "VAT and corporate tax have different rules and preparation requirements. Each registration and filing service is agreed separately, and disputes or representation are not automatically included."
@@ -980,7 +980,7 @@
         },
         {
           "route": "uae-vat",
-          "label": "UAE VAT support",
+          "label": "UAE VAT return filing",
           "target": {
             "page_key": "uae-vat",
             "path": "/uae-vat",
@@ -989,7 +989,7 @@
         },
         {
           "route": "services/corporate-tax-filing",
-          "label": "UAE Corporate Tax Filing",
+          "label": "UAE Corporate Tax Return Filing",
           "target": {
             "page_key": "services/corporate-tax-filing",
             "path": "/services/corporate-tax-filing",
@@ -1260,29 +1260,29 @@
       ]
     },
     "uae-vat": {
-      "title": "UAE VAT Filing Support",
-      "description": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
+      "title": "UAE VAT Return Filing",
+      "description": "LedgerByte prepares your UAE VAT return and files it after you approve the figures and authorize us to submit.",
       "path": "/uae-vat",
-      "heading": "UAE VAT filing support",
-      "intro": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
-      "cta": "Discuss your UAE VAT period",
-      "cardStrapline": "",
+      "heading": "UAE VAT Return Filing",
+      "intro": "We check your sales and purchase records and prepare your UAE VAT return. You review the figures. Once you approve the return and authorize us to submit it, we file it for you.",
+      "cta": "File your VAT return now",
+      "cardStrapline": "Which VAT period do you need to file?",
       "sections": [
         {
           "heading": "What you receive",
           "paragraphs": [
+            "You receive a draft return and a breakdown of the VAT on your sales and purchases. We explain any adjustments and flag missing information before you approve the figures.",
+            "The filing covers one VAT period. We agree any work on registration, earlier returns or refund applications separately.",
             "Assume a UAE VAT-registered business has only standard-rated transactions for this example, all items fall in the correct return period, the credit note is valid, all purchase VAT shown is fully recoverable and no other adjustments apply.",
             "The UAE's standard VAT rate is 5%. Source checked 20 November 2026. [UAE VAT law, Article 3](https://tax.gov.ae/Datafolder/Files/Legislation/2025/Federal-Decree-Law-No-8-of-2017-and-amendments.pdf).",
-            "[Worked example: a simple net VAT calculation](/insights/vat-records#worked-example)",
-            "A VAT preparation pack connects the sales and purchase schedules to the ledger and preserves the evidence for adjustments. It separates routine transactions from questions involving imports, reverse charge, zero-rating, exemptions, credit notes or input-tax recovery.",
-            "The scope can include transaction schedule preparation, tax-code review, ledger reconciliation and draft return workings. Registration, historical corrections, refund applications and representation are separate matters to discuss."
+            "[Worked example: a simple net VAT calculation](/insights/vat-records#worked-example)"
           ],
           "bullets": []
         },
         {
           "heading": "What to bring to the first review",
           "paragraphs": [
-            "Do not send portal credentials or financial documents through the general enquiry form. The initial enquiry only needs the period, the type of business and the support required."
+            "To get started on WhatsApp, tell us your business type and VAT period. Keep portal credentials and financial records out of your initial message."
           ],
           "bullets": [
             "Legal entity, VAT registration details and the exact return period.",
@@ -1296,16 +1296,16 @@
         {
           "heading": "Three checks before the return is ready",
           "paragraphs": [
-            "Completeness. Compare the invoice listings and credit notes with the accounting records. Identify missing periods, duplicate documents and transactions posted to the wrong entity.",
-            "Treatment. Separate transactions requiring a tax decision from those following an established treatment. A tax code in the software is a starting point for review, not evidence that the treatment is correct.",
-            "Reconciliation. Explain how the draft return totals connect to the ledger, adjustments and supporting schedules. Carry unresolved questions into the review rather than hiding a difference in a balancing entry."
+            "First, we check that invoices and credit notes belong to your business and fall within the return period. We flag gaps and duplicates.",
+            "Next, we review the VAT codes and supporting records, including imports and adjustments where relevant.",
+            "Finally, we match the return totals to your books and explain any differences before you approve the return."
           ],
           "bullets": []
         },
         {
           "heading": "Registration and filing: the essentials",
           "paragraphs": [
-            "Identify who prepares the schedules, resolves technical questions, approves the figures and is authorized to submit. Retain the final workings and the actual submission acknowledgement and payment evidence when available.",
+            "After you approve the figures and authorize LedgerByte to submit, we file the return. Keep the filing acknowledgement with the final workings and your payment records.",
             "[Amir Ilyas · Senior Tax Consultant · FCCA](/about/team/amir-ilyas). Amir reviews tax and compliance-focused engagements with an emphasis on documentation quality, filing readiness, and practical risk management.",
             "For UAE-resident businesses, [mandatory VAT registration](/finance/services/vat-registration) generally applies when taxable supplies and imports exceed AED 375,000 in the previous 12 months or are expected to do so in the next 30 days. Voluntary registration has an AED 187,500 threshold and can also consider taxable expenses. Non-resident registration rules need a separate assessment.",
             "Source check: 9 November 2026. [FTA: VAT registration requirements](https://tax.gov.ae/en/faq.aspx?keyword=What+are+the+VAT+registration+requirements%3F)."
@@ -1316,7 +1316,7 @@
       "faqs": [
         {
           "question": "Who submits the return?",
-          "answer": "The engagement specifies the preparer, reviewer, client approver and authorized submitter. Preparation does not automatically include access to EmaraTax or authority to submit. LedgerByte does not claim FTA tax-agent registration on this website."
+          "answer": "LedgerByte files your UAE VAT return once you approve the figures and give us authorization to submit it on your behalf."
         },
         {
           "question": "Does a bank payment prove that VAT can be recovered?",
@@ -1352,7 +1352,7 @@
         },
         {
           "route": "services/corporate-tax-filing",
-          "label": "UAE Corporate Tax Filing",
+          "label": "UAE Corporate Tax Return Filing",
           "target": {
             "page_key": "services/corporate-tax-filing",
             "path": "/services/corporate-tax-filing",
@@ -1387,7 +1387,7 @@
           }
         }
       ],
-      "eyebrow": "VAT Return Support"
+      "eyebrow": "VAT Return Filing"
     },
     "regions/uae": {
       "title": "Outsourced Accounting & Bookkeeping in the UAE | LedgerByte",
@@ -1435,7 +1435,7 @@
         {
           "heading": "UAE setup, tax registration and audit workstreams",
           "paragraphs": [
-            "A new entity may need [UAE company formation coordination](/finance/services/uae-company-formation), then separate VAT and [corporate tax registration assessments](/finance/services/corporate-tax-registration). An established business may need [corporate tax filing](/finance/services/corporate-tax-filing), [VAT return support](/uae-vat) or year-end close and audit preparation. These are different tasks with different evidence, approvals and timelines.",
+            "A new entity may need [UAE company formation coordination](/finance/services/uae-company-formation), then separate VAT and [corporate tax registration assessments](/finance/services/corporate-tax-registration). An established business may need [corporate tax filing](/finance/services/corporate-tax-filing), [VAT return filing](/uae-vat) or year-end close and audit preparation. These are different tasks with different evidence, approvals and timelines.",
             "Internal audit assesses agreed processes and controls with objectivity considered before acceptance. External statutory audit is performed by an appropriately licensed independent local audit firm separately appointed by the client; LedgerByte supports the records and coordination. No audit licence, tax-agent registration or authority approval is implied by the service catalogue."
           ],
           "bullets": []
@@ -1487,7 +1487,7 @@
         },
         {
           "route": "uae-vat",
-          "label": "UAE VAT support",
+          "label": "UAE VAT return filing",
           "target": {
             "page_key": "uae-vat",
             "path": "/uae-vat",
@@ -1496,7 +1496,7 @@
         },
         {
           "route": "services/corporate-tax-filing",
-          "label": "UAE Corporate Tax Filing",
+          "label": "UAE Corporate Tax Return Filing",
           "target": {
             "page_key": "services/corporate-tax-filing",
             "path": "/services/corporate-tax-filing",
@@ -2196,7 +2196,7 @@
         },
         {
           "route": "uae-vat",
-          "label": "UAE VAT support",
+          "label": "UAE VAT return filing",
           "target": {
             "page_key": "uae-vat",
             "path": "/uae-vat",
@@ -2231,7 +2231,7 @@
       "faqs": [
         {
           "question": "What does AED 500 per month cover in the builder and the SME offer?",
-          "answer": "The finance team builder starts at AED 500 per month before tax for 15 hours. Bookkeeping includes VAT filing, and the monthly fee depends on the role hours you choose. SME Accounting & Tax Management also starts at AED 500 per month. We quote it separately after agreeing which records and deadlines the work covers. Standalone VAT Return Support starts at AED 750 per return."
+          "answer": "The finance team builder starts at AED 500 per month before tax for 15 hours. Bookkeeping includes VAT filing, and the monthly fee depends on the role hours you choose. SME Accounting & Tax Management also starts at AED 500 per month. We quote it separately after agreeing which records and deadlines the work covers. Standalone VAT Return Filing starts at AED 750 per return."
         },
         {
           "question": "What affects the final price?",
@@ -2261,7 +2261,7 @@
       "section_order": [
         "Hero",
         "Three UAE starting offers",
-        "Client reviews",
+        "Worked example",
         "Four finance workstreams and combined outsourcing",
         "Service catalogue",
         "Working process",
@@ -2283,7 +2283,7 @@
         },
         {
           "heading": "A UAE tax task due?",
-          "text": "Find distinct corporate tax filing, VAT registration, corporate tax registration and VAT return support.",
+          "text": "Find distinct corporate tax filing, VAT registration, corporate tax registration and VAT return filing.",
           "cta": "Choose your UAE tax service",
           "target": {
             "page_key": "services/tax-vat-compliance",
@@ -2600,13 +2600,13 @@
       ]
     },
     "services/corporate-tax-filing": {
-      "title": "UAE Corporate Tax Filing Services | LedgerByte",
-      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process.",
+      "title": "UAE Corporate Tax Return Filing",
+      "description": "LedgerByte prepares your UAE corporate tax return and files it after you approve the return and authorize us to submit it.",
       "path": "/finance/services/corporate-tax-filing",
-      "heading": "UAE Corporate Tax Filing Services",
-      "intro": "Move from year-end accounts to a supported UAE corporate tax submission. LedgerByte prepares the calculation, organizes return information and coordinates review and filing steps around your entity and tax period.",
-      "cta": "Discuss your corporate tax return",
-      "cardStrapline": "Reconciled accounts. Explained adjustments. A supported return.",
+      "heading": "UAE Corporate Tax Return Filing",
+      "intro": "We prepare your UAE corporate tax return from your company’s accounts and explain the tax calculation. Once you approve the return and authorize us to submit it, we file it for you.",
+      "cta": "File your corporate tax return now",
+      "cardStrapline": "Which corporate tax period do you need to file?",
       "sections": [
         {
           "heading": "When this service fits",
@@ -2627,7 +2627,7 @@
             "Review relevant income, expenses and tax adjustments, recording their supporting evidence.",
             "Identify matters requiring assessment, including related-party transactions, losses, elections or reliefs.",
             "Prepare the tax computation, return information and questions for management review.",
-            "Coordinate the agreed submission steps and retain the final return and acknowledgement when filed."
+            "File the approved return once you authorize us to submit it, then send you the filing acknowledgement."
           ]
         },
         {
@@ -2642,13 +2642,13 @@
           "heading": "How the work moves",
           "paragraphs": [
             "[Amir](/about/team/amir-ilyas) reviews tax and compliance-focused engagements with an emphasis on documentation quality, filing readiness, and practical risk management.",
-            "Submission arrangements are agreed through the company's authorized signatory or an appropriately appointed registered tax agent where required. The company approves its return and retains responsibility for payment. Bookkeeping cleanup, transfer-pricing studies, disputes and amendment of earlier returns require a separately defined scope."
+            "We confirm filing arrangements with your company’s authorized signatory and, where required, an appropriately appointed registered tax agent. Your company remains responsible for paying the tax. Bookkeeping cleanup, transfer-pricing studies, disputes and amendments to earlier returns are scoped separately."
           ],
           "bullets": [
             "Check readiness. Review the registration, previous filings and state of the accounts.",
             "Build the calculation. Resolve reconciling items and document the basis for proposed adjustments.",
             "Review the return. Present the computation and material judgments for approval before submission.",
-            "Complete the handover. Record the submitted version, outstanding payment action and records to retain."
+            "File and confirm. After approval and authorization, we submit the return and share the acknowledgement, any amount payable and the payment deadline."
           ]
         },
         {
@@ -2660,6 +2660,10 @@
         }
       ],
       "faqs": [
+        {
+          "question": "Who files our corporate tax return?",
+          "answer": "LedgerByte files your UAE corporate tax return on your behalf once you approve the figures and authorize us to submit it. We send you the filing acknowledgement. Your company pays any tax due."
+        },
         {
           "question": "Do we still need a return if no tax is payable?",
           "answer": "A nil liability does not by itself remove a taxable person's filing obligation. We confirm your status and reporting requirement, including whether an exemption or relief affects the return, before deciding what must be submitted."
@@ -2758,7 +2762,7 @@
           "heading": "What you receive",
           "paragraphs": [
             "A registration assessment summary, turnover or expenses schedule, application document checklist and a record of the information submitted. If approved, the handover includes the VAT registration certificate, effective registration date and the first filing period shown in the tax account.",
-            "The handover identifies invoice details, VAT codes, first-return records and responsibility for filing dates. [Ongoing return preparation](/uae-vat) and historic transaction corrections are agreed separately."
+            "The handover identifies invoice details, VAT codes, first-return records and responsibility for filing dates. [Ongoing VAT return filing](/uae-vat) and historic transaction corrections are agreed separately."
           ],
           "bullets": []
         },
@@ -2812,7 +2816,7 @@
         },
         {
           "route": "uae-vat",
-          "label": "UAE VAT support",
+          "label": "UAE VAT return filing",
           "target": {
             "page_key": "uae-vat",
             "path": "/uae-vat",
@@ -2938,7 +2942,7 @@
         },
         {
           "route": "services/corporate-tax-filing",
-          "label": "Corporate Tax Filing",
+          "label": "UAE Corporate Tax Return Filing",
           "target": {
             "page_key": "services/corporate-tax-filing",
             "path": "/services/corporate-tax-filing",
@@ -3281,7 +3285,7 @@
         },
         {
           "route": "services/corporate-tax-filing",
-          "label": "Corporate Tax Filing",
+          "label": "UAE Corporate Tax Return Filing",
           "target": {
             "page_key": "services/corporate-tax-filing",
             "path": "/services/corporate-tax-filing",
@@ -4363,14 +4367,6 @@
       "footer_description": "Accounting. Tax. Advisory. Practical finance support for startups and SMEs.",
       "copyright_draft": "© 2026 LedgerByte. All rights reserved."
     },
-    "C03": {
-      "eyebrow": "Independent perspectives",
-      "heading": "Hear from LedgerByte clients.",
-      "intro": "Explore publicly available client feedback on Trustpilot.",
-      "link_label": "Read our client reviews on Trustpilot",
-      "profile_url": "https://www.trustpilot.com/review/ledgerbyte.io",
-      "widget_status": "Pending account-generated business-unit/template configuration"
-    },
     "C06": {
       "groups": [
         "Finance Operations",
@@ -4451,7 +4447,6 @@
     },
     "social": {
       "linkedin": "https://www.linkedin.com/company/ledger-byte/",
-      "trustpilot": "https://www.trustpilot.com/review/ledgerbyte.io",
       "whatsapp": "https://wa.me/971561371569"
     },
     "status": "These links/contact values come from the public site and existing redesign; confirm official phone/WhatsApp before launch. Other social handles are not invented."

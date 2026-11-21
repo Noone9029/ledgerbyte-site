@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { accountingShowcaseServices, serviceContactHref } from "@/content/accounting";
+import { accountingShowcaseServices } from "@/content/accounting";
+import { catalogueWhatsAppHref } from "@/lib/enquiry-options";
 import catalogue from "@/content/home-service-scopes.json";
 import { ServiceCatalogue } from "./service-catalogue";
 import { ServiceFlashcards } from "./service-flashcards";
@@ -18,9 +19,9 @@ export function HomeCatalogue() {
                 <div>
                   <h3><Link href={`/finance/services/${slug}`}>{name}</Link></h3>
                   <p>{scope}</p>
-                  <small>{slug === "corporate-tax-filing" ? "Review & filing from AED 750. Scope and records readiness affect the quote." : "Request a quote"}</small>
+                  <small>{slug === "corporate-tax-filing" ? "From AED 750. Scope and records readiness affect the quote." : "Request a quote"}</small>
                 </div>
-                <Link className="text-link" href={serviceContactHref(name)} aria-label={`Discuss ${name}`}>Discuss ↗</Link>
+                <a className="text-link" href={catalogueWhatsAppHref(slug)} aria-label={`Discuss ${name}`} target="_blank" rel="noreferrer">Discuss ↗</a>
               </article>
             ))}
           </details>

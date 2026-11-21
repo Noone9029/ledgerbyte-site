@@ -35,19 +35,19 @@ test.describe("crawlable finance answers", () => {
     expect(await download.text()).toContain('"Simplified net VAT payable","—","2500"');
   });
 
-  test("home tax links distinguish return support from the four UAE tax workstreams", async ({ page }) => {
+  test("home tax links distinguish VAT return filing from the four UAE tax workstreams", async ({ page }) => {
     await page.goto("/");
-    const vatOffer = page.locator("#offers section").filter({ has: page.getByRole("heading", { name: "VAT Return Support", exact: true }) });
+    const vatOffer = page.locator("#offers section").filter({ has: page.getByRole("heading", { name: "VAT Return Filing", exact: true }) });
     await vatOffer.locator("summary").click();
-    await expect(vatOffer.getByRole("link", { name: /UAE VAT return preparation/ })).toHaveAttribute("href", "/uae-vat");
+    await expect(vatOffer.locator("details").getByRole("link", { name: /VAT return filing/i })).toHaveAttribute("href", "/uae-vat");
 
     const chooser = page.getByRole("link", { name: "UAE Tax & VAT", exact: true });
     await expect(chooser).toHaveAttribute("href", "/finance/services/tax-vat-compliance");
     await chooser.click();
     const section = page.locator(".accounting-prose section").filter({ has: page.getByRole("heading", { name: "Choose the workstream you need", exact: true }) });
     const destinations = {
-      "VAT preparation and review support": "/uae-vat",
-      "Corporate tax filing": "/finance/services/corporate-tax-filing",
+      "VAT return filing": "/uae-vat",
+      "Corporate tax return filing": "/finance/services/corporate-tax-filing",
       "VAT registration": "/finance/services/vat-registration",
       "Corporate tax registration": "/finance/services/corporate-tax-registration",
     };

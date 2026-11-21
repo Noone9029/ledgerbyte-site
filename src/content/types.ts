@@ -74,6 +74,7 @@ export interface TeamMember {
   name: string;
   role: string;
   credentials: string;
+  homepageCredentials?: string;
   description: string;
   image: string;
   source: string;

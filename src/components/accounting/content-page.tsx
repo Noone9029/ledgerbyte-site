@@ -8,15 +8,16 @@ import {
   accountingServices,
   contentPath,
   marketNames,
+  serviceEnquiryMarket,
   serviceJurisdiction,
   serviceContactHref,
   type AccountingPage,
 } from "@/content/accounting";
-import { team } from "@/content";
+import { founder, homeTeam, team } from "@/content";
 import { guideExamples, relatedInsights } from "@/content/insight-guides";
 import { insightsEnglishUrl } from "@/lib/review-links";
 import { filingOfferForPath } from "@/content/home-update";
-import { enquiryDimensions } from "@/lib/enquiry-options";
+import { enquiryDimensions, enquiryService, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { CashBridgeWorksheet, CashTimingSample, GuideCashChart, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import { WorkedExampleFigure } from "./worked-example-figure";
 import figureStyles from "./worked-example-figure.module.css";
@@ -43,6 +44,11 @@ export function CopyText({ text }: { text: string }) {
     <>
       {text.split(/(\[[^\]]+\]\((?:https?:\/\/|\/(?![\\/]))[^\s\\)]+\))/g).map((part, i) => {
         const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
+        if (link?.[2].startsWith("/contact?") && /^Discuss\b/i.test(link[1])) {
+          const { searchParams } = new URL(link[2], "https://ledgerbyte.io");
+          const href = serviceWhatsAppHref(enquiryService(searchParams.get("service")), searchParams.get("market") ?? "");
+          return <a key={i} href={href} target="_blank" rel="noreferrer">{link[1]}</a>;
+        }
         if (link?.[2].startsWith("/")) return <Link key={i} href={link[2]}>{link[1]}</Link>;
         return link ? (
           <a key={i} href={link[2]} target="_blank" rel="noreferrer">
@@ -59,15 +65,19 @@ export function EnquiryLink({
   label,
   service,
   market,
+  form = false,
 }: {
   label: string;
   service?: string;
   market?: string;
+  form?: boolean;
 }) {
   return (
     <Link
       className="button button-amber"
-      href={serviceContactHref(service, market)}
+      href={form ? serviceContactHref(service, market) : serviceWhatsAppHref(service, market)}
+      target={form ? undefined : "_blank"}
+      rel={form ? undefined : "noreferrer"}
     >
       {label}
       <ArrowUpRight aria-hidden="true" />
@@ -103,7 +113,7 @@ export function TeamGrid({ locale = "en", compact = false }: { locale?: "en" | "
   const roles: Record<string, string> = { "Managing Partner": "الشريك الإداري", "CTO": "المدير التقني", "Financial Controller": "المراقب المالي", "Fractional Controller": "المراقب المالي الجزئي", "Customer Success Manager": "مديرة نجاح العملاء", "Senior Tax Consultant": "مستشار ضرائب أول" };
   return (
     <div className={compact ? "accounting-team-grid accounting-team-roster" : "accounting-team-grid"}>
-      {team.map((person) => (
+      {(compact ? homeTeam : team).map((person) => (
         <article key={person.name}>
           <Link href={buildPersonPath(person.name)}>
             <div className="accounting-portrait">
@@ -117,6 +127,7 @@ export function TeamGrid({ locale = "en", compact = false }: { locale?: "en" | "
             </div>
             <h3>{person.name}</h3>
             {compact && <p>{person.role}</p>}
+            {compact && <small>{person.homepageCredentials ?? person.credentials}</small>}
           </Link>
           {!compact && <>
             <p>{locale === "ar" ? roles[person.role] || person.role : person.role}</p>
@@ -158,7 +169,6 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
   const example = guideExamples[pageKey];
   const profitGuide = pageKey === "insights/profit-and-cash";
   const hasNumberedSteps = page.sections.some(section => /^\d+\.\s/.test(section.heading));
-  const founder = pageKey === "about" ? team.find(person => person.name === "Haider Ali") : undefined;
   const filingOffer = filingOfferForPath(page.path);
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified;
   const service = accountingServices.find((item) => item.key === pageKey);
@@ -181,6 +191,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
         : "Accounting. Tax. Advisory.");
   const jurisdiction = filingOffer ? marketNames["regions/uae"] : serviceJurisdiction(service?.group);
   const market = marketNames[pageKey] ?? jurisdiction;
+  const enquiryLocation = market ?? serviceEnquiryMarket(service);
   const context = filingOffer?.name ?? service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
   const dimensions = enquiryDimensions(context ?? "", market ?? "");
   const serviceName = service?.title ?? filingOffer?.name;
@@ -263,7 +274,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               {service.output} <a className="text-link" href="#section-2">Monthly payroll processing support ↓</a>
             </p>}
             {example && <p className="guide-publisher">By <Link href="/about">{SITE_NAME}</Link></p>}
-            <EnquiryLink label={page.cta} service={context} market={pageKey === "services/payroll-wps" ? marketNames["regions/uae"] : market} />
+            <EnquiryLink label={page.cta} service={context} market={enquiryLocation} />
             {earlyContents && (
               <details className="accounting-toc-compact">
                 <summary>On this page</summary>
@@ -339,9 +350,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               <hr />
               <small><a href={example.url}>{example.reference}</a></small>
             </aside>
-          ) : founder ? (
+          ) : pageKey === "about" ? (
             <Link className={figureStyles.founder} href={buildPersonPath(founder.name)}>
-              <Image src="/team/haider-ali.jpg" alt="" width={747} height={770}
+              <Image src={founder.image} alt="" width={400} height={400}
                 sizes="(max-width: 600px) calc(100vw - 36px), (max-width: 900px) 60vw, 470px" />
               <div><span><strong>{founder.name}</strong><small>{founder.role} · {founder.credentials}</small></span><ArrowUpRight aria-hidden="true" /></div>
             </Link>
@@ -458,7 +469,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
         <section className="accounting-closing accounting-wrap">
           <p className="eyebrow">Get in touch</p>
           <h2>{closingHeading}</h2>
-          <EnquiryLink label={closingHeading === page.cta ? "Open enquiry form" : page.cta} service={context} market={market} />
+          <EnquiryLink label={closingHeading === page.cta ? "Open enquiry form" : page.cta} service={context} market={enquiryLocation} form={closingHeading === page.cta} />
         </section>
       </main>
     </>

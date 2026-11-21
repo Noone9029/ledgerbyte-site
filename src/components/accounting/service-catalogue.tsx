@@ -5,7 +5,8 @@ import { useEffect, useLayoutEffect, useRef, useSyncExternalStore, type ReactNod
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { ServiceFlashcards } from "./service-flashcards";
 import { useHydrated } from "@/lib/use-hydrated";
-import { accountingCopy, accountingGroups, accountingServices, accountingShowcaseServices, serviceContactHref } from "@/content/accounting";
+import { accountingCopy, accountingGroups, accountingServices, accountingShowcaseServices } from "@/content/accounting";
+import { serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { findServices } from "@/content/service-search";
 
 type CatalogueVisit = {
@@ -142,7 +143,7 @@ export function ServiceCatalogue({ children }: { children?: ReactNode }) {
                 <h3><Link href={href}>{title}</Link></h3>
                 <p>{scope}</p>
               </div>
-              <Link className="text-link" aria-label={`Discuss ${title}`} href={serviceContactHref(enquiry, market)}>Discuss ↗</Link>
+              <a className="text-link" aria-label={`Discuss ${title}`} href={serviceWhatsAppHref(enquiry, market)} target="_blank" rel="noreferrer">Discuss ↗</a>
             </li>
           ))}
         </ul>

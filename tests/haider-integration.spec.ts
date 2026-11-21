@@ -80,7 +80,7 @@ test("each worked example loads its own illustration at the example section", as
   }
 });
 
-test("homepage offers lead to scoped contact requests and the existing sliding cards remain available", async ({ page }) => {
+test("the AED 500 offer opens the team calculator and the homepage keeps its sliding cards", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(".accounting-home-hero h1")).toHaveText("Why hire one accountant when you can get a finance team?");
   await expect(page.locator(".accounting-home-hero")).toContainText("Why hire one accountant when you can get a finance team?");
@@ -89,26 +89,31 @@ test("homepage offers lead to scoped contact requests and the existing sliding c
   const offers = page.locator("#offers");
   await expect(offers.locator(".accounting-home-offer details[open]")).toHaveCount(0);
   await expect(offers.getByText("Monthly books and tax work, quoted separately from the team builder.")).toBeVisible();
-  const vat = offers.locator(".accounting-home-offer").filter({ has: page.getByRole("heading", { name: "VAT Return Support" }) });
+  const vat = offers.locator(".accounting-home-offer").filter({ has: page.getByRole("heading", { name: "VAT Return Filing", exact: true }) });
   await expect(vat.locator(".accounting-offer-price")).toContainText(/750\s*\/ return/);
-  await expect(vat.getByText("Standalone support for one UAE VAT return.")).toBeVisible();
+  await expect(vat.locator(".accounting-offer-fit")).toHaveText("Preparation and filing for one UAE VAT return.");
   const builder = offers.getByRole("complementary", { name: "Finance team builder" });
   await expect(builder).toContainText("From AED 500/month before tax for 15 hours, including bookkeeping, senior review and VAT filing.");
   await expect(builder.getByRole("link")).toHaveAttribute("href", "/build-your-finance-department");
   const example = page.getByRole("link", { name: "See the profit-to-cash example" });
   await expect(example).toHaveAttribute("href", "#worked-example");
   await expect(page.locator("#worked-example")).toContainText("Operating cash generated");
-  const clientReviews = page.getByRole("complementary", { name: "Client reviews" });
-  await expect(clientReviews.getByRole("link")).toHaveAttribute("href", /trustpilot\.com\/review\//);
-  await expect(clientReviews.getByText("AED 40,000", { exact: false })).toHaveCount(0);
   await expect(page.locator(".accounting-home-pillars > article")).toHaveCount(4);
   expect(await page.locator("#main-content > section").evaluateAll(sections => sections.map(section =>
     section.getAttribute("data-home-section") ?? (section.classList.contains("accounting-faq") ? "faq" : "unknown"),
-  ))).toEqual(["hero", "offers", "reviews", "finance-services", "catalogue", "process", "team", "guides", "faq", "contact"]);
+  ))).toEqual(["hero", "offers", "worked-example", "finance-services", "catalogue", "process", "team", "guides", "faq", "contact"]);
   await expect(page.locator(".accounting-home-process-steps > li")).toHaveCount(5);
   await expect(page.locator(".accounting-home-process-steps > li").last()).toBeVisible();
   await expect(page.locator(".accounting-featured [data-service-flashcards] > details")).toHaveCount(8);
-  await page.getByRole("link", { name: "Discuss SME support", exact: true }).click();
+  await offers.locator(".accounting-offer-price").first().click();
+  await expect(page).toHaveURL(/\/build-your-finance-department$/);
+  await expect(page.locator("#monthly-total")).toHaveText("500");
+  await expect(page.locator('a[href*="trustpilot.com"]')).toHaveCount(0);
+});
+
+test("a scoped enquiry form keeps the offer in its draft until the visitor selects another service", async ({ page }) => {
+  const query = new URLSearchParams({ service: "SME Accounting & Tax Management", market: "United Arab Emirates" });
+  await page.goto(`/contact?${query}#enquiry-heading`);
   const service = page.getByLabel("Support you need");
   await expect(service).toHaveValue("SME Accounting & Tax Management");
   await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
@@ -203,34 +208,78 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
       await search.fill(term);
       await expect(page.locator(".accounting-service-results h3 a").first()).toHaveAttribute("href", destination);
     }
-    await page.getByRole("link", { name: "Discuss VAT Return Support", exact: true }).click();
-    await expect(page.getByLabel("Support you need")).toHaveValue("VAT Return Support");
-    await expect(page.locator("form.accounting-contact-form")).toHaveAttribute("data-analytics-service", "tax-vat-compliance");
-    await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
-    await expect(page).toHaveURL(/#enquiry-heading$/);
+    const chat = new URL((await page.getByRole("link", { name: "Discuss VAT Return Filing", exact: true }).getAttribute("href"))!);
+    expect(chat.origin + chat.pathname).toBe("https://wa.me/971561371569");
+    expect(chat.searchParams.get("text")).toContain("VAT Return Filing");
+    expect(chat.searchParams.get("text")).toContain("United Arab Emirates");
   }
 });
 
-test("@nojs the UAE offer keeps its identity in the email and WhatsApp drafts", async ({ page }) => {
+test("@nojs the UAE offer links open the calculator and scoped WhatsApp drafts directly", async ({ page }) => {
+  await page.goto("/");
   for (const [cta, name, scope] of [
     ["Discuss SME support", "SME Accounting & Tax Management", "Monthly books and tax work"],
-    ["Discuss VAT return support", "VAT Return Support", "Standalone support"],
-    ["Discuss corporate tax", "UAE Corporate Tax Review & Filing", "Review and filing"],
+    ["File your VAT return now", "VAT Return Filing", "Preparation and filing for one UAE VAT return"],
+    ["File your corporate tax return now", "UAE Corporate Tax Return Filing", "Preparation and filing for the agreed corporate tax period."],
   ]) {
-    await page.goto("/");
-    await page.locator("#offers").getByRole("link", { name: cta, exact: true }).click();
-    const inline = page.locator('.accounting-contact-intro a[href*="wa.me"]');
-    const floating = page.locator("a.floating-whatsapp");
-    await expect(floating).toHaveCount(1);
-    const href = (await inline.getAttribute("href"))!;
-    await expect(floating).toHaveAttribute("href", href);
-    for (const draft of [href, (await page.locator(".accounting-form-panel noscript a").getAttribute("href"))!]) {
-      expect(decodeURIComponent(draft)).toContain(name);
-      expect(decodeURIComponent(draft)).toContain(scope);
-      expect(decodeURIComponent(draft)).toContain("United Arab Emirates");
-    }
+    const link = page.locator("#offers").getByRole("link", { name: cta, exact: true });
+    const chat = new URL((await link.getAttribute("href"))!);
+    expect(chat.origin + chat.pathname).toBe("https://wa.me/971561371569");
+    const draft = chat.searchParams.get("text");
+    expect(draft).toContain(name);
+    expect(draft).toContain(scope);
+    expect(draft).toContain("United Arab Emirates");
   }
+  await page.locator("#offers .accounting-offer-price").first().click();
+  await expect(page.locator("#monthly-total")).toHaveText("500");
 });
+
+for (const filing of [
+  {
+    name: "VAT Return Filing", previousNames: ["VAT Return Support"], heading: "UAE VAT Return Filing",
+    path: "/uae-vat", action: "File your VAT return now", price: /AED 750\s*\/ return/,
+  },
+  {
+    name: "UAE Corporate Tax Return Filing", previousNames: ["UAE Corporate Tax Review & Filing", "UAE Corporate Tax Filing"],
+    heading: "UAE Corporate Tax Return Filing", path: "/finance/services/corporate-tax-filing",
+    action: "File your corporate tax return now", price: /AED 750/,
+  },
+]) {
+  test(`@nojs mobile buyers can request ${filing.name} in WhatsApp`, async ({ page, context }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const offerLink = page.locator("#offers .accounting-offer-overview").filter({
+      has: page.getByRole("heading", { name: filing.name, exact: true }),
+    });
+    await offerLink.scrollIntoViewIfNeeded();
+    await offerLink.click();
+    await expect(page).toHaveURL(url => url.pathname === filing.path);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(filing.heading);
+    const lead = page.locator(".accounting-detail-hero .accounting-lead");
+    await expect(lead).toContainText(/approv/i);
+    await expect(lead).toContainText(/authoriz/i);
+    await expect(lead).toContainText(/(?:we|LedgerByte) (?:file|submit)/i);
+    await expect(page.locator(".accounting-detail-hero aside")).toContainText(filing.price);
+    const action = page.locator("main > section").last().getByRole("link", { name: filing.action, exact: true });
+    await context.route("https://wa.me/**", route => route.fulfill({ status: 200, contentType: "text/plain", body: "Test handoff" }));
+    const [popup] = await Promise.all([page.waitForEvent("popup"), action.click()]);
+    const chat = new URL(popup.url());
+    expect(chat.origin + chat.pathname).toBe("https://wa.me/971561371569");
+    expect(chat.searchParams.get("text")).toContain(filing.name);
+    expect(chat.searchParams.get("text")).toContain("United Arab Emirates");
+  });
+
+  test(`@nojs legacy enquiry URLs retain the ${filing.name} offer`, async ({ page }) => {
+    for (const service of filing.previousNames) {
+      const query = new URLSearchParams({ service, market: "United Arab Emirates" });
+      await page.goto(`/contact?${query}#enquiry-heading`);
+      await expect(page.getByLabel("Support you need")).toHaveValue(filing.name);
+      await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
+      const chat = new URL((await page.locator("a.floating-whatsapp").getAttribute("href"))!);
+      expect(chat.searchParams.get("text")).toContain(filing.name);
+    }
+  });
+}
 
 test("role-hour inputs stay tappable beside WhatsApp while scrolling", async ({ page }, info) => {
   test.skip(info.project.name !== "mobile-390", "Touch layout");
@@ -411,7 +460,7 @@ test("@nojs finance builder keeps a usable starting estimate and enquiry draft",
   expect(decodeURIComponent(href)).toContain("Work covered by these hours: Bookkeeping with VAT filing");
   expect(decodeURIComponent(href)).not.toContain("Requested work needing a quote");
   await expect(page.getByRole("link", { name: "Adjust role hours" })).toBeHidden();
-  await expect(page.getByRole("link", { name: "discuss your workload with LedgerByte" })).toHaveAttribute("href", "/contact");
+  await expect(page.getByRole("link", { name: "discuss your workload with LedgerByte" })).toHaveAttribute("href", floating.href);
 });
 
 test("@reduced finance builder remains operable with reduced motion", async ({ page }) => {

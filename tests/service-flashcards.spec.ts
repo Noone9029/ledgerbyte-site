@@ -1,4 +1,52 @@
 import { expect, test } from "@playwright/test";
+import accounting from "../src/content/accounting.json";
+
+test("@nojs all finance discussions open WhatsApp with the corresponding public service", async ({ page }) => {
+  test.setTimeout(100_000);
+  const number = "https://wa.me/971561371569";
+  let discussions = 0;
+  function checkDraft(href: string, topic: string) {
+    const draft = new URL(href);
+    expect(draft.origin + draft.pathname).toBe(number);
+    expect(draft.searchParams.get("text")).toContain(topic);
+    discussions++;
+  }
+  await page.goto("/");
+  const directory = page.locator("#all-services");
+  for (const item of await directory.locator("article").all()) {
+    checkDraft((await item.locator('a[aria-label^="Discuss"]').getAttribute("href"))!, await item.locator("h3").innerText());
+  }
+  expect(discussions).toBe(22);
+  for (const [label, topic] of [
+    ["Discuss accounting", "Accounting & Bookkeeping"],
+    ["Discuss tax", "Tax, VAT & Compliance"],
+    ["Discuss controller support", "Fractional Financial Controller"],
+    ["Discuss CFO support", "Fractional CFO & Finance Advisory"],
+    ["Discuss full finance support", "Full Finance Department Outsourcing"],
+  ]) {
+    const cta = page.getByRole("link", { name: label, exact: true });
+    checkDraft((await cta.getAttribute("href"))!, topic);
+  }
+  const tax = page.locator(".accounting-home-pillars article").filter({ hasText: "UAE Tax & VAT" });
+  await tax.locator("summary").click();
+  await expect(tax.getByRole("link", { name: "VAT return scope" })).toHaveAttribute("href", "/uae-vat");
+  await expect(tax.getByRole("link", { name: "Corporate tax return filing" })).toHaveAttribute("href", "/finance/services/corporate-tax-filing");
+  for (const { slug, title } of accounting.services) {
+    await page.goto(`/finance/services/${slug}`);
+    const cta = page.locator(".accounting-detail-hero a.button");
+    const href = (await cta.getAttribute("href"))!;
+    checkDraft(href, title);
+    if (slug === "payroll-wps-management") {
+      const links = page.locator("main a").filter({ hasText: "Discuss your payroll process" });
+      await expect(links).toHaveCount(3);
+      for (const link of await links.all()) await expect(link).toHaveAttribute("href", href);
+    }
+  }
+  await page.goto("/finance");
+  checkDraft((await page.getByRole("link", { name: "Discuss your requirements", exact: true }).getAttribute("href"))!, "accounting, tax or finance support");
+  await page.goto("/about/team/amir-ilyas");
+  checkDraft((await page.getByRole("link", { name: "Discuss this service" }).getAttribute("href"))!, "KSA VAT Services");
+});
 
 test("homepage flashcards keep the original eight services and work with hover or click", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
@@ -15,8 +63,10 @@ test("homepage flashcards keep the original eight services and work with hover o
   await second.locator("summary").click();
   await expect(second).toHaveAttribute("open", "");
   await expect(deck.locator("details[open]")).toHaveCount(1);
-  await expect(second.getByRole("link")).toHaveAttribute("href", "/finance/services/accounting-bookkeeping");
-  await second.getByRole("link").click();
+  await expect(second.getByRole("link", { name: /^Discuss/ })).toHaveAttribute("href", /^https:\/\/wa\.me\/971561371569\?text=.*Accounting%20%26%20Bookkeeping/);
+  const explore = second.getByRole("link", { name: /^Explore/ });
+  await expect(explore).toHaveAttribute("href", "/finance/services/accounting-bookkeeping");
+  await explore.click();
   await expect(page).toHaveURL(/\/finance\/services\/accounting-bookkeeping$/);
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
 });
@@ -32,7 +82,7 @@ test("the full catalogue stays searchable and keyboard focus wins over hover", a
   await expect(summaries.last()).toBeFocused();
   await page.keyboard.press("Space");
   await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounts-payable");
-  const link = deck.locator("details[open] a");
+  const link = deck.locator("details[open]").getByRole("link", { name: /^Explore/ });
   await link.focus();
   if ((page.viewportSize()?.width ?? 0) > 1100) {
     await summaries.first().hover();
@@ -84,7 +134,7 @@ test("returning twice keeps a category card open under a stationary pointer", as
   await category.selectOption("Reporting & Advisory");
   const card = page.locator('[data-service-slug="fractional-cfo-advisory"]');
   await card.locator("summary").click();
-  const result = card.getByRole("link");
+  const result = card.getByRole("link", { name: /^Explore/ });
   await result.click();
   for (let visit = 0; visit < 2; visit++) {
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Finance leadership");
@@ -125,12 +175,14 @@ test("@nojs native flashcards remain expandable and retain all service routes", 
   const deck = page.locator(".accounting-featured [data-service-flashcards]");
   await deck.locator("summary").nth(1).click();
   await expect(deck.locator("details[open]")).toHaveAttribute("data-service-slug", "accounting-bookkeeping");
-  await deck.locator("details[open] a").click();
+  await deck.locator("details[open]").getByRole("link", { name: /^Explore/ }).click();
   await expect(page).toHaveURL(/\/finance\/services\/accounting-bookkeeping$/);
   await page.goto("/finance/services");
   await expect(page.locator("[data-service-card]")).toHaveCount(22);
   const last = page.locator("[data-service-card]").last();
   await last.locator("summary").click();
-  await expect(last.getByRole("link")).toHaveAttribute("href", "/finance/services/zatca-filing");
-  await expect(last.getByRole("link")).toBeVisible();
+  const explore = last.getByRole("link", { name: /^Explore/ });
+  await expect(explore).toHaveAttribute("href", "/finance/services/zatca-filing");
+  await expect(explore).toBeVisible();
+  await expect(last.getByRole("link", { name: /^Discuss/ })).toHaveAttribute("href", /^https:\/\/wa\.me\/971561371569\?text=.*ZATCA%20Filing%20Support.*Saudi%20Arabia/);
 });

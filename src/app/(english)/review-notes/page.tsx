@@ -17,18 +17,6 @@ export default function ReviewNotes() {
           pages. These owner decisions remain open before launch.
         </p>
         <ul className="accounting-review-list">
-          <li>
-            Confirm the final accounting-site roster. Existing Amir and Ahmad
-            profiles remain pending that decision.
-          </li>
-          <li>
-            Supply the selected LinkedIn portrait for Haider. The prior portrait
-            remains until the approved replacement is available.
-          </li>
-          <li>
-            Supply the official Trustpilot embed configuration. The profile link
-            is used without invented reviews, stars or counts.
-          </li>
           <li>Confirm the official phone and WhatsApp number.</li>
           <li>
             Confirm the new service and guide paths.

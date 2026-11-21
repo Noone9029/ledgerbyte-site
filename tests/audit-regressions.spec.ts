@@ -198,7 +198,7 @@ test("pending enquiries lock the submitted fields and release them after the res
   await expect(page.locator(".accounting-form-feedback")).toHaveCount(0);
 });
 
-test("guide and market enquiry actions carry editable finance context", async ({ page }) => {
+test("guide and market discussions open scoped WhatsApp drafts and the enquiry form stays editable", async ({ page }) => {
   const service = page.getByLabel("Support you need");
   const location = page.getByLabel("Business location");
   for (const [route, label, expectedService, expectedMarket] of [
@@ -214,13 +214,21 @@ test("guide and market enquiry actions carry editable finance context", async ({
     await page.goto(route);
     const hero = page.locator(".accounting-detail-hero").getByRole("link", { name: label, exact: true });
     const target = await hero.getAttribute("href");
-    await expect(page.locator(".accounting-closing .button")).toHaveAttribute("href", target!);
-    await hero.click();
-    await expect(service).toHaveValue(expectedService);
-    await expect(location).toHaveValue(expectedMarket);
-    await expect(service).toBeEnabled();
-    await expect(location).toBeEditable();
+    const destination = new URL(target!);
+    expect(destination.origin + destination.pathname).toBe("https://wa.me/971561371569");
+    if (expectedService) expect(destination.searchParams.get("text")).toContain(expectedService);
+    if (expectedMarket) expect(destination.searchParams.get("text")).toContain(expectedMarket);
+    const closing = page.locator(".accounting-closing .button");
+    if ((await closing.innerText()).includes("Open enquiry form")) {
+      const form = new URL((await closing.getAttribute("href"))!, page.url());
+      expect(form.pathname + form.hash).toBe("/contact#enquiry-heading");
+      expect(form.searchParams.get("service") ?? "").toBe(expectedService);
+      expect(form.searchParams.get("market") ?? "").toBe(expectedMarket);
+    } else {
+      await expect(closing).toHaveAttribute("href", target!);
+    }
   }
+  await page.goto("/contact?market=Saudi%20Arabia#enquiry-heading");
   const whatsapp = page.locator('.accounting-contact-intro a[href*="wa.me"]');
   await expect(whatsapp).toHaveAttribute("href", /Saudi%20Arabia/);
   await service.selectOption("KSA VAT Services");
