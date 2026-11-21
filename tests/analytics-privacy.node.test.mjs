@@ -13,7 +13,7 @@ function environment(pathname = "/contact") {
   const exports = {};
   const serviceIds = JSON.parse(readFileSync(new URL("../src/content/service-identifiers.json", import.meta.url), "utf8"));
   runInNewContext(code, { exports, require: () => ({ default: serviceIds }), window, document, location: { pathname, hostname: "ledgerbyte.io", protocol: "https:", search: "?email=private@example.com" }, URL, URLSearchParams });
-  return { api: exports, jar, events, window };
+  return { api: exports, jar, events, window, document };
 }
 
 test("events require an explicit consent even when a tag function exists", () => {
@@ -34,6 +34,19 @@ test("unknown paths and referrer queries cannot expose user input", () => {
   assert.equal(api.analyticsReferrer("https://example.org/private?q=person@example.com#secret"), "https://example.org");
   assert.equal(api.analyticsReferrer("https://blog.ledgerbyte.io/private?q=secret"), "");
   assert.equal(api.analyticsReferrer("javascript:alert(1)"), "");
+});
+
+test("contact events include only recognized market and service selections", () => {
+  const { api, jar, events, document } = environment();
+  jar.set("ledgerbyte-analytics-consent", "granted");
+  api.configureAnalytics(true, ["/contact"]);
+  const dataset = { analyticsMarket: "united-states", analyticsService: "accounting-bookkeeping" };
+  document.querySelector = (selector) => selector === "main form.accounting-contact-form" ? { dataset } : null;
+  api.trackEvent("generate_lead", { method: "email" });
+  assert.deepEqual(events[0][2], { page_path: "/contact", locale: "en", market: "us", service_slug: "accounting-bookkeeping", method: "email" });
+  dataset.analyticsMarket = dataset.analyticsService = "person@example.com";
+  api.trackEvent("contact_whatsapp");
+  assert.deepEqual(events[1][2], { page_path: "/contact", locale: "en" });
 });
 test("AI referrals identify a known source without conversation paths or arbitrary subdomains", () => {
   const { api, jar, events } = environment(); jar.set("ledgerbyte-analytics-consent", "granted"); api.configureAnalytics(true, ["/contact"]);

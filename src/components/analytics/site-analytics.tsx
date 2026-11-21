@@ -77,8 +77,9 @@ export function SiteAnalytics({ allowedPaths = [] }: { allowedPaths?: string[] }
     const path = safeAnalyticsPath(pathname, allowedPaths), key = `${location.hostname}${path}`;
     if (lastPage.current === key) return;
     lastPage.current = key;
-    const fields = { page_location: `https://${location.hostname}${path}`, page_path: path, page_title: path === "/404" ? "Page not found" : `LedgerByte ${path}`, page_referrer: analyticsReferrer(document.referrer), ...safePageDimensions(path) };
-    window.gtag?.("set", fields); window.gtag?.("event", "page_view", fields);
+    const fields = { page_location: `https://${location.hostname}${path}`, page_path: path, page_title: path === "/404" ? "Page not found" : `LedgerByte ${path}`, page_referrer: analyticsReferrer(document.referrer) };
+    window.gtag?.("set", fields);
+    window.gtag?.("event", "page_view", { ...fields, ...safePageDimensions(path) });
     const alreadyRecorded = document.cookie.split("; ").some((part) => part.startsWith("ledgerbyte-ai-referral="));
     const newReferral = !alreadyRecorded && classifyAiReferrer(document.referrer, location.search) && trackEvent("ai_referral_session");
     if (alreadyRecorded || newReferral) writePreference("ledgerbyte-ai-referral", "recorded", 1800);

@@ -176,7 +176,11 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
       : pageKey.startsWith("insights/")
         ? "Insights"
         : "Accounting. Tax. Advisory.");
-  const market = marketNames[pageKey];
+  const jurisdiction = filingOffer ? "United Arab Emirates" : ({
+    "UAE Tax & Formation": "United Arab Emirates",
+    "Saudi Arabia": "Saudi Arabia",
+  } as Record<string, string>)[service?.group ?? ""];
+  const market = marketNames[pageKey] ?? jurisdiction;
   const context = service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
   const serviceName = service?.title ?? filingOffer?.name;
   const mainEntity = serviceName ? absoluteUrl(page.path) + "#service"
@@ -213,10 +217,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                   name: serviceName,
                   description: page.intro,
                   offer: filingOffer,
-                  jurisdiction: filingOffer ? "United Arab Emirates" : ({
-                    "UAE Tax & Formation": "United Arab Emirates",
-                    "Saudi Arabia": "Saudi Arabia",
-                  } as Record<string, string>)[service?.group ?? ""],
+                  jurisdiction,
                 }),
               ]
             : []),

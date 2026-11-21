@@ -208,6 +208,7 @@ test("guide and market enquiry actions carry editable finance context", async ({
     ["/regions/uae", "Discuss your UAE business", "Accounting & Bookkeeping", "United Arab Emirates"],
     ["/regions/united-states", "Discuss your US bookkeeping needs", "Accounting & Bookkeeping", "United States"],
     ["/regions/pakistan", "Discuss your Pakistan finance needs", "Accounting & Bookkeeping", "Pakistan"],
+    ["/finance/services/ksa-vat", "Discuss your Saudi VAT requirements", "KSA VAT Services", "Saudi Arabia"],
     ["/regions/saudi-arabia", "Discuss your Saudi finance needs", "", "Saudi Arabia"],
   ]) {
     await page.goto(route);
@@ -231,6 +232,9 @@ test("guide and market enquiry actions carry editable finance context", async ({
   await page.goto("/contact?market=MadeUpMarket&service=MadeUpService");
   await expect(location).toHaveValue("");
   await expect(service).toHaveValue("");
+  await page.goto("/contact?service=financial-reporting-mis&market=Pakistan#enquiry-heading");
+  await expect(service).toHaveValue("Financial Reporting & MIS");
+  await expect(location).toHaveValue("Pakistan");
 });
 
 test("accepted enquiries cannot be resent unchanged", async ({ page }) => {

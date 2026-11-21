@@ -19,6 +19,20 @@ export function selectedOffer(service: string) {
   return homeUpdate.offers.find(offer => offer.name === service);
 }
 
+export function enquiryService(value: unknown) {
+  if (typeof value !== "string") return "";
+  if (financeEnquiryChoices.includes(value)) return value;
+  return accountingServices.find((item) => item.slug === value)?.title ?? "";
+}
+
+export function enquiryDimensions(service: string, market: string) {
+  const title = selectedOffer(service)?.service ?? service;
+  return {
+    service: accountingServices.find((item) => item.title === title)?.slug,
+    market: Object.entries(marketNames).find(([, name]) => name === market)?.[0].split("/")[1],
+  };
+}
+
 function enquiryDraft(service: string, market: string) {
   let message = accountingCopy.C08.whatsapp_generic_text;
   if (financeEnquiryChoices.includes(service)) {

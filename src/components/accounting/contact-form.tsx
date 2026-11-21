@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import arabicDrafts from "@/content/seo-drafts/contact-ar-ui.json";
-import { enquiryMarket, financeEnquiryChoices, selectedOffer, serviceEmailHref, serviceWhatsAppHref } from "@/lib/enquiry-options";
+import { enquiryDimensions, enquiryMarket, financeEnquiryChoices, selectedOffer, serviceEmailHref, serviceWhatsAppHref } from "@/lib/enquiry-options";
 import { useEnquiryService } from "./enquiry-channels";
 import { trackEvent } from "@/lib/analytics";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -23,6 +23,7 @@ export function AccountingContactForm({
   initialService: string; initialMarket?: string; locale?: "en" | "ar";
 }) {
   const selection = useEnquiryService();
+  const dimensions = enquiryDimensions(selection?.service ?? initialService, selection?.market ?? initialMarket);
   const offer = selectedOffer(selection?.service ?? initialService);
   const enhanced = useHydrated();
   const [fallbackService, setFallbackService] = useState(initialService);
@@ -109,6 +110,8 @@ export function AccountingContactForm({
     <>
       <form
         className="accounting-contact-form"
+        data-analytics-market={dimensions.market}
+        data-analytics-service={dimensions.service}
         hidden={!enhanced}
         method="post"
         action="/api/contact"

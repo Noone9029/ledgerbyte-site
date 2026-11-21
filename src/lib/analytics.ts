@@ -52,7 +52,8 @@ export function classifyAiReferrer(referrer: string, search = "") {
 }
 export function safePageDimensions(path: string) {
   const fields: Parameters = { locale: path === "/ar" || path.startsWith("/ar/") ? "ar" : "en" };
-  const context = typeof document.querySelector === "function" ? document.querySelector<HTMLElement>("main[data-analytics-market],main[data-analytics-service]")?.dataset : undefined;
+  const selector = path === "/contact" ? "main form.accounting-contact-form" : "main[data-analytics-market],main[data-analytics-service]";
+  const context = typeof document.querySelector === "function" ? document.querySelector<HTMLElement>(selector)?.dataset : undefined;
   const market = path.match(/\/regions\/(uae|saudi-arabia|united-states|pakistan)(?:\/|$)/)?.[1] || (path !== "/404" ? context?.analyticsMarket : undefined);
   if (market && ["uae", "saudi-arabia", "united-states", "us", "pakistan", "all"].includes(market)) fields.market = market === "united-states" ? "us" : market;
   const service = path.match(/\/finance\/services\/([a-z-]+)$/)?.[1] || (path !== "/404" ? context?.analyticsService : undefined);

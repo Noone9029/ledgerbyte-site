@@ -2,7 +2,7 @@ import { AccountingContactForm } from "@/components/accounting/contact-form";
 import { StructuredData } from "@/components/structured-data";
 import { buildSchemaGraph, buildWebPageSchema, ORGANIZATION_ID } from "@/lib/schema";
 import { EnquiryChannels, EnquiryEmail, EnquiryWhatsApp } from "@/components/accounting/enquiry-channels";
-import { enquiryMarket, financeEnquiryChoices } from "@/lib/enquiry-options";
+import { enquiryMarket, enquiryService } from "@/lib/enquiry-options";
 import {
   accountingContact,
   accountingCopy,
@@ -19,7 +19,7 @@ export const metadata = createPageMetadata(getPageSeo("/contact"), { path: "/con
 export default async function ContactPage({ searchParams }: ContactProps) {
   const { service: value, market: selectedMarket } = await searchParams;
   const market = enquiryMarket(selectedMarket);
-  const service = typeof value === "string" && financeEnquiryChoices.includes(value) ? value : "";
+  const service = enquiryService(value);
   return (
     <main id="main-content" className="accounting-page">
       <StructuredData data={buildSchemaGraph({
