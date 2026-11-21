@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { StructuredData } from "@/components/structured-data";
+import { buildCollectionSchema } from "@/lib/schema";
 import {
   accountingCopy,
   accountingPages,
@@ -6,19 +8,18 @@ import {
   marketKeys,
   marketNames,
 } from "@/content/accounting";
-import { createMetadata } from "@/lib/seo";
-export const metadata = createMetadata({
-  path: "/regions",
-  title: "Markets | LedgerByte",
-  description: accountingCopy.C10.market_index_intro,
-});
+import { getPageSeo } from "@/content/seo";
+import { createPageMetadata } from "@/lib/seo";
+export const metadata = createPageMetadata(getPageSeo("/regions"), { path: "/regions" });
 export default function MarketsPage() {
   return (
     <main id="main-content" className="accounting-page">
+      <StructuredData data={buildCollectionSchema("/regions",
+        marketKeys.map(key => ({ name: marketNames[key], path: contentPath(key) })))} />
       <section className="accounting-index-hero accounting-wrap">
         <p className="eyebrow">Markets</p>
         <h1>{accountingCopy.C10.market_index_heading}</h1>
-        <p className="accounting-lead">
+        <p className="accounting-lead" data-aeo-answer>
           {accountingCopy.C10.market_index_intro}
         </p>
       </section>

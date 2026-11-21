@@ -12,7 +12,8 @@ import {
   type AccountingPage,
 } from "@/content/accounting";
 import { team } from "@/content";
-import { guideExamples } from "@/content/insight-guides";
+import { guideExamples, relatedInsights } from "@/content/insight-guides";
+import { insightsEnglishUrl } from "@/lib/review-links";
 import { homeUpdate } from "@/content/home-update";
 import { CashBridgeWorksheet, CashTimingSample, GuideCashChart, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import { WorkedExampleFigure } from "./worked-example-figure";
@@ -149,13 +150,14 @@ function ExampleIllustrationLink({ pageKey, href, label }: { pageKey: string; hr
 
 export function ContentPage({ pageKey }: { pageKey: string }) {
   const page = accountingPages[pageKey];
+  const articles = relatedInsights.filter((article) => article.pages.includes(pageKey));
   const sample = serviceSamples[pageKey];
   const example = guideExamples[pageKey];
   const profitGuide = pageKey === "insights/profit-and-cash";
   const hasNumberedSteps = page.sections.some(section => /^\d+\.\s/.test(section.heading));
   const founder = pageKey === "about" ? team.find(person => person.name === "Haider Ali") : undefined;
   const filingOffer = homeUpdate.offers.find(offer => offer.href === page.path && offer.service !== "Accounting & Bookkeeping");
-  const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified ?? "2026-11-10";
+  const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified;
   const service = accountingServices.find((item) => item.key === pageKey);
   const earlyContents = Boolean(service) || pageKey.startsWith("insights/");
   const contentsLinks = page.sections.map((section, i) => (
@@ -176,6 +178,10 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
         : "Accounting. Tax. Advisory.");
   const market = marketNames[pageKey];
   const context = service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
+  const serviceName = service?.title ?? filingOffer?.name;
+  const mainEntity = serviceName ? absoluteUrl(page.path) + "#service"
+    : example ? absoluteUrl(page.path) + "#article"
+    : pageKey === "about" ? ORGANIZATION_ID : undefined;
   const closingHeading = page.cardStrapline || page.cta;
   const breadcrumbs = [{ name: "LedgerByte", path: "/" }];
   if (service) breadcrumbs.push({ name: "Services", path: "/finance/services" });
@@ -189,24 +195,28 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
     <>
       <StructuredData
         data={buildSchemaGraph(
-          buildWebPageSchema({
+          { ...buildWebPageSchema({
             path: page.path,
             name: page.title,
             description: page.description,
             dateModified,
+            type: pageKey === "about" ? "AboutPage" : "WebPage",
           }),
+            ...(mainEntity ? { mainEntity: { "@id": mainEntity } } : {}),
+            ...(market ? { spatialCoverage: { "@type": "Country", name: market } } : {}),
+          },
           buildBreadcrumbSchema(breadcrumbs),
-          ...(service
+          ...(serviceName
             ? [
                 buildServiceSchema({
                   path: page.path,
-                  name: service.title,
+                  name: serviceName,
                   description: page.intro,
-                  serviceType: service.title,
-                  jurisdiction: ({
+                  offer: filingOffer,
+                  jurisdiction: filingOffer ? "United Arab Emirates" : ({
                     "UAE Tax & Formation": "United Arab Emirates",
                     "Saudi Arabia": "Saudi Arabia",
-                  } as Record<string, string>)[service.group],
+                  } as Record<string, string>)[service?.group ?? ""],
                 }),
               ]
             : []),
@@ -217,6 +227,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             headline: page.heading,
             description: page.description,
             inLanguage: "en",
+            url: absoluteUrl(page.path),
+            image: absoluteUrl(`/art/examples/${example.artwork}.webp`),
+            author: { "@id": ORGANIZATION_ID, "@type": "Organization", name: SITE_NAME, url: absoluteUrl("/") },
             publisher: { "@id": ORGANIZATION_ID, "@type": "Organization", name: SITE_NAME },
             dateModified,
             citation: example.url,
@@ -243,7 +256,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <p className="eyebrow">{page.eyebrow ?? group}</p>
             <h1>{page.heading}</h1>
             <p className="accounting-lead">{page.intro}</p>
-            {example && <p className="guide-publisher">Published by <Link href="/about">{SITE_NAME}</Link></p>}
+            {example && <p className="guide-publisher">By <Link href="/about">{SITE_NAME}</Link></p>}
             <EnquiryLink label={page.cta} service={context} market={market} />
             {earlyContents && (
               <details className="accounting-toc-compact">
@@ -404,7 +417,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           </div>
         </div>
         <Faqs items={page.faqs} />
-        {page.related.length > 0 && (
+        {(page.related.length > 0 || articles.length > 0) && (
           <section className="accounting-related accounting-wrap">
             <p className="eyebrow">Related services and guides</p>
             <div>
@@ -416,6 +429,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                   {link.label}
                   <ArrowUpRight aria-hidden="true" />
                 </Link>
+              ))}
+              {articles.map((article) => (
+                <a key={article.slug} href={`${insightsEnglishUrl()}/${article.slug}`}>{article.title}<ArrowUpRight aria-hidden="true" /></a>
               ))}
             </div>
           </section>

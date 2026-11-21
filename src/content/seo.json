@@ -1,29 +1,29 @@
 {
   "pages": {
     "/": {
-      "title": "Accounting, Tax & Finance Leadership | LedgerByte",
-      "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
+      "title": "Accounting, Tax & Fractional CFO Services | LedgerByte",
+      "description": "Explore Sharjah-based accounting, tax and fractional CFO services for SMEs. Compare UAE bookkeeping, Saudi tax support and the monthly cost of a finance team.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Owner-approved homepage and revised monthly SME offer"
     },
     "/build-your-finance-department": {
-      "title": "Build your finance department | LedgerByte",
-      "description": "Build a LedgerByte finance team with senior review, a named lead and a clear monthly estimate.",
+      "title": "UAE Finance Team Cost Calculator | LedgerByte",
+      "description": "Estimate the monthly cost of a UAE finance team. AED 500 before tax covers 15 hours for bookkeeping, senior review and VAT filing.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Owner-approved finance department builder"
     },
     "/finance": {
-      "title": "Accounting. Tax. Advisory.",
-      "description": "Accounting operations, finance leadership, UAE and Saudi tax support, company formation and audit coordination for startups and SMEs. Connect the work your business needs through a clearly defined scope.",
+      "title": "Outsourced Accounting & Finance Support for SMEs | LedgerByte",
+      "description": "Compare bookkeeping, controller oversight and outsourced finance support. Find the right level of help for your records, reporting and business decisions.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/finance/services": {
-      "title": "Accounting, tax & advisory. Choose the support you need.",
-      "description": "Explore 22 services across finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
+      "title": "Accounting, Tax & Advisory Service Directory | LedgerByte",
+      "description": "Browse 22 accounting, tax and advisory services across finance operations, reporting, UAE tax and formation, audit coordination and Saudi business support.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
@@ -31,22 +31,22 @@
     "/about": {
       "title": "About Our Accounting, Tax & Advisory Team | LedgerByte",
       "description": "Meet LedgerByte's accounting, reporting, tax and client-success team. Learn about the firm's origins and its practical approach to business finance.",
-      "image": "/art/finance-editorial-v3.webp",
+      "image": "/team/studio/haider-ali.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/contact": {
-      "title": "Let’s talk accounting, tax & finance.",
-      "description": "Tell us about your accounting, tax, audit, company formation or finance leadership needs.",
+      "title": "Contact LedgerByte for Accounting & Tax Support",
+      "description": "Contact the Sharjah team about bookkeeping, tax support, financial reporting or a fractional CFO. Discuss your accounting needs by email or WhatsApp.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/privacy-policy": {
       "title": "Privacy Policy",
-      "description": "This page explains, in plain language, how LedgerByte handles contact information, basic website usage data, and communication requests submitted through the site.",
+      "description": "Learn how LedgerByte handles contact information, optional analytics and communication requests submitted through its website.",
       "image": "/art/corporate-editorial-v3.webp",
-      "lastModified": "2026-07-27",
+      "lastModified": "2026-11-17",
       "source": "rendered-text/ledgerbyte.io/privacy-policy.txt"
     },
     "/terms-of-use": {
@@ -57,66 +57,66 @@
       "source": "rendered-text/ledgerbyte.io/terms-of-use.txt"
     },
     "/finance/services/accounting-bookkeeping": {
-      "title": "Accounting & Bookkeeping Services | LedgerByte",
-      "description": "Keep transactions, reconciliations and month-end records connected. Explore LedgerByte bookkeeping, backlog cleanup and close-pack support.",
-      "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "title": "Accounting & Bookkeeping | LedgerByte",
+      "description": "Bring order to day-to-day transactions, reconciliations and the monthly close, with a record of what is complete and what needs your attention.",
+      "image": "/art/finance-operations-editorial-v3.webp",
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/accounting-automation-systems": {
-      "title": "Accounting Systems & Automation | LedgerByte",
-      "description": "Improve your chart of accounts, transaction workflows and accounting controls. Explore setup, migration checks, testing and team handover.",
-      "image": "/art/finance-editorial-v3.webp",
+      "title": "Accounting Automation Services in the UAE | LedgerByte",
+      "description": "Set up accounting workflows for posting, approvals and reconciliations. LedgerByte’s Sharjah team helps UAE businesses test the controls and hand them over.",
+      "image": "/art/finance-accounting-automation-editorial-v4.webp",
       "lastModified": "2026-11-20",
-      "source": "Haider November 10 replacement content"
+      "source": "Search intent and service scope from the LedgerByte UAE, bookkeeping, management reporting and finance leadership pages, revised 2026-11-20"
     },
     "/finance/services/financial-reporting-mis": {
-      "title": "Financial Reporting & MIS Services | LedgerByte",
-      "description": "Connect management accounts, KPIs and variance analysis to business decisions. Explore LedgerByte reporting packs and management review support.",
-      "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "title": "Management Reporting Services & MIS Packs | LedgerByte",
+      "description": "Connect monthly management accounts, cash and KPIs in one reporting pack. LedgerByte’s Sharjah team offers management reporting for Dubai and other UAE businesses.",
+      "image": "/art/finance-reporting-mis-editorial-v4.webp",
+      "lastModified": "2026-11-20",
+      "source": "Search intent and service scope from the LedgerByte UAE, bookkeeping, management reporting and finance leadership pages, revised 2026-11-20"
     },
     "/finance/services/budgeting-forecasting": {
-      "title": "Budgeting & Forecasting Services | LedgerByte",
-      "description": "Build a driver-based budget, rolling forecast and useful scenarios. Explore financial planning with documented assumptions and actual-versus-plan reviews.",
-      "image": "/art/finance-editorial-v3.webp",
+      "title": "Budgeting & Forecasting | LedgerByte",
+      "description": "Build a practical financial plan around the drivers of your business, then keep it useful as actual results and expectations change.",
+      "image": "/art/finance-budgeting-forecasting-editorial-v4.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/payroll-wps-management": {
-      "title": "Payroll & UAE WPS Preparation | LedgerByte",
-      "description": "Prepare payroll calculations, payslips, variance checks and applicable UAE WPS files, with a clear review pack for your authorized payroll team.",
-      "image": "/art/finance-editorial-v3.webp",
+      "title": "Payroll & WPS Management | LedgerByte",
+      "description": "Prepare payroll inputs, calculations and supporting schedules so your authorized team can review the pay run with clarity.",
+      "image": "/art/finance-payroll-wps-editorial-v4.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/tax-vat-compliance": {
-      "title": "UAE VAT & Corporate Tax Support | LedgerByte",
-      "description": "Explore UAE corporate tax filing, VAT return support, VAT registration and corporate tax registration, with separate records and approval responsibilities.",
-      "image": "/art/finance-editorial-v3.webp",
+      "title": "Tax, VAT & Compliance | LedgerByte",
+      "description": "Choose UAE VAT filing support, corporate tax filing, VAT registration or corporate tax registration, with distinct deliverables and approval responsibilities.",
+      "image": "/art/finance-compliance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/cash-flow-working-capital": {
-      "title": "Cash Flow & Working Capital Support | LedgerByte",
-      "description": "Build a dated view of receipts, payments and cash needs. Explore short-term cash forecasting, receivables review and working-capital analysis.",
-      "image": "/art/finance-editorial-v3.webp",
+      "title": "Cash Flow & Working Capital | LedgerByte",
+      "description": "Bring expected receipts, supplier commitments and operating outflows into one practical view for short-term planning.",
+      "image": "/art/finance-cash-flow-editorial-v4.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/fractional-cfo-advisory": {
-      "title": "Fractional CFO & Finance Advisory | LedgerByte",
-      "description": "Explore fractional CFO support for finance strategy, FP&A, board reporting, fundraising financial preparation and data-room readiness, with clear scope.",
-      "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "title": "Fractional CFO Services for UAE Businesses | LedgerByte",
+      "description": "Fractional CFO support for Dubai and other UAE businesses, delivered from Sharjah. Review cash flow, budgets and funding decisions with an agreed action plan.",
+      "image": "/art/finance-advisory-editorial-v3.webp",
+      "lastModified": "2026-11-20",
+      "source": "Search intent and service scope from the LedgerByte UAE, bookkeeping, management reporting and finance leadership pages, revised 2026-11-20"
     },
     "/uae-vat": {
       "title": "UAE VAT Return Preparation & Records Support | LedgerByte",
       "description": "Prepare for a UAE VAT return with reconciled sales and purchase records, clear treatment questions and an agreed review and submission handover.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/regions/uae": {
@@ -130,34 +130,34 @@
       "title": "Bookkeeping & Finance Support for US Businesses | LedgerByte",
       "description": "Discuss bookkeeping, monthly management reports and finance planning for US business needs, with an organized handover to your US tax adviser.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/regions/pakistan": {
       "title": "Pakistan Bookkeeping & Finance Support | LedgerByte",
       "description": "Discuss bookkeeping, management reporting and cash planning for Pakistan business needs, with supporting schedules for local tax and company advisers.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/insights/month-end-close": {
       "title": "Month-End Close Checklist for Small Businesses | LedgerByte",
       "description": "A practical month-end close checklist covering records, reconciliations, adjustments and review, with a worked prepayment example and open-items template.",
-      "image": "/art/finance-editorial-v3.webp",
+      "image": "/art/examples/insurance-prepayment.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/insights/profit-and-cash": {
       "title": "Profit vs Cash Flow: A Worked Example | LedgerByte",
       "description": "Understand how receivables, supplier payments, equipment and loans affect cash, with a worked profit-to-cash example and a practical forecast checklist.",
-      "image": "/art/finance-editorial-v3.webp",
+      "image": "/art/examples/profit-to-cash.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/insights/vat-records": {
       "title": "UAE VAT Records Checklist & Worked Example | LedgerByte",
       "description": "Build a UAE VAT preparation pack with sales, purchase and import records, reconciliation checks and a clearly explained hypothetical VAT calculation.",
-      "image": "/art/finance-editorial-v3.webp",
+      "image": "/art/examples/vat-reconciliation.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
@@ -169,145 +169,187 @@
       "source": "Haider November 10 replacement content"
     },
     "/finance/services/corporate-tax-filing": {
-      "title": "UAE Corporate Tax Filing Services | LedgerByte",
-      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process. Discuss filing with LedgerByte.",
+      "title": "UAE Corporate Tax Filing | LedgerByte",
+      "description": "Prepare the corporate tax computation, return data and supporting records for the relevant UAE tax period.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/vat-registration": {
-      "title": "UAE VAT Registration Services | LedgerByte",
-      "description": "Check your UAE VAT registration position and prepare a supported application. LedgerByte helps organize turnover evidence, documents and next steps.",
+      "title": "UAE VAT Registration | LedgerByte",
+      "description": "Review the VAT registration position and organize the application evidence for the relevant UAE entity.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/corporate-tax-registration": {
       "title": "UAE Corporate Tax Registration | LedgerByte",
-      "description": "Prepare your UAE corporate tax registration with clear entity details, supporting documents and a practical handover. Speak with LedgerByte.",
+      "description": "Identify the corporate tax registration requirements and prepare entity information for the UAE application process.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/uae-company-formation": {
-      "title": "UAE Company Formation Support | LedgerByte",
-      "description": "Compare mainland and free-zone setup requirements, organize your company documents and plan accounting and tax handover with LedgerByte.",
+      "title": "UAE Company Formation | LedgerByte",
+      "description": "Compare the practical requirements for a UAE mainland or free-zone setup and coordinate the agreed formation steps.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/internal-audit": {
-      "title": "Internal Audit & Controls Review | LedgerByte",
-      "description": "Review financial processes, test key controls and turn findings into clear corrective actions. Explore LedgerByte internal audit support.",
+      "title": "Internal Audit | LedgerByte",
+      "description": "Review agreed business processes and controls with evidence, practical findings and a tracked management response.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/external-audit": {
-      "title": "External Audit Coordination & Readiness | LedgerByte",
-      "description": "Prepare your accounts and schedules for an independent external audit. LedgerByte coordinates readiness and requests with your appointed audit firm.",
+      "title": "External Audit Coordination | LedgerByte",
+      "description": "Prepare for and coordinate an external audit, with the statutory audit performed by an appropriately licensed independent local audit firm separately appointed by the client.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/finance-department-outsourcing": {
-      "title": "Finance Department Outsourcing | LedgerByte",
-      "description": "Build an outsourced finance function with clear ownership of transactions, close, reporting and coordination. Explore LedgerByte's service scope.",
+      "title": "Full Finance Department Outsourcing | LedgerByte",
+      "description": "Coordinate the agreed accounting, close, reporting and finance operations under one defined working model.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/fractional-controller": {
-      "title": "Fractional Financial Controller Services | LedgerByte",
-      "description": "Add oversight of your monthly close, reconciliations, accounting controls and reports. Explore LedgerByte fractional controller services.",
+      "title": "Fractional Financial Controller | LedgerByte",
+      "description": "Add recurring operational finance oversight across the close, reconciliations, reporting quality and team responsibilities.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/ksa-company-formation": {
-      "title": "KSA Company Formation Support | LedgerByte",
-      "description": "Prepare for Saudi company establishment with ownership checks, a document plan, registration coordination and an accounting handover.",
+      "title": "KSA Company Formation | LedgerByte",
+      "description": "Map Saudi entity formation requirements and coordinate documentation and adviser handovers for the proposed activity and ownership.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/ksa-vat": {
-      "title": "KSA VAT Registration & Return Preparation | LedgerByte",
-      "description": "Build a supported Saudi VAT process, from registration readiness and invoice records to reconciled return workings and approval packs.",
+      "title": "KSA VAT Services | LedgerByte",
+      "description": "Support the Saudi VAT workstream with local record requirements, transaction review and an agreed registration or return-preparation scope.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/zatca-filing": {
-      "title": "ZATCA Filing & Tax Preparation Support | LedgerByte",
-      "description": "Coordinate Saudi VAT, Zakat, income tax and withholding tax preparation with defined obligations, supported schedules and authorized sign-off.",
+      "title": "ZATCA Filing Support | LedgerByte",
+      "description": "Organize records and filing readiness for the Saudi tax or zakat obligation in scope, with approval and authorized submission roles made explicit.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/regions/saudi-arabia": {
       "title": "Saudi Arabia Accounting & Tax Support | LedgerByte",
       "description": "Connect Saudi establishment planning, bookkeeping, VAT preparation and ZATCA filing coordination with clear records and finance responsibilities.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/finance/services/month-end-year-end-close": {
       "title": "Month-End & Year-End Close Support | LedgerByte",
-      "description": "Prepare reconciliations, close adjustments and supporting schedules with LedgerByte. Keep month-end reporting and year-end adviser handovers organized.",
+      "description": "Coordinate period-end reconciliations, adjustments and close schedules, separating the recurring monthly cycle from annual reporting and audit-readiness work.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "lastModified": "2026-11-20",
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/accounts-receivable": {
       "title": "Accounts Receivable Services | LedgerByte",
-      "description": "Keep billing, receipts, customer reconciliations and overdue balances connected with LedgerByte accounts receivable support and agreed follow-up routines.",
+      "description": "Maintain customer balances, allocate receipts and coordinate agreed invoice and collection follow-up so receivables stay visible.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/finance/services/accounts-payable": {
       "title": "Accounts Payable Services | LedgerByte",
-      "description": "Organize supplier invoices, approvals, reconciliations and payment proposals with LedgerByte accounts payable support. Keep payment release in your hands.",
+      "description": "Organize supplier invoices, reconcile balances and prepare payment proposals with the approval evidence your business needs.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-10",
-      "source": "Haider November 10 replacement content"
+      "source": "English service search copy published on 2026-11-17 from the approved service map"
     },
     "/regions": {
-      "title": "Local context matters. So does a clear boundary.",
-      "description": "We discuss accounting, reporting and advisory needs with the jurisdiction in mind. Local tax, statutory and regulated requirements need their own confirmed scope.",
+      "title": "Accounting & Finance Support by Country | LedgerByte",
+      "description": "Explore accounting and reporting support for the UAE, Saudi Arabia, the United States and Pakistan. Local tax and filing work is scoped separately.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
     },
     "/insights": {
-      "title": "Useful thinking. Practical finance.",
-      "description": "Original guides to help you ask better questions about your records, reporting and cash. General information, not individualized professional advice.",
+      "title": "Month-End Close, Cash Flow & UAE VAT Guides | LedgerByte",
+      "description": "Work through a month-end close, trace profit to cash and reconcile UAE VAT records with illustrated examples and checklists for small businesses.",
       "image": "/art/finance-editorial-v3.webp",
-      "lastModified": "2026-11-10",
+      "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
+    },
+    "/about/team/haider-ali": {
+      "title": "Haider Ali, Managing Partner",
+      "description": "Haider Ali founded LedgerByte. He has over 13 years of experience in financial management across Pakistan and the GCC.",
+      "image": "/team/studio/haider-ali.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+    },
+    "/about/team/muhammad-ahmad": {
+      "title": "Muhammad Ahmad, CTO",
+      "description": "Full-stack developer & data analyst skilled in React, Python, SQL & AI. Leads development, analytics, and digital strategy at LedgerByte.",
+      "image": "/team/studio/muhammad-ahmad.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+    },
+    "/about/team/faisal-nawaz": {
+      "title": "Faisal Nawaz, Financial Controller",
+      "description": "Faisal Nawaz, FCA, is LedgerByte’s financial controller. He has 25 years of experience with national and multinational organizations in Pakistan.",
+      "image": "/team/studio/faisal-nawaz.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+    },
+    "/about/team/sayyam-nasir": {
+      "title": "Sayyam Nasir, Fractional Controller",
+      "description": "Sayyam Nasir, ACCA, is LedgerByte’s fractional controller, with experience in accounting, financial reporting and process optimization across the GCC and Pakistan.",
+      "image": "/team/studio/sayyam-nasir.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+    },
+    "/about/team/alina-khalid": {
+      "title": "Alina Khalid, Customer Success Manager",
+      "description": "Alina Khalid manages customer success at LedgerByte, drawing on experience in strategic communication, operations and administration.",
+      "image": "/team/studio/alina-khalid.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
+    },
+    "/about/team/amir-ilyas": {
+      "title": "Amir Ilyas, Senior Tax Consultant",
+      "description": "Amir Ilyas, FCCA, is a senior tax consultant at LedgerByte with more than 12 years of experience in Saudi accounting and taxation.",
+      "image": "/team/studio/amir-ilyas.webp",
+      "lastModified": "2026-11-20",
+      "source": "Archived LedgerByte team biography and approved role in src/content/index.ts."
     }
   },
   "financeServices": {
-    "accounting-automation-systems": "Accounting Systems & Automation | LedgerByte",
-    "accounting-bookkeeping": "Accounting & Bookkeeping Services | LedgerByte",
-    "budgeting-forecasting": "Budgeting & Forecasting Services | LedgerByte",
-    "cash-flow-working-capital": "Cash Flow & Working Capital Support | LedgerByte",
-    "financial-reporting-mis": "Financial Reporting & MIS Services | LedgerByte",
-    "fractional-cfo-advisory": "Fractional CFO & Finance Advisory | LedgerByte",
-    "payroll-wps-management": "Payroll & UAE WPS Preparation | LedgerByte",
-    "tax-vat-compliance": "UAE VAT & Corporate Tax Support | LedgerByte",
-    "corporate-tax-filing": "UAE Corporate Tax Filing Services | LedgerByte",
-    "vat-registration": "UAE VAT Registration Services | LedgerByte",
+    "accounting-automation-systems": "Accounting Automation Services in the UAE | LedgerByte",
+    "accounting-bookkeeping": "Accounting & Bookkeeping | LedgerByte",
+    "budgeting-forecasting": "Budgeting & Forecasting | LedgerByte",
+    "cash-flow-working-capital": "Cash Flow & Working Capital | LedgerByte",
+    "financial-reporting-mis": "Management Reporting Services & MIS Packs | LedgerByte",
+    "fractional-cfo-advisory": "Fractional CFO Services for UAE Businesses | LedgerByte",
+    "payroll-wps-management": "Payroll & WPS Management | LedgerByte",
+    "tax-vat-compliance": "Tax, VAT & Compliance | LedgerByte",
+    "corporate-tax-filing": "UAE Corporate Tax Filing | LedgerByte",
+    "vat-registration": "UAE VAT Registration | LedgerByte",
     "corporate-tax-registration": "UAE Corporate Tax Registration | LedgerByte",
-    "uae-company-formation": "UAE Company Formation Support | LedgerByte",
-    "internal-audit": "Internal Audit & Controls Review | LedgerByte",
-    "external-audit": "External Audit Coordination & Readiness | LedgerByte",
-    "finance-department-outsourcing": "Finance Department Outsourcing | LedgerByte",
-    "fractional-controller": "Fractional Financial Controller Services | LedgerByte",
-    "ksa-company-formation": "KSA Company Formation Support | LedgerByte",
-    "ksa-vat": "KSA VAT Registration & Return Preparation | LedgerByte",
-    "zatca-filing": "ZATCA Filing & Tax Preparation Support | LedgerByte",
+    "uae-company-formation": "UAE Company Formation | LedgerByte",
+    "internal-audit": "Internal Audit | LedgerByte",
+    "external-audit": "External Audit Coordination | LedgerByte",
+    "finance-department-outsourcing": "Full Finance Department Outsourcing | LedgerByte",
+    "fractional-controller": "Fractional Financial Controller | LedgerByte",
+    "ksa-company-formation": "KSA Company Formation | LedgerByte",
+    "ksa-vat": "KSA VAT Services | LedgerByte",
+    "zatca-filing": "ZATCA Filing Support | LedgerByte",
     "month-end-year-end-close": "Month-End & Year-End Close Support | LedgerByte",
     "accounts-receivable": "Accounts Receivable Services | LedgerByte",
     "accounts-payable": "Accounts Payable Services | LedgerByte"

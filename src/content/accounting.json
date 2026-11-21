@@ -417,11 +417,11 @@
       ]
     },
     "services/accounting-automation-systems": {
-      "title": "Accounting Systems & Automation | LedgerByte",
-      "description": "Improve your chart of accounts, transaction workflows and accounting controls. Explore setup, migration checks, testing and team handover.",
+      "title": "Accounting Automation Services in the UAE | LedgerByte",
+      "description": "Set up accounting workflows for posting, approvals and reconciliations. LedgerByte’s Sharjah team helps UAE businesses test the controls and hand them over.",
       "path": "/finance/services/accounting-automation-systems",
       "heading": "Make your accounting system fit the way finance works.",
-      "intro": "An accounting tool is only useful when its setup, records and routines work together. LedgerByte helps structure the accounts, reduce repeated manual work and test the process before the team relies on it.",
+      "intro": "LedgerByte helps UAE businesses automate accounting tasks such as posting transactions and reconciling balances. Our Sharjah team maps the finance workflow, tests the controls and documents how your staff will run it.",
       "cta": "Discuss your accounting setup",
       "cardStrapline": "A clearer setup. Fewer repeated workarounds.",
       "sections": [
@@ -508,15 +508,24 @@
             "path": "/finance/services/financial-reporting-mis",
             "path_status": "existing"
           }
+        },
+        {
+          "route": "regions/uae",
+          "label": "Accounting support for UAE businesses",
+          "target": {
+            "page_key": "regions/uae",
+            "path": "/regions/uae",
+            "path_status": "existing"
+          }
         }
       ]
     },
     "services/financial-reporting-mis": {
-      "title": "Financial Reporting & MIS Services | LedgerByte",
-      "description": "Connect management accounts, KPIs and variance analysis to business decisions. Explore LedgerByte reporting packs and management review support.",
+      "title": "Management Reporting Services & MIS Packs | LedgerByte",
+      "description": "Connect monthly management accounts, cash and KPIs in one reporting pack. LedgerByte’s Sharjah team offers management reporting for Dubai and other UAE businesses.",
       "path": "/finance/services/financial-reporting-mis",
       "heading": "Financial reporting that explains what changed.",
-      "intro": "Bring the profit and loss, balance sheet, cash position and operating measures into one management view. LedgerByte helps make the reporting pack answer the questions behind the numbers.",
+      "intro": "Management reporting brings the profit and loss, balance sheet, cash position and operating KPIs into one pack. LedgerByte explains significant changes so owners and managers can decide what to do next.",
       "cta": "Discuss your reporting needs",
       "cardStrapline": "Know the movement. Understand the driver.",
       "sections": [
@@ -639,6 +648,15 @@
             "page_key": "services/month-end-year-end-close",
             "path": "/services/month-end-year-end-close",
             "path_status": "proposed, confirm in the existing router"
+          }
+        },
+        {
+          "route": "regions/uae",
+          "label": "Accounting support for UAE businesses",
+          "target": {
+            "page_key": "regions/uae",
+            "path": "/regions/uae",
+            "path_status": "existing"
           }
         }
       ]
@@ -1094,11 +1112,11 @@
       ]
     },
     "services/fractional-cfo": {
-      "title": "Fractional CFO & Finance Advisory | LedgerByte",
-      "description": "Explore fractional CFO support for finance strategy, FP&A, board reporting, fundraising financial preparation and data-room readiness, with clear scope.",
+      "title": "Fractional CFO Services for UAE Businesses | LedgerByte",
+      "description": "Fractional CFO support for Dubai and other UAE businesses, delivered from Sharjah. Review cash flow, budgets and funding decisions with an agreed action plan.",
       "path": "/finance/services/fractional-cfo-advisory",
       "heading": "Finance leadership for the decisions on your desk.",
-      "intro": "Bring financial performance, cash and plans into a recurring leadership conversation. LedgerByte's fractional CFO and finance advisory service helps owners assess choices and follow through on finance priorities.",
+      "intro": "A fractional CFO helps owners review cash forecasts, budgets and funding decisions alongside their existing accountant. LedgerByte’s Sharjah team can scope this work for businesses in Dubai and across the UAE.",
       "cta": "Discuss your finance priorities",
       "cardStrapline": "A clearer decision. A financial case. A next action.",
       "sections": [
@@ -1213,6 +1231,15 @@
             "page_key": "services/fractional-controller",
             "path": "/services/fractional-controller",
             "path_status": "proposed, confirm in the existing router"
+          }
+        },
+        {
+          "route": "regions/uae",
+          "label": "Accounting support for UAE businesses",
+          "target": {
+            "page_key": "regions/uae",
+            "path": "/regions/uae",
+            "path_status": "existing"
           }
         }
       ]
@@ -1501,6 +1528,24 @@
             "page_key": "services/external-audit",
             "path": "/services/external-audit",
             "path_status": "proposed, confirm in the existing router"
+          }
+        },
+        {
+          "route": "services/financial-reporting-mis",
+          "label": "Financial Reporting & MIS",
+          "target": {
+            "page_key": "services/financial-reporting-mis",
+            "path": "/finance/services/financial-reporting-mis",
+            "path_status": "existing"
+          }
+        },
+        {
+          "route": "services/accounting-automation-systems",
+          "label": "Accounting Automation & Systems",
+          "target": {
+            "page_key": "services/accounting-automation-systems",
+            "path": "/finance/services/accounting-automation-systems",
+            "path_status": "existing"
           }
         }
       ]
@@ -2143,11 +2188,11 @@
       ]
     },
     "home": {
-      "title": "Accounting, Tax & Finance Leadership | LedgerByte",
-      "description": "Explore 22 LedgerByte services: accounting, finance leadership, UAE and Saudi tax, company formation and audit coordination. Based in Sharjah, UAE.",
+      "title": "Accounting, Tax & Fractional CFO Services | LedgerByte",
+      "description": "Explore Sharjah-based accounting, tax and fractional CFO services for SMEs. Compare UAE bookkeeping, Saudi tax support and the monthly cost of a finance team.",
       "path": "/",
       "heading": "Why hire one accountant when you can get a finance team?",
-      "intro": "Start with the books, tax returns or cash forecast you need today. Bring in a controller or fractional CFO when your next decision calls for one.",
+      "intro": "LedgerByte’s Sharjah team handles bookkeeping, tax preparation and cash forecasts for SMEs. Add a controller or fractional CFO when your next decision calls for one.",
       "cta": "Discuss your requirements",
       "sections": [
         {
@@ -3367,6 +3412,15 @@
             "path": "/services/fractional-controller",
             "path_status": "proposed, confirm in the existing router"
           }
+        },
+        {
+          "route": "build-your-finance-department",
+          "label": "Estimate your finance team cost",
+          "target": {
+            "page_key": "build-your-finance-department",
+            "path": "/build-your-finance-department",
+            "path_status": "existing"
+          }
         }
       ]
     },
@@ -3493,6 +3547,15 @@
             "page_key": "services/finance-department-outsourcing",
             "path": "/services/finance-department-outsourcing",
             "path_status": "proposed, confirm in the existing router"
+          }
+        },
+        {
+          "route": "build-your-finance-department",
+          "label": "Estimate your finance team cost",
+          "target": {
+            "page_key": "build-your-finance-department",
+            "path": "/build-your-finance-department",
+            "path_status": "existing"
           }
         }
       ]
@@ -4290,8 +4353,8 @@
         "Saudi Arabia"
       ],
       "service_count": 22,
-      "catalog_heading": "Accounting, tax & advisory. Choose the support you need.",
-      "catalog_intro": "Explore 22 services across finance operations, reporting and advisory, UAE tax and formation, audit, and Saudi business support. Choose a focused task or connect the work through a clearly defined finance scope.",
+      "catalog_heading": "Accounting, tax and advisory services",
+      "catalog_intro": "Browse 22 accounting, tax and advisory services across finance operations, reporting, UAE tax and formation, audit coordination and Saudi business support.",
       "search_placeholder": "Try registration, audit or close",
       "filters": [
         "All services",
@@ -4342,10 +4405,10 @@
         "Why a profitable month can still leave less cash in the bank.",
         "Build a review-ready UAE VAT records pack."
       ],
-      "market_index_heading": "Local context matters. So does a clear boundary.",
-      "market_index_intro": "We discuss accounting, reporting and advisory needs with the jurisdiction in mind. Local tax, statutory and regulated requirements need their own confirmed scope.",
-      "insights_heading": "Useful thinking. Practical finance.",
-      "insights_intro": "Original guides to help you ask better questions about your records, reporting and cash. General information, not individualized professional advice."
+      "market_index_heading": "Accounting and finance support by country",
+      "market_index_intro": "Explore accounting and reporting support for the UAE, Saudi Arabia, the United States and Pakistan. Local tax and filing work is scoped separately.",
+      "insights_heading": "Practical finance guides for small businesses",
+      "insights_intro": "Work through a month-end close, trace profit to cash and reconcile UAE VAT records with illustrated examples and checklists for small businesses."
     }
   },
   "contact": {

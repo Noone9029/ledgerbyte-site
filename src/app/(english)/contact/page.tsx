@@ -1,21 +1,20 @@
 import { AccountingContactForm } from "@/components/accounting/contact-form";
+import { StructuredData } from "@/components/structured-data";
+import { buildSchemaGraph, buildWebPageSchema, ORGANIZATION_ID } from "@/lib/schema";
 import { EnquiryChannels, EnquiryEmail, EnquiryWhatsApp } from "@/components/accounting/enquiry-channels";
 import { enquiryMarket, financeEnquiryChoices } from "@/lib/enquiry-options";
 import {
   accountingContact,
   accountingCopy,
 } from "@/content/accounting";
-import { createMetadata } from "@/lib/seo";
+import { getPageSeo } from "@/content/seo";
+import { createPageMetadata } from "@/lib/seo";
 
 type ContactProps = {
   searchParams: Promise<{ service?: string | string[]; market?: string | string[] }>;
 };
 
-export const metadata = createMetadata({
-  path: "/contact",
-  title: accountingCopy.C08.heading,
-  description: accountingCopy.C08.intro,
-});
+export const metadata = createPageMetadata(getPageSeo("/contact"), { path: "/contact" });
 
 export default async function ContactPage({ searchParams }: ContactProps) {
   const { service: value, market: selectedMarket } = await searchParams;
@@ -23,6 +22,10 @@ export default async function ContactPage({ searchParams }: ContactProps) {
   const service = typeof value === "string" && financeEnquiryChoices.includes(value) ? value : "";
   return (
     <main id="main-content" className="accounting-page">
+      <StructuredData data={buildSchemaGraph({
+        ...buildWebPageSchema({ path: "/contact", name: accountingCopy.C08.heading, description: accountingCopy.C08.intro, type: "ContactPage" }),
+        mainEntity: { "@id": ORGANIZATION_ID },
+      })} />
       <EnquiryChannels key={`${service}|${market}`} initialService={service} initialMarket={market}>
         <section className="accounting-contact-layout accounting-wrap">
           <div className="accounting-contact-intro">

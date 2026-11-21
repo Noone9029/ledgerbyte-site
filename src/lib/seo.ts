@@ -1,15 +1,13 @@
-import { englishCopyApproved } from "@/lib/seo-approval";
 import serviceDrafts from "@/content/seo-drafts/service-map.json";
 import { isSeoReview, languageAlternates } from "@/lib/localization";
 import type { Metadata } from "next";
-import type { SeoPageConfig } from "@/content/seo";
+import { seoPages, type SeoPageConfig, type SeoPagePath } from "@/content/seo";
 
 export const SITE_NAME = "LedgerByte";
 export const SITE_URL = "https://ledgerbyte.io";
 export const SITE_LANGUAGE = "en";
 
 const TITLE_SUFFIX = ` | ${SITE_NAME}`;
-const MAX_DESCRIPTION_LENGTH = 160;
 
 export const isIndexableEnvironment =
   process.env.VERCEL_ENV === "production" ||
@@ -32,12 +30,7 @@ export function formatSeoTitle(value: string) {
 }
 
 export function formatMetaDescription(value: string) {
-  const description = value.replace(/\s+/g, " ").trim();
-  if (description.length <= MAX_DESCRIPTION_LENGTH) return description;
-
-  const candidate = description.slice(0, MAX_DESCRIPTION_LENGTH + 1);
-  const boundary = candidate.lastIndexOf(" ");
-  return candidate.slice(0, boundary > 120 ? boundary : MAX_DESCRIPTION_LENGTH);
+  return value.replace(/\s+/g, " ").trim();
 }
 
 interface CreateMetadataOptions {
@@ -67,11 +60,11 @@ export function createMetadata({
   path,
   title,
   description,
-  image = "/art/corporate-editorial-v3.webp",
+  image = seoPages[path as SeoPagePath]?.image ?? "/art/finance-editorial-v3.webp",
   type = "website",
   noIndex = false,
 }: CreateMetadataOptions): Metadata {
-  const draft = isSeoReview || englishCopyApproved("englishServices") ? serviceDrafts.services.find((item) => item.path === path) : undefined;
+  const draft = isSeoReview ? serviceDrafts.services.find((item) => item.path === path) : undefined;
   title = draft?.reviewTitle ?? title;
   description = draft?.reviewDescription ?? description;
   const canonical = absoluteUrl(path);
@@ -104,9 +97,7 @@ export function createMetadata({
       images: [
         {
           url: absoluteUrl(image),
-          width: 1536,
-          height: 1024,
-          alt: `${SITE_NAME} ${title}`,
+          alt: formattedTitle,
         },
       ],
     },

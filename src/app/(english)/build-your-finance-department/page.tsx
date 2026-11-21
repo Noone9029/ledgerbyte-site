@@ -12,7 +12,7 @@ import styles from "./builder.module.css";
 const path = "/build-your-finance-department";
 const labourLaw = "https://dda.gov.ae/-/media/22A3CF4734034742B62468DB2721BEF1.pdf";
 const page = getPageSeo(path);
-const description = "Build a UAE finance team from AED 500 per month before tax. See role hours and rates, including bookkeeping, senior review and VAT filing.";
+const description = page.description;
 export const metadata = createPageMetadata(page, { path, description });
 
 const people = [
@@ -44,7 +44,7 @@ function Introduction() {
       <div className="intro-copy">
         <p className="eyebrow">Finance team builder</p>
         <h1 id="builder-title">Build your <em>finance department.</em></h1>
-        <p className="intro-lead">Estimate the hours and monthly cost for your workload. Bookkeeping, senior review and VAT filing start at <strong>AED 500/month before tax</strong>.</p>
+        <p className="intro-lead" data-aeo-answer>A UAE finance team starts at <strong>AED 500/month before tax</strong> for 15 hours of bookkeeping, senior review and VAT filing. Adjust roles and hours to estimate your monthly cost.</p>
         <div className="intro-actions">
           <a className="button button-amber" href="#builder">Build my team <span aria-hidden="true">↗</span></a>
           <a className="finance-link" href="#people">Meet the people <span aria-hidden="true">↓</span></a>

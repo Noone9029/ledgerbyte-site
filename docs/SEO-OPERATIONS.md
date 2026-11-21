@@ -7,8 +7,9 @@ The canonical finance site is `https://ledgerbyte.io`. Supported legacy finance 
 steps in the existing Search Console domain property after each production
 release that materially changes routes or page content:
 
-1. Open **Sitemaps** and submit or resubmit
-   `https://ledgerbyte.io/sitemap.xml`. Do not remove the prior submission.
+1. Open **Sitemaps** and check the last read for
+   `https://ledgerbyte.io/sitemap.xml`. Submit it if the property has no
+   existing entry. Keep the sitemap updated at this same URL.
 2. Wait for the sitemap status to become **Success** and record the discovered
    URL count. The finance-only build contains 47 English URLs.
 3. Use **URL Inspection → Test Live URL → Request Indexing** for:
@@ -65,11 +66,11 @@ AI source, referring hostname, and landing path.
 
 ## AI Search and IndexNow
 
-Run `npm run test:aeo` before release. After the production deployment exposes
-the current IndexNow key file, run `npm run seo:indexnow` to notify
-participating engines of every canonical sitemap URL. IndexNow does not submit
-URLs to Google, so continue using the sitemap and selected URL Inspection
-requests in Search Console.
+Run `npm run test:aeo` before release. Once production serves the changes and
+the IndexNow key file, pass the added, materially updated, redirected or
+removed paths to `npm run seo:indexnow -- /changed-path /another-changed-path`.
+Keep the sitemap and selected URL inspections in Google Search Console.
+See the [IndexNow submission guidance](https://www.indexnow.org/faq).
 
 Keep `/llms.txt` aligned with canonical service routes. Treat it as an optional
 discovery aid rather than a ranking guarantee. The wildcard `robots.txt` rule
@@ -94,11 +95,11 @@ visibility are supporting indicators.
 - Pursue legitimate links through professional associations, software
   partnerships, chambers, founder communities, client features, and reputable
   UAE business listings. Reject paid-link packages and bulk directories.
-- Keep UAE finance as the first search market for six months. Do not create KSA,
-  UK, US, Arabic, or city pages until there is distinct local expertise,
-  evidence, and native review.
-- Keep the blog on `blog.ledgerbyte.io` during stabilization. Consider
-  `/insights` only after 6–8 stable weeks and with exact article-level redirects.
+- The published English market pages cover the UAE, United States, Pakistan
+  and Saudi Arabia. Keep the geography on each service and offer consistent
+  with its actual scope. Arabic review routes remain unpublished.
+- Keep practical guides at `ledgerbyte.io/insights` and the editorial blog at
+  `blog.ledgerbyte.io`. Each directs readers to relevant finance services.
 
 ## Entity and Local Checks
 

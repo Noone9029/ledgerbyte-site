@@ -1,14 +1,14 @@
 import { buildPersonId, buildPersonPath } from "@/lib/person-identity";
 export { buildPersonId, buildPersonPath } from "@/lib/person-identity";
-import { accountingServices } from "@/content/accounting";
 import { contactDetails, team } from "@/content";
+import { getPageSeo, type SeoPagePath } from "@/content/seo";
+import { homeUpdate } from "@/content/home-update";
 import { absoluteUrl, SITE_LANGUAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export type JsonLdNode = Record<string, unknown>;
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
-export const PROFESSIONAL_SERVICE_ID = `${SITE_URL}/#professional-service`;
 
 const serviceAreas = [
   "United Arab Emirates",
@@ -37,29 +37,23 @@ export function buildSchemaGraph(...nodes: JsonLdNode[]): JsonLdNode {
 }
 
 export function buildGlobalSchema(): JsonLdNode {
-  const serviceOffers = accountingServices.map((service) => ({
-    "@type": "Offer",
-    itemOffered: {
-      "@type": "Service",
-      name: service.title,
-      url: absoluteUrl(`/finance/services/${service.slug}`),
-    },
-  }));
-
   return buildSchemaGraph(
     {
-      "@type": "Organization",
+      "@type": ["Organization", "AccountingService"],
       "@id": ORGANIZATION_ID,
       name: SITE_NAME,
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/brand/ledgerbyte-logo.png"),
+        url: absoluteUrl("/brand/ledgerbyte-mark.png"),
+        width: 512,
+        height: 512,
       },
-      image: absoluteUrl("/art/corporate-editorial-v3.webp"),
+      image: absoluteUrl("/art/finance-editorial-v3.webp"),
       email: contactDetails.email,
       telephone: contactDetails.phoneHref,
       address: postalAddress,
+      areaServed: serviceAreas,
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer service",
@@ -71,11 +65,6 @@ export function buildGlobalSchema(): JsonLdNode {
       employee: team.map((member) => ({
         "@id": buildPersonId(member.name),
       })),
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "LedgerByte Services",
-        itemListElement: serviceOffers,
-      },
     },
     {
       "@type": "WebSite",
@@ -84,17 +73,6 @@ export function buildGlobalSchema(): JsonLdNode {
       name: SITE_NAME,
       inLanguage: SITE_LANGUAGE,
       publisher: { "@id": ORGANIZATION_ID },
-    },
-    {
-      "@type": ["ProfessionalService", "FinancialService"],
-      "@id": PROFESSIONAL_SERVICE_ID,
-      name: SITE_NAME,
-      url: SITE_URL,
-      email: contactDetails.email,
-      telephone: contactDetails.phoneHref,
-      address: postalAddress,
-      areaServed: serviceAreas,
-      parentOrganization: { "@id": ORGANIZATION_ID },
     },
   );
 }
@@ -170,10 +148,10 @@ export function buildPersonSchema({
     },
     ...(image ? { image: absoluteUrl(image) } : {}),
     worksFor: { "@id": ORGANIZATION_ID },
-    hasCredential: {
+    hasCredential: credentials.split("|")[0].split(/[,;]/).map((entry) => ({
       "@type": "EducationalOccupationalCredential",
-      credentialCategory: credentials,
-    },
+      name: entry.trim(),
+    })),
   };
 }
 
@@ -210,18 +188,49 @@ export function buildBreadcrumbSchema(
   };
 }
 
+export function buildCollectionSchema(path: SeoPagePath, items: Array<{ name: string; path: string }>) {
+  const { title: name, description, lastModified } = getPageSeo(path);
+  const listId = absoluteUrl(path) + "#items";
+  return buildSchemaGraph(
+    { ...buildWebPageSchema({ path, name, description, dateModified: lastModified, type: "CollectionPage" }), mainEntity: { "@id": listId } },
+    { ...buildItemListSchema({ name, items }), "@id": listId, numberOfItems: items.length },
+  );
+}
+
+type UaeOffer = (typeof homeUpdate.offers)[number];
+
+export function buildUaeOffer(offer: UaeOffer): JsonLdNode {
+  return {
+    "@type": "Offer",
+    "@id": absoluteUrl(offer.href) + "#uae-offer",
+    name: offer.name,
+    description: [offer.fit, offer.description].join(" "),
+    url: absoluteUrl(offer.href),
+    seller: { "@id": ORGANIZATION_ID },
+    eligibleRegion: { "@type": "Country", name: "United Arab Emirates" },
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      minPrice: offer.price,
+      priceCurrency: "AED",
+      ...(offer.unit ? { unitText: offer.unit.replace(/^\/\s*/, "") } : {}),
+    },
+  };
+}
+
 export function buildServiceSchema({
   path,
   name,
   description,
   serviceType,
   jurisdiction,
+  offer,
 }: {
   path: string;
   name: string;
   description: string;
   serviceType?: string | string[];
   jurisdiction?: string;
+  offer?: UaeOffer;
 }): JsonLdNode {
   const url = absoluteUrl(path);
 
@@ -233,6 +242,8 @@ export function buildServiceSchema({
     description,
     serviceType: serviceType ?? name,
     provider: { "@id": ORGANIZATION_ID },
+    mainEntityOfPage: { "@id": url + "#webpage" },
+    ...(offer ? { offers: buildUaeOffer(offer) } : {}),
     areaServed: jurisdiction ? [{ "@type": "Country", name: jurisdiction }] : serviceAreas,
   };
 }

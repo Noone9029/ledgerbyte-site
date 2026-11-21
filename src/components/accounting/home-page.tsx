@@ -12,7 +12,7 @@ import { HomeOffers, HomeWorkingProcess, HomeWorkstreams } from "./home-offers";
 import { homeUpdate } from "@/content/home-update";
 import { CashBridgePreview } from "./finance-examples";
 import exampleStyles from "./finance-examples.module.css";
-import { buildFaqSchema, buildSchemaGraph, buildWebPageSchema } from "@/lib/schema";
+import { buildFaqSchema, buildSchemaGraph, buildUaeOffer, buildWebPageSchema } from "@/lib/schema";
 
 export function AccountingHome() {
   const home = accountingPages.home;
@@ -21,6 +21,7 @@ export function AccountingHome() {
       <StructuredData data={buildSchemaGraph(
         buildWebPageSchema({ path: "/", name: home.title, description: home.description }),
         buildFaqSchema(home.faqs),
+        ...homeUpdate.offers.map(buildUaeOffer),
       )} />
       <main id="main-content" className="accounting-page accounting-home-flow">
         <ScrollReveals />

@@ -2,11 +2,12 @@
 
 ## What Is Implemented
 
-LedgerByte exposes answer-first passages on every finance service page, stable
-`Person` and `ProfilePage` entities for team members, linked expert reviewers,
-FAQ and Service schema, crawlable server-rendered content, and
-`https://ledgerbyte.io/llms.txt`. The site permits AI crawlers through the
-wildcard rule in `robots.txt`.
+The finance site serves its answers, service links and JSON-LD in the initial
+HTML. Its three practical guides identify LedgerByte as author and cite the
+sources behind their examples. Team profiles describe the six named people
+separately. Service pages identify the provider and match their visible
+questions and answers. The UAE offers specify currency, billing unit and
+starting price. Public pages allow search crawlers through `robots.txt`.
 
 `llms.txt` is a discovery aid, not a Google ranking directive. Google states
 that its normal crawlability, indexing, structured-data, and people-first
@@ -18,9 +19,10 @@ content requirements also apply to AI search experiences.
    `npm run lint`, and `npm run build`.
 2. Deploy production and verify `/robots.txt`, `/llms.txt`, `/sitemap.xml`, and
    the IndexNow key file return `200`.
-3. Resubmit `https://ledgerbyte.io/sitemap.xml` in Google Search Console.
-4. Run `npm run seo:indexnow`. IndexNow notifies participating engines such as
-   Bing; it does not submit URLs to Google.
+3. Check the submitted `https://ledgerbyte.io/sitemap.xml` and its last read in
+   Google Search Console. Submit it if the property has no existing entry.
+4. Send affected finance URLs to participating engines with
+   `npm run seo:indexnow -- /changed-path /another-changed-path`.
 5. Inspect the priority commercial URLs in Google Search Console. Request
    indexing only after the live test passes.
 6. Confirm GA4 receives `ai_referral_session` with only `ai_source`,
@@ -28,11 +30,11 @@ content requirements also apply to AI search experiences.
 
 ## Citation and Authorship Standard
 
-Every finance article refresh must name the real author and qualified reviewer,
-link each person to a LedgerByte team profile, show accurate publication and
-modification dates, cite current primary sources, and link contextually to the
-closest finance service. Do not add credentials, client results, regulatory
-claims, or update dates that cannot be verified.
+Keep the visible byline and article markup aligned. Credit a person and link
+their profile when their authorship or review is documented. Use the publisher
+byline for a collective LedgerByte guide. Cite the source behind each example
+and link to the relevant service. Publish dates, credentials or client outcomes
+only when there is a record to support them.
 
 ## Monthly Measurement
 
@@ -51,7 +53,7 @@ stable ranking.
 
 ## Primary References
 
-- https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+- https://developers.google.com/search/docs/appearance/ai-features
 - https://developers.google.com/search/docs/appearance/structured-data/article
 - https://help.openai.com/en/articles/12627856-publishers-and-developers-faq
 - https://www.indexnow.org/documentation

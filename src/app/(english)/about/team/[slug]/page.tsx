@@ -19,6 +19,7 @@ import {
   buildWebPageSchema,
 } from "@/lib/schema";
 import { createMetadata } from "@/lib/seo";
+import { getPageSeo, type SeoPagePath } from "@/content/seo";
 
 interface TeamProfilePageProps {
   params: Promise<{ slug: string }>;
@@ -48,8 +49,8 @@ export async function generateMetadata({
   return createMetadata({
     path: buildPersonPath(member.name),
     title: `${member.name}, ${member.role}`,
-    description: member.description,
-    image: "/art/corporate-editorial-v3.webp",
+    description: getPageSeo(buildPersonPath(member.name) as SeoPagePath).description,
+    image: member.image,
   });
 }
 
@@ -83,7 +84,7 @@ export default async function TeamProfilePage({
               name: `${member.name}, ${member.role}`,
               description: member.description,
               type: "ProfilePage",
-              dateModified: "2026-07-28",
+              dateModified: getPageSeo(profilePath as SeoPagePath).lastModified,
             }),
             mainEntity: { "@id": personId },
           },

@@ -5,7 +5,8 @@ import {
   accountingServices,
   getAccountingService,
 } from "@/content/accounting";
-import { createMetadata } from "@/lib/seo";
+import { getPageSeo, type SeoPagePath } from "@/content/seo";
+import { createPageMetadata } from "@/lib/seo";
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
@@ -15,12 +16,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const service = getAccountingService((await params).slug);
   if (!service) return {};
-  const page = accountingPages[service.key];
-  return createMetadata({
-    path: page.path,
-    title: page.title,
-    description: page.description,
-  });
+  const path = accountingPages[service.key].path as SeoPagePath;
+  return createPageMetadata(getPageSeo(path), { path });
 }
 export default async function ServicePage({ params }: Props) {
   const service = getAccountingService((await params).slug);

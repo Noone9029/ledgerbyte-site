@@ -8,6 +8,40 @@ export type GuideExample = {
   servicePath: string;
 };
 
+// These English guides are already published on LedgerByte Insights.
+export const relatedInsights = [
+  {
+    slug: "outsourced-bookkeeping-vs-fractional-cfo",
+    title: "Outsourced bookkeeping vs a fractional CFO: choose the next layer",
+    pages: ["services/accounting-bookkeeping", "services/fractional-cfo", "services/finance-department-outsourcing"],
+  },
+  {
+    slug: "pakistan-monthly-management-reporting-pack",
+    title: "A monthly management reporting pack for a Pakistan business",
+    pages: ["regions/pakistan", "services/financial-reporting-mis"],
+  },
+  {
+    slug: "saudi-vat-zatca-records-handover",
+    title: "Saudi VAT and ZATCA: prepare a records handover by obligation",
+    pages: ["regions/saudi-arabia", "services/ksa-vat", "services/zatca-filing"],
+  },
+  {
+    slug: "uae-corporate-tax-registration-vs-filing",
+    title: "UAE corporate tax registration vs filing: separate the workstreams",
+    pages: ["services/corporate-tax-registration", "services/corporate-tax-filing"],
+  },
+  {
+    slug: "uae-vat-registration-vs-return-filing",
+    title: "UAE VAT registration vs return filing: which task do you need?",
+    pages: ["uae-vat", "services/vat-registration", "insights/vat-records"],
+  },
+  {
+    slug: "us-year-end-bookkeeping-adviser-handover",
+    title: "US year-end bookkeeping: prepare a useful adviser handover",
+    pages: ["regions/united-states", "services/month-end-year-end-close"],
+  },
+];
+
 export const guideExamples: Record<string, GuideExample> = {
   "insights/month-end-close": {
     artwork: "insurance-prepayment",

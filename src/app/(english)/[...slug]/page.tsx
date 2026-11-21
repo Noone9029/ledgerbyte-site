@@ -27,6 +27,7 @@ export async function generateMetadata({
     path: page.path,
     title: page.title,
     description: page.description,
+    type: page.path.startsWith("/insights/") ? "article" : "website",
   });
 }
 export default async function Page({
