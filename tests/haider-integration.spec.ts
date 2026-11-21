@@ -1,7 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test("sample workpapers download the records displayed on each service", async ({ page, request }) => {
-  for (const slug of ["accounts-payable", "accounts-receivable", "corporate-tax-filing", "internal-audit", "external-audit"]) {
+test("sample workpapers download the records displayed on each service", async ({ page, request, isMobile }) => {
+  const services = [
+    "payroll-wps-management", "finance-department-outsourcing", "fractional-controller", "budgeting-forecasting", "financial-reporting-mis",
+    "accounts-payable", "accounts-receivable", "corporate-tax-filing", "internal-audit", "external-audit",
+  ];
+  for (const slug of services) {
     await page.goto(`/finance/services/${slug}#sample-deliverable`);
     const sample = page.locator("#sample-deliverable");
     const link = sample.getByRole("link", { name: /Download sample/ });
@@ -14,6 +18,15 @@ test("sample workpapers download the records displayed on each service", async (
     expect(labels.length).toBeGreaterThan(0);
     const csv = await response.text();
     for (const label of labels) expect(csv).toContain(`"${label}"`);
+    if (isMobile) {
+      const contentRight = await sample.locator("table").evaluate(table => table.getBoundingClientRect().right);
+      const whatsapp = await page.locator(".floating-whatsapp").boundingBox();
+      expect(contentRight, slug).toBeLessThan(whatsapp!.x);
+    }
+    if (slug === "payroll-wps-management") {
+      await expect(sample.getByRole("row", { name: "This month 128,000" })).toBeVisible();
+      expect(csv).toContain('"This month","128000"');
+    }
     if (slug === "accounts-receivable") {
       const download = page.waitForEvent("download");
       await link.click();
@@ -138,6 +151,33 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
       ["VAT", "/uae-vat"],
       ["quarterly VAT", "/uae-vat"],
       ["VAT returns", "/uae-vat"],
+      ["UAE VAT filings", "/uae-vat"],
+      ["corporate tax returns", "/finance/services/corporate-tax-filing"],
+      ["monthly payroll run", "/finance/services/payroll-wps-management"],
+      ["register for corporate tax", "/finance/services/corporate-tax-registration"],
+      ["register for VAT", "/finance/services/vat-registration"],
+      ["monthly tax compliance services UAE", "/finance/services/tax-vat-compliance"],
+      ["outsourced bookkeeping services", "/finance/services/accounting-bookkeeping"],
+      ["outsourced accounts receivable services", "/finance/services/accounts-receivable"],
+      ["cash flow forecasting services", "/finance/services/cash-flow-working-capital"],
+      ["UAE company formation finance support", "/finance/services/uae-company-formation"],
+      ["Saudi company formation support", "/finance/services/ksa-company-formation"],
+      ["accounts payable automation UAE", "/finance/services/accounting-automation-systems"],
+      ["outsourced finance team", "/finance/services/finance-department-outsourcing"],
+      ["part time financial controller", "/finance/services/fractional-controller"],
+      ["year end close checklist", "/finance/services/month-end-year-end-close"],
+      ["A/R", "/finance/services/accounts-receivable"],
+      ["A/P", "/finance/services/accounts-payable"],
+      ["management reporting services in Dubai", "/finance/services/financial-reporting-mis"],
+      ["rolling forecast", "/finance/services/budgeting-forecasting"],
+      ["13 week cash flow forecast", "/finance/services/cash-flow-working-capital"],
+      ["part time CFO", "/finance/services/fractional-cfo-advisory"],
+      ["UAE mainland company setup", "/finance/services/uae-company-formation"],
+      ["outsourced internal audit", "/finance/services/internal-audit"],
+      ["external audit preparation", "/finance/services/external-audit"],
+      ["Saudi company setup", "/finance/services/ksa-company-formation"],
+      ["Saudi VAT return preparation", "/finance/services/ksa-vat"],
+      ["Saudi withholding tax", "/finance/services/zatca-filing"],
       ["VAT return", "/uae-vat"],
     ]) {
       await search.fill(term);
@@ -145,6 +185,7 @@ test("the homepage and full catalogue find the offers visitors are sold", async 
     }
     await page.getByRole("link", { name: "Discuss VAT Return Support", exact: true }).click();
     await expect(page.getByLabel("Support you need")).toHaveValue("VAT Return Support");
+    await expect(page.locator("form.accounting-contact-form")).toHaveAttribute("data-analytics-service", "tax-vat-compliance");
     await expect(page.getByLabel("Business location")).toHaveValue("United Arab Emirates");
     await expect(page).toHaveURL(/#enquiry-heading$/);
   }

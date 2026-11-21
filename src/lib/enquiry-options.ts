@@ -26,9 +26,9 @@ export function enquiryService(value: unknown) {
 }
 
 export function enquiryDimensions(service: string, market: string) {
-  const title = selectedOffer(service)?.service ?? service;
+  const offer = selectedOffer(service) ?? homeUpdate.offers.find(item => item.service === service);
   return {
-    service: accountingServices.find((item) => item.title === title)?.slug,
+    service: offer?.serviceSlug ?? accountingServices.find(item => item.title === service)?.slug,
     market: Object.entries(marketNames).find(([, name]) => name === market)?.[0].split("/")[1],
   };
 }

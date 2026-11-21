@@ -4234,6 +4234,7 @@ button:active,
 .market-output ul { padding-inline-start: 1.2em; list-style: disc; }
 .market-output li { margin-top: .65em; }
 .accounting-output > .text-link { margin-top: 1rem; }
+.filing-record-links { display: grid; justify-items: start; gap: .8rem; }
 .accounting-catalogue {
   padding-bottom: 60px;
 }
@@ -5347,6 +5348,10 @@ body:has(.floating-whatsapp) .analytics-preferences { padding-bottom: 100px; }
   body:has(.floating-whatsapp) .accounting-search label,
   body:has(.floating-whatsapp) .legal-page p:has(a) {
     max-inline-size: calc(100% - var(--mobile-action-gutter));
+  }
+  body:has(.floating-whatsapp) .accounting-prose p > a:only-child[href^="/"] {
+    display: inline-block;
+    max-inline-size: calc(100% - var(--whatsapp-content-gutter));
   }
   body .analytics-choice { inset-inline: 12px auto; max-width: calc(100% - 24px); }
   #analytics-inline .analytics-choice {

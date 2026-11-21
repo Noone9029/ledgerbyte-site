@@ -120,8 +120,8 @@ const skippedDataKeys = new Set([
 const validateData = (value, origin, key = "") => {
   if (typeof value === "string") {
     if (skippedDataKeys.has(key) || /^\/(?!\/)[^\s]*$/.test(value)) return;
-    const standaloneLink = /^\[([^\]]+)\]\(\/(?!\/)[^\s)]+\)$/.exec(value);
-    checkCopy(standaloneLink?.[1] ?? value, origin);
+    const visibleCopy = value.replace(/\[([^\]]+)\]\(\/(?![\\/])[^\s\\)]+\)/g, "$1");
+    checkCopy(visibleCopy, origin);
     return;
   }
   if (Array.isArray(value)) {

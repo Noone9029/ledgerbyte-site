@@ -25,7 +25,7 @@ export const homeUpdate = {
       service: "UAE VAT support",
       cta: "Discuss VAT return support",
       href: "/uae-vat",
-      scope: "Explore UAE VAT scope",
+      scope: "UAE VAT return preparation",
     },
     {
       name: "UAE Corporate Tax Review & Filing",
@@ -42,7 +42,7 @@ export const homeUpdate = {
   ],
   workstreams: [
     { need: "Books or balances behind?", name: "Accounting & Bookkeeping", href: "/finance/services/accounting-bookkeeping" },
-    { need: "A UAE tax task due?", name: "UAE Tax & VAT", href: "/uae-vat" },
+    { need: "A UAE tax task due?", name: "UAE Tax & VAT", href: "/finance/services/tax-vat-compliance" },
     { need: "Need closer financial oversight?", name: "Financial Controller", href: "/finance/services/fractional-controller" },
     { need: "Planning your next hire?", name: "Fractional CFO", href: "/finance/services/fractional-cfo-advisory" },
   ],

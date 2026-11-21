@@ -7,6 +7,7 @@
   min-width: 0;
   margin: 0;
   padding: clamp(.85rem, 2vw, 1.55rem);
+  padding-inline-end: max(clamp(.85rem, 2vw, 1.55rem), var(--whatsapp-content-gutter));
 }
 .sheet figcaption { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .4rem; }
 .imprint, .sampleLabel { color: var(--stone-250); font-size: .72rem; line-height: 1.4; }

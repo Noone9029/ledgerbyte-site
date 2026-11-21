@@ -80,6 +80,10 @@ export const marketNames: Record<string, string> = {
   "regions/united-states": "United States",
   "regions/pakistan": "Pakistan",
 };
+export function serviceJurisdiction(group?: string) {
+  if (group === "UAE Tax & Formation") return marketNames["regions/uae"];
+  if (group === "Saudi Arabia") return marketNames["regions/saudi-arabia"];
+}
 export function contentPath(key: string) {
   const path = contentPaths[key];
   if (!path) throw new Error(`Unmapped accounting content target: ${key}`);

@@ -20,6 +20,27 @@ function nodes(value: unknown, result: Record<string, unknown>[] = []) {
 test.describe("crawlable finance answers", () => {
   test.use({ javaScriptEnabled: false });
 
+  test("home tax links distinguish return support from the four UAE tax workstreams", async ({ page }) => {
+    await page.goto("/");
+    const vatOffer = page.locator("#offers section").filter({ has: page.getByRole("heading", { name: "VAT Return Support", exact: true }) });
+    await vatOffer.locator("summary").click();
+    await expect(vatOffer.getByRole("link", { name: /UAE VAT return preparation/ })).toHaveAttribute("href", "/uae-vat");
+
+    const chooser = page.getByRole("link", { name: "UAE Tax & VAT", exact: true });
+    await expect(chooser).toHaveAttribute("href", "/finance/services/tax-vat-compliance");
+    await chooser.click();
+    const section = page.locator(".accounting-prose section").filter({ has: page.getByRole("heading", { name: "Choose the workstream you need", exact: true }) });
+    const destinations = {
+      "VAT preparation and review support": "/uae-vat",
+      "Corporate tax filing": "/finance/services/corporate-tax-filing",
+      "VAT registration": "/finance/services/vat-registration",
+      "Corporate tax registration": "/finance/services/corporate-tax-registration",
+    };
+    for (const [label, href] of Object.entries(destinations)) {
+      await expect(section.getByRole("link", { name: label, exact: true })).toHaveAttribute("href", href);
+    }
+  });
+
   test("finance hubs describe distinct tasks and scope in their initial HTML", async ({ page }) => {
     for (const path of ["/", "/finance", "/finance/services", "/insights", "/regions", "/build-your-finance-department"] as const) {
       await page.goto(path);

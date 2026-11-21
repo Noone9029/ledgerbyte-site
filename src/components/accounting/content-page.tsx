@@ -8,6 +8,7 @@ import {
   accountingServices,
   contentPath,
   marketNames,
+  serviceJurisdiction,
   serviceContactHref,
   type AccountingPage,
 } from "@/content/accounting";
@@ -15,6 +16,7 @@ import { team } from "@/content";
 import { guideExamples, relatedInsights } from "@/content/insight-guides";
 import { insightsEnglishUrl } from "@/lib/review-links";
 import { homeUpdate } from "@/content/home-update";
+import { enquiryDimensions } from "@/lib/enquiry-options";
 import { CashBridgeWorksheet, CashTimingSample, GuideCashChart, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import { WorkedExampleFigure } from "./worked-example-figure";
 import figureStyles from "./worked-example-figure.module.css";
@@ -124,7 +126,6 @@ export function TeamGrid({ locale = "en", compact = false }: { locale?: "en" | "
   );
 }
 const pageEnquiryServices: Record<string, string> = {
-  "uae-vat": "UAE VAT support",
   "insights/month-end-close": "Month-End & Year-End Close Support",
   "regions/uae": "Accounting & Bookkeeping",
   "regions/united-states": "Accounting & Bookkeeping",
@@ -176,12 +177,10 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
       : pageKey.startsWith("insights/")
         ? "Insights"
         : "Accounting. Tax. Advisory.");
-  const jurisdiction = filingOffer ? "United Arab Emirates" : ({
-    "UAE Tax & Formation": "United Arab Emirates",
-    "Saudi Arabia": "Saudi Arabia",
-  } as Record<string, string>)[service?.group ?? ""];
+  const jurisdiction = filingOffer ? marketNames["regions/uae"] : serviceJurisdiction(service?.group);
   const market = marketNames[pageKey] ?? jurisdiction;
-  const context = service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
+  const context = filingOffer?.name ?? service?.title ?? pageEnquiryServices[pageKey] ?? example?.service;
+  const dimensions = enquiryDimensions(context ?? "", market ?? "");
   const serviceName = service?.title ?? filingOffer?.name;
   const mainEntity = serviceName ? absoluteUrl(page.path) + "#service"
     : example ? absoluteUrl(page.path) + "#article"
@@ -238,7 +237,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
           ...(page.faqs.length ? [buildFaqSchema(page.faqs)] : []),
         )}
       />
-      <main id="main-content" className="accounting-page" data-guide={example ? "" : undefined}>
+      <main id="main-content" className="accounting-page" data-guide={example ? "" : undefined}
+        data-analytics-service={dimensions.service} data-analytics-market={dimensions.market}>
         <nav
           className="accounting-breadcrumb accounting-wrap"
           aria-label="Breadcrumb"
@@ -257,6 +257,9 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
             <p className="eyebrow">{page.eyebrow ?? group}</p>
             <h1>{page.heading}</h1>
             <p className="accounting-lead">{page.intro}</p>
+            {pageKey === "services/payroll-wps" && service && <p>
+              {service.output} <a className="text-link" href="#section-2">Monthly payroll processing support ↓</a>
+            </p>}
             {example && <p className="guide-publisher">By <Link href="/about">{SITE_NAME}</Link></p>}
             <EnquiryLink label={page.cta} service={context} market={market} />
             {earlyContents && (
@@ -271,9 +274,13 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               <p className="eyebrow">{filingOffer.name}</p>
               <h2 className={exampleStyles.offerPrice}><small>From</small> AED {filingOffer.price} {filingOffer.unit && <small>{filingOffer.unit}</small>}</h2>
               <p>{filingOffer.description}</p>
+              {pageKey === "services/corporate-tax-filing" && <p>The company approves its return and retains responsibility for payment.</p>}
               <hr />
               {pageKey === "uae-vat"
-                ? <Link className="text-link" href="/insights/vat-records#worked-example">See a VAT reconciliation ↗</Link>
+                ? <div className="filing-record-links">
+                  <a className="text-link" href="#section-2">What to bring to the first review ↓</a>
+                  <Link className="text-link" href="/insights/vat-records#worked-example">See a VAT reconciliation ↗</Link>
+                </div>
                 : sample ? <a className="text-link" href="#sample-deliverable">View the sample filing pack ↓</a>
                 : detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
             </aside>
