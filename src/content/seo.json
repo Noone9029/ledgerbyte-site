@@ -85,7 +85,7 @@
       "source": "Approved finance service page title and description"
     },
     "/finance/services/payroll-wps-management": {
-      "title": "Payroll & UAE WPS Preparation | LedgerByte",
+      "title": "Payroll Management Services & WPS Support | LedgerByte",
       "description": "Prepare payroll calculations, payslips, variance checks and applicable UAE WPS files, with a clear review pack for your authorized payroll team.",
       "image": "/art/finance-payroll-wps-editorial-v4.webp",
       "lastModified": "2026-11-20",
@@ -113,8 +113,8 @@
       "source": "Search intent and service scope from the LedgerByte UAE, bookkeeping, management reporting and finance leadership pages, revised 2026-11-20"
     },
     "/uae-vat": {
-      "title": "UAE VAT Return Preparation & Records Support | LedgerByte",
-      "description": "Prepare for a UAE VAT return with reconciled sales and purchase records, clear treatment questions and an agreed review and submission handover.",
+      "title": "UAE VAT Filing Support",
+      "description": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Haider November 10 replacement content"
@@ -170,7 +170,7 @@
     },
     "/finance/services/corporate-tax-filing": {
       "title": "UAE Corporate Tax Filing Services | LedgerByte",
-      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process. Discuss filing with LedgerByte.",
+      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process.",
       "image": "/art/finance-editorial-v3.webp",
       "lastModified": "2026-11-20",
       "source": "Approved finance service page title and description"
@@ -337,7 +337,7 @@
     "cash-flow-working-capital": "Cash Flow & Working Capital Support | LedgerByte",
     "financial-reporting-mis": "Management Reporting Services & MIS Packs | LedgerByte",
     "fractional-cfo-advisory": "Fractional CFO Services for UAE Businesses | LedgerByte",
-    "payroll-wps-management": "Payroll & UAE WPS Preparation | LedgerByte",
+    "payroll-wps-management": "Payroll Management Services & WPS Support | LedgerByte",
     "tax-vat-compliance": "UAE VAT & Corporate Tax Support | LedgerByte",
     "corporate-tax-filing": "UAE Corporate Tax Filing Services | LedgerByte",
     "vat-registration": "UAE VAT Registration Services | LedgerByte",

@@ -1,5 +1,25 @@
 import { expect, test } from "@playwright/test";
 
+test("@nojs payroll handover downloads the five displayed steps and blank sign-off fields", async ({ page, request }) => {
+  await page.goto("/finance/services/payroll-wps-management#payroll-handover");
+  const workflow = page.locator("#payroll-handover");
+  const steps = workflow.getByRole("listitem");
+  await expect(steps).toHaveCount(5);
+  await expect(steps.filter({ hasText: "Hand over the pack" })).toContainText("Employer’s authorized approver");
+  const download = workflow.getByRole("link", { name: "Download payroll checklist (CSV)" });
+  await expect(download).toHaveAttribute("download", "");
+  const file = await request.get((await download.getAttribute("href"))!);
+  expect(file.status()).toBe(200);
+  expect(file.headers()["content-disposition"]).toContain("payroll-handover-checklist.csv");
+  expect(file.headers()["x-robots-tag"]).toContain("noindex");
+  const csv = await file.text();
+  expect(csv).toContain('"Named owner","Due date","Status","Exception reference"');
+  for (const step of await steps.all()) {
+    const columns = await step.locator("strong,small,span").allTextContents();
+    expect(csv).toContain([...columns, "", "", "", ""].map(value => '"' + value.replaceAll('"', '""') + '"').join(","));
+  }
+});
+
 test("sample workpapers download the records displayed on each service", async ({ page, request, isMobile }) => {
   const services = [
     "payroll-wps-management", "finance-department-outsourcing", "fractional-controller", "budgeting-forecasting", "financial-reporting-mis",

@@ -1,6 +1,7 @@
 import { serviceSamples } from "@/content/service-samples";
+import { payrollHandoverChecklist } from "@/content/payroll-handover";
 
-const samples = Object.values(serviceSamples).filter(sample => sample !== undefined);
+const samples = [...Object.values(serviceSamples).filter(sample => sample !== undefined), payrollHandoverChecklist];
 export const dynamicParams = false;
 export function generateStaticParams() {
   return samples.map(({ file }) => ({ file }));

@@ -1,0 +1,30 @@
+.calendar {
+  margin-block-end: .4rem;
+  padding-inline-end: max(0px, calc(var(--whatsapp-content-gutter) - 1.5rem));
+  scroll-margin-block-start: 6rem;
+}
+.calendar summary {
+  cursor: pointer;
+  font-weight: 650;
+  min-height: 44px;
+  align-content: center;
+}
+.calendar[open] summary { color: var(--amber-400); }
+.calendar p { margin: .4rem 0 1rem; font-size: .95rem; line-height: 1.5; }
+.calendar table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+  text-align: start;
+}
+.calendar th, .calendar td {
+  padding: .4rem .5rem .4rem 0;
+  text-align: start;
+  vertical-align: top;
+  border-block-end: 1px solid var(--line-dark);
+}
+.calendar thead th { font-size: .82rem; color: var(--stone-250); }
+.calendar td span { color: var(--stone-250); }
+.calendar .source { display: grid; gap: .2rem; margin-block: .8rem; }
+.calendar a { text-decoration: underline; text-underline-offset: .16em; }
+.source a { justify-self: start; }

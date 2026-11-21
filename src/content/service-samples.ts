@@ -7,6 +7,18 @@ export interface ServiceSample {
 
 // Illustrative workpapers drawn from the service scopes and worked examples in accounting.json.
 export const serviceSamples: Partial<Record<string, ServiceSample>> = {
+  "uae-vat": {
+    file: "vat-return-reconciliation.csv",
+    title: "VAT return reconciliation",
+    columns: ["Return working", "Excl. VAT · AED", "VAT · AED"],
+    rows: [
+      ["Sales", 100000, 5000],
+      ["Sales credit note", -10000, -500],
+      ["Net sales", 90000, 4500],
+      ["Less recoverable input VAT", 40000, -2000],
+      ["Simplified net VAT payable", "—", 2500],
+    ],
+  },
   "services/budgeting-forecasting": {
     file: "budget-variance.csv",
     title: "Budget versus actual",

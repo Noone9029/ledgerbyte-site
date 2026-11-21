@@ -778,10 +778,11 @@
       ]
     },
     "services/payroll-wps": {
-      "title": "Payroll & UAE WPS Preparation | LedgerByte",
+      "title": "Payroll Management Services & WPS Support | LedgerByte",
       "description": "Prepare payroll calculations, payslips, variance checks and applicable UAE WPS files, with a clear review pack for your authorized payroll team.",
       "path": "/finance/services/payroll-wps-management",
-      "heading": "Payroll & WPS Management",
+      "eyebrow": "Payroll outsourcing",
+      "heading": "Payroll & UAE WPS Preparation",
       "intro": "Bring employee changes, pay calculations and supporting records into one reviewable process. LedgerByte supports payroll preparation and applicable UAE WPS file preparation, while your designated team controls salary approval and payment.",
       "cta": "Discuss your payroll process",
       "cardStrapline": "Complete inputs. Explained changes. A clear pay-run handover.",
@@ -798,6 +799,7 @@
           "paragraphs": [],
           "bullets": [
             "Collect approved joiner, leaver, salary, attendance and variable-pay information.",
+            "Leave, gratuity, and EOS tracking support.",
             "Prepare salary calculations and payslips within the agreed scope.",
             "Compare the current pay run with the previous period and explain material changes.",
             "Prepare a WPS-ready file where applicable, using the employer's approved provider format.",
@@ -813,7 +815,9 @@
         },
         {
           "heading": "Run the monthly payroll workflow",
-          "paragraphs": [],
+          "paragraphs": [
+            "HR can remain the owner of employee records and approved changes while LedgerByte supports the calculation and accounting work."
+          ],
           "bullets": [
             "Set the cutoff. Identify who supplies and confirms each category of payroll change.",
             "Calculate and compare. Prepare the pay run and check unexplained changes against the supporting instructions.",
@@ -855,6 +859,10 @@
         {
           "question": "Does this include employment-law or benefit advice?",
           "answer": "No. Legal interpretations, employee entitlement decisions and disputes need the appropriate HR or legal advice. Payroll preparation uses the confirmed inputs and treatment supplied for the engagement."
+        },
+        {
+          "question": "Can payroll support work alongside outsourced bookkeeping?",
+          "answer": "Yes. In fact, payroll works better when it connects cleanly into [bookkeeping](/finance/services/accounting-bookkeeping) and [month-end close](/finance/services/month-end-year-end-close) so salary costs, liabilities, and supporting records stay aligned."
         }
       ],
       "related": [
@@ -1252,18 +1260,21 @@
       ]
     },
     "uae-vat": {
-      "title": "UAE VAT Return Preparation & Records Support | LedgerByte",
-      "description": "Prepare for a UAE VAT return with reconciled sales and purchase records, clear treatment questions and an agreed review and submission handover.",
+      "title": "UAE VAT Filing Support",
+      "description": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
       "path": "/uae-vat",
-      "heading": "Prepare your UAE VAT return from a complete records pack.",
-      "intro": "A return is easier to review when every total connects to the records behind it. LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
+      "heading": "UAE VAT filing support",
+      "intro": "LedgerByte supports UAE VAT preparation, reconciliation and review, with a clear handover for the person responsible for submission.",
       "cta": "Discuss your UAE VAT period",
       "cardStrapline": "",
       "sections": [
         {
-          "heading": "What we help put together",
+          "heading": "What you receive",
           "paragraphs": [
-            "A [VAT preparation pack](/insights/vat-records) connects the sales and purchase schedules to the ledger and preserves the evidence for adjustments. It separates routine transactions from questions involving imports, reverse charge, zero-rating, exemptions, credit notes or input-tax recovery.",
+            "Assume a UAE VAT-registered business has only standard-rated transactions for this example, all items fall in the correct return period, the credit note is valid, all purchase VAT shown is fully recoverable and no other adjustments apply.",
+            "The UAE's standard VAT rate is 5%. Source checked 20 November 2026. [UAE VAT law, Article 3](https://tax.gov.ae/Datafolder/Files/Legislation/2025/Federal-Decree-Law-No-8-of-2017-and-amendments.pdf).",
+            "[Worked example: a simple net VAT calculation](/insights/vat-records#worked-example)",
+            "A VAT preparation pack connects the sales and purchase schedules to the ledger and preserves the evidence for adjustments. It separates routine transactions from questions involving imports, reverse charge, zero-rating, exemptions, credit notes or input-tax recovery.",
             "The scope can include transaction schedule preparation, tax-code review, ledger reconciliation and draft return workings. Registration, historical corrections, refund applications and representation are separate matters to discuss."
           ],
           "bullets": []
@@ -1294,26 +1305,26 @@
         {
           "heading": "Registration and filing: the essentials",
           "paragraphs": [
+            "Identify who prepares the schedules, resolves technical questions, approves the figures and is authorized to submit. Retain the final workings and the actual submission acknowledgement and payment evidence when available.",
+            "[Amir Ilyas · Senior Tax Consultant · FCCA](/about/team/amir-ilyas). Amir reviews tax and compliance-focused engagements with an emphasis on documentation quality, filing readiness, and practical risk management.",
             "For UAE-resident businesses, [mandatory VAT registration](/finance/services/vat-registration) generally applies when taxable supplies and imports exceed AED 375,000 in the previous 12 months or are expected to do so in the next 30 days. Voluntary registration has an AED 187,500 threshold and can also consider taxable expenses. Non-resident registration rules need a separate assessment.",
-            "Source check: 9 November 2026. [FTA: VAT registration requirements](https://tax.gov.ae/en/faq.aspx?keyword=What+are+the+VAT+registration+requirements%3F).",
-            "The FTA states that returns and related VAT payments are due within 28 days after the tax period ends. Confirm the actual period and deadline in the taxpayer's account and allow time for review and payment processing.",
-            "Source check: 9 November 2026. [FTA: Filing VAT Returns and Making Payments](https://tax.gov.ae/en/content/filing.vat.returns.and.making.payments.aspx)."
+            "Source check: 9 November 2026. [FTA: VAT registration requirements](https://tax.gov.ae/en/faq.aspx?keyword=What+are+the+VAT+registration+requirements%3F)."
           ],
           "bullets": []
         }
       ],
       "faqs": [
         {
-          "question": "Is every business required to register for VAT?",
-          "answer": "No. Registration depends on the applicable rules, including the value and nature of supplies and imports and whether the business is resident or non-resident. Review the facts before relying on a turnover figure alone."
+          "question": "Who submits the return?",
+          "answer": "The engagement specifies the preparer, reviewer, client approver and authorized submitter. Preparation does not automatically include access to EmaraTax or authority to submit. LedgerByte does not claim FTA tax-agent registration on this website."
         },
         {
           "question": "Does a bank payment prove that VAT can be recovered?",
           "answer": "No. Review needs to address the supporting tax documentation, nature of the cost and relevant recovery conditions. A bank statement identifies a payment but does not settle the tax treatment. Source check: 9 November 2026. [FTA: VAT Returns User Guide, input-tax section](https://tax.gov.ae/DataFolder/Files/Pdf/VAT%20Returns%20User%20GuideEnglishV40%2015%2008%202021%20SEP2021.pdf)."
         },
         {
-          "question": "Who submits the return?",
-          "answer": "The engagement specifies the preparer, reviewer, client approver and authorized submitter. Preparation does not automatically include access to EmaraTax or authority to submit. LedgerByte does not claim FTA tax-agent registration on this website."
+          "question": "Is every business required to register for VAT?",
+          "answer": "No. Registration depends on the applicable rules, including the value and nature of supplies and imports and whether the business is resident or non-resident. Review the facts before relying on a turnover figure alone."
         },
         {
           "question": "What if we discover a problem in an earlier return?",
@@ -1376,7 +1387,7 @@
           }
         }
       ],
-      "eyebrow": "UAE VAT support"
+      "eyebrow": "VAT Return Support"
     },
     "regions/uae": {
       "title": "Outsourced Accounting & Bookkeeping in the UAE | LedgerByte",
@@ -2590,9 +2601,9 @@
     },
     "services/corporate-tax-filing": {
       "title": "UAE Corporate Tax Filing Services | LedgerByte",
-      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process. Discuss filing with LedgerByte.",
+      "description": "Prepare your UAE corporate tax return with reconciled accounts, supported adjustments and a clear review process.",
       "path": "/finance/services/corporate-tax-filing",
-      "heading": "Corporate tax filing with the workings behind the return.",
+      "heading": "UAE Corporate Tax Filing Services",
       "intro": "Move from year-end accounts to a supported UAE corporate tax submission. LedgerByte prepares the calculation, organizes return information and coordinates review and filing steps around your entity and tax period.",
       "cta": "Discuss your corporate tax return",
       "cardStrapline": "Reconciled accounts. Explained adjustments. A supported return.",
@@ -2630,6 +2641,7 @@
         {
           "heading": "How the work moves",
           "paragraphs": [
+            "[Amir](/about/team/amir-ilyas) reviews tax and compliance-focused engagements with an emphasis on documentation quality, filing readiness, and practical risk management.",
             "Submission arrangements are agreed through the company's authorized signatory or an appropriately appointed registered tax agent where required. The company approves its return and retains responsibility for payment. Bookkeeping cleanup, transfer-pricing studies, disputes and amendment of earlier returns require a separately defined scope."
           ],
           "bullets": [

@@ -62,3 +62,7 @@ export const homeUpdate = {
     { question: "Can I start with just one service?", answer: "Yes. You can start with one task, such as a VAT return or a month-end close. If you’re unsure where to start, tell us what’s due next." },
   ],
 };
+
+export function filingOfferForPath(path: string) {
+  return homeUpdate.offers.find(offer => offer.href === path && offer.serviceSlug !== "accounting-bookkeeping");
+}

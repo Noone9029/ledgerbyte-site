@@ -84,6 +84,34 @@ test("every supplied page renders its complete copy with correct metadata and wo
   expect(errors).toEqual([]);
 });
 
+test("@nojs the corporate tax calendar maps period-end months to the standard filing month", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 730 });
+  await page.goto("/finance/services/corporate-tax-filing");
+  const calendar = page.locator("#filing-calendar");
+  await calendar.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  const table = calendar.getByRole("table", { name: "Standard filing months" });
+  await expect(table).toBeVisible();
+  await expect(table.getByRole("row")).toHaveCount(13);
+  await expect(table.getByRole("rowheader")).toHaveText([
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ]);
+  await expect(table.getByRole("cell")).toHaveText([
+    "October · same year", "November · same year", "December · same year",
+    "January · next year", "February · next year", "March · next year",
+    "April · next year", "May · next year", "June · next year",
+    "July · next year", "August · next year", "September · next year",
+  ]);
+  await expect(calendar).toContainText("30 September 2026");
+  await expect(calendar.getByRole("link", { name: "FTA filing reminder" })).toHaveAttribute("href", "https://tax.gov.ae/en/media.centre/news/pr.2809.aspx");
+  const clearance = await table.evaluate(element => {
+    const whatsapp = document.querySelector(".floating-whatsapp")!;
+    return whatsapp.getBoundingClientRect().left - element.getBoundingClientRect().right;
+  });
+  expect(clearance).toBeGreaterThan(0);
+});
+
 test("filing prices survive the handoff and worked examples reconcile", async ({ page }) => {
   for (const route of ["/uae-vat", "/finance/services/corporate-tax-filing"]) {
     await page.goto(route);

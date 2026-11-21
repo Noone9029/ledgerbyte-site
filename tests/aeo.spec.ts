@@ -20,6 +20,21 @@ function nodes(value: unknown, result: Record<string, unknown>[] = []) {
 test.describe("crawlable finance answers", () => {
   test.use({ javaScriptEnabled: false });
 
+  test("a VAT buyer can reconcile the quoted return and download its workings", async ({ page, request }) => {
+    await page.goto("/uae-vat");
+    const offer = page.locator(".accounting-detail-hero aside");
+    await expect(offer).toContainText("28 days after the tax period ends");
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /^From AED 750 per return\./);
+    await offer.getByRole("link", { name: /See a VAT reconciliation/ }).click();
+    const working = page.locator("#sample-deliverable");
+    await expect(working.getByRole("row", { name: /Simplified net VAT payable/ })).toContainText("2,500");
+    const url = await working.getByRole("link", { name: /Download sample/ }).getAttribute("href");
+    const download = await request.get(url!);
+    expect(download.status()).toBe(200);
+    expect(download.headers()["content-disposition"]).toContain("attachment");
+    expect(await download.text()).toContain('"Simplified net VAT payable","—","2500"');
+  });
+
   test("home tax links distinguish return support from the four UAE tax workstreams", async ({ page }) => {
     await page.goto("/");
     const vatOffer = page.locator("#offers section").filter({ has: page.getByRole("heading", { name: "VAT Return Support", exact: true }) });

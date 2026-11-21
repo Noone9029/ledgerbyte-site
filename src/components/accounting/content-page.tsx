@@ -15,13 +15,15 @@ import {
 import { team } from "@/content";
 import { guideExamples, relatedInsights } from "@/content/insight-guides";
 import { insightsEnglishUrl } from "@/lib/review-links";
-import { homeUpdate } from "@/content/home-update";
+import { filingOfferForPath } from "@/content/home-update";
 import { enquiryDimensions } from "@/lib/enquiry-options";
 import { CashBridgeWorksheet, CashTimingSample, GuideCashChart, ProcessorSettlementSample, ReceiptMatchingSample } from "./finance-examples";
 import { WorkedExampleFigure } from "./worked-example-figure";
 import figureStyles from "./worked-example-figure.module.css";
 import { SecondaryExample } from "./secondary-example";
 import { ServiceSample } from "./service-sample";
+import { CorporateFilingCalendar } from "./corporate-filing-calendar";
+import { PayrollHandover } from "./payroll-handover";
 import { serviceSamples } from "@/content/service-samples";
 import exampleStyles from "./finance-examples.module.css";
 import { getPageSeo, type SeoPagePath } from "@/content/seo";
@@ -157,7 +159,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
   const profitGuide = pageKey === "insights/profit-and-cash";
   const hasNumberedSteps = page.sections.some(section => /^\d+\.\s/.test(section.heading));
   const founder = pageKey === "about" ? team.find(person => person.name === "Haider Ali") : undefined;
-  const filingOffer = homeUpdate.offers.find(offer => offer.href === page.path && offer.service !== "Accounting & Bookkeeping");
+  const filingOffer = filingOfferForPath(page.path);
   const dateModified = getPageSeo(page.path as SeoPagePath)?.lastModified;
   const service = accountingServices.find((item) => item.key === pageKey);
   const earlyContents = Boolean(service) || pageKey.startsWith("insights/");
@@ -261,7 +263,7 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               {service.output} <a className="text-link" href="#section-2">Monthly payroll processing support ↓</a>
             </p>}
             {example && <p className="guide-publisher">By <Link href="/about">{SITE_NAME}</Link></p>}
-            <EnquiryLink label={page.cta} service={context} market={market} />
+            <EnquiryLink label={page.cta} service={context} market={pageKey === "services/payroll-wps" ? marketNames["regions/uae"] : market} />
             {earlyContents && (
               <details className="accounting-toc-compact">
                 <summary>On this page</summary>
@@ -276,10 +278,17 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
               <p>{filingOffer.description}</p>
               {pageKey === "services/corporate-tax-filing" && <p>The company approves its return and retains responsibility for payment.</p>}
               <hr />
+              {pageKey === "services/corporate-tax-filing" && <CorporateFilingCalendar />}
               {pageKey === "uae-vat"
                 ? <div className="filing-record-links">
+                  <div className="filing-deadline">
+                    <h3>Filing and payment</h3>
+                    <p>The FTA states that returns and related VAT payments are due within 28 days after the tax period ends.</p>
+                    <p>Confirm the actual period and deadline in the taxpayer’s account.</p>
+                    <a className="text-link" href="https://tax.gov.ae/en/taxes/Vat/vat.topics/filing.vat.returns.and.making.payments.aspx">FTA filing guidance ↗</a>
+                  </div>
                   <a className="text-link" href="#section-2">What to bring to the first review ↓</a>
-                  <Link className="text-link" href="/insights/vat-records#worked-example">See a VAT reconciliation ↗</Link>
+                  <a className="text-link" href="#sample-deliverable">See a VAT reconciliation ↓</a>
                 </div>
                 : sample ? <a className="text-link" href="#sample-deliverable">View the sample filing pack ↓</a>
                 : detailSection >= 0 && <a className="text-link" href={`#section-${detailSection + 1}`}>{page.sections[detailSection].heading} ↓</a>}
@@ -401,6 +410,8 @@ export function ContentPage({ pageKey }: { pageKey: string }) {
                 {(section.blocks ?? [...section.paragraphs, section.bullets]).map((block) =>
                   typeof block === "string" ? <p key={block}><CopyText text={block} /></p>
                   : isCashBridge ? <CashBridgeWorksheet key={section.heading} />
+                  : pageKey === "services/payroll-wps" && section.heading === "Run the monthly payroll workflow"
+                    ? <PayrollHandover key={section.heading} steps={block} />
                   : block.length > 0 && (
                   <ul key={block[0]}>
                     {block.map((text) => (

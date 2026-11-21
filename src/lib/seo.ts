@@ -2,6 +2,7 @@ import serviceDrafts from "@/content/seo-drafts/service-map.json";
 import { isSeoReview, languageAlternates } from "@/lib/localization";
 import type { Metadata } from "next";
 import { seoPages, type SeoPageConfig, type SeoPagePath } from "@/content/seo";
+import { filingOfferForPath } from "@/content/home-update";
 
 export const SITE_NAME = "LedgerByte";
 export const SITE_URL = "https://ledgerbyte.io";
@@ -69,7 +70,11 @@ export function createMetadata({
   description = draft?.reviewDescription ?? description;
   const canonical = absoluteUrl(path);
   const formattedTitle = formatSeoTitle(title);
-  const formattedDescription = formatMetaDescription(description);
+  const filingOffer = filingOfferForPath(path);
+  const startingFee = filingOffer && !draft
+    ? `From AED ${filingOffer.price}${filingOffer.unit === "/ return" ? " per return" : ""}. `
+    : "";
+  const formattedDescription = formatMetaDescription(startingFee + description);
   const shouldIndex = isIndexableEnvironment && !noIndex;
 
   return {

@@ -1,0 +1,46 @@
+.handover {
+  padding-inline-end: var(--whatsapp-content-gutter);
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .25rem .75rem;
+  align-items: baseline;
+  padding: .85rem 0;
+  margin: 0;
+  border-top: 1px solid var(--line-dark);
+}
+
+.steps strong {
+  color: var(--ivory-100);
+  font-weight: 600;
+}
+
+.steps small {
+  color: var(--amber-400);
+  font-size: .8rem;
+}
+
+.steps span {
+  grid-column: 1 / -1;
+  line-height: 1.5;
+}
+
+.download {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .25rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .steps > li { grid-template-columns: minmax(0, 1fr); }
+}
